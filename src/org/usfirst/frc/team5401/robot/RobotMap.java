@@ -15,4 +15,20 @@ public class RobotMap {
     // number and the module. For example you with a rangefinder:
     // public static int rangefinderPort = 1;
     // public static int rangefinderModule = 1;
+	
+	//Global Variables
+	public static final double MinSensitivityThreshold = 0.1;
+	public static final double  MaxSensitivityThreshold = 0.9;
+	public static final double  Drive_Sensitivity_Default = 1;
+	public static final double  Drive_Sensitivity_Precise = 0.2;
+	
+	//Joystick Values
+	public static final int XBOX_CONTROLLER   = 1;
+	
+	//Drive Motors
+	public static final int LEFT_MOTOR        = 0;
+	public static final int RIGHT_MOTOR       = 1;
+		
+
+							
 }

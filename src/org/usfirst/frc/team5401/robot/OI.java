@@ -1,7 +1,9 @@
 package org.usfirst.frc.team5401.robot;
 
 import edu.wpi.first.wpilibj.buttons.Button;
-import org.usfirst.frc.team5401.robot.commands.ExampleCommand;
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.JoystickButton;
+import org.usfirst.frc.team5401.robot.commands.*;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -15,6 +17,22 @@ public class OI {
     // Joystick stick = new Joystick(port);
     // Button button = new JoystickButton(stick, buttonNumber);
     
+	Joystick XboxControllerDriver = new Joystick(XBOX_CONTROLLER);
+	
+	//Buttons
+	Button XboxADriver						= new JoystickButton(XboxControllerDriver, 1);
+	Button XboxBDriver						= new JoystickButton(XboxControllerDriver, 2);
+	Button XboxXDriver						= new JoystickButton(XboxControllerDriver, 3);
+	Button XboxYDriver						= new JoystickButton(XboxControllerDriver, 4);
+	Button XboxUpperLeftTrigDriver			= new JoystickButton(XboxControllerDriver, 5);
+	Button XboxUpperRightTrigDriver			= new JoystickButton(XboxControllerDriver, 6);
+	Button XboxBackDriver					= new JoystickButton(XboxControllerDriver, 7);
+	Button XboxStartDriver					= new JoystickButton(XboxControllerDriver, 8);
+	Button XboxLeftStickButtonDriver		= new JoystickButton(XboxControllerDriver, 9);
+	Button XboxRightStickButtonDriver		= new JoystickButton(XboxControllerDriver, 10);
+	
+	
+	
     // There are a few additional built in buttons you can use. Additionally,
     // by subclassing Button you can create custom triggers and bind those to
     // commands the same as any other Button.
