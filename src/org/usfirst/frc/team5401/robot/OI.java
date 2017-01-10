@@ -2,7 +2,7 @@ package org.usfirst.frc.team5401.robot;
 
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.JoystickButton;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import org.usfirst.frc.team5401.robot.commands.*;
 
 /**
@@ -52,5 +52,31 @@ public class OI {
     // Start the command when the button is released  and let it run the command
     // until it is finished as determined by it's isFinished method.
     // button.whenReleased(new ExampleCommand());
+	
+	
+	public double readXboxDriverLeftStickX(){
+		double slewInput = XboxControllerDriver.getRawAxis(0);
+		return slewInput;
+	}
+	public double getLeftTriggerDriver(){
+		double throttleInput = XboxControllerDriver.getRawAxis(2);
+		return throttleInput;		
+	}
+	public double getRightTriggerDriver(){
+		double throttleInput = XboxControllerDriver.getRawAxis(3);
+		return throttleInput;
+	}
+	public boolean getPrecisionDriver(){
+		boolean precisionInput = XboxControllerDriver.getRawButton(5);
+		return precisionInput;
+	}
+	public boolean getBrakeDriver(){
+		boolean brakeInput = XboxControllerDriver.getRawButton(6);
+		return brakeInput;
+	}
+	public boolean getTurnButton(){
+		boolean turnInput = XboxControllerDriver.getRawButton(9);
+		return turnInput;
+	}
 }
 

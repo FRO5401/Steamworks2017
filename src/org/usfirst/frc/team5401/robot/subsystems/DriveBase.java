@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 
 import org.usfirst.frc.team5401.robot.RobotMap;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.usfirst.frc.team5401.commands.XboxMove;
+import org.usfirst.frc.team5401.robot.commands.XboxMove;
 
 /**
  *
@@ -16,11 +16,14 @@ public class DriveBase extends Subsystem {
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
+	private Victor leftDrive;
+	private Victor rightDrive;
 	
 	public DriveBase(){
-		LeftDrive = new Victor(RobotMap.LEFT_MOTOR);
-		RightDrive = new Victor(RobotMap.RIGHT_MOTOR);
+		leftDrive = new Victor(RobotMap.LEFT_MOTOR);
+		rightDrive = new Victor(RobotMap.RIGHT_MOTOR);
 	}
+	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
@@ -30,16 +33,16 @@ public class DriveBase extends Subsystem {
     public void Drive(double LeftDriveDesired, double RightDriveDesired)
     {
 
-    LeftDrive.set(-1 * LeftDriveDesired); //passes desired state to speed controllers
+    leftDrive.set(-1 * LeftDriveDesired); //passes desired state to speed controllers
     
-    RightDrive.set(RightDriveDesired);
+    rightDrive.set(RightDriveDesired);
     }
 
   public void Stop()
   {
 
-    LeftDrive.set(0);
-    RightDrive.set(0);
+    leftDrive.set(0);
+    rightDrive.set(0);
 
   //  TimeCount.stop();
 

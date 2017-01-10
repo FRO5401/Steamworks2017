@@ -21,6 +21,8 @@ public class RobotMap {
 	public static final double  MaxSensitivityThreshold = 0.9;
 	public static final double  Drive_Sensitivity_Default = 1;
 	public static final double  Drive_Sensitivity_Precise = 0.2;
+	public static final double SpinSensitivity = 0.5;
+	public static final double Thresh = 0.1;
 	
 	//Joystick Values
 	public static final int XBOX_CONTROLLER   = 1;
