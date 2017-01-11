@@ -17,7 +17,7 @@ public class OI {
     // Joystick stick = new Joystick(port);
     // Button button = new JoystickButton(stick, buttonNumber);
     
-	Joystick XboxControllerDriver = new Joystick(XBOX_CONTROLLER);
+	Joystick XboxControllerDriver = new Joystick(RobotMap.XBOX_CONTROLLER);
 	
 	//Buttons
 	Button XboxADriver						= new JoystickButton(XboxControllerDriver, 1);

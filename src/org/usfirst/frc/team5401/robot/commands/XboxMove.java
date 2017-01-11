@@ -32,9 +32,9 @@ public class XboxMove extends Command {
     	double right = 0, left = 0, sensitivity;
     	
     	if (precision) { //Sets drive precision based on RobotMap and Precision Mode
-    		sensitivity	=	RobotMap.Drive_Sensitivity_Precise;
+    		sensitivity	=	RobotMap.DRIVE_SENSITIVITY_PRECISE;
     	} else {
-    		sensitivity	=	RobotMap.Drive_Sensitivity_Default;
+    		sensitivity	=	RobotMap.DRIVE_SENSITIVITY_DEFAULT;
     	}
     	// -----Begin block of spin in place code
     		if (brake){		//brake, Bracket level 1
@@ -42,12 +42,12 @@ public class XboxMove extends Command {
     			right = 0;
     		}else if(!turn){ 	//drive normally, end bracket L1, new bracket L1
     			//else
-    			if (slew > RobotMap.Thresh){	//If Slew is positive (Thumbstick pushed right), go Right, new bracket L2
+    			if (slew > RobotMap.DRIVE_THRESHHOLD){	//If Slew is positive (Thumbstick pushed right), go Right, new bracket L2
     				left = (throttle - reverse) * sensitivity;			//Send Left full power
     				right = (throttle - reverse) * sensitivity * (1 - slew);	//Send Right partial power, tempered by how hard the thumbstick is being pushed
 //    				heading = Robot.drivebase . ReportGyro();
 //    				drift = 0;
-    			}else if (slew < (-1 * RobotMap.Thresh)){	//If Slew is negative (Thumbstick pushed left), go Left, end bracket L2, new bracket L2 ***020516 KJM - added an else here.  May be unnecessary
+    			}else if (slew < (-1 * RobotMap.DRIVE_THRESHHOLD)){	//If Slew is negative (Thumbstick pushed left), go Left, end bracket L2, new bracket L2 ***020516 KJM - added an else here.  May be unnecessary
     				left = (throttle - reverse) * sensitivity * (1 + slew);		//Send Left partial power, tempered by how hard thumbstick is being pushed left
     				right = (throttle - reverse) * sensitivity; 			//Send right full power
 //    				heading = Robot.drivebase . ReportGyro();
@@ -66,9 +66,9 @@ public class XboxMove extends Command {
 //    				}
     			}//end bracket L2
     		}else {	//drive turning end bracket L1, new bracket L1
-    			if (Math.abs(slew) > RobotMap.Thresh){
-    				 left = RobotMap.SpinSensitivity * slew;
-    				 right = RobotMap.SpinSensitivity * slew * -1;
+    			if (Math.abs(slew) > RobotMap.DRIVE_THRESHHOLD){
+    				 left = RobotMap.DRIVE_SPIN_SENSITIVITY * slew;
+    				 right = RobotMap.DRIVE_SPIN_SENSITIVITY * slew * -1;
     			}//end bracket L2
      
     		}//end bracket L1
