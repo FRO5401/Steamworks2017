@@ -21,6 +21,12 @@ import org.usfirst.frc.team5401.robot.subsystems.*;
 public class Robot extends IterativeRobot {
 
 	public static DriveBase drivebase;
+	public static Climber climber;
+	public static GearMechanism gearmechanism;
+	public static Infeed infeed;
+	public static Loader loader;
+	public static Shooter shooter;
+	public static VisionProcessing visionprocessing;
 	public static OI oi;
 
     Command autonomousCommand;
