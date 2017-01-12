@@ -7,9 +7,15 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class StrafeGear extends Command {
 
+	//pot value;
     public StrafeGear() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+    	//requires GearMachanism
+    	//needs visionProcessing
+    	//pot value = 0;
+    	//button;
+    	//something;
     }
 
     // Called just before this Command runs the first time
@@ -18,11 +24,19 @@ public class StrafeGear extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	//getButton
+    	//while button is held down, take vision and move
+    	//something = false;
+    	//while when stop moving
+    	//something = true
+    	
+    	
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        //return something;
+    	return false;
     }
 
     // Called once after isFinished returns true
