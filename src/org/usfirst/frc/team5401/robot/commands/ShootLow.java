@@ -1,6 +1,8 @@
 package org.usfirst.frc.team5401.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import org.usfirst.frc.team5401.robot.Robot;
+import org.usfirst.frc.team5401.robot.RobotMap;
 
 /**
  *
@@ -9,7 +11,7 @@ public class ShootLow extends Command {
 
     public ShootLow() {
         // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+        requires(Robot.shooter);
     }
 
     // Called just before this Command runs the first time
