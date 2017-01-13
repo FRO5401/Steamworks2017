@@ -5,38 +5,29 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class StrafeGear extends Command {
-
-	//pot value;
-    public StrafeGear() {
+public class FeedInAndOut extends Command {
+	//int inOrOutVariable
+	
+    public FeedInAndOut(double feedInOrOutInput) {//inOrOutInput should be -1 or 1 depending on what direction the feeder run in
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	//requires GearMachanism
-    	//needs visionProcessing
-    	//pot value = 0;
-    	//button;
-    	//something;
+    	
+    	//requires(Robot.infeed);
+    	//inOrOutVariable = feedInOrOutInput;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	//Set motor to feedInOrOutVariable
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	//getButton
-    	//while button is held down, take vision and move
-    	//something = false;
-    	//while when stop moving
-    	//something = true
-    	
-    	
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        //return something;
-    	return false;
+        return true;
     }
 
     // Called once after isFinished returns true
