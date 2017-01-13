@@ -1,6 +1,7 @@
 package org.usfirst.frc.team5401.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
+import org.usfirst.frc.team5401.robot.commands.ShootHigh;
 
 /**
  *
@@ -17,14 +18,14 @@ public class Shooter extends PIDSubsystem {
     	//initialize shooter motors
     	
         // Use these to get going:
-        // setSetpoint() -  Sets where the PID controller should move the system
+        // setSetpoint() -  Sets where the PID controller should move the system //set to RPM
         //                  to
         // enable() - Enables the PID controller.
     }
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
+        setDefaultCommand(new ShootHigh());
     }
 
     protected double returnPIDInput() {
@@ -41,5 +42,6 @@ public class Shooter extends PIDSubsystem {
         // e.g. yourMotor.set(output);
     	
     	//set motor 
+    	//maybe ready to shoot with if 
     }
 }
