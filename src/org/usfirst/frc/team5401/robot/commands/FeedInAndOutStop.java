@@ -1,6 +1,7 @@
 package org.usfirst.frc.team5401.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import org.usfirst.frc.team5401.robot.Robot;
 
 /**
  *
@@ -11,11 +12,13 @@ public class FeedInAndOutStop extends Command {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	
-    	//requires(Robot.infeeder);
+    	requires(Robot.infeed);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	
+    	Robot.infeed.stopFeed();
     	//Either Set motor to zero or use a StopFeed() function from Infeeder subsystem
     	
     }

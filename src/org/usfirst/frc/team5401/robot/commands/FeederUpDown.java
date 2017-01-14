@@ -1,24 +1,26 @@
 package org.usfirst.frc.team5401.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import org.usfirst.frc.team5401.robot.Robot;
 
 /**
  *
  */
 public class FeederUpDown extends Command {
 
-	//double feederUpDownVariable
+	double feederUpDownVariable;
 	
     public FeederUpDown(double feederUpDownInput) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	
-    	//requires(Robot.infeeder)
-    	//feederUpDownVariable = feederUpDownInput
+    	requires(Robot.infeed);
+    	feederUpDownVariable = feederUpDownInput;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.infeed.runUpDown(feederUpDownVariable);
     	//set motor to feederUpDownVariable
     }
 

@@ -24,12 +24,17 @@ public class RobotMap {
 	public static final double DRIVE_THRESHHOLD = 0.1;
 	
 	//Joystick Values
-	public static final int XBOX_CONTROLLER   = 1;
+	public static final int XBOX_CONTROLLER_DRIVER   = 1;
+	public static final int XBOX_CONTROLLER_OPERATOR = 2;
 	
 	//Drive Motors
 	public static final int LEFT_MOTOR        = 0;
 	public static final int RIGHT_MOTOR       = 1;
-		
+	
+	//Feeder Motors
+	public static final int UP_DOWN_MOTOR	  = 2;
+	public static final int IN_OUT_MOTOR	  = 3;
+	
 
 							
 }

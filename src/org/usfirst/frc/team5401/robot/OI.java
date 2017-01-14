@@ -17,9 +17,12 @@ public class OI {
     // Joystick stick = new Joystick(port);
     // Button button = new JoystickButton(stick, buttonNumber);
     
-	Joystick XboxControllerDriver = new Joystick(RobotMap.XBOX_CONTROLLER);
+	Joystick XboxControllerDriver = new Joystick(RobotMap.XBOX_CONTROLLER_DRIVER);
+	Joystick XboxControllerOperator = new Joystick(RobotMap.XBOX_CONTROLLER_OPERATOR);
 	
 	//Buttons
+	
+	//Driver
 	Button XboxADriver						= new JoystickButton(XboxControllerDriver, 1);
 	Button XboxBDriver						= new JoystickButton(XboxControllerDriver, 2);
 	Button XboxXDriver						= new JoystickButton(XboxControllerDriver, 3);
@@ -30,6 +33,18 @@ public class OI {
 	Button XboxStartDriver					= new JoystickButton(XboxControllerDriver, 8);
 	Button XboxLeftStickButtonDriver		= new JoystickButton(XboxControllerDriver, 9);
 	Button XboxRightStickButtonDriver		= new JoystickButton(XboxControllerDriver, 10);
+	
+	//Operator
+	Button XboxAOperator						= new JoystickButton(XboxControllerOperator, 1);
+	Button XboxBOperator						= new JoystickButton(XboxControllerOperator, 2);
+	Button XboxXOperator						= new JoystickButton(XboxControllerOperator, 3);
+	Button XboxYOperator						= new JoystickButton(XboxControllerOperator, 4);
+	Button XboxUpperLeftTrigOperator			= new JoystickButton(XboxControllerOperator, 5);
+	Button XboxUpperRightTrigOperator 			= new JoystickButton(XboxControllerOperator, 6);
+	Button XboxBackOperator						= new JoystickButton(XboxControllerOperator, 7);
+	Button XboxStartOperator					= new JoystickButton(XboxControllerOperator, 8);
+	Button XboxLeftStickButtonOperator			= new JoystickButton(XboxControllerOperator, 9);
+	Button XboxRightStickButtonOperator			= new JoystickButton(XboxControllerOperator, 10);
 	
 	
 	
@@ -53,7 +68,15 @@ public class OI {
     // until it is finished as determined by it's isFinished method.
     // button.whenReleased(new ExampleCommand());
 	
-	
+	public OI(){
+		//This will make the InFeeder feed in -- Untested 
+		XboxAOperator.whenPressed(new FeedInAndOut(1));	
+		//This will make the InFeeder feed out -- Untested
+		XboxBOperator.whenPressed(new FeedInAndOut(-1));
+		//This will make the InFeeder stop -- Untested
+		XboxAOperator.whenReleased(new FeedInAndOutStop());
+		XboxBOperator.whenReleased(new FeedInAndOutStop());
+	}
 	public double readXboxDriverLeftStickX(){
 		double slewInput = XboxControllerDriver.getRawAxis(0);
 		return slewInput;
@@ -78,5 +101,6 @@ public class OI {
 		boolean turnInput = XboxControllerDriver.getRawButton(9);
 		return turnInput;
 	}
+	
 }
 
