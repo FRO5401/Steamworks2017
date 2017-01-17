@@ -38,7 +38,12 @@ public class RobotMap {
 	//Drive Motors
 	public static final int LEFT_MOTOR	= 0;
 	public static final int RIGHT_MOTOR = 1;
-		
+	
+	//Drive Pneumatics
+	public static final int LEFT_GEAR_SHIFT_FORWARD_CHANNEL = 0;
+	public static final int LEFT_GEAR_SHIFT_REVERSE_CHANNEL = 0;
+	public static final int RIGHT_GEAR_SHIFT_FORWARD_CHANNEL = 0;
+	public static final int RIGHT_GEAR_SHIFT_REVERSE_CHANNEL = 0;
 
 							
 }
