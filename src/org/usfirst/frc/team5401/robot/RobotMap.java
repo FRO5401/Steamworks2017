@@ -41,9 +41,9 @@ public class RobotMap {
 	
 	//Drive Pneumatics
 	public static final int LEFT_GEAR_SHIFT_FORWARD_CHANNEL = 0;
-	public static final int LEFT_GEAR_SHIFT_REVERSE_CHANNEL = 0;
-	public static final int RIGHT_GEAR_SHIFT_FORWARD_CHANNEL = 0;
-	public static final int RIGHT_GEAR_SHIFT_REVERSE_CHANNEL = 0;
+	public static final int LEFT_GEAR_SHIFT_REVERSE_CHANNEL = 1;
+	public static final int RIGHT_GEAR_SHIFT_FORWARD_CHANNEL = 2;
+	public static final int RIGHT_GEAR_SHIFT_REVERSE_CHANNEL = 3;
 
 							
 }

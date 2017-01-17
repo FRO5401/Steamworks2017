@@ -24,8 +24,8 @@ public class DriveBase extends Subsystem {
 	public DriveBase(){
 		leftDrive  = new Victor(RobotMap.LEFT_MOTOR);
 		rightDrive = new Victor(RobotMap.RIGHT_MOTOR);
-		leftGearShift = new DoubleSolenoid(LEFT_GEAR_SHIFT_FORWARD_CHANNEL, LEFT_GEAR_SHIFT_REVERSE_CHANNEL);
-		rightGearShift  = new DoubleSolenoid(RIGHT_GEAR_SHIFT_FORWARD_CHANNEL, RIGHT_GEAR_SHIFT_REVERSE_CHANNEL);
+		leftGearShift = new DoubleSolenoid(RobotMap.LEFT_GEAR_SHIFT_FORWARD_CHANNEL, RobotMap.LEFT_GEAR_SHIFT_REVERSE_CHANNEL);
+		rightGearShift  = new DoubleSolenoid(RobotMap.RIGHT_GEAR_SHIFT_FORWARD_CHANNEL, RobotMap.RIGHT_GEAR_SHIFT_REVERSE_CHANNEL);
 	}
 	
     public void initDefaultCommand() {
@@ -43,5 +43,14 @@ public class DriveBase extends Subsystem {
     	rightDrive.set(0);
     }
     
-    public void 
+    public void shiftGearLowToHigh(){//Meaning Low speed to high speed
+    	//Assumes Pneumatic forward/out shifts low to high
+    	leftGearShift.set(DoubleSolenoid.Value.kForward);
+    	rightGearShift.set(DoubleSolenoid.Value.kForward);
+    }
+    public void shiftGearHighToLow(){
+    	//Assumes Pneumatic reverse/in shifts high to low
+    	leftGearShift.set(DoubleSolenoid.Value.kReverse);
+    	rightGearShift.set(DoubleSolenoid.Value.kReverse);
+    }
 }
