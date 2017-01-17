@@ -18,17 +18,26 @@ public class RobotMap {
 	
 	//Global Variables
 
-	public static final double DRIVE_SENSITIVITY_DEFAULT = 1;
+	public static final double DRIVE_SENSITIVITY_DEFAULT = 1.0;
 	public static final double DRIVE_SENSITIVITY_PRECISE = 0.2;
-	public static final double DRIVE_SPIN_SENSITIVITY = 0.5;
-	public static final double DRIVE_THRESHHOLD = 0.1;
+	public static final double DRIVE_SPIN_SENSITIVITY 	 = 0.5;
+	public static final double DRIVE_THRESHHOLD 		 = 0.1;
 	
-	//Joystick Values
-	public static final int XBOX_CONTROLLER   = 1;
+	//Joysticks
+	public static final int XBOX_CONTROLLER_DRIVER 	 = 0;
+	public static final int XBOX_CONTROLLER_OPERATOR = 1;
+	
+	//Xbox Controller Axes
+	public static final int XBOX_AXIS_LEFT_X 		= 0;
+	public static final int XBOX_AXIS_LEFT_Y 		= 1;
+	public static final int XBOX_AXIS_LEFT_TRIGGER  = 2;
+	public static final int XBOX_AXIS_RIGHT_TRIGGER = 3;
+	public static final int XBOX_AXIS_RIGHT_X 		= 4;
+	public static final int XBOX_AXIS_RIGHT_Y 		= 5;
 	
 	//Drive Motors
-	public static final int LEFT_MOTOR        = 0;
-	public static final int RIGHT_MOTOR       = 1;
+	public static final int LEFT_MOTOR	= 0;
+	public static final int RIGHT_MOTOR = 1;
 		
 
 							

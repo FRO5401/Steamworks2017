@@ -17,19 +17,31 @@ public class OI {
     // Joystick stick = new Joystick(port);
     // Button button = new JoystickButton(stick, buttonNumber);
     
-	Joystick XboxControllerDriver = new Joystick(RobotMap.XBOX_CONTROLLER);
+	Joystick xboxController_Driver = new Joystick(RobotMap.XBOX_CONTROLLER_DRIVER);
+	Joystick xboxController_Operator = new Joystick(RobotMap.XBOX_CONTROLLER_OPERATOR);
 	
 	//Buttons
-	Button XboxADriver						= new JoystickButton(XboxControllerDriver, 1);
-	Button XboxBDriver						= new JoystickButton(XboxControllerDriver, 2);
-	Button XboxXDriver						= new JoystickButton(XboxControllerDriver, 3);
-	Button XboxYDriver						= new JoystickButton(XboxControllerDriver, 4);
-	Button XboxUpperLeftTrigDriver			= new JoystickButton(XboxControllerDriver, 5);
-	Button XboxUpperRightTrigDriver			= new JoystickButton(XboxControllerDriver, 6);
-	Button XboxBackDriver					= new JoystickButton(XboxControllerDriver, 7);
-	Button XboxStartDriver					= new JoystickButton(XboxControllerDriver, 8);
-	Button XboxLeftStickButtonDriver		= new JoystickButton(XboxControllerDriver, 9);
-	Button XboxRightStickButtonDriver		= new JoystickButton(XboxControllerDriver, 10);
+	Button xboxA_Driver			  = new JoystickButton(xboxController_Driver, 1);
+	Button xboxB_Driver			  = new JoystickButton(xboxController_Driver, 2);
+	Button xboxX_Driver			  = new JoystickButton(xboxController_Driver, 3);
+	Button xboxY_Driver			  = new JoystickButton(xboxController_Driver, 4);
+	Button xboxLeftBumper_Driver  = new JoystickButton(xboxController_Driver, 5);
+	Button xboxRightBumper_Driver = new JoystickButton(xboxController_Driver, 6);
+	Button xboxBack_Driver		  = new JoystickButton(xboxController_Driver, 7);
+	Button xboxStart_Driver		  = new JoystickButton(xboxController_Driver, 8);
+	Button xboxL3_Driver		  = new JoystickButton(xboxController_Driver, 9);
+	Button xboxR3_Driver		  = new JoystickButton(xboxController_Driver, 10);
+	
+	Button xboxA_Operator			= new JoystickButton(xboxController_Operator, 1);
+	Button xboxB_Operator			= new JoystickButton(xboxController_Operator, 2);
+	Button xboxX_Operator			= new JoystickButton(xboxController_Operator, 3);
+	Button xboxY_Operator			= new JoystickButton(xboxController_Operator, 4);
+	Button xboxLeftBumper_Operator  = new JoystickButton(xboxController_Operator, 5);
+	Button xboxRightBumper_Operator = new JoystickButton(xboxController_Operator, 6);
+	Button xboxBack_Operator		= new JoystickButton(xboxController_Operator, 7);
+	Button xboxStart_Operator		= new JoystickButton(xboxController_Operator, 8);
+	Button xboxL3_Operator		  	= new JoystickButton(xboxController_Operator, 9);
+	Button xboxR3_Operator		  	= new JoystickButton(xboxController_Operator, 10);
 	
 	
 	
@@ -53,30 +65,29 @@ public class OI {
     // until it is finished as determined by it's isFinished method.
     // button.whenReleased(new ExampleCommand());
 	
+	//Method Naming: 'read' = Analog; 'get' = Digital
 	
-	public double readXboxDriverLeftStickX(){
-		double slewInput = XboxControllerDriver.getRawAxis(0);
-		return slewInput;
+	public double readXboxLeftX_Driver(){
+		return xboxController_Driver.getRawAxis(RobotMap.XBOX_AXIS_LEFT_X);
 	}
-	public double getLeftTriggerDriver(){
-		double throttleInput = XboxControllerDriver.getRawAxis(2);
-		return throttleInput;		
+	
+	public double readLeftTrigger_Driver(){
+		return xboxController_Driver.getRawAxis(RobotMap.XBOX_AXIS_LEFT_TRIGGER);		
 	}
-	public double getRightTriggerDriver(){
-		double throttleInput = XboxControllerDriver.getRawAxis(3);
-		return throttleInput;
+	
+	public double readRightTrigger_Driver(){
+		return xboxController_Driver.getRawAxis(RobotMap.XBOX_AXIS_RIGHT_TRIGGER);
 	}
-	public boolean getPrecisionDriver(){
-		boolean precisionInput = XboxControllerDriver.getRawButton(5);
-		return precisionInput;
+	
+	public boolean getPrecision_Driver(){
+		return xboxController_Driver.getRawButton(5);
 	}
-	public boolean getBrakeDriver(){
-		boolean brakeInput = XboxControllerDriver.getRawButton(6);
-		return brakeInput;
+	
+	public boolean getBrake_Driver(){
+		return xboxController_Driver.getRawButton(6);
 	}
-	public boolean getTurnButton(){
-		boolean turnInput = XboxControllerDriver.getRawButton(9);
-		return turnInput;
+	
+	public boolean getTurnButton_Driver(){
+		return xboxController_Driver.getRawButton(9);
 	}
 }
-
