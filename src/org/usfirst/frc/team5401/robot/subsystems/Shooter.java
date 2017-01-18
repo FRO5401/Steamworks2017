@@ -22,8 +22,8 @@ public class Shooter extends PIDSubsystem {
     	super("shooter",1,2,3); //initializes pid //XXX Temporary to get rid of error status
     	
     	//initialize shooter motors
-    	leftMotor  = RobotMap.SHOOTER_LEFT_MOTOR;
-    	rightMotor = RobotMap.SHOOTER_RIGHT_MOTOR;
+    	leftMotor  = new Victor(RobotMap.SHOOTER_LEFT_MOTOR);
+    	rightMotor = new Victor(RobotMap.SHOOTER_RIGHT_MOTOR);
     	
         // Use these to get going:
         // setSetpoint() -  Sets where the PID controller should move the system //set to RPM
