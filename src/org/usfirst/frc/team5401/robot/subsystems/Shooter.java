@@ -1,7 +1,10 @@
 package org.usfirst.frc.team5401.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
+
+import org.usfirst.frc.team5401.robot.RobotMap;
 import org.usfirst.frc.team5401.robot.commands.ShootHigh;
+import edu.wpi.first.wpilibj.Victor;
 
 /**
  *
@@ -9,6 +12,9 @@ import org.usfirst.frc.team5401.robot.commands.ShootHigh;
 public class Shooter extends PIDSubsystem {
 	
 	//declare shooter motors
+	private Victor leftMotor;
+	private Victor rightMotor;
+	
 	//declare pid stuff?
 
     // Initialize your subsystem here
@@ -16,6 +22,8 @@ public class Shooter extends PIDSubsystem {
     	super("shooter",1,2,3); //initializes pid //XXX Temporary to get rid of error status
     	
     	//initialize shooter motors
+    	leftMotor  = RobotMap.SHOOTER_LEFT_MOTOR;
+    	rightMotor = RobotMap.SHOOTER_RIGHT_MOTOR;
     	
         // Use these to get going:
         // setSetpoint() -  Sets where the PID controller should move the system //set to RPM

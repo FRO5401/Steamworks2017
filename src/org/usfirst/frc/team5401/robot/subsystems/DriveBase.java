@@ -18,8 +18,8 @@ public class DriveBase extends Subsystem {
 	private Victor rightDrive;
 	
 	public DriveBase(){
-		leftDrive  = new Victor(RobotMap.LEFT_MOTOR);
-		rightDrive = new Victor(RobotMap.RIGHT_MOTOR);
+		leftDrive  = new Victor(RobotMap.DRIVE_LEFT_MOTOR);
+		rightDrive = new Victor(RobotMap.DRIVE_RIGHT_MOTOR);
 	}
 	
     public void initDefaultCommand() {

@@ -36,8 +36,12 @@ public class RobotMap {
 	public static final int XBOX_AXIS_RIGHT_Y 		= 5;
 	
 	//Drive Motors
-	public static final int LEFT_MOTOR	= 0;
-	public static final int RIGHT_MOTOR = 1;
+	public static final int DRIVE_LEFT_MOTOR  = 0;
+	public static final int DRIVE_RIGHT_MOTOR = 1;
+	//Shooter Motors
+	public static final int SHOOTER_LEFT_MOTOR	= 2;
+	public static final int SHOOTER_RIGHT_MOTOR = 3;
+	
 		
 
 							
