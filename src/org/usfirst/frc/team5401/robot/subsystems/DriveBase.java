@@ -3,6 +3,7 @@ package org.usfirst.frc.team5401.robot.subsystems;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.Timer;
 
 import org.usfirst.frc.team5401.robot.RobotMap;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -19,6 +20,7 @@ public class DriveBase extends Subsystem {
 	private Victor rightDrive;
 	private DoubleSolenoid leftGearShift;
 	private DoubleSolenoid rightGearShift;
+	private Timer timer;
 	
 	
 	public DriveBase(){
@@ -52,5 +54,24 @@ public class DriveBase extends Subsystem {
     	//Assumes Pneumatic reverse/in shifts high to low
     	leftGearShift.set(DoubleSolenoid.Value.kReverse);
     	rightGearShift.set(DoubleSolenoid.Value.kReverse);
+    }
+    
+    public double getTimerValue(){
+    	double timerValue = timer.get();
+    	//Also displays for testing
+    	SmartDashboard.putNumber("Time", timerValue);
+    	return timerValue;
+    }
+    
+    public void resetTimer(){
+    	timer.reset();
+    }
+    
+    public void stopTimer(){
+    	timer.stop();
+    }
+    
+    public void startTimer(){
+    	timer.start();
     }
 }

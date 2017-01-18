@@ -11,13 +11,30 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class XboxMove extends Command {
 
-	public XboxMove() {
+	double accelerationSample1; //Oldest
+    double accelerationSample2;
+    double accelerationSample3;
+    double accelerationSample4;
+    double accelerationSample5; //Newest
+    double avgAccelerationFromSamples;
+    double instantaneousVelocitySample1;//oldest
+    double instantaneousVelocitySample2;//newest
+    double deltaTime;
+	
+    public XboxMove() {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.drivebase);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	accelerationSample1 = 0;
+    	accelerationSample2 = 0;
+    	accelerationSample3 = 0;
+    	accelerationSample4 = 0;
+    	accelerationSample5 = 0;
+    	velocitySample = 0;
+    	deltaTime = 0;
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -29,6 +46,21 @@ public class XboxMove extends Command {
     	boolean brake		=	Robot.oi.getBrake_Driver();
     	boolean turn		= 	Robot.oi.getTurnButton_Driver();
     	
+    	//Shifting Gear Code
+    	//avgAccelerationFromSamples = (accelerationSample1+accelerationSample2+accelerationSample3+accelerationSample4+accelerationSample5)/5
+    	/*velocity = getEncoder
+    	 * time = getTimer()
+    	 * acceleration = velocity/time;
+    	 */
+    	// IS ONE LINE OF CODE ENOUGH TIME TO DIFFER VELOCITY?
+    	// This is assuming yes.
+    	//velocitySample = (getLeftEncoderGetRate+getRightEncoderGetRate)/2;
+    	//veolcitySample2
+    	deltaTime = Robot.drivebase.getTimerValue();
+    	accelerationSample1 = (instantaneousVelocitySample2-instantaneousVelocitySample1)/deltaTime;
+    	
+    	    	
+    	//Driving Code
     	double right = 0, left = 0, sensitivity;
     	
     	if (precision) { //Sets drive precision based on RobotMap and Precision Mode
