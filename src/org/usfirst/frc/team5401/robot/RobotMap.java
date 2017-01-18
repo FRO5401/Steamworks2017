@@ -42,6 +42,9 @@ public class RobotMap {
 	public static final int SHOOTER_LEFT_MOTOR	= 2;
 	public static final int SHOOTER_RIGHT_MOTOR = 3;
 	
+	//Sensor Channels
+	public static final int PHOTOSWITCH_CHANNEL = 0;
+	
 		
 
 							

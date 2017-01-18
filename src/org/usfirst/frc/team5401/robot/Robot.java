@@ -37,7 +37,10 @@ public class Robot extends IterativeRobot {
      * used for any initialization code.
      */
     public void robotInit() {
-		oi = new OI();
+    	drivebase = new DriveBase();
+    	shooter = new Shooter();
+    	
+		oi = new OI(); //*** ALWAYS INSTANTIATE OI LAST***//
         chooser = new SendableChooser();
 //        chooser.addObject("My Auto", new MyAutoCommand());
         SmartDashboard.putData("Auto mode", chooser);
