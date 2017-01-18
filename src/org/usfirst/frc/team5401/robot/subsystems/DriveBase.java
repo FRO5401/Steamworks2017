@@ -1,7 +1,7 @@
 package org.usfirst.frc.team5401.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.Victor;
+import edu.wpi.first.wpilibj.VictorSP;
 
 import org.usfirst.frc.team5401.robot.RobotMap;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -14,12 +14,12 @@ public class DriveBase extends Subsystem {
 	
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-	private Victor leftDrive;
-	private Victor rightDrive;
+	private VictorSP leftDrive;
+	private VictorSP rightDrive;
 	
 	public DriveBase(){
-		leftDrive  = new Victor(RobotMap.LEFT_MOTOR);
-		rightDrive = new Victor(RobotMap.RIGHT_MOTOR);
+		leftDrive  = new VictorSP(RobotMap.LEFT_MOTOR);
+		rightDrive = new VictorSP(RobotMap.RIGHT_MOTOR);
 	}
 	
     public void initDefaultCommand() {
