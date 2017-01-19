@@ -28,8 +28,11 @@ public class DriveBase extends Subsystem {
     }
     
     public void drive(double leftDriveDesired, double rightDriveDesired){
-    	leftDrive .set(leftDriveDesired); //passes desired state to speed controllers
+    	leftDrive .set(-1 * leftDriveDesired); //passes desired state to speed controllers
     	rightDrive.set(rightDriveDesired);
+    	
+    	System.out.println("LEFT DESIRED: " + leftDriveDesired);
+    	System.out.println("RIGHT DESIRED: " + rightDriveDesired);
     }
 
     public void stop(){

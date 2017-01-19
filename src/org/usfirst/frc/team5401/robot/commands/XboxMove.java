@@ -31,6 +31,12 @@ public class XboxMove extends Command {
     	
     	double right = 0, left = 0, sensitivity;
     	
+    	System.out.println("LEFT STICK X: " + slew + "\n"
+    					 + "RIGHT TRIGGER: " + throttle + "\n"
+    					 + "LEFT TRIGGER: " + reverse + "\n"
+    					 + "BRAKE: " + brake);
+    	
+    	
     	if (precision) { //Sets drive precision based on RobotMap and Precision Mode
     		sensitivity	=	RobotMap.DRIVE_SENSITIVITY_PRECISE;
     	} else {
@@ -57,6 +63,9 @@ public class XboxMove extends Command {
     			right = RobotMap.DRIVE_SPIN_SENSITIVITY * slew * -1;
     		}
     	}
+    	
+    	System.out.println("LEFT: " + left);
+    	System.out.println("RIGHT: " + right);
     	
     	Robot.drivebase.drive(left, right);
     }
