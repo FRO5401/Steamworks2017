@@ -18,6 +18,7 @@ public class FlyWheelControl extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.shooter.reset();
     	Robot.shooter.startMotors();
     }
 

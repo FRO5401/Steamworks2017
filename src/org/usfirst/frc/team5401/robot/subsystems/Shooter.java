@@ -3,9 +3,7 @@ package org.usfirst.frc.team5401.robot.subsystems;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 
 import org.usfirst.frc.team5401.robot.RobotMap;
-import org.usfirst.frc.team5401.robot.commands.FlyWheelControl;
 import edu.wpi.first.wpilibj.VictorSP;
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Counter;
 
 /**
@@ -16,15 +14,13 @@ public class Shooter extends PIDSubsystem {
 	//declare shooter motors
 	private VictorSP motors;
 	
-	//declare PE sensor
-	//private DigitalInput photoswitch;
-	
 	//declare counter
 	private Counter counter;
 	
 	//declare pid stuff?
 	
 	private final double MAX_COUNTER_SECONDS = 1;
+	private final double MOTOR_SPEED = .5;
 	
     // Initialize your subsystem here
     public Shooter() {
@@ -32,10 +28,6 @@ public class Shooter extends PIDSubsystem {
     	
     	//instantiate shooter motors
     	motors  = new VictorSP(RobotMap.SHOOTER_MOTORS);
-    	
-    	
-    	//instantiate PE
-    	//photoswitch = new DigitalInput(RobotMap.PHOTOSWITCH_CHANNEL);
     	
     	//instantiate Counter
     	counter = new Counter(RobotMap.PHOTOSWITCH_CHANNEL);
@@ -59,6 +51,10 @@ public class Shooter extends PIDSubsystem {
         // e.g. a sensor, like a potentiometer:
         // yourPot.getAverageVoltage() / kYourMaxVoltage;
     	
+    	if (counter.getStopped()){
+    		return 0;
+    	}
+    	
     	return Math.abs((1 / counter.getPeriod()) * 60.0); //RPM
     }
 
@@ -71,7 +67,7 @@ public class Shooter extends PIDSubsystem {
     }
     
     public void startMotors(){
-    	motors.set(.5);
+    	motors.set(MOTOR_SPEED);
     }
     
     public void reset(){
