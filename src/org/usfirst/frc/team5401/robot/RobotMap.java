@@ -35,10 +35,26 @@ public class RobotMap {
 	public static final int XBOX_AXIS_RIGHT_X 		= 4;
 	public static final int XBOX_AXIS_RIGHT_Y 		= 5;
 	
-	//Drive Motors
-	public static final int LEFT_MOTOR	= 0;
-	public static final int RIGHT_MOTOR = 1;
-		
-
+	//PWM Motors
+	public static final int LEFT_MOTOR			  = 0;
+	public static final int RIGHT_MOTOR 		  = 1;
+	public static final int SHOOTER_LEFT_MOTOR	  = 2;
+	public static final int SHOOTER_RIGHT_MOTOR   = 3;
+	public static final int INFEEDER_MOTOR		  = 4;
+	public static final int LOADER_CONVEYOR_LEFT  = 5;
+	public static final int LOADER_CONVEYOR_RIGHT = 6;
+	public static final int CLIMBER_MOTOR 		  = 7;
+	public static final int HOPPER_SPINNER		  = 8;
+	
+	//Sensor Channels
+	public static final int PHOTOSWITCH_CHANNEL = 0;
+	public static final int CLIMBER_LIMITSWITCH = 1;
+	
+	//Pneumatics
+	public static final int PCM_ID = 0;
+	public static final int INFEEDER_IN_OUT  = 0;
+	public static final int HOPPER_UNJAMMER  = 1;
+	public static final int HOPPER_FLAP		 = 2;
+	public static final int GEAR_MANIPULATOR = 3;
 							
 }
