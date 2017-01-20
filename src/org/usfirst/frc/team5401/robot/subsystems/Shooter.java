@@ -3,7 +3,7 @@ package org.usfirst.frc.team5401.robot.subsystems;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 
 import org.usfirst.frc.team5401.robot.RobotMap;
-import org.usfirst.frc.team5401.robot.commands.FlyWheelControl;;
+import org.usfirst.frc.team5401.robot.commands.FlyWheelControl;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Counter;
@@ -58,7 +58,7 @@ public class Shooter extends PIDSubsystem {
     	
     	int count = 0;
     	
-    	//return PE sensor 
+    	//return counter 
         return count;
     }
 
