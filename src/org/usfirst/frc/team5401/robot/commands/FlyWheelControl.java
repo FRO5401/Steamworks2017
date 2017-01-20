@@ -9,6 +9,8 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class FlyWheelControl extends Command {
 
+	
+	
     public FlyWheelControl() {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.shooter);
@@ -16,7 +18,6 @@ public class FlyWheelControl extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.shooter.reset();
     	Robot.shooter.startMotors();
     }
 
@@ -36,7 +37,7 @@ public class FlyWheelControl extends Command {
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
-    protected void interrupted() {
+    protected void interrupted() { //Occurs when toggleWhenPressed is used (off)
     	Robot.shooter.reset();
     }
 }

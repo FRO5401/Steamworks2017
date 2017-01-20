@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.command.PIDSubsystem;
 
 import org.usfirst.frc.team5401.robot.RobotMap;
 import org.usfirst.frc.team5401.robot.commands.FlyWheelControl;
-import edu.wpi.first.wpilibj.Victor;
+import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Counter;
 
@@ -14,8 +14,7 @@ import edu.wpi.first.wpilibj.Counter;
 public class Shooter extends PIDSubsystem {
 	
 	//declare shooter motors
-	private Victor leftMotor;
-	private Victor rightMotor;
+	private VictorSP motors;
 	
 	//declare PE sensor
 	//private DigitalInput photoswitch;
@@ -24,21 +23,25 @@ public class Shooter extends PIDSubsystem {
 	private Counter counter;
 	
 	//declare pid stuff?
-
+	
+	private final double MAX_COUNTER_SECONDS = 1;
+	
     // Initialize your subsystem here
     public Shooter() {
     	super("shooter",1,2,3); //initializes pid //XXX Temporary to get rid of error status
     	
     	//instantiate shooter motors
-    	leftMotor  = new Victor(RobotMap.SHOOTER_LEFT_MOTOR);
-    	rightMotor = new Victor(RobotMap.SHOOTER_RIGHT_MOTOR);
+    	motors  = new VictorSP(RobotMap.SHOOTER_MOTORS);
+    	
     	
     	//instantiate PE
     	//photoswitch = new DigitalInput(RobotMap.PHOTOSWITCH_CHANNEL);
     	
     	//instantiate Counter
     	counter = new Counter(RobotMap.PHOTOSWITCH_CHANNEL);
-    	counter.reset();
+    	counter.setMaxPeriod(MAX_COUNTER_SECONDS);
+    	
+    	reset();
     	
         // Use these to get going:
         // setSetpoint() -  Sets where the PID controller should move the system //set to RPM
@@ -48,7 +51,7 @@ public class Shooter extends PIDSubsystem {
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        setDefaultCommand(new FlyWheelControl());
+        //setDefaultCommand(new Command());
     }
 
     protected double returnPIDInput() {
@@ -56,23 +59,19 @@ public class Shooter extends PIDSubsystem {
         // e.g. a sensor, like a potentiometer:
         // yourPot.getAverageVoltage() / kYourMaxVoltage;
     	
-    	int count = 0;
-    	
-    	//return counter 
-        return count;
+    	return Math.abs((1 / counter.getPeriod()) * 60.0); //RPM
     }
 
     protected void usePIDOutput(double output) {
         // Use output to drive your system, like a motor
         // e.g. yourMotor.set(output);
     	
-    	//set motor 
-    	//maybe ready to shoot with if 
+    	//PID stuff
+    	//Shoot
     }
     
     public void startMotors(){
-    	leftMotor .set(.5);
-    	rightMotor.set(.5);
+    	motors.set(.5);
     }
     
     public void reset(){
@@ -81,7 +80,7 @@ public class Shooter extends PIDSubsystem {
     }
     
     public void stop(){
-    	leftMotor .set(0);
-    	rightMotor.set(0);
+    	motors.set(0);
+    	
     }
 }

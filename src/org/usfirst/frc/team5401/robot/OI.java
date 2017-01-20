@@ -43,8 +43,6 @@ public class OI {
 	Button xboxL3_Operator		  	= new JoystickButton(xboxController_Operator, 9);
 	Button xboxR3_Operator		  	= new JoystickButton(xboxController_Operator, 10);
 	
-	
-	
     // There are a few additional built in buttons you can use. Additionally,
     // by subclassing Button you can create custom triggers and bind those to
     // commands the same as any other Button.
@@ -65,6 +63,11 @@ public class OI {
     // until it is finished as determined by it's isFinished method.
     // button.whenReleased(new ExampleCommand());
 	
+	//Buttons
+	public OI() {
+		xboxA_Operator.toggleWhenPressed(new FlyWheelControl()); //XXX Needs to be tested; runs the interrupted method (off)
+	
+	}
 	//Method Naming: 'read' = Analog; 'get' = Digital
 	
 	public double readXboxLeftX_Driver(){
