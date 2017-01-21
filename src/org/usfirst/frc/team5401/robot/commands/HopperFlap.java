@@ -11,7 +11,7 @@ public class HopperFlap extends Command {
 	
 	private int openClose;
 	
-    public HopperFlap(int direction {
+    public HopperFlap(int direction) {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.hopper);
         openClose = direction;

@@ -1,6 +1,7 @@
 package org.usfirst.frc.team5401.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import org.usfirst.frc.team5401.robot.Robot;
 
 /**
  *
@@ -9,12 +10,12 @@ public class HopperBlender extends Command {
 
     public HopperBlender() {
         // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+        requires(Robot.hopper);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.hopper.blenderTurn();
+    	Robot.hopper.blenderTurn(1);
     }
 
     // Called repeatedly when this Command is scheduled to run
