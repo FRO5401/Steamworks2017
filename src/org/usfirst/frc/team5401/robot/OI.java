@@ -76,10 +76,13 @@ public class OI {
 		
 		xboxLeftBumper_Operator.whenPressed(new FeedInAndOut(-1));
 		xboxRightBumper_Operator.whenReleased(new FeedStop());
-		
 
 		xboxX_Operator.whenPressed(new FeederUpDown(1));
 		xboxY_Operator.whenPressed(new FeederUpDown(-1));
+		
+		//GearManipulator
+		xboxA_Driver.whenPressed(new PopGear(1));
+		xboxB_Driver.whenPressed(new PopGear(-1));
 
 	}
 	//Method Naming: 'read' = Analog; 'get' = Digital

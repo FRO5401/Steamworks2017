@@ -1,42 +1,34 @@
 package org.usfirst.frc.team5401.robot.commands;
 
+import org.usfirst.frc.team5401.robot.Robot;
+
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class StrafeGear extends Command {
+public class PopGear extends Command {
+	
+	private int inOut;
 
-	//pot value;
-    public StrafeGear() {
+    public PopGear(int direction) {
         // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
-    	//requires GearMachanism
-    	//needs visionProcessing
-    	//pot value = 0;
-    	//button;
-    	//something;
+        requires(Robot.gearmechanism);
+        inOut = direction;   
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.gearmechanism.gearInOut(inOut);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	//getButton
-    	//while button is held down, take vision and move
-    	//something = false;
-    	//while when stop moving
-    	//something = true
-    	
-    	
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        //return something;
-    	return false;
+        return true;
     }
 
     // Called once after isFinished returns true
