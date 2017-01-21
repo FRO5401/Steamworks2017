@@ -86,7 +86,13 @@ public class OI {
 		
 		//Loader
 		xboxR3_Operator.toggleWhenPressed(new LoadShooter());
-
+		
+		//Hopper
+		xboxX_Driver.whenPressed(new HopperFlap(1));
+		xboxStart_Driver.whenPressed(new HopperFlap(-1));
+		
+		xboxY_Driver.whenPressed(new HopperUnjammer(1));
+		xboxY_Driver.whenReleased(new HopperUnjammer(-1));
 	}
 	//Method Naming: 'read' = Analog; 'get' = Digital
 	
