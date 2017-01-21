@@ -37,8 +37,11 @@ public class Robot extends IterativeRobot {
      * used for any initialization code.
      */
     public void robotInit() {
-    	
     	drivebase = new DriveBase();
+    	climber = new Climber();
+    	gearmechanism = new GearMechanism();
+    	infeed = new Infeed();
+    	loader = new Loader();
     	shooter = new Shooter();
     	
 		oi = new OI();/****ALWAYS Instantiate OI() last*****/
@@ -85,6 +88,9 @@ public class Robot extends IterativeRobot {
     	
     	// schedule the autonomous command (example)
         if (autonomousCommand != null) autonomousCommand.start();
+        
+        //Start loader motors
+        Robot.loader.runConveyors();
     }
 
     /**
