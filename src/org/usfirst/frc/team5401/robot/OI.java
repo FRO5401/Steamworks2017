@@ -68,31 +68,33 @@ public class OI {
 	//Buttons
 	public OI(){
 		//Shooter
-		xboxA_Operator.toggleWhenPressed(new FlyWheelControl());
-	
+		xboxA_Driver.toggleWhenPressed(new FlyWheelControl());
+		
 		//Infeeder
 		xboxRightBumper_Operator.whenPressed(new FeedInAndOut(1));
 		xboxRightBumper_Operator.whenReleased(new FeedStop());
 		
 		xboxLeftBumper_Operator.whenPressed(new FeedInAndOut(-1));
-		xboxRightBumper_Operator.whenReleased(new FeedStop());
-
-		xboxX_Operator.whenPressed(new FeederUpDown(1));
-		xboxY_Operator.whenPressed(new FeederUpDown(-1));
+		xboxLeftBumper_Operator.whenReleased(new FeedStop());
+		
+		//xboxX_Operator.whenPressed(new FeederUpDown(1));
+		//xboxY_Operator.whenPressed(new FeederUpDown(-1));
+		xboxLeftBumper_Operator.whenPressed(new FeederUpDown(1));
+		xboxRightBumper_Operator.whenPressed(new FeederUpDown(-1));
+		//will be left stick Y axis
 		
 		//GearManipulator
-		xboxA_Driver.whenPressed(new PopGear(1));
-		xboxB_Driver.whenPressed(new PopGear(-1));
+		xboxX_Driver.toggleWhenPressed(new PopGear());
 		
 		//Loader
 		xboxR3_Operator.toggleWhenPressed(new LoadShooter());
 		
 		//Hopper
-		xboxX_Driver.whenPressed(new HopperFlap(1));
-		xboxStart_Driver.whenPressed(new HopperFlap(-1));
+		xboxBack_Operator.whenPressed(new HopperFlap(1));
+		xboxStart_Operator.whenPressed(new HopperFlap(-1));
 		
-		xboxY_Driver.whenPressed(new HopperUnjammer(1));
-		xboxY_Driver.whenReleased(new HopperUnjammer(-1));
+		xboxX_Driver.whenPressed(new HopperUnjammer(1));
+		xboxX_Driver.whenReleased(new HopperUnjammer(-1));
 	}
 	//Method Naming: 'read' = Analog; 'get' = Digital
 	
