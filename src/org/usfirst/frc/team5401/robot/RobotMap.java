@@ -36,8 +36,8 @@ public class RobotMap {
 	public static final int XBOX_AXIS_RIGHT_Y 		= 5;
 	
 	//PWM Motors
-	public static final int DRIVE_LEFT_MOTOR			  = 0;
-	public static final int DRIVE_RIGHT_MOTOR 		  = 1;
+	public static final int DRIVE_LEFT_MOTOR	  = 0;
+	public static final int DRIVE_RIGHT_MOTOR     = 1;
 	public static final int SHOOTER_MOTORS   	  = 2;
 	public static final int INFEEDER_MOTOR		  = 3;
 	public static final int LOADER_CONVEYOR_LEFT  = 4;
@@ -48,24 +48,24 @@ public class RobotMap {
 	//Sensor Channels
 	public static final int PHOTOSWITCH_CHANNEL = 0;
 	public static final int CLIMBER_LIMITSWITCH = 1;
-	public static final int DRIVE_ENC_LEFT_A = 2;
-	public static final int DRIVE_ENC_LEFT_B = 3;
-	public static final int DRIVE_ENC_RIGHT_A = 4;
-	public static final int DRIVE_ENC_RIGHT_B = 5;
+	public static final int DRIVE_ENC_LEFT_A    = 2;
+	public static final int DRIVE_ENC_LEFT_B    = 3;
+	public static final int DRIVE_ENC_RIGHT_A   = 4;
+	public static final int DRIVE_ENC_RIGHT_B   = 5;
 	
 	//Pneumatics
-	public static final int PCM_ID = 0;
-	public static final int DRIVE_SHIFT_IN   = 0;
-	public static final int DRIVE_SHIFT_OUT  = 1;
-	public static final int INFEEDER_IN		 = 2;
-	public static final int INFEEDER_OUT     = 3;
-	public static final int HOPPER_UNJAMMER_IN = 4;
-	public static final int HOPPER_UNJAMMER_OUT = 5;
+	public static final int PCM_ID 			= 0;
+	public static final int DRIVE_SHIFT_IN   	 = 0;
+	public static final int DRIVE_SHIFT_OUT  	 = 1;
+	public static final int INFEEDER_IN		 	 = 2;
+	public static final int INFEEDER_OUT     	 = 3;
+	public static final int HOPPER_UNJAMMER_IN   = 4;
+	public static final int HOPPER_UNJAMMER_OUT  = 5;
 	public static final int HOPPER_FLAP_IN		 = 6;
 	public static final int HOPPER_FLAP_OUT      = 7;
 	
-	public static final int PCM_ID_2 = 1;
-	public static final int GEAR_MANIPULATOR_IN = 0;
+	public static final int PCM_ID_2 		= 1;
+	public static final int GEAR_MANIPULATOR_IN  = 0;
 	public static final int GEAR_MANIPULATOR_OUT = 1;
 							
 }

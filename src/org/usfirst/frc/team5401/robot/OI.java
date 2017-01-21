@@ -67,10 +67,10 @@ public class OI {
 	
 	//Buttons
 	public OI(){
-		//For Shooter
+		//Shooter
 		xboxA_Operator.toggleWhenPressed(new FlyWheelControl());
 	
-		//for Infeeder
+		//Infeeder
 		xboxRightBumper_Operator.whenPressed(new FeedInAndOut(1));
 		xboxRightBumper_Operator.whenReleased(new FeedStop());
 		
@@ -120,7 +120,7 @@ public class OI {
 		return xboxController_Driver.getRawButton(9);
 	}
 	
-	public boolean getXboxB_Driver(){
+	public boolean getXboxB_Driver(){ //Climb Button
 		return xboxController_Driver.getRawButton(2);
 	}
 	
