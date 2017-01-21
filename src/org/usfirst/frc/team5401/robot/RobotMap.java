@@ -45,5 +45,10 @@ public class RobotMap {
 	public static final int RIGHT_GEAR_SHIFT_FORWARD_CHANNEL = 2;
 	public static final int RIGHT_GEAR_SHIFT_REVERSE_CHANNEL = 3;
 
-							
+	//All Sensors
+	//Drive Encoders
+	public static final int Drive_Enc_Left_A = 2;
+	public static final int Drive_Enc_Left_B = 3;
+	public static final int Drive_Enc_Right_A = 4;
+	public static final int Drive_Enc_Right_B= 5;
 }

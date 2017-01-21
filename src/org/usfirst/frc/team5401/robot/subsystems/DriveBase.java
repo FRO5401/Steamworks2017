@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.Encoder;
 
 import org.usfirst.frc.team5401.robot.RobotMap;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -21,13 +22,17 @@ public class DriveBase extends Subsystem {
 	private DoubleSolenoid leftGearShift;
 	private DoubleSolenoid rightGearShift;
 	private Timer timer;
+	private Encoder leftEncoder;
+	private Encoder rightEncoder;
 	
 	
 	public DriveBase(){
-		leftDrive  = new Victor(RobotMap.LEFT_MOTOR);
-		rightDrive = new Victor(RobotMap.RIGHT_MOTOR);
-		leftGearShift = new DoubleSolenoid(RobotMap.LEFT_GEAR_SHIFT_FORWARD_CHANNEL, RobotMap.LEFT_GEAR_SHIFT_REVERSE_CHANNEL);
+		leftDrive  		= new Victor(RobotMap.LEFT_MOTOR);
+		rightDrive 		= new Victor(RobotMap.RIGHT_MOTOR);
+		leftGearShift 	= new DoubleSolenoid(RobotMap.LEFT_GEAR_SHIFT_FORWARD_CHANNEL, RobotMap.LEFT_GEAR_SHIFT_REVERSE_CHANNEL);
 		rightGearShift  = new DoubleSolenoid(RobotMap.RIGHT_GEAR_SHIFT_FORWARD_CHANNEL, RobotMap.RIGHT_GEAR_SHIFT_REVERSE_CHANNEL);
+		leftEncoder 	= new Encoder(RobotMap.Drive_Enc_Left_A, RobotMap.Drive_Enc_Left_B, true, Encoder.EncodingType.k4X);
+		rightEncoder 	= new Encoder(RobotMap.Drive_Enc_Right_A, RobotMap.Drive_Enc_Right_B, true, Encoder.EncodingType.k4X);
 	}
 	
     public void initDefaultCommand() {
@@ -73,5 +78,12 @@ public class DriveBase extends Subsystem {
     
     public void startTimer(){
     	timer.start();
+    }
+    
+    public double getVelocityOfRobot(){
+    	double velocity = (leftEncoder.getRate() + rightEncoder.getRate())/2;
+    	//For Testing
+    	SmartDashboard.putNumber("Velocity of Robot", velocity);
+    	return velocity;
     }
 }

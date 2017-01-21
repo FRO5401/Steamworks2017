@@ -10,7 +10,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *
  */
 public class XboxMove extends Command {
-
+	
+	//Might make the following two constants in RobotMap
+	double accelerationThreshold;
+	double minimumVelocityForHighGear;//Determined Experimentally
+	
 	double accelerationSample1; //Oldest
     double accelerationSample2;
     double accelerationSample3;
@@ -28,12 +32,16 @@ public class XboxMove extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	accelerationThreshold = 0.01;
+    	minimumVelocityForHighGear = 9;
+    	
     	accelerationSample1 = 0;
     	accelerationSample2 = 0;
     	accelerationSample3 = 0;
     	accelerationSample4 = 0;
     	accelerationSample5 = 0;
-    	velocitySample = 0;
+    	instantaneousVelocitySample1 = 0;
+    	instantaneousVelocitySample2 = 0;
     	deltaTime = 0;
     }
 
@@ -46,18 +54,50 @@ public class XboxMove extends Command {
     	boolean brake		=	Robot.oi.getBrake_Driver();
     	boolean turn		= 	Robot.oi.getTurnButton_Driver();
     	
-    	//Shifting Gear Code
-    	//avgAccelerationFromSamples = (accelerationSample1+accelerationSample2+accelerationSample3+accelerationSample4+accelerationSample5)/5
-    	/*velocity = getEncoder
-    	 * time = getTimer()
-    	 * acceleration = velocity/time;
-    	 */
-    	// IS ONE LINE OF CODE ENOUGH TIME TO DIFFER VELOCITY?
-    	// This is assuming yes.
-    	//velocitySample = (getLeftEncoderGetRate+getRightEncoderGetRate)/2;
-    	//veolcitySample2
+    	/*****Shifting Gear Code*********/
+    	
+    	//Backlogs the old final velocity (velocity 2) into the new initial velocity (velocity 1)
+    	instantaneousVelocitySample1 = instantaneousVelocitySample2;
+    	//Gets new final velocity
+    	instantaneousVelocitySample2 = Robot.drivebase.getVelocityOfRobot();
+    	
+    	//Gets change in time
     	deltaTime = Robot.drivebase.getTimerValue();
-    	accelerationSample1 = (instantaneousVelocitySample2-instantaneousVelocitySample1)/deltaTime;
+    	
+    	//Backlogs the acceleration
+    	accelerationSample1 = accelerationSample2;
+    	accelerationSample2 = accelerationSample3;
+    	accelerationSample3 = accelerationSample4;
+    	accelerationSample4 = accelerationSample5;
+    	//Gets newest acceleration from the velocity sample above
+    	accelerationSample5 = (instantaneousVelocitySample2-instantaneousVelocitySample1)/deltaTime;
+    	
+    	//calculates the average acceleration from previous samples to balance out spikes
+    	avgAccelerationFromSamples = (accelerationSample1+accelerationSample2+accelerationSample3+accelerationSample4+accelerationSample5)/5;
+    	
+    	if(slew <= 0 + RobotMap.DRIVE_THRESHHOLD){
+    		//Uses average acceleration for gear shifting up to higher speeds
+    		//0 is just there to understand original logic
+    		if(Math.abs(avgAccelerationFromSamples) <= 0 + accelerationThreshold){
+    			Robot.drivebase.shiftGearLowToHigh();
+    		}
+    	
+    		//Upshift using velocity
+    		//if(instantaneousVelocitySample2 >= maximumVelocityForLowGear){
+    		//	Robot.drivebase.shiftGearLowToHigh();
+    		//}
+    	
+    		//Uses Current Velocity to Shift High to Low
+    		if(instantaneousVelocitySample2 <= minimumVelocityForHighGear){
+    			Robot.drivebase.shiftGearHighToLow();
+    		}
+    	
+    		//Downshift Due to release in Thottle
+    		//if(Math.abs(thottle) <= 0 + RobotMap.DRIVE_THRESHHOLD) {
+    		//	Robot.drivebase.shiftGearHighToLow();
+    		//}
+    		//Gear Shift Done
+    	}
     	
     	    	
     	//Driving Code
