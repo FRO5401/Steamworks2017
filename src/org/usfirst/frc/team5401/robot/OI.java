@@ -83,6 +83,9 @@ public class OI {
 		//GearManipulator
 		xboxA_Driver.whenPressed(new PopGear(1));
 		xboxB_Driver.whenPressed(new PopGear(-1));
+		
+		//Loader
+		xboxR3_Operator.toggleWhenPressed(new LoadShooter());
 
 	}
 	//Method Naming: 'read' = Analog; 'get' = Digital
@@ -114,4 +117,6 @@ public class OI {
 	public boolean getXboxB_Driver(){
 		return xboxController_Driver.getRawButton(2);
 	}
+	
+	
 }
