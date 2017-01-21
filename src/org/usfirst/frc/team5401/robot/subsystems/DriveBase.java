@@ -71,4 +71,18 @@ public class DriveBase extends Subsystem {
     public void resetTimer(){
     	timer.reset();
     }
+    
+    public void startTimer(){
+    	timer.start();
+    }
+    public void stopTimer(){
+    	timer.stop();
+    }
+
+    public double getVelocityOfRobot(){
+    	double velocity = (leftEncoder.getRate() + rightEncoder.getRate())/2;
+    	//For testing
+    	SmartDashboard.putNumber("Velocity of Robot", velocity);
+    	return velocity;
+    }
 }
