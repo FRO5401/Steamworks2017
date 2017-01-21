@@ -67,7 +67,20 @@ public class OI {
 	
 	//Buttons
 	public OI(){
+		//For Shooter
 		xboxA_Operator.toggleWhenPressed(new FlyWheelControl());
+	
+		//for Infeeder
+		xboxRightBumper_Operator.whenPressed(new FeedInAndOut(1));
+		xboxRightBumper_Operator.whenReleased(new FeedStop());
+		
+		xboxLeftBumper_Operator.whenPressed(new FeedInAndOut(-1));
+		xboxRightBumper_Operator.whenReleased(new FeedStop());
+		
+
+		xboxX_Operator.whenPressed(new FeederUpDown(1));
+		xboxY_Operator.whenPressed(new FeederUpDown(-1));
+
 	}
 	//Method Naming: 'read' = Analog; 'get' = Digital
 	

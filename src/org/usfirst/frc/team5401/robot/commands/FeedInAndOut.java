@@ -1,24 +1,28 @@
 package org.usfirst.frc.team5401.robot.commands;
 
+import org.usfirst.frc.team5401.robot.Robot;
+
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
 public class FeedInAndOut extends Command {
-	//int inOrOutVariable
 	
-    public FeedInAndOut(double feedInOrOutInput) {//inOrOutInput should be -1 or 1 depending on what direction the feeder run in
+	
+	private int inOrOut;
+	
+    public FeedInAndOut(int direction) {//inOrOutInput should be -1 or 1 depending on what direction the feeder run in
         // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+        requires(Robot.infeed);
     	
     	//requires(Robot.infeed);
-    	//inOrOutVariable = feedInOrOutInput;
+    	inOrOut = direction;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	//Set motor to feedInOrOutVariable
+    	Robot.infeed.feederDirection(inOrOut);
     }
 
     // Called repeatedly when this Command is scheduled to run
