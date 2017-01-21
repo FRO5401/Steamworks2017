@@ -1,5 +1,7 @@
 package org.usfirst.frc.team5401.robot.commands;
 
+import org.usfirst.frc.team5401.robot.Robot;
+
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -7,30 +9,38 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class Climb extends Command {
 
+	private boolean input;
+	private boolean switchTriggered;
 	
-	//boolean UpperLimit;
-	//boolean LowerLimit;
+	
     public Climb() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	//requires climber
-    	//UpperLimit = 0;
-    	//TouchLimit = 0;
+    	requires(Robot.climber);
+    	
+    	input = false;
+    	switchTriggered = Robot.climber.checkSwitch();
     }
     
     
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	//UpperLimit =getUpperlimitswitch
-    	//TouchLimit =getLowerLimitSwitch
-    	//while touch rope sensor is true and while touch upper limit sensor is false
-    	//give power to victor motors
+    	input 			= Robot.oi.getXboxB_Driver();
+    	switchTriggered = Robot.climber.checkSwitch();
+    	
+    	
+    	if (input && !switchTriggered){
+    		Robot.climber.climbUp();
+    	} else {
+    		Robot.climber.climbStop();
+    	}    	
+    	
+    	//TODO needs override
     }
 
     // Make this return true when this Command no longer needs to run execute()

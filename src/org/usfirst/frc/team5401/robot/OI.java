@@ -107,4 +107,8 @@ public class OI {
 	public boolean getTurnButton_Driver(){
 		return xboxController_Driver.getRawButton(9);
 	}
+	
+	public boolean getXboxB_Driver(){
+		return xboxController_Driver.getRawButton(2);
+	}
 }
