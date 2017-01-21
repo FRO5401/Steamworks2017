@@ -2,6 +2,9 @@ package org.usfirst.frc.team5401.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.VictorSP;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.Encoder;
 
 import org.usfirst.frc.team5401.robot.RobotMap;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -16,6 +19,10 @@ public class DriveBase extends Subsystem {
     // here. Call these from Commands.
 	private VictorSP leftDrive;
 	private VictorSP rightDrive;
+	private DoubleSolenoid gearShifter;
+	private Timer timer;
+	private Encoder leftEncoder;
+	private Encoder rightEnocoder;
 	
 	public DriveBase(){
 		leftDrive  = new VictorSP(RobotMap.DRIVE_LEFT_MOTOR);

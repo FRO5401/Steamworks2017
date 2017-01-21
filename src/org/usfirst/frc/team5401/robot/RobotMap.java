@@ -57,6 +57,7 @@ public class RobotMap {
 	public static final int INFEEDER_OUT     = 3;
 	public static final int HOPPER_UNJAMMER  = 4;
 	public static final int HOPPER_FLAP		 = 5;
-	public static final int GEAR_MANIPULATOR = 6;
+	public static final int GEAR_MANIPULATOR_In = 6;
+	public static final int GEAR_MANIPULATOR_OUT = 7;
 							
 }
