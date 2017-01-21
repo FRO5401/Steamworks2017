@@ -10,9 +10,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *
  */
 public class XboxMove extends Command {
-	//Might make the following two constants in RobotMap
-	private final double accelerationThreshhold;
+	//Might make the following constants in RobotMap
+//	private final double accelerationThreshhold;
 	private final double minimumVelocityForHighGear; //Experimentall Determined
+	private final double maximumVelocityForLowGear;
 	
 	double accelerationSample1;//Oldest Sample
 	double accelerationSample2;
@@ -28,8 +29,11 @@ public class XboxMove extends Command {
 	double deltaTime;
 	
 	public XboxMove() {
-        accelerationThreshhold = 0.01;// NEED TO CHANGE
-        minimumVelocityForHighGear = 8;// NEED TO CHANGE
+//        accelerationThreshhold = 0.01;
+		
+		//Min and Max velocity have to be different to prevent constant shifting if at the shift speed if there is only one shift speed
+        minimumVelocityForHighGear 	= 8;//NEED TO CHANGE
+        maximumVelocityForLowGear 	= 9;//NEED TO CHANGE
 		// Use requires() here to declare subsystem dependencies
         requires(Robot.drivebase);
     }
@@ -75,18 +79,19 @@ public class XboxMove extends Command {
     	//calculates the average acceleration from previous samples to balance out spikes in acceleration
     	avgAccelerationFromSamples = (accelerationSample1+accelerationSample2+accelerationSample3+accelerationSample4+accelerationSample5)/5;
  
-    	//												vvvvv this is for no shifting at acceleration = 0 when robot is totally still
+    	//												vvvvv this is for no shifting at acceleration = 0 when robot is totally still, might be unnecessary
     	if(slew <= 0 + RobotMap.DRIVE_THRESHHOLD && velocitySample2 != 0){
     		//Uses average acceleration for gear shifting up to higher speeds
     		//0 is just there to understand original logic
+/*			Commented out because of problems of unwanted shifting up if running at a low constant velocity
     		if(Math.abs(avgAccelerationFromSamples) <= 0 + accelerationThreshhold){
     			Robot.drivebase.shiftGearLowToHigh();
     		}
-    		
+*/    		
     		//Alternative Upshift using velocity
-    		//if(instantaneousVelocitySample2 >= maximumVelocityForLowGear){
-    		//	Robot.drivebase.shiftGearLowToHigh();
-    		//}
+    		if(velocitySample2 >= maximumVelocityForLowGear){
+    			Robot.drivebase.shiftGearLowToHigh();
+    		}
 
 
     		//Uses Current Velocity to Shift High to Low
