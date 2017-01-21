@@ -36,8 +36,8 @@ public class RobotMap {
 	public static final int XBOX_AXIS_RIGHT_Y 		= 5;
 	
 	//PWM Motors
-	public static final int LEFT_MOTOR			  = 0;
-	public static final int RIGHT_MOTOR 		  = 1;
+	public static final int DRIVE_LEFT_MOTOR			  = 0;
+	public static final int DRIVE_RIGHT_MOTOR 		  = 1;
 	public static final int SHOOTER_MOTORS   	  = 2;
 	public static final int INFEEDER_MOTOR		  = 3;
 	public static final int LOADER_CONVEYOR_LEFT  = 4;

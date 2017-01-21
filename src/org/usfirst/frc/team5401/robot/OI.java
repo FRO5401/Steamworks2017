@@ -65,6 +65,10 @@ public class OI {
     // until it is finished as determined by it's isFinished method.
     // button.whenReleased(new ExampleCommand());
 	
+	//Buttons
+	public OI(){
+		xboxA_Operator.toggleWhenPressed(new FlyWheelControl());
+	}
 	//Method Naming: 'read' = Analog; 'get' = Digital
 	
 	public double readXboxLeftX_Driver(){
