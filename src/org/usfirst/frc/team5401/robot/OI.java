@@ -77,14 +77,14 @@ public class OI {
 		xboxLeftBumper_Operator.whenPressed(new FeedInAndOut(-1));
 		xboxLeftBumper_Operator.whenReleased(new FeedStop());
 		
-		//xboxX_Operator.whenPressed(new FeederUpDown(1));
-		//xboxY_Operator.whenPressed(new FeederUpDown(-1));
 		xboxLeftBumper_Operator.whenPressed(new FeederUpDown(1));
 		xboxRightBumper_Operator.whenPressed(new FeederUpDown(-1));
 		//will be left stick Y axis
 		
 		//GearManipulator
-		xboxX_Driver.toggleWhenPressed(new PopGear());
+		//xboxX_Driver.toggleWhenPressed(new PopGear());
+		xboxX_Driver.whenPressed(new PopGear(-1)); //out
+		xboxX_Driver.whenReleased(new PopGear(1)); //in
 		
 		//Loader
 		xboxR3_Operator.toggleWhenPressed(new LoadShooter());

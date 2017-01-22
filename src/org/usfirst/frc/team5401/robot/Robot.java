@@ -47,7 +47,8 @@ public class Robot extends IterativeRobot {
     	hopper = new Hopper();
     	
 		oi = new OI();/****ALWAYS Instantiate OI() last*****/
-        chooser = new SendableChooser();
+        
+		chooser = new SendableChooser();
 //        chooser.addObject("My Auto", new MyAutoCommand());
         SmartDashboard.putData("Auto mode", chooser);
     }

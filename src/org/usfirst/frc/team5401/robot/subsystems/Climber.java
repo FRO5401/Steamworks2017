@@ -25,7 +25,7 @@ public class Climber extends Subsystem {
 	private VictorSP climberMotor;
 	private DigitalInput climbSwitch;
 	//private boolean limitSwitch;
-	private final double SPEED;
+	private double SPEED;
 	
 	
 	

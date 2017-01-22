@@ -12,8 +12,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class XboxMove extends Command {
 	//Might make the following constants in RobotMap
 //	private final double accelerationThreshhold;
-	private final double minimumVelocityForHighGear; //Experimentall Determined
-	private final double maximumVelocityForLowGear;
+//	private final double minimumVelocityForHighGear; //Experimentally Determined
+//	private final double maximumVelocityForLowGear;
 	
 	double accelerationSample1;//Oldest Sample
 	double accelerationSample2;
@@ -32,8 +32,8 @@ public class XboxMove extends Command {
 //        accelerationThreshhold = 0.01;
 		
 		//Min and Max velocity have to be different to prevent constant shifting if at the shift speed if there is only one shift speed
-        minimumVelocityForHighGear 	= 8;//NEED TO CHANGE
-        maximumVelocityForLowGear 	= 9;//NEED TO CHANGE
+//        minimumVelocityForHighGear 	= 8;//NEED TO CHANGE
+//        maximumVelocityForLowGear 	= 9;//NEED TO CHANGE
 		// Use requires() here to declare subsystem dependencies
         requires(Robot.drivebase);
     }
@@ -88,7 +88,7 @@ public class XboxMove extends Command {
     			Robot.drivebase.shiftGearLowToHigh();
     		}
 */    		
-    		//Alternative Upshift using velocity
+ /*   		//Alternative Upshift using velocity
     		if(velocitySample2 >= maximumVelocityForLowGear){
     			Robot.drivebase.shiftGearLowToHigh();
     		}
@@ -103,7 +103,7 @@ public class XboxMove extends Command {
     		//if(Math.abs(thottle) <= 0 + RobotMap.DRIVE_THRESHHOLD) {
     		//	Robot.drivebase.shiftGearHighToLow();
     		//}
-    		
+*/    		
     	}
     	//Gear Shift Done
     	

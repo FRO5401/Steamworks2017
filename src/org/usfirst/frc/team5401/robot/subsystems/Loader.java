@@ -18,7 +18,7 @@ public class Loader extends Subsystem {
 		VictorSP rightConveyor;
 		DigitalInput limitSwitch; 
 		
-		private final double LOADER_SPEED;
+		private double LOADER_SPEED;
 	//declare Victor motor
 	
 	

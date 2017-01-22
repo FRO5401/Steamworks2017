@@ -19,8 +19,8 @@ public class Shooter extends PIDSubsystem {
 	
 	//declare pid stuff?
 	
-	private final double MAX_COUNTER_SECONDS = 1;
-	private final double MOTOR_SPEED = 0.5;
+	private  double MAX_COUNTER_SECONDS = 1;
+	private  double MOTOR_SPEED = 0.5;
     
 	// Initialize your subsystem here
     public Shooter() {

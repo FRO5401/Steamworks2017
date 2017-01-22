@@ -19,7 +19,7 @@ public class DriveBase extends Subsystem {
     // here. Call these from Commands.
 	private VictorSP leftDrive;
 	private VictorSP rightDrive;
-	private DoubleSolenoid gearShifter;
+//	private DoubleSolenoid gearShifter;
 	private Timer timer;
 	private Encoder leftEncoder;
 	private Encoder rightEncoder;
@@ -27,7 +27,7 @@ public class DriveBase extends Subsystem {
 	public DriveBase(){
 		leftDrive  = new VictorSP(RobotMap.DRIVE_LEFT_MOTOR);
 		rightDrive = new VictorSP(RobotMap.DRIVE_RIGHT_MOTOR);
-		gearShifter = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.DRIVE_SHIFT_IN, RobotMap.DRIVE_SHIFT_OUT);
+//		gearShifter = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.DRIVE_SHIFT_IN, RobotMap.DRIVE_SHIFT_OUT);
 		leftEncoder = new Encoder(RobotMap.DRIVE_ENC_LEFT_A, RobotMap.DRIVE_ENC_LEFT_B);
 		rightEncoder = new Encoder(RobotMap.DRIVE_ENC_RIGHT_A, RobotMap.DRIVE_ENC_RIGHT_B);
 	}
@@ -50,7 +50,7 @@ public class DriveBase extends Subsystem {
     	rightDrive.set(0);
     }
 
-    public void shiftGearLowToHigh(){//Meaning Low speed to high speed
+/*    public void shiftGearLowToHigh(){//Meaning Low speed to high speed
     	//Assumes Pneumatic forward/out shifts low to high
     	gearShifter.set(DoubleSolenoid.Value.kForward);
     }
@@ -59,7 +59,7 @@ public class DriveBase extends Subsystem {
     	//Assumes Pneumatic reverse/in shifts high to low
     	gearShifter.set(DoubleSolenoid.Value.kReverse);
     }
-    
+*/    
     public double getTimerValue(){
 
     	double timerValue = timer.get();

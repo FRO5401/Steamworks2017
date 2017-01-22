@@ -16,7 +16,7 @@ public class Infeed extends Subsystem {
 	private  DoubleSolenoid feederArm;
 	private VictorSP feederMotor;
 	
-	private final double FEED_SPEED;
+	private double FEED_SPEED;
 
 	
 	public Infeed(){
