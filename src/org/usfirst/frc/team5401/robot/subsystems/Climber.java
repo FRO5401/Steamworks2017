@@ -8,6 +8,8 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.VictorSP;
 import org.usfirst.frc.team5401.robot.commands.Climb;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 
 /**
  *
@@ -45,13 +47,16 @@ public class Climber extends Subsystem {
 
     public void climbUp(){
     	climberMotor.set(CLIMB_SPEED);
+    	SmartDashboard.putString("Climb:", "On");
     }
     
     public void climbStop(){
     	climberMotor.set(0);
+    	SmartDashboard.putString("Climb:", "Off");
     }
     
     public boolean checkSwitch(){
+    	SmartDashboard.putBoolean("Climb Switch:", climbSwitch.get());
     	return climbSwitch.get();
     }
     	
