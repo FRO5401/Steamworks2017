@@ -4,6 +4,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import org.usfirst.frc.team5401.robot.RobotMap;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 /**
  *
  */
@@ -28,6 +30,8 @@ public class GearMechanism extends Subsystem {
     	} else if (direction == -1) {
     		gearManip.set(DoubleSolenoid.Value.kReverse);
     	}
+    	
+    	SmartDashboard.putNumber("Gear Mech:", direction);
 
     }
     
