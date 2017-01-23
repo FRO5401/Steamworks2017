@@ -11,7 +11,7 @@ public class Climb extends Command {
 
 	private boolean input;
 	private boolean switchTriggered;
-	
+	private boolean override;
 	
     public Climb() {
         // Use requires() here to declare subsystem dependencies
@@ -19,24 +19,23 @@ public class Climb extends Command {
     	requires(Robot.climber);
     	
     	input = false;
+    	override = false;
     	switchTriggered = Robot.climber.checkSwitch();
     }
     
-    
-
     // Called just before this Command runs the first time
     protected void initialize() {
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	input 			= Robot.oi.getXboxB_Driver();
+    	input 			= Robot.oi.getXboxB_Operator();
     	switchTriggered = Robot.climber.checkSwitch();
+    	override 		= Robot.oi.getXboxY_Operator();
     	
-    	
-    	if (input && !switchTriggered){
+    	if ((!switchTriggered || override) && input){
     		Robot.climber.climbUp();
-    	} else {
+    	} else{
     		Robot.climber.climbStop();
     	}    	
     	

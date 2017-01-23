@@ -95,8 +95,12 @@ public class OI {
 		return xboxController_Driver.getRawButton(9);
 	}
 	
-	public boolean getXboxB_Driver(){ //Climb Button
-		return xboxController_Driver.getRawButton(2);
+	public boolean getXboxB_Operator(){ //Climb Button
+		return xboxController_Operator.getRawButton(2);
+	}
+	
+	public boolean getXboxY_Operator(){ //Climb Override Button
+		return xboxController_Operator.getRawButton(4);
 	}
 	
 	
