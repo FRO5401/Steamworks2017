@@ -6,6 +6,8 @@ import edu.wpi.first.wpilibj.VictorSP;
 import org.usfirst.frc.team5401.robot.RobotMap;
 import org.usfirst.frc.team5401.robot.commands.FeedInAndOut;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 /**
  *
  */
@@ -35,6 +37,7 @@ public class Infeed extends Subsystem {
     
     public void feederDirection(int direction){
     	feederMotor.set(FEED_SPEED * direction);
+    	SmartDashboard.putNumber("Feeder Direction:", direction);
     }
    
     public void armUpDown(int direction){
@@ -43,7 +46,7 @@ public class Infeed extends Subsystem {
     	} else if (direction == -1) {
     		feederArm.set(DoubleSolenoid.Value.kReverse);
     	}
-
+    	SmartDashboard.putNumber("Feeder Up/Down", direction);
     }
 }
 
