@@ -67,13 +67,7 @@ public class OI {
 	
 	//Buttons
 	public OI(){
-		//Infeeder
-		xboxRightBumper_Operator.whenPressed(new FeedInAndOut(1));
-		xboxRightBumper_Operator.whenReleased(new FeedStop());
-		
-		xboxLeftBumper_Operator.whenPressed(new FeedInAndOut(-1));
-		xboxLeftBumper_Operator.whenReleased(new FeedStop());
-		
+		//Infeeder		
 		xboxLeftBumper_Operator.whenPressed(new FeederUpDown(1));
 		xboxRightBumper_Operator.whenPressed(new FeederUpDown(-1));
 		//will be left stick Y axis
@@ -107,6 +101,14 @@ public class OI {
 	
 	public boolean getXboxB_Driver(){ //Climb Button
 		return xboxController_Driver.getRawButton(2);
+	}
+	
+	public double readLeftTrigger_Operator(){
+		return xboxController_Operator.getRawAxis(RobotMap.XBOX_AXIS_LEFT_TRIGGER);
+	}
+	
+	public double readRightTrigger_Operator(){
+		return xboxController_Operator.getRawAxis(RobotMap.XBOX_AXIS_RIGHT_TRIGGER);
 	}
 	
 	

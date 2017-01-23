@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.VictorSP;
 import org.usfirst.frc.team5401.robot.RobotMap;
+import org.usfirst.frc.team5401.robot.commands.FeedInAndOut;
 
 /**
  *
@@ -29,7 +30,7 @@ public class Infeed extends Subsystem {
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
+        setDefaultCommand(new FeedInAndOut());
     }
     
     public void feederDirection(int direction){
