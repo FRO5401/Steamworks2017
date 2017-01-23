@@ -20,14 +20,7 @@ import org.usfirst.frc.team5401.robot.subsystems.*;
  */
 public class Robot extends IterativeRobot {
 
-	public static DriveBase drivebase;
 	public static Climber climber;
-	public static GearMechanism gearmechanism;
-	public static Infeed infeed;
-	public static Loader loader;
-	public static Shooter shooter;
-	public static VisionProcessing visionprocessing;
-	public static Hopper hopper;
 	public static OI oi;
 
     Command autonomousCommand;
@@ -38,13 +31,7 @@ public class Robot extends IterativeRobot {
      * used for any initialization code.
      */
     public void robotInit() {
-    	drivebase = new DriveBase();
     	climber = new Climber();
-    	gearmechanism = new GearMechanism();
-    	infeed = new Infeed();
-    	loader = new Loader();
-    	shooter = new Shooter();
-    	hopper = new Hopper();
     	
 		oi = new OI();/****ALWAYS Instantiate OI() last*****/
         
@@ -91,9 +78,6 @@ public class Robot extends IterativeRobot {
     	
     	// schedule the autonomous command (example)
         if (autonomousCommand != null) autonomousCommand.start();
-        
-        //Start loader motors
-        Robot.loader.runConveyors();
     }
 
     /**
