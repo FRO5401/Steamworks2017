@@ -8,10 +8,11 @@ import org.usfirst.frc.team5401.robot.commands.PopGear;
 /**
  *
  */
-public class AutoPopGear extends CommandGroup {
+public class AutoCenterGear extends CommandGroup {
 
-    public AutoPopGear() {
-/*		addSequential(new PopGear(Open));
+    public AutoCenterGear() {
+/*    	addSequential(new AutoDrive(forwards));
+		addSequential(new PopGear(Open));
 		addSequential(new AutoDrive(backwards));
 		addSequential(new PopGear(Close));
 */

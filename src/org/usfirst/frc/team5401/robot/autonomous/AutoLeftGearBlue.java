@@ -3,18 +3,21 @@ package org.usfirst.frc.team5401.robot.autonomous;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 import org.usfirst.frc.team5401.robot.autonomous.AutoDrive;
+import org.usfirst.frc.team5401.robot.autonomous.AutoTurnAngle;
 import org.usfirst.frc.team5401.robot.commands.PopGear;
 
 /**
  *
  */
-public class AutoPopGear extends CommandGroup {
+public class AutoLeftGearBlue extends CommandGroup {
 
-    public AutoPopGear() {
-/*		addSequential(new PopGear(Open));
-		addSequential(new AutoDrive(backwards));
-		addSequential(new PopGear(Close));
-*/
+    public AutoLeftGearBlue() {
+/*		addSequential(new AutoDrive(forwards));
+ * 		addSequential(new AutoTurnAngle(some angle));
+ * 		addSequential(new AutoDrive(forwards));
+ * 		addSequential(new AutoPopGear());
+ */
+    	
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
