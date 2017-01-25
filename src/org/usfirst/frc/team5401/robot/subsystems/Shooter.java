@@ -1,6 +1,9 @@
 package org.usfirst.frc.team5401.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
+import edu.wpi.first.wpilibj.PIDSource;
+import edu.wpi.first.wpilibj.PIDOutput;
+
 
 import org.usfirst.frc.team5401.robot.RobotMap;
 import edu.wpi.first.wpilibj.VictorSP;
@@ -19,12 +22,15 @@ public class Shooter extends PIDSubsystem {
 	
 	//declare pid stuff?
 	
-	private  double MAX_COUNTER_SECONDS = 1;
-	private  double MOTOR_SPEED = 0.5;
+	private PIDSource source;
+	private PIDOutput output;
+	
+	private double MAX_COUNTER_SECONDS = 1;
+	private double MOTOR_SPEED = 0.5;
     
 	// Initialize your subsystem here
-    public Shooter() {
-    	super("shooter",1,2,3); //initializes pid //XXX Temporary to get rid of error status
+    public Shooter(double kP, double kI, double kD) {
+    	super(kP, kI, kD); //initializes pid //XXX Temporary to get rid of error status
     	
     	//instantiate shooter motors
     	motors = new VictorSP(RobotMap.SHOOTER_MOTORS);
@@ -47,9 +53,7 @@ public class Shooter extends PIDSubsystem {
     }
 
     protected double returnPIDInput() {
-        // Return your input value for the PID loop
-        // e.g. a sensor, like a potentiometer:
-        // yourPot.getAverageVoltage() / kYourMaxVoltage;
+        
 
     	if(counter.getStopped()){
     		return 0;
@@ -62,7 +66,7 @@ public class Shooter extends PIDSubsystem {
         // e.g. yourMotor.set(output);
     	
     	//PID stuff
-    	//Shoot
+    	motors.set(output);
     }
     
     public void startMotors(){
@@ -77,4 +81,5 @@ public class Shooter extends PIDSubsystem {
     public void stop(){
     	motors.set(0);
     }
+    
 }
