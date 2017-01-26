@@ -27,7 +27,9 @@ public class VisionProcessing extends Subsystem {
 	static NetworkTable targetRect;//XXX
 	double networkDefault = -99;
 	private double target[];
-	
+	/* 	target[0] is data validity flag
+		target [1...4] is [x y height width] defined in readTargetingData()
+	*/
 	public VisionProcessing(){
 		java.util.Properties config = new java.util.Properties(); 
     	config.put("StrictHostKeyChecking", "no");
@@ -69,21 +71,20 @@ public class VisionProcessing extends Subsystem {
     
     public boolean readTargetingData(){
     	targetRect = NetworkTable.getTable("BoilerPipeLineOut");
-    	target[0] =  targetRect.getNumber("X", networkDefault);
-    	target[1] =  targetRect.getNumber("Y", networkDefault);
-    	target[2] =  targetRect.getNumber("height", networkDefault);
-    	target[3] =  targetRect.getNumber("width", networkDefault);//XXX
+	target[0] = targetRect.getnumber("valid", networkDefault);
+    	target[1] =  targetRect.getNumber("X", networkDefault);
+    	target[2] =  targetRect.getNumber("Y", networkDefault);
+    	target[3] =  targetRect.getNumber("height", networkDefault);
+    	target[4] =  targetRect.getNumber("width", networkDefault);
     	System.out.println(target);
 
     	return true;
     }
 
     public double findTargetAngle(){
-    	normalizedWidth = 2*(XDownRightCorner - XUpLeftCorner)/BOILER_CAM_RES_X;
-		double distance =  target[3]/(normalizedWidth*12*tan(VIEW_ANGLE*M_PI/(180*2)));
-		SmartDashboard::PutNumber("Distance", distance);
-		Angle = (XUpLeftCorner - TargetX)/ PixelAngleScale;
-    	return 0;
+	float pixelAngleScale_X = BOILER_CAM_RES_X/PEG_CAM_FOV_X ;
+	Angle = (target[1] - BOILER_UPLEFT_X)/ pixelAngleScale_X;
+    	return Angle;
     }
 
 }
