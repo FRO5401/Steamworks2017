@@ -2,6 +2,9 @@ package org.usfirst.frc.team5401.robot.autonomous;
 
 import edu.wpi.first.wpilibj.command.Command;
 
+import org.usfirst.frc.team5401.robot.Robot;
+import org.usfirst.frc.team5401.robot.subsystems.Shooter;
+
 /**
  *
  */
@@ -9,15 +12,17 @@ public class AutoShoot extends Command {
 
     public AutoShoot() {
         // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+        requires(Robot.shooter);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	Robot.shooter.startMotors();
     }
 
     // Make this return true when this Command no longer needs to run execute()
