@@ -17,10 +17,14 @@ public class TargetMap {
 	public static final int PEG_WIDTH = 0;
 	
 	//Camera parameters used for more math
-	public static final int BOILER_CAM_RES_X = 0;
-	public static final int BOILER_CAM_RES_Y = 0;
+	public static final int BOILER_CAM_RES_X = 3280;
+	public static final int BOILER_CAM_RES_Y = 2464;
+	public static final int BOILER_CAM_FOV_X = 62;
+	public static final int BOILER_CAM_FOV_Y = 49;
 	
-	public static final int PEG_CAM_RES_X = 0;
-	public static final int PEG_CAM_RES_Y = 0;
+	public static final int PEG_CAM_RES_X = 3280;
+	public static final int PEG_CAM_RES_Y = 2464;
+	public static final int PEG_CAM_FOV_X = 62;
+	public static final int PEG_CAM_FOV_Y = 49;
 
 }
