@@ -88,4 +88,8 @@ public class DriveBase extends Subsystem {
     	SmartDashboard.putNumber("Velocity of Robot", velocity);
     	return velocity;
     }
+    
+    public void reportGyro(){
+    	gyro.getAngle();
+    }
 }
