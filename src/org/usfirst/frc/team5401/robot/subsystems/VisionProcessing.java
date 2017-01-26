@@ -78,5 +78,13 @@ public class VisionProcessing extends Subsystem {
     	return true;
     }
 
+    public double findTargetAngle(){
+    	normalizedWidth = 2*(XDownRightCorner - XUpLeftCorner)/BOILER_CAM_RES_X;
+		double distance =  target[3]/(normalizedWidth*12*tan(VIEW_ANGLE*M_PI/(180*2)));
+		SmartDashboard::PutNumber("Distance", distance);
+		Angle = (XUpLeftCorner - TargetX)/ PixelAngleScale;
+    	return 0;
+    }
+
 }
 
