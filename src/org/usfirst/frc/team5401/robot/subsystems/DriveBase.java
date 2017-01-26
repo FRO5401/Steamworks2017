@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 
 import org.usfirst.frc.team5401.robot.RobotMap;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -23,6 +24,7 @@ public class DriveBase extends Subsystem {
 	private Timer driveTimer;
 	private Encoder leftEncoder;
 	private Encoder rightEncoder;
+	private ADXRS450_Gyro gyro;
 	
 	public DriveBase(){
 		leftDrive  = new VictorSP(RobotMap.DRIVE_LEFT_MOTOR);
@@ -31,6 +33,7 @@ public class DriveBase extends Subsystem {
 		leftEncoder = new Encoder(RobotMap.DRIVE_ENC_LEFT_A, RobotMap.DRIVE_ENC_LEFT_B);
 		rightEncoder = new Encoder(RobotMap.DRIVE_ENC_RIGHT_A, RobotMap.DRIVE_ENC_RIGHT_B);
 		driveTimer = new Timer();
+		gyro = new ADXRS450_Gyro();
 	}
 	
     public void initDefaultCommand() {
