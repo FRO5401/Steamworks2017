@@ -19,20 +19,20 @@ public class VisionProcessing extends Subsystem {
     // here. Call these from Commands.
 	
     //Constants for the indices of the target array
-    final VALID = 0;
-    final X = 1;
-    final Y = 2;
-    final HEIGHT = 3;
-    final WIDTH = 4;
+    final int VALID = 0;
+    final int X = 1;
+    final int Y = 2;
+    final int HEIGHT = 3;
+    final int WIDTH = 4;
 
     //Constants for the login information
-    String final HOST="pulsatrix.local";
-    String final USER="pi";
-    String final PASSWORD="raspberry";
+    String HOST="pulsatrix.local";
+    String USER="pi";
+    String PASSWORD="raspberry";
 	
     //Constants for command strings
-    String final START_COMMAND="java -Djava.library.path=/usr/local/share/OpenCV/java -jar Webcam.java &";
-    String final TERMINATE_COMMAND="killall java";
+    String START_COMMAND="java -Djava.library.path=/usr/local/share/OpenCV/java -jar Webcam.java &";
+    String TERMINATE_COMMAND="killall java";
 	
 	//TODO indenting is all f'd up down below
     Channel channel;
@@ -88,7 +88,7 @@ public class VisionProcessing extends Subsystem {
 	//TODO Thread this
     public boolean readTargetingData(){
     	targetRect = NetworkTable.getTable("BoilerPipeLineOut");
-	target[VALID] = targetRect.getnumber("valid", networkDefault);
+    	target[VALID] = targetRect.getNumber("valid", networkDefault);
     	target[X] =  targetRect.getNumber("X", networkDefault);
     	target[Y] =  targetRect.getNumber("Y", networkDefault);
     	target[HEIGHT] =  targetRect.getNumber("height", networkDefault);
@@ -100,18 +100,18 @@ public class VisionProcessing extends Subsystem {
 
 	//Method for computing the angle to put target in shooting sights
     public double findTargetAngle(){
-	float pixelAngleScale_X = BOILER_CAM_RES_X/PEG_CAM_FOV_X ;
-	Angle = (target[X] - BOILER_UPLEFT_X)/ pixelAngleScale_X;
+	float pixelAngleScale_X = TargetMap.BOILER_CAM_RES_X/TargetMap.BOILER_CAM_FOV_X ;
+	double Angle = (target[X] - TargetMap.BOILER_UPLEFT_X)/ pixelAngleScale_X;
     	return Angle;
     }
 
 	//Method for computing the distance from target to optimal shooting location
     public double findTargetDistance(){
-	double normalizedWidth = 2*target[WIDTH]/BOILER_CAM_RES_X;
-	double distanceTrig =  BOILER_WIDTH/(normalizedWidth*12*tan(BOILER_CAM_FOV_X*Math.PI/(180*2)));
-	float pixelDistanceScale = BOILER_CAM_RES_Y/PEG_CAM_FOV_Y ;
-	double distanceY = (target[Y] - BOILER_UPLEFT_Y)/ pixelDistanceScale;
-	distance = distanceTrig;
+	double normalizedWidth = 2*target[WIDTH]/TargetMap.BOILER_CAM_RES_X;
+	double distanceTrig =  TargetMap.BOILER_WIDTH/(normalizedWidth*12*Math.tan(TargetMap.BOILER_CAM_FOV_X*Math.PI/(180*2)));
+	float pixelDistanceScale = TargetMap.BOILER_CAM_RES_Y/TargetMap.BOILER_CAM_FOV_Y ;
+	double distanceY = (target[Y] - TargetMap.BOILER_UPLEFT_Y)/ pixelDistanceScale;
+	double distance = distanceTrig;
     	return distance;
     }
 
