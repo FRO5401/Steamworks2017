@@ -9,17 +9,18 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class PopGear extends Command {
 
-	private int inout;
+	//private int inout;
 	
-    public PopGear(int direction) {
-        // Use requires() here to declare subsystem dependencies
+    //public PopGear(int direction) {
+    public PopGear(){  
+	// Use requires() here to declare subsystem dependencies
         requires(Robot.gearmechanism); 
-        inout = direction;
+    //    inout = direction;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.gearmechanism.gearInOut(inout);
+    	Robot.gearmechanism.gearInOut(-1);//Pushes gear out
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -28,7 +29,7 @@ public class PopGear extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+        return false;
     }
 
     // Called once after isFinished returns true
@@ -38,6 +39,6 @@ public class PopGear extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	//Robot.gearmechanism.gearInOut(-1);
+    	Robot.gearmechanism.gearInOut(1);
     }
 }
