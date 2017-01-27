@@ -37,8 +37,9 @@ public class FlyWheelControl extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.shooter.reset();
-    	Robot.shooter.setSetpoint(0);
+    	//Not necessary for toggleWhenPressed
+//    	Robot.shooter.reset();
+//    	Robot.shooter.setSetpoint(0);
     }
 
     
