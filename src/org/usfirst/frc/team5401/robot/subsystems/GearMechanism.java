@@ -31,7 +31,7 @@ public class GearMechanism extends Subsystem {
     		gearManip.set(DoubleSolenoid.Value.kReverse);
     	}
     	
-    	SmartDashboard.putNumber("Gear Mech:", direction);
+    	SmartDashboard.putNumber("Gear Mech", direction);
 
     }
     
