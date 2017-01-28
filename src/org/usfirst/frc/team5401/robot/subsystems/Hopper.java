@@ -26,6 +26,9 @@ public class Hopper extends Subsystem {
 		unjammer = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.HOPPER_UNJAMMER_IN, RobotMap.HOPPER_UNJAMMER_OUT);
 		flap = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.HOPPER_FLAP_IN, RobotMap.HOPPER_FLAP_OUT);
 		blender = new VictorSP(RobotMap.HOPPER_SPINNER);
+		
+		SmartDashboard.putString("Unjammer", "Down");
+		SmartDashboard.putString("Flap", "Closed");
 	}
 
     public void initDefaultCommand() {
@@ -35,22 +38,22 @@ public class Hopper extends Subsystem {
     
     public void unjammerUp(){
     	unjammer.set(DoubleSolenoid.Value.kForward);
-        SmartDashboard.putString("Unjammer:", "Up");
+        SmartDashboard.putString("Unjammer", "Up");
     }
     
     public void unjammerDown(){
     	unjammer.set(DoubleSolenoid.Value.kReverse);
-    	SmartDashboard.putString("Unjammer:", "Down");
+    	SmartDashboard.putString("Unjammer", "Down");
     }
     
     public void flapOpen(){
     	flap.set(DoubleSolenoid.Value.kForward);
-    	SmartDashboard.putString("Flap:", "Open");
+    	SmartDashboard.putString("Flap", "Open");
     }
     
     public void flapClose(){
     	flap.set(DoubleSolenoid.Value.kReverse);
-    	SmartDashboard.putString("Flap:", "Close");
+    	SmartDashboard.putString("Flap", "Closed");
     }
     
     public void blenderTurn(int speed){
