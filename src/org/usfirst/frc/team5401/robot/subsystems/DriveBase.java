@@ -34,6 +34,13 @@ public class DriveBase extends Subsystem {
 		rightEncoder = new Encoder(RobotMap.DRIVE_ENC_RIGHT_A, RobotMap.DRIVE_ENC_RIGHT_B);
 		driveTimer = new Timer();
 		gyro = new ADXRS450_Gyro();
+		
+		stop();
+		
+		SmartDashboard.putString("Drive Gear", "NULL");
+		SmartDashboard.putNumber("Delta Time", 0);
+		SmartDashboard.putNumber("Velocity of Robot", 0);
+		SmartDashboard.putNumber("Gyro", gyro.getAngle());
 	}
 	
     public void initDefaultCommand() {
@@ -47,21 +54,31 @@ public class DriveBase extends Subsystem {
     	
     	System.out.println("LEFT DESIRED: " + leftDriveDesired);
     	System.out.println("RIGHT DESIRED: " + rightDriveDesired);
+    	
+    	SmartDashboard.putNumber("Left Drive", leftDriveDesired);
+    	SmartDashboard.putNumber("Right Drive", rightDriveDesired);
     }
 
     public void stop(){
     	leftDrive .set(0);
     	rightDrive.set(0);
+    	
+    	SmartDashboard.putNumber("Left Drive", 0);
+    	SmartDashboard.putNumber("Right Drive", 0);
     }
 
     public void shiftGearLowToHigh(){//Meaning Low speed to high speed
     	//Assumes Pneumatic forward/out shifts low to high
     	gearShifter.set(DoubleSolenoid.Value.kForward);
+    	
+    	SmartDashboard.putString("Drive Gear", "High");
     }
 
     public void shiftGearHighToLow(){
     	//Assumes Pneumatic reverse/in shifts high to low
     	gearShifter.set(DoubleSolenoid.Value.kReverse);
+    	
+    	SmartDashboard.putString("Drive Gear", "Low");
     }
     
     public double getTimerValue(){
@@ -73,11 +90,13 @@ public class DriveBase extends Subsystem {
     
     public void resetTimer(){
     	driveTimer.reset();
+    	SmartDashboard.putNumber("Delta Time", 0);
     }
     
     public void startTimer(){
     	driveTimer.start();
     }
+    
     public void stopTimer(){
     	driveTimer.stop();
     }
@@ -91,5 +110,6 @@ public class DriveBase extends Subsystem {
     
     public void reportGyro(){
     	gyro.getAngle();
+    	SmartDashboard.putNumber("Gyro", gyro.getAngle());
     }
 }
