@@ -6,6 +6,8 @@ import com.jcraft.jsch.ChannelExec;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import org.usfirst.frc.team5401.robot.TargetMap;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.usfirst.frc.team5401.robot.commands.XboxMove;
 
 
 import com.jcraft.jsch.JSchException;
@@ -58,13 +60,14 @@ public class VisionProcessing extends Subsystem {
 			e.printStackTrace();
 		}
 		try{Thread.sleep(1000);}catch(Exception ee){}
-
+		
+		SmartDashboard.putNumber("VALID", VALID);
     	System.out.println("Connected");
 	}
 	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
+    	setDefaultCommand(new XboxMove());
     }
     
 	//Start the command running on the Raspberry Pi
@@ -93,6 +96,8 @@ public class VisionProcessing extends Subsystem {
     	target[Y] =  targetRect.getNumber("Y", networkDefault);
     	target[HEIGHT] =  targetRect.getNumber("height", networkDefault);
     	target[WIDTH] =  targetRect.getNumber("width", networkDefault);
+    	//SmartDashboard.putNumberArray("Targeting Data", target);
+    	SmartDashboard.putNumber("VALID", VALID);
     	System.out.println(target);
 
     	return true;
