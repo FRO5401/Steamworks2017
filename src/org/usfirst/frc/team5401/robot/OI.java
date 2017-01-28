@@ -82,7 +82,7 @@ public class OI {
 		//will be left stick Y axis
 		
 		//GearManipulator
-		xboxX_Driver.toggleWhenPressed(new PopGear());//Figured out toggleWhenPressed, gear command PopGear will be chaged in Gear subsystem branch
+		xboxX_Driver.toggleWhenPressed(new PopGear());//Figured out toggleWhenPressed, gear command PopGear will be changed in Gear subsystem branch
 //		xboxX_Driver.whenPressed(new PopGear(-1)); //out
 //		xboxX_Driver.whenReleased(new PopGear(1)); //in
 		
