@@ -30,7 +30,6 @@ public class Loader extends Subsystem {
 	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        setDefaultCommand(new LoadShooter());
     }
     
     //load action method (direction parameter)
