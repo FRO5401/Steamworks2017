@@ -80,6 +80,7 @@ public class Robot extends IterativeRobot {
         if (autonomousCommand != null) autonomousCommand.start();
         
         //Start loader motors
+        SmartDashboard.putBoolean("Loader Conveyors", true);
         Robot.loader.runConveyors();
     }
 
@@ -96,6 +97,7 @@ public class Robot extends IterativeRobot {
         // continue until interrupted by another command, remove
         // this line or comment it out.
         if (autonomousCommand != null) autonomousCommand.cancel();
+        
     }
 
     /**
