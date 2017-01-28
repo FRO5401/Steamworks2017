@@ -1,6 +1,7 @@
 package org.usfirst.frc.team5401.robot.commands;
 
 import org.usfirst.frc.team5401.robot.Robot;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -23,6 +24,7 @@ public class FlyWheelControl extends Command {
     	Robot.shooter.startMotors();
     	Robot.shooter.setSetpoint(0);
     	Robot.shooter.enable();
+    	SmartDashboard.putBoolean("Shooter OnOff", true);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -46,7 +48,7 @@ public class FlyWheelControl extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	SmartDashboard.putBoolean("Shooter OnOff", false);
     	Robot.shooter.reset();
-    	Robot.shooter.setSetpoint(0);
     }
 }
