@@ -28,6 +28,9 @@ public class Infeed extends Subsystem {
 		feederMotor = new VictorSP(RobotMap.INFEEDER_MOTOR);
 	
 		FEED_SPEED = 0.5;
+		
+		SmartDashboard.putNumber("Feeder Direction", 0);
+		SmartDashboard.putNumber("Feeder UpDown", 0);
 	}
 
     public void initDefaultCommand() {
@@ -37,7 +40,7 @@ public class Infeed extends Subsystem {
     
     public void feederDirection(int direction){
     	feederMotor.set(FEED_SPEED * direction);
-    	SmartDashboard.putNumber("Feeder Direction:", direction);
+    	SmartDashboard.putNumber("Feeder Direction", direction);
     }
    
     public void armUpDown(int direction){
@@ -46,7 +49,7 @@ public class Infeed extends Subsystem {
     	} else if (direction == -1) {
     		feederArm.set(DoubleSolenoid.Value.kReverse);
     	}
-    	SmartDashboard.putNumber("Feeder Up/Down", direction);
+    	SmartDashboard.putNumber("Feeder UpDown", direction);
     }
 }
 
