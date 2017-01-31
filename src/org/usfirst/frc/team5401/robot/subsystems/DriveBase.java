@@ -24,7 +24,7 @@ public class DriveBase extends Subsystem {
 	private Timer driveTimer;
 	private Encoder leftEncoder;
 	private Encoder rightEncoder;
-	private ADXRS450_Gyro gyro;
+//	private ADXRS450_Gyro gyro;
 	
 	public DriveBase(){
 		leftDrive  = new VictorSP(RobotMap.DRIVE_LEFT_MOTOR);
@@ -33,7 +33,7 @@ public class DriveBase extends Subsystem {
 		leftEncoder = new Encoder(RobotMap.DRIVE_ENC_LEFT_A, RobotMap.DRIVE_ENC_LEFT_B);
 		rightEncoder = new Encoder(RobotMap.DRIVE_ENC_RIGHT_A, RobotMap.DRIVE_ENC_RIGHT_B);
 		driveTimer = new Timer();
-		gyro = new ADXRS450_Gyro();
+//		gyro = new ADXRS450_Gyro();
 	}
 	
     public void initDefaultCommand() {
@@ -88,8 +88,9 @@ public class DriveBase extends Subsystem {
     	SmartDashboard.putNumber("Velocity of Robot", velocity);
     	return velocity;
     }
-    
+/*    
     public void reportGyro(){
     	gyro.getAngle();
     }
+*/
 }

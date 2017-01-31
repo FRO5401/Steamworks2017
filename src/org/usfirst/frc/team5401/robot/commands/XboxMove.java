@@ -127,6 +127,7 @@ public class XboxMove extends Command {
     	//Gets new final velocity
     	velocitySample2 = Robot.drivebase.getVelocityOfRobot();
     	
+    	SmartDashboard.putNumber("velocity", velocitySample2);
     	//1/23/17 NOT NEEDED
     	//Gets change in time
     	//deltaTime = Robot.drivebase.getTimerValue();
@@ -151,7 +152,7 @@ public class XboxMove extends Command {
     	avgAccelerationFromSamples = (accelerationSample1+accelerationSample2+accelerationSample3+accelerationSample4+accelerationSample5)/5;
 */
     	
-    	
+/*    	
     	//												vvvvv this is for no shifting at acceleration = 0 when robot is totally still, might be unnecessary
     	if(slew <= 0 + RobotMap.DRIVE_THRESHHOLD && velocitySample2 != 0){
     	//Uses average acceleration for gear shifting up to higher speeds
@@ -178,7 +179,7 @@ public class XboxMove extends Command {
     		//}
     		
     	}
-    	//Gear Shift Done
+*/    	//Gear Shift Done
     }
 
     // Make this return true when this Command no longer needs to run execute()
