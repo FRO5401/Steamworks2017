@@ -93,8 +93,8 @@ public class OI {
 		xboxBack_Operator.whenPressed(new HopperFlap(1));
 		xboxStart_Operator.whenPressed(new HopperFlap(-1));
 		
-		xboxX_Driver.whenPressed(new HopperUnjammer(1));
-		xboxX_Driver.whenReleased(new HopperUnjammer(-1));
+		xboxX_Operator.whenPressed(new HopperUnjammer(1));
+		xboxX_Operator.whenReleased(new HopperUnjammer(-1));
 	}
 	//Method Naming: 'read' = Analog; 'get' = Digital
 	
