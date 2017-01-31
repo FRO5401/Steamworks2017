@@ -85,4 +85,33 @@ public class DriveBase extends Subsystem {
     	SmartDashboard.putNumber("Velocity of Robot", velocity);
     	return velocity;
     }
+
+	float AutoTurnAngle(float DesiredTurnAngle, float TurnPrecision)	//Turns a number of degrees relative to current position
+{
+	AutoTurnPrecision = TurnPrecision;
+	//Not using ReportGyro as it possibly doesn't work; if this code works, try ReportGyro()
+	float CurrentAngle = 0;
+	float InitAngle = MainGyro -> GetAngle();
+
+	if (fabs(DesiredTurnAngle) <= AngleThreshold){
+		std::cout << "DesiredTurnAngle too small!!!\n";
+	} else {
+		// @REVIEW NJL: Recommend (1) Break out separate if statement instead of ?: in while.  (2) Use parentheses instead of relying on operator precedence.  These make the code easier to read.
+		// @REVIEW NJL: This is called from AutoLaunch::Execute.  Execute must return quickly, so a loop that takes time is not appropriate here.
+		while ((DesiredTurnAngle > 0) ? (CurrentAngle < fabs(DesiredTurnAngle) - AngleThreshold) : (CurrentAngle > AngleThreshold - fabs(DesiredTurnAngle))){
+			if (DesiredTurnAngle > 0){
+				Drive(AutoTurnSpeed * AutoTurnPrecision, -AutoTurnSpeed * AutoTurnPrecision);
+			} else if (DesiredTurnAngle < 0) {
+				Drive(-AutoTurnSpeed * AutoTurnPrecision, AutoTurnSpeed * AutoTurnPrecision);
+			} else { //error or exactly 0
+				std::cout << "AutoTurnAngle Error!!!\n";
+				break;
+			}
+		CurrentAngle = MainGyro -> GetAngle() - InitAngle;
+		}
+	}
+
+	Stop(); //Stop motors for autonomous
+	return (0); //not sure what return does
+}
 }
