@@ -2,6 +2,7 @@ package org.usfirst.frc.team5401.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.Compressor;
 import org.usfirst.frc.team5401.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -12,8 +13,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class GearMechanism extends Subsystem {
 
 	private DoubleSolenoid gearManip;
-
+	private Compressor compressor;
 	public GearMechanism(){
+		compressor = new Compressor(RobotMap.PCM_ID);
 		gearManip = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.GEAR_MANIPULATOR_IN, RobotMap.GEAR_MANIPULATOR_OUT);
 	}
     // Put methods for controlling this subsystem

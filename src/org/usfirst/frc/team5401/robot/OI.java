@@ -70,8 +70,8 @@ public class OI {
 		
 		//GearManipulator
 		//xboxX_Driver.toggleWhenPressed(new PopGear());
-		xboxX_Driver.whenPressed(new PopGear(-1)); //out
-		xboxX_Driver.whenReleased(new PopGear(1)); //in
+		xboxX_Driver.toggleWhenPressed(new PopGear()); //out
+//		xboxX_Driver.toggleWhenReleased(new PopGear(1)); //in
 		
 	}
 	//Method Naming: 'read' = Analog; 'get' = Digital
