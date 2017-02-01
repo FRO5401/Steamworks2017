@@ -2,10 +2,12 @@ package org.usfirst.frc.team5401.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.VictorSP;
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.Encoder;
 
+import org.usfirst.frc.team5401.robot.Robot;
 import org.usfirst.frc.team5401.robot.RobotMap;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team5401.robot.commands.XboxMove;
@@ -23,6 +25,9 @@ public class DriveBase extends Subsystem {
 	private Timer timer;
 	private Encoder leftEncoder;
 	private Encoder rightEncoder;
+	private ADXRS450_Gyro MainGyro;
+
+	final float DEFAULT_TURN_PRECISION = 0;
 	
 	public DriveBase(){
 		leftDrive  = new VictorSP(RobotMap.DRIVE_LEFT_MOTOR);
@@ -86,32 +91,16 @@ public class DriveBase extends Subsystem {
     	return velocity;
     }
 
-	float AutoTurnAngle(float DesiredTurnAngle, float TurnPrecision)	//Turns a number of degrees relative to current position
-{
-	AutoTurnPrecision = TurnPrecision;
-	//Not using ReportGyro as it possibly doesn't work; if this code works, try ReportGyro()
-	float CurrentAngle = 0;
-	float InitAngle = MainGyro -> GetAngle();
+    public float ReportGyro()
+    {
+    	//This adjusts for gyro creep which is current nonexistent
+     /*	float Angle = (GyroScalar * MainGyro.getAngle());
+       	double Time = TimeCount.get();
+       	float AdjAngle = Angle - (GyroLinearAdj * Time + GyroOffset);//Compensates for gyro creep - basically subtracts out mx+b the linear creep function
+      	return AdjAngle;
+    */
+  	//error: cannot convert double to float, so I used casting
+    	return (float) MainGyro.getAngle();
+    }
 
-	if (fabs(DesiredTurnAngle) <= AngleThreshold){
-		std::cout << "DesiredTurnAngle too small!!!\n";
-	} else {
-		// @REVIEW NJL: Recommend (1) Break out separate if statement instead of ?: in while.  (2) Use parentheses instead of relying on operator precedence.  These make the code easier to read.
-		// @REVIEW NJL: This is called from AutoLaunch::Execute.  Execute must return quickly, so a loop that takes time is not appropriate here.
-		while ((DesiredTurnAngle > 0) ? (CurrentAngle < fabs(DesiredTurnAngle) - AngleThreshold) : (CurrentAngle > AngleThreshold - fabs(DesiredTurnAngle))){
-			if (DesiredTurnAngle > 0){
-				Drive(AutoTurnSpeed * AutoTurnPrecision, -AutoTurnSpeed * AutoTurnPrecision);
-			} else if (DesiredTurnAngle < 0) {
-				Drive(-AutoTurnSpeed * AutoTurnPrecision, AutoTurnSpeed * AutoTurnPrecision);
-			} else { //error or exactly 0
-				std::cout << "AutoTurnAngle Error!!!\n";
-				break;
-			}
-		CurrentAngle = MainGyro -> GetAngle() - InitAngle;
-		}
-	}
-
-	Stop(); //Stop motors for autonomous
-	return (0); //not sure what return does
-}
 }
