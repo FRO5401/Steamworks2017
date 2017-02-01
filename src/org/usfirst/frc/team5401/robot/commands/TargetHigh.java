@@ -10,9 +10,7 @@ import org.usfirst.frc.team5401.robot.RobotMap;
  *
  */
 public class TargetHigh extends Command {
-	
-	private final double FLYWHEEL_SPEED = 0; //TODO
-	
+		
     public TargetHigh() {
         // Use requires() here to declare subsystem dependencies
     	requires(Robot.drivebase);
@@ -25,7 +23,7 @@ public class TargetHigh extends Command {
     protected void initialize() {
     	Robot.shooter.reset();
     	Robot.shooter.startMotors();
-    	Robot.shooter.setSetpoint(0);
+    	Robot.shooter.setSetpoint(RobotMap.SHOOTER_SETPOINT);
     	Robot.shooter.enable();
     	SmartDashboard.putBoolean("Shooter OnOff", true);
     }
@@ -37,13 +35,13 @@ public class TargetHigh extends Command {
     	//send an auto drive command instructions
     	double angle = Robot.visionprocessing.findTargetAngle();
     	Robot.loader.runConveyors();
-    	Robot.shooter.setSetpoint(FLYWHEEL_SPEED);
+    	Robot.shooter.setSetpoint(RobotMap.SHOOTER_SETPOINT);
 //    	Robot.drivebase.autoTurnAngle(angle);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return !Robot.oi.getXboxstart_Operator();
+        return !Robot.oi.getXboxstart_Operator();//TODO Make sure this is the button
     }
 
     // Called once after isFinished returns true
