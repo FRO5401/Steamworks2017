@@ -45,6 +45,7 @@ public class Robot extends IterativeRobot {
     	loader = new Loader();
     	shooter = new Shooter();
     	hopper = new Hopper();
+    	visionprocessing = new VisionProcessing();
     	
 		oi = new OI();/****ALWAYS Instantiate OI() last*****/
         
@@ -93,7 +94,7 @@ public class Robot extends IterativeRobot {
         if (autonomousCommand != null) autonomousCommand.start();
         
         //Start loader motors
-        Robot.loader.runConveyors();
+   //     Robot.loader.runConveyors();
     }
 
     /**

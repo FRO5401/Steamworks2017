@@ -5,6 +5,9 @@ import com.jcraft.jsch.Channel;
 import com.jcraft.jsch.ChannelExec;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
+
+import java.io.*;
+
 import org.usfirst.frc.team5401.robot.TargetMap;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team5401.robot.commands.XboxMove;
@@ -46,22 +49,35 @@ public class VisionProcessing extends Subsystem {
 		target [1...4] is [x y height width] defined in readTargetingData()
 	*/
 	public VisionProcessing(){
+		SmartDashboard.putNumber("VALID", VALID);
 		java.util.Properties config = new java.util.Properties(); 
     	config.put("StrictHostKeyChecking", "no");
     	JSch jsch = new JSch();
 		try {
+	    	System.out.println("Trying login");
 			session = jsch.getSession(USER, HOST, 22);
 	    	session.setPassword(PASSWORD);
 	    	session.setConfig(config);  //XXX No idea what this does
 	    	session.connect();
 			channel=session.openChannel("exec");
+			PipedInputStream pip = new PipedInputStream(40);
+			channel.setInputStream(pip);
+			try {
+				PipedOutputStream pop = new PipedOutputStream(pip);
+				PrintStream print = new PrintStream(pop);           
+				channel.setOutputStream(System.out);
+			} catch (IOException ioe){}
 		} catch (JSchException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Exception logging in");
 		}
-		try{Thread.sleep(1000);}catch(Exception ee){}
+		try{Thread.sleep(1000);}catch(Exception ee)
+		{
+			System.out.println("Exception sleeping");
+			
+		}
 		
-		SmartDashboard.putNumber("VALID", VALID);
     	System.out.println("Connected");
 	}
 	
@@ -72,34 +88,45 @@ public class VisionProcessing extends Subsystem {
     
 	//Start the command running on the Raspberry Pi
     public boolean beginTargeting() {
+		try {
+	   	System.out.println("Begin Targeting");
+    	((ChannelExec)channel).setCommand("cd /home/pi/vision");
     	((ChannelExec)channel).setCommand(START_COMMAND);
         channel.setInputStream(null);
+		}catch(Exception ee){}
     	return true;
     }
 	
 	//Stop the command runnin on the Raspberry Pi
     public boolean terminateTargeting() {
+		try {
+	   	System.out.println("Terminate Targeting");
     	((ChannelExec)channel).setCommand(TERMINATE_COMMAND);
         channel.setInputStream(null);
         channel.disconnect();
         session.disconnect();
         System.out.println("DONE");
+	}catch(Exception ee){}
     	return true;
     }
     
 	//Assigns values to array based on network table values
 	//TODO Thread this
     public boolean readTargetingData(){
+		try {
+		System.out.println("Read Target Data");
     	targetRect = NetworkTable.getTable("BoilerPipeLineOut");
     	target[VALID] = targetRect.getNumber("valid", networkDefault);
     	target[X] =  targetRect.getNumber("X", networkDefault);
     	target[Y] =  targetRect.getNumber("Y", networkDefault);
     	target[HEIGHT] =  targetRect.getNumber("height", networkDefault);
     	target[WIDTH] =  targetRect.getNumber("width", networkDefault);
-    	//SmartDashboard.putNumberArray("Targeting Data", target);
     	SmartDashboard.putNumber("VALID", VALID);
     	System.out.println(target);
-
+		}catch(Exception ee)
+			{
+	    	System.out.println("No target data");
+			}
     	return true;
     }
 

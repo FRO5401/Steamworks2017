@@ -3,7 +3,7 @@ package org.usfirst.frc.team5401.robot.subsystems;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.Timer;
+//import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.Encoder;
 
 import org.usfirst.frc.team5401.robot.RobotMap;
@@ -20,7 +20,7 @@ public class DriveBase extends Subsystem {
 	private VictorSP leftDrive;
 	private VictorSP rightDrive;
 //	private DoubleSolenoid gearShifter;
-	private Timer timer;
+//	private Timer timer;
 	private Encoder leftEncoder;
 	private Encoder rightEncoder;
 	
@@ -34,15 +34,15 @@ public class DriveBase extends Subsystem {
 	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-    	setDefaultCommand(new XboxMove());
+//    	setDefaultCommand(new XboxMove());
     }
     
     public void drive(double leftDriveDesired, double rightDriveDesired){
     	leftDrive .set(-1 * leftDriveDesired); //passes desired state to speed controllers
     	rightDrive.set(rightDriveDesired);
     	
-    	System.out.println("LEFT DESIRED: " + leftDriveDesired);
-    	System.out.println("RIGHT DESIRED: " + rightDriveDesired);
+//    	System.out.println("LEFT DESIRED: " + leftDriveDesired);
+//    	System.out.println("RIGHT DESIRED: " + rightDriveDesired);
     }
 
     public void stop(){
@@ -60,6 +60,7 @@ public class DriveBase extends Subsystem {
     	gearShifter.set(DoubleSolenoid.Value.kReverse);
     }
 */    
+    /*
     public double getTimerValue(){
 
     	double timerValue = timer.get();
@@ -85,4 +86,5 @@ public class DriveBase extends Subsystem {
     	SmartDashboard.putNumber("Velocity of Robot", velocity);
     	return velocity;
     }
+    */
 }

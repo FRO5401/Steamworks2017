@@ -67,6 +67,7 @@ public class OI {
 	
 	//Buttons
 	public OI(){
+		/*
 		//Shooter
 		xboxA_Driver.toggleWhenPressed(new FlyWheelControl());
 		
@@ -95,6 +96,8 @@ public class OI {
 		
 		xboxX_Driver.whenPressed(new HopperUnjammer(1));
 		xboxX_Driver.whenReleased(new HopperUnjammer(-1));
+		*/
+		xboxStart_Operator.whenPressed(new TargetHigh());
 	}
 	//Method Naming: 'read' = Analog; 'get' = Digital
 	
@@ -126,5 +129,8 @@ public class OI {
 		return xboxController_Driver.getRawButton(2);
 	}
 	
+	public boolean getXboxstart_Operator(){ //Climb Button
+		return xboxController_Operator.getRawButton(8);
+	}
 	
 }
