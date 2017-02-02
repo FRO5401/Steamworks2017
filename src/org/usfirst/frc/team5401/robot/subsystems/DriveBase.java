@@ -46,6 +46,7 @@ public class DriveBase extends Subsystem {
 		//																					vvv if this was false, DPP doesn't have to be negative
 		rightEncoder = new Encoder(RobotMap.DRIVE_ENC_RIGHT_A, RobotMap.DRIVE_ENC_RIGHT_B, true, Encoder.EncodingType.k4X);
 		driveTimer = new Timer();
+
 //		gyro = new ADXRS450_Gyro();
 	}
 	
@@ -60,37 +61,45 @@ public class DriveBase extends Subsystem {
     	
     	System.out.println("LEFT DESIRED: " + leftDriveDesired);
     	System.out.println("RIGHT DESIRED: " + rightDriveDesired);
+    	
+    	
     }
 
     public void stop(){
     	leftDrive .set(0);
     	rightDrive.set(0);
+    	
+
     }
 
     public void shiftGearLowToHigh(){//Meaning Low speed to high speed
     	//Assumes Pneumatic forward/out shifts low to high
     	gearShifter.set(DoubleSolenoid.Value.kForward);
+    	
     }
 
     public void shiftGearHighToLow(){
     	//Assumes Pneumatic reverse/in shifts high to low
     	gearShifter.set(DoubleSolenoid.Value.kReverse);
+    	
     }
 /*    
     public double getTimerValue(){
     	double timerValue = driveTimer.get();
     	//Also displays for testings
-    	SmartDashboard.putNumber("Delta Time", timerValue);
+    	
     	return timerValue;
     }
     
     public void resetTimer(){
     	driveTimer.reset();
+    	
     }
     
     public void startTimer(){
     	driveTimer.start();
     }
+    
     public void stopTimer(){
     	driveTimer.stop();
     }
