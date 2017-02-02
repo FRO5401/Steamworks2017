@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class XboxMove extends Command {
 	//Might make the following constants in RobotMap
 //	private final double accelerationThreshhold;
-	private final double MINIMUM_VELOCITY_FOR_HIGH_GEAR; //Experimentally Determined
+	private final double MINIMUM_VELOCITY_FOR_HIGH_GEAR; //Experimentally Determined, REMEMBER inches per second
 	private final double MAXIMUM_VELOCITY_FOR_LOW_GEAR;
 	
 /*	1/23/17 NOT NEEDED because using velocity for gear shift, no acceleration is used
@@ -36,8 +36,8 @@ public class XboxMove extends Command {
 //        accelerationThreshhold = 0.01;
 		
 		//Min and Max velocity have to be different to prevent constant shifting if at the shift speed if there is only one shift speed
-		MINIMUM_VELOCITY_FOR_HIGH_GEAR 	= 5;//NEED TO CHANGE
-		MAXIMUM_VELOCITY_FOR_LOW_GEAR 	= 7;//NEED TO CHANGE
+		MINIMUM_VELOCITY_FOR_HIGH_GEAR 	= 40;//NEED TO CHANGE, REMEMBER inches per second
+		MAXIMUM_VELOCITY_FOR_LOW_GEAR 	= 50;//NEED TO CHANGE
 		
 /*		1/23/17 NOT NEEDED
   		//Remember to initialize to zero
@@ -70,7 +70,7 @@ public class XboxMove extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	double 	slew        =	Robot.oi.readXboxLeftX_Driver();
+    	double 	slew        =	-1 * Robot.oi.readXboxLeftX_Driver();
     	double 	throttle 	=	Robot.oi.readRightTrigger_Driver();
     	double 	reverse 	=	Robot.oi.readLeftTrigger_Driver();
     	boolean precision	=	Robot.oi.getPrecision_Driver();
