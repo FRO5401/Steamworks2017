@@ -35,15 +35,19 @@ public class XboxMove extends Command {
 //        minimumVelocityForHighGear 	= 8;//NEED TO CHANGE
 //        maximumVelocityForLowGear 	= 9;//NEED TO CHANGE
 		// Use requires() here to declare subsystem dependencies
-        requires(Robot.drivebase);
+//        requires(Robot.drivebase);
+        requires(Robot.visionprocessing);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.visionprocessing.beginTargeting();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	Robot.visionprocessing.readTargetingData();
+
     	double 	slew        =	Robot.oi.readXboxLeftX_Driver();
     	double 	throttle 	=	Robot.oi.readRightTrigger_Driver();
     	double 	reverse 	=	Robot.oi.readLeftTrigger_Driver();
@@ -55,7 +59,7 @@ public class XboxMove extends Command {
     	
     	//Backlogs the old final velocity (velocity 2) into the new initial velocity (velocity 1)
     	velocitySample1 = velocitySample2;
-    	
+    	/*
     	//Gets new final velocity
     	velocitySample2 = Robot.drivebase.getVelocityOfRobot();
     	
@@ -66,7 +70,7 @@ public class XboxMove extends Command {
     	Robot.drivebase.stopTimer();
     	Robot.drivebase.resetTimer();
     	Robot.drivebase.startTimer();
-    	
+    	*/
     	//Backlogs the acceleration
     	accelerationSample1 = accelerationSample2;
     	accelerationSample2 = accelerationSample3;
@@ -143,10 +147,11 @@ public class XboxMove extends Command {
     		}
     	}
     	
-    	System.out.println("LEFT: " + left);
-    	System.out.println("RIGHT: " + right);
+//    	System.out.println("LEFT: " + left);
+//    	System.out.println("RIGHT: " + right);
     	
-    	Robot.drivebase.drive(left, right);
+//    	Robot.drivebase.drive(left, right);
+    	Robot.drivebase.stop();
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -157,11 +162,13 @@ public class XboxMove extends Command {
     // Called once after isFinished returns true
     protected void end() {
     	Robot.drivebase.stop();
+    	Robot.visionprocessing.terminateTargeting();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
     	Robot.drivebase.stop();
+    	Robot.visionprocessing.terminateTargeting();
     }
 }
