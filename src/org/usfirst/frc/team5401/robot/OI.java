@@ -67,6 +67,7 @@ public class OI {
 	
 	//Buttons
 	public OI(){
+		xboxA_Driver.toggleWhenPressed(new TestShift());
 		
 	}
 	//Method Naming: 'read' = Analog; 'get' = Digital

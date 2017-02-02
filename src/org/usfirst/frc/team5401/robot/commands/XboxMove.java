@@ -31,11 +31,13 @@ public class XboxMove extends Command {
 	//double deltaTime;
 	
 	public XboxMove() {
+		Robot.drivebase.setDPPHighGear();
+		
 //        accelerationThreshhold = 0.01;
 		
 		//Min and Max velocity have to be different to prevent constant shifting if at the shift speed if there is only one shift speed
-		MINIMUM_VELOCITY_FOR_HIGH_GEAR 	= 8;//NEED TO CHANGE
-		MAXIMUM_VELOCITY_FOR_LOW_GEAR 	= 9;//NEED TO CHANGE
+		MINIMUM_VELOCITY_FOR_HIGH_GEAR 	= 5;//NEED TO CHANGE
+		MAXIMUM_VELOCITY_FOR_LOW_GEAR 	= 7;//NEED TO CHANGE
 		
 /*		1/23/17 NOT NEEDED
   		//Remember to initialize to zero
@@ -120,14 +122,13 @@ public class XboxMove extends Command {
     	
     	
 /*****Shifting Gear Code*********/
-    	
+    	Robot.drivebase.getEncoderValue();
     	//Backlogs the old final velocity (velocity 2) into the new initial velocity (velocity 1)
     	velocitySample1 = velocitySample2;
    	
     	//Gets new final velocity
     	velocitySample2 = Robot.drivebase.getVelocityOfRobot();
     	
-    	SmartDashboard.putNumber("velocity", velocitySample2);
     	//1/23/17 NOT NEEDED
     	//Gets change in time
     	//deltaTime = Robot.drivebase.getTimerValue();
@@ -152,7 +153,7 @@ public class XboxMove extends Command {
     	avgAccelerationFromSamples = (accelerationSample1+accelerationSample2+accelerationSample3+accelerationSample4+accelerationSample5)/5;
 */
     	
-/*    	
+    	
     	//												vvvvv this is for no shifting at acceleration = 0 when robot is totally still, might be unnecessary
     	if(slew <= 0 + RobotMap.DRIVE_THRESHHOLD && velocitySample2 != 0){
     	//Uses average acceleration for gear shifting up to higher speeds
@@ -163,14 +164,16 @@ public class XboxMove extends Command {
     		//}
     		
     	//Alternative Upshift using velocity
-    		if(velocitySample2 >= MAXIMUM_VELOCITY_FOR_LOW_GEAR){
+    		if(Math.abs(velocitySample2) >= MAXIMUM_VELOCITY_FOR_LOW_GEAR){
     			Robot.drivebase.shiftGearLowToHigh();
+    			Robot.drivebase.setDPPHighGear();
     		}
 
 
     	//Uses Current Velocity to Shift High to Low
-    		if(velocitySample2 <= MINIMUM_VELOCITY_FOR_HIGH_GEAR){
+    		if(Math.abs(velocitySample2) <= MINIMUM_VELOCITY_FOR_HIGH_GEAR){
     			Robot.drivebase.shiftGearHighToLow();
+    			Robot.drivebase.setDPPLowGear();
     		}
 
     	//Alternative Downshift Due to release in Thottle
@@ -179,7 +182,7 @@ public class XboxMove extends Command {
     		//}
     		
     	}
-*/    	//Gear Shift Done
+    	//Gear Shift Done
     }
 
     // Make this return true when this Command no longer needs to run execute()
