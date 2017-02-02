@@ -32,7 +32,7 @@ public class GearMechanism extends Subsystem {
     		gearManip.set(DoubleSolenoid.Value.kForward);
     	} else if (direction == -1) {
     		gearManip.set(DoubleSolenoid.Value.kReverse);
-<<<<<<< HEAD
+
     	}	
     	SmartDashboard.putNumber("Gear Mech:", direction);
     }
@@ -51,13 +51,8 @@ public class GearMechanism extends Subsystem {
     	SmartDashboard.putNumber("Current", currentValue);
     	boolean pressureSwitch = compressor.getPressureSwitchValue();
     	SmartDashboard.putBoolean("Pressure Switch", pressureSwitch);
-=======
-    	}
-    	
-    	SmartDashboard.putNumber("Gear Mech", direction);
 
->>>>>>> origin/Gear-Mechanism-Subsystem
-    }
+    	}
     
 }
 
