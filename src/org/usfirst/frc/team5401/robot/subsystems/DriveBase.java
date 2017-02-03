@@ -105,11 +105,10 @@ public class DriveBase extends Subsystem {
     }
 */
     public double getVelocityOfRobot(){
-    	double velocityWithPulse = (Math.abs(leftEncoder.getRate()) + Math.abs(rightEncoder.getRate()))/2;
-    	double velocityWithInches = velocityWithPulse;
+    	double velocity = (Math.abs(leftEncoder.getRate()) + Math.abs(rightEncoder.getRate()))/2;
     	//For testing
-    	SmartDashboard.putNumber("Velocity (With DPP", velocityWithInches);
-    	return velocityWithInches;
+    	SmartDashboard.putNumber("Velocity (With DPP", velocity);
+    	return velocity;
     }
     
     public void setDPPLowGear(){
