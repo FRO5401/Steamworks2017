@@ -67,6 +67,9 @@ public class OI {
 	
 	//Buttons
 	public OI(){
+		//For testing pneumatic shifter on drivebase
+		xboxY_Driver.toggleWhenPressed(new TestShift());
+		
 		//Shooter
 		xboxA_Driver.toggleWhenPressed(new FlyWheelControl());
 		
