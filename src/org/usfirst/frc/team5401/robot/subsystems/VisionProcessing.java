@@ -24,11 +24,11 @@ public class VisionProcessing extends Subsystem {
     // here. Call these from Commands.
 	
     //Constants for the indices of the target array
-    final int VALID = 0;
-    final int X = 1;
-    final int Y = 2;
-    final int HEIGHT = 3;
-    final int WIDTH = 4;
+    double targetValid;
+    double targetX;
+    double targetY;
+    double targetHeight;
+    double targetWidth;
 
     //Constants for the login information
     String HOST="pulsatrix.local";
@@ -50,7 +50,7 @@ public class VisionProcessing extends Subsystem {
 		target [1...4] is [x y height width] defined in readTargetingData()
 	*/
 	public VisionProcessing(){
-		SmartDashboard.putNumber("VALID", VALID);
+		SmartDashboard.putNumber("VALID", targetValid);
 		java.util.Properties config = new java.util.Properties(); 
     	config.put("StrictHostKeyChecking", "no");
     	JSch jsch = new JSch();
@@ -121,19 +121,21 @@ public class VisionProcessing extends Subsystem {
 		try {
 		System.out.println("Read Target Data");
     	targetRect = NetworkTable.getTable("BoilerPipeLineOut");
-    	int VV = targetRect.getInt("valid");
-    	target[VALID] = targetRect.getNumber("valid", networkDefault);
-    	target[X] =  targetRect.getNumber("X", networkDefault);
-    	target[Y] =  targetRect.getNumber("Y", networkDefault);
-    	target[HEIGHT] =  targetRect.getNumber("height", networkDefault);
-    	target[WIDTH] =  targetRect.getNumber("width", networkDefault);
-    	SmartDashboard.putNumber("VALID", target[VALID]);
-    	System.out.println(VV);
-    	System.out.println(target);
+    	targetValid = targetRect.getNumber("valid", networkDefault);
+    	targetX =  targetRect.getNumber("X", networkDefault);
+    	targetY =  targetRect.getNumber("Y", networkDefault);
+    	targetHeight =  targetRect.getNumber("height", networkDefault);
+    	targetWidth =  targetRect.getNumber("width", networkDefault);
+    	SmartDashboard.putNumber("VALID", targetValid);
+    	System.out.println(targetValid);
+    	System.out.println(targetX);
+    	System.out.println(targetY);
+    	System.out.println(targetHeight);
+    	System.out.println(targetWidth);
 		}catch(Exception ee)
 			{
 	    	System.out.println("No target data");
-//			ee.printStackTrace();
+			ee.printStackTrace();
 			}
     	return true;
     }
@@ -143,9 +145,9 @@ public class VisionProcessing extends Subsystem {
     	double Angle = 0;
     	readTargetingData();
     	try {
-        	if (target[VALID] > 0) {
+        	if (targetValid > 0) {
         		float pixelAngleScale_X = TargetMap.BOILER_CAM_RES_X/TargetMap.BOILER_CAM_FOV_X ;
-        		Angle = (target[X] - TargetMap.BOILER_UPLEFT_X)/ pixelAngleScale_X;    		
+        		Angle = (targetX - TargetMap.BOILER_UPLEFT_X)/ pixelAngleScale_X;    		
         	} else {
         		Angle = 0;
         	} 
@@ -159,10 +161,10 @@ public class VisionProcessing extends Subsystem {
 
 	//Method for computing the distance from target to optimal shooting location
     public double findTargetDistance(){
-	double normalizedWidth = 2*target[WIDTH]/TargetMap.BOILER_CAM_RES_X;
+	double normalizedWidth = 2*targetWidth/TargetMap.BOILER_CAM_RES_X;
 	double distanceTrig =  TargetMap.BOILER_WIDTH/(normalizedWidth*12*Math.tan(TargetMap.BOILER_CAM_FOV_X*Math.PI/(180*2)));
 	float pixelDistanceScale = TargetMap.BOILER_CAM_RES_Y/TargetMap.BOILER_CAM_FOV_Y ;
-	double distanceY = (target[Y] - TargetMap.BOILER_UPLEFT_Y)/ pixelDistanceScale;
+	double distanceY = (targetY - TargetMap.BOILER_UPLEFT_Y)/ pixelDistanceScale;
 	double distance = distanceTrig;
     	return distance;
     }
