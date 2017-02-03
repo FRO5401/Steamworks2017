@@ -69,6 +69,32 @@ public class OI {
 	public OI(){
 		xboxA_Driver.toggleWhenPressed(new TestShift());
 		
+		//Infeeder
+		xboxRightBumper_Operator.whenPressed(new FeedInAndOut(1));
+		xboxRightBumper_Operator.whenReleased(new FeedStop());
+		
+		xboxLeftBumper_Operator.whenPressed(new FeedInAndOut(-1));
+		xboxLeftBumper_Operator.whenReleased(new FeedStop());
+		
+		xboxLeftBumper_Operator.whenPressed(new FeederUpDown(1));
+		xboxRightBumper_Operator.whenPressed(new FeederUpDown(-1));
+		//will be left stick Y axis
+		
+		//GearManipulator
+		xboxX_Driver.toggleWhenPressed(new PopGear());//Figured out toggleWhenPressed, gear command PopGear will be changed in Gear subsystem branch
+//		xboxX_Driver.whenPressed(new PopGear(-1)); //out
+//		xboxX_Driver.whenReleased(new PopGear(1)); //in
+		
+		//Loader
+		xboxR3_Operator.toggleWhenPressed(new LoadShooter());
+		
+		//Hopper
+		xboxBack_Operator.whenPressed(new HopperFlap(1));
+		xboxStart_Operator.whenPressed(new HopperFlap(-1));
+		
+		xboxX_Operator.whenPressed(new HopperUnjammer(1));
+		xboxX_Operator.whenReleased(new HopperUnjammer(-1));
+
 	}
 	//Method Naming: 'read' = Analog; 'get' = Digital
 	
