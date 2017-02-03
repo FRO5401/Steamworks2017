@@ -10,8 +10,9 @@ import org.usfirst.frc.team5401.robot.RobotMap;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.Counter;
 
-/**
+/** Uses PID to lineup and shoot, also uses motors to shoot
  *
+ *	<p> Declares VictorSP, Counter, PIDSource, PIDOutput, RPM, MAX_COUNTER_SECONDS, MOTOR_SPEED</p>
  */
 public class Shooter extends PIDSubsystem {
 	
@@ -32,6 +33,13 @@ public class Shooter extends PIDSubsystem {
 	private double MOTOR_SPEED = 0.5;
     
 	// Initialize your subsystem here
+    /**
+     * <p> Instantiates motors and counter, as well as resetting at the end </p>
+     * 
+     * @param kP Proportional Gain
+     * @param kI Integral Gain
+     * @param kD Derivative Gain
+     */
     public Shooter(double kP, double kI, double kD) {
     	super(kP, kI, kD); //initializes pid //XXX Temporary to get rid of error status
     	
@@ -73,10 +81,16 @@ public class Shooter extends PIDSubsystem {
     	motors.set(output);
     }
     
+    /** Starts the shooter motors
+     * 
+     */
     public void startMotors(){
     	motors.set(MOTOR_SPEED);
     }
     
+    /** Resets the shooter motors, then sends SmartDashboard the values
+     * 
+     */
     public void reset(){
     	counter.reset();
     	RPM = 0;
@@ -85,6 +99,9 @@ public class Shooter extends PIDSubsystem {
     	SmartDashboard.putNumber("RPM", RPM);
     }
     
+    /** Sets the shooter motors to 0
+     * 
+     */
     public void stop(){
     	motors.set(0);
     	setSetpoint(0);
