@@ -1,5 +1,7 @@
 package org.usfirst.frc.team5401.robot.autonomous;
 
+import org.usfirst.frc.team5401.robot.Robot;
+
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -10,6 +12,7 @@ public class AutoDrive extends Command {
     public AutoDrive() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+    	requires(Robot.drivebase);
     }
 
     // Called just before this Command runs the first time
