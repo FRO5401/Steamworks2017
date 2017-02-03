@@ -8,8 +8,8 @@ import org.usfirst.frc.team5401.robot.commands.FeedInAndOut;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-/**
- *
+/** <p> Infeed collects the balls on the arena floor and puts them in the hopper
+ *  </p>
  */
 public class Infeed extends Subsystem {
 
@@ -22,6 +22,9 @@ public class Infeed extends Subsystem {
 	private double FEED_SPEED;
 
 	
+	/** <p> Declares the location of the feederArm and feederMotor and sets a speed for the feeder also sends the Feeder Direction and the Feeder UpDown to the smartDashboard
+	 *  </p>
+	 */
 	public Infeed(){
 		//declare victor locations
 		feederArm =  new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.INFEEDER_IN, RobotMap.INFEEDER_OUT);
@@ -38,11 +41,19 @@ public class Infeed extends Subsystem {
         setDefaultCommand(new FeedInAndOut());
     }
     
+    /** <p> Declares the direction in which the feeder takes in balls
+     *  </p>
+     * @param direction
+     */
     public void feederDirection(int direction){
     	feederMotor.set(FEED_SPEED * direction);
     	SmartDashboard.putNumber("Feeder Direction", direction);
     }
    
+    /** <p> Moves the feeder arm up or down
+     *  </p>
+     * @param direction
+     */
     public void armUpDown(int direction){
     	if (direction == 1) {
     		feederArm.set(DoubleSolenoid.Value.kForward);
