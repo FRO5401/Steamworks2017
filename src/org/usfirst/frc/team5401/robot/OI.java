@@ -67,8 +67,7 @@ public class OI {
 	
 	//Buttons
 	public OI(){
-		//Shooter
-		xboxA_Driver.toggleWhenPressed(new FlyWheelControl());
+		xboxA_Driver.toggleWhenPressed(new TestShift());
 		
 		//Infeeder
 		xboxRightBumper_Operator.whenPressed(new FeedInAndOut(1));
@@ -95,6 +94,7 @@ public class OI {
 		
 		xboxX_Operator.whenPressed(new HopperUnjammer(1));
 		xboxX_Operator.whenReleased(new HopperUnjammer(-1));
+
 	}
 	//Method Naming: 'read' = Analog; 'get' = Digital
 	

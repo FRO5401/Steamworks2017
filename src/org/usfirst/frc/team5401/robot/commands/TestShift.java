@@ -1,25 +1,23 @@
 package org.usfirst.frc.team5401.robot.commands;
 
-import org.usfirst.frc.team5401.robot.Robot;
-
 import edu.wpi.first.wpilibj.command.Command;
+import org.usfirst.frc.team5401.robot.Robot;
 
 /**
  *
  */
-public class PopGear extends Command {
+public class TestShift extends Command {
 
-	private int inout;
-	
-    public PopGear(int direction) {
+    public TestShift() {
         // Use requires() here to declare subsystem dependencies
-        requires(Robot.gearmechanism); 
-        inout = direction;
+        // eg. requires(chassis);
+    	//requires(Robot.drivebase);
+    	
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.gearmechanism.gearInOut(inout);
+    	//Robot.drivebase.shiftGearLowToHigh();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -28,7 +26,7 @@ public class PopGear extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+        return false;
     }
 
     // Called once after isFinished returns true
@@ -38,6 +36,6 @@ public class PopGear extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	//Robot.gearmechanism.gearInOut(-1);
+    	//Robot.drivebase.shiftGearHighToLow();
     }
 }
