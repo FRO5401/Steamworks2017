@@ -21,11 +21,12 @@ public class TargetHigh extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.shooter.reset();
-    	Robot.shooter.startMotors();
-    	Robot.shooter.setSetpoint(RobotMap.SHOOTER_SETPOINT);
-    	Robot.shooter.enable();
+//    	Robot.shooter.reset();
+//    	Robot.shooter.startMotors();
+//    	Robot.shooter.setSetpoint(RobotMap.SHOOTER_SETPOINT);
+//    	Robot.shooter.enable();
     	SmartDashboard.putBoolean("Shooter OnOff", true);
+    	Robot.visionprocessing.beginTargeting();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -33,29 +34,31 @@ public class TargetHigh extends Command {
     	//get data from shooter pi from subsystem
     	//determine movement values
     	//send an auto drive command instructions
+    	SmartDashboard.putBoolean("AutoTargeting", true);
     	double angle = Robot.visionprocessing.findTargetAngle();
-    	Robot.loader.runConveyors();
-    	Robot.shooter.setSetpoint(RobotMap.SHOOTER_SETPOINT);
+//    	Robot.loader.runConveyors();
+//    	Robot.shooter.setSetpoint(RobotMap.SHOOTER_SETPOINT);
 //    	Robot.drivebase.autoTurnAngle(angle);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return !Robot.oi.getXboxstart_Operator();//TODO Make sure this is the button
+        return Robot.oi.getXboxBack_Operator();//TODO Make sure this is the button
     }
 
     // Called once after isFinished returns true
     protected void end() {
     	SmartDashboard.putBoolean("Shooter OnOff", false);
-    	Robot.shooter.reset();
-    	Robot.loader.stopConveyors();
+		System.out.println("Stop Targeting");
+//    	Robot.shooter.reset();
+//    	Robot.loader.stopConveyors();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
     	SmartDashboard.putBoolean("Shooter OnOff", false);
-    	Robot.shooter.reset();
-    	Robot.loader.stopConveyors();
+//    	Robot.shooter.reset();
+//    	Robot.loader.stopConveyors();
     }
 }

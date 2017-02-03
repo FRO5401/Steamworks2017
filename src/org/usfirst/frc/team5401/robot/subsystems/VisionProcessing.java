@@ -32,7 +32,7 @@ public class VisionProcessing extends Subsystem {
 
     //Constants for the login information
     String HOST="pulsatrix.local";
-    String USER="pi";
+    String USER="owl";
     String PASSWORD="raspberry";
 	
     //Constants for command strings
@@ -42,7 +42,8 @@ public class VisionProcessing extends Subsystem {
 	//TODO indenting is all f'd up down below
     Channel channel;
 	Session session;
-	static NetworkTable targetRect;
+	//static NetworkTable targetRect;
+	NetworkTable targetRect;
 	double networkDefault = -99;
 	private double target[];
 	/* 	target[0] is data validity flag
@@ -60,13 +61,14 @@ public class VisionProcessing extends Subsystem {
 	    	session.setConfig(config);  //XXX No idea what this does
 	    	session.connect();
 			channel=session.openChannel("exec");
-			PipedInputStream pip = new PipedInputStream(40);
-			channel.setInputStream(pip);
-			try {
-				PipedOutputStream pop = new PipedOutputStream(pip);
-				PrintStream print = new PrintStream(pop);           
-				channel.setOutputStream(System.out);
-			} catch (IOException ioe){}
+			((ChannelExec)channel).setPty(true); 
+			channel.connect();//This is important
+			if (channel.isConnected()){
+		    	System.out.println("Connected");	    		
+		    	((ChannelExec)channel).setCommand("sudo wall -n Connected");
+	    	} else {
+		    	System.out.println("Not Connected");
+	    	}
 		} catch (JSchException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -78,12 +80,11 @@ public class VisionProcessing extends Subsystem {
 			
 		}
 		
-    	System.out.println("Connected");
 	}
 	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-    	setDefaultCommand(new XboxMove());
+//    	setDefaultCommand(new XboxMove());
     }
     
 	//Start the command running on the Raspberry Pi
@@ -92,6 +93,8 @@ public class VisionProcessing extends Subsystem {
 	   	System.out.println("Begin Targeting");
     	((ChannelExec)channel).setCommand("cd /home/pi/vision");
     	((ChannelExec)channel).setCommand(START_COMMAND);
+    	((ChannelExec)channel).setCommand("sudo wall -n Targeting");
+
         channel.setInputStream(null);
 		}catch(Exception ee){}
     	return true;
@@ -102,6 +105,8 @@ public class VisionProcessing extends Subsystem {
 		try {
 	   	System.out.println("Terminate Targeting");
     	((ChannelExec)channel).setCommand(TERMINATE_COMMAND);
+    	((ChannelExec)channel).setCommand("Terminating");
+
         channel.setInputStream(null);
         channel.disconnect();
         session.disconnect();
@@ -116,24 +121,39 @@ public class VisionProcessing extends Subsystem {
 		try {
 		System.out.println("Read Target Data");
     	targetRect = NetworkTable.getTable("BoilerPipeLineOut");
+    	int VV = targetRect.getInt("valid");
     	target[VALID] = targetRect.getNumber("valid", networkDefault);
     	target[X] =  targetRect.getNumber("X", networkDefault);
     	target[Y] =  targetRect.getNumber("Y", networkDefault);
     	target[HEIGHT] =  targetRect.getNumber("height", networkDefault);
     	target[WIDTH] =  targetRect.getNumber("width", networkDefault);
-    	SmartDashboard.putNumber("VALID", VALID);
+    	SmartDashboard.putNumber("VALID", target[VALID]);
+    	System.out.println(VV);
     	System.out.println(target);
 		}catch(Exception ee)
 			{
 	    	System.out.println("No target data");
+//			ee.printStackTrace();
 			}
     	return true;
     }
 
 	//Method for computing the angle to put target in shooting sights
     public double findTargetAngle(){
-	float pixelAngleScale_X = TargetMap.BOILER_CAM_RES_X/TargetMap.BOILER_CAM_FOV_X ;
-	double Angle = (target[X] - TargetMap.BOILER_UPLEFT_X)/ pixelAngleScale_X;
+    	double Angle = 0;
+    	readTargetingData();
+    	try {
+        	if (target[VALID] > 0) {
+        		float pixelAngleScale_X = TargetMap.BOILER_CAM_RES_X/TargetMap.BOILER_CAM_FOV_X ;
+        		Angle = (target[X] - TargetMap.BOILER_UPLEFT_X)/ pixelAngleScale_X;    		
+        	} else {
+        		Angle = 0;
+        	} 
+    	}catch (Exception ee) {
+        		System.out.println("No Target");
+       	}
+    		
+    	
     	return Angle;
     }
 

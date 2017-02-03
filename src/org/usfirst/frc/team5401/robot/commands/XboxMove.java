@@ -41,12 +41,12 @@ public class XboxMove extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.visionprocessing.beginTargeting();
+//    	Robot.visionprocessing.beginTargeting();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.visionprocessing.readTargetingData();
+//    	Robot.visionprocessing.readTargetingData();
 
     	double 	slew        =	Robot.oi.readXboxLeftX_Driver();
     	double 	throttle 	=	Robot.oi.readRightTrigger_Driver();
@@ -113,12 +113,12 @@ public class XboxMove extends Command {
     	
     	//Driving Code
     	double right = 0, left = 0, sensitivity;
-    	
+    	/*
     	System.out.println("LEFT STICK X: " + slew + "\n"
     					 + "RIGHT TRIGGER: " + throttle + "\n"
     					 + "LEFT TRIGGER: " + reverse + "\n"
     					 + "BRAKE: " + brake);
-    	
+    	*/
     	
     	if (precision) { //Sets drive precision based on RobotMap and Precision Mode
     		sensitivity	=	RobotMap.DRIVE_SENSITIVITY_PRECISE;
