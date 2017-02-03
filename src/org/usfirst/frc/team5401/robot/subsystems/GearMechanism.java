@@ -51,8 +51,7 @@ public class GearMechanism extends Subsystem {
     	SmartDashboard.putNumber("Current", currentValue);
     	boolean pressureSwitch = compressor.getPressureSwitchValue();
     	SmartDashboard.putBoolean("Pressure Switch", pressureSwitch);
-
-    	}
+   	}
     
 }
 

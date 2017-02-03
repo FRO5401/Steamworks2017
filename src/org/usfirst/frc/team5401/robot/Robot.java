@@ -104,6 +104,7 @@ public class Robot extends IterativeRobot {
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
         Robot.gearmechanism.startCompressor();
+        //Not necessary
         Robot.gearmechanism.getCompressorStatus();
     }
     
