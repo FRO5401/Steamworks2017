@@ -32,11 +32,11 @@ public class VisionProcessing extends Subsystem {
 
     //Constants for the login information
     String HOST="pulsatrix.local";
-    String USER="owl";
+    String USER="pi";
     String PASSWORD="raspberry";
 	
     //Constants for command strings
-    String START_COMMAND="java -Djava.library.path=/usr/local/share/OpenCV/java -jar Webcam.java &";
+    String START_COMMAND="govispro";
     String TERMINATE_COMMAND="killall java";
 	
 	//TODO indenting is all f'd up down below
@@ -45,7 +45,7 @@ public class VisionProcessing extends Subsystem {
 	//static NetworkTable targetRect;
 	NetworkTable targetRect;
 	double networkDefault = -99;
-	private double target[];
+	InputStream in;
 	/* 	target[0] is data validity flag
 		target [1...4] is [x y height width] defined in readTargetingData()
 	*/
@@ -62,10 +62,14 @@ public class VisionProcessing extends Subsystem {
 	    	session.connect();
 			channel=session.openChannel("exec");
 			((ChannelExec)channel).setPty(true); 
+//			channel.setInputStream(in, true);
+	    	((ChannelExec)channel).setCommand("cd /home/pi/vision; java -Djava.library.path=/usr/local/share/OpenCV/java -jar Webcam.java &");
 			channel.connect();//This is important
+			
 			if (channel.isConnected()){
-		    	System.out.println("Connected");	    		
-		    	((ChannelExec)channel).setCommand("sudo wall -n Connected");
+		    	System.out.println("Connected");
+//		    	((ChannelExec)channel).setCommand("sudo wall -n Connected");
+		    	
 	    	} else {
 		    	System.out.println("Not Connected");
 	    	}
@@ -74,12 +78,12 @@ public class VisionProcessing extends Subsystem {
 			e.printStackTrace();
 			System.out.println("Exception logging in");
 		}
-		try{Thread.sleep(1000);}catch(Exception ee)
+/*		try{Thread.sleep(1000);}catch(Exception ee)
 		{
 			System.out.println("Exception sleeping");
 			
 		}
-		
+*/		
 	}
 	
     public void initDefaultCommand() {
@@ -90,13 +94,39 @@ public class VisionProcessing extends Subsystem {
 	//Start the command running on the Raspberry Pi
     public boolean beginTargeting() {
 		try {
-	   	System.out.println("Begin Targeting");
-    	((ChannelExec)channel).setCommand("cd /home/pi/vision");
-    	((ChannelExec)channel).setCommand(START_COMMAND);
-    	((ChannelExec)channel).setCommand("sudo wall -n Targeting");
+			StringBuilder outputBuffer = new StringBuilder();
 
-        channel.setInputStream(null);
-		}catch(Exception ee){}
+		        Channel channel = session.openChannel("exec");
+		        ((ChannelExec)channel).setCommand("govispro");
+		        InputStream commandOutput = channel.getInputStream();
+		        channel.connect();
+		        int readByte = commandOutput.read();
+
+		        while(readByte != 0xffffffff)
+		        {
+		           outputBuffer.append((char)readByte);
+		           readByte = commandOutput.read();
+		        }
+/*		channel=session.openChannel("exec");
+    	((ChannelExec)channel).setCommand("cd /home/pi/vision; java -Djava.library.path=/usr/local/share/OpenCV/java -jar Webcam.java &");
+		channel.connect();//This is important
+*/	   	System.out.println("Begin Targeting");
+		if (channel.isConnected()){
+	    	System.out.println("Connected");	    	
+    	} else {
+	    	System.out.println("Not Connected");
+    	}
+//    	((ChannelExec)channel).setCommand(START_COMMAND);
+//		channel.connect();//This is important
+        channel.disconnect();
+		}catch(IOException ioX)
+	     {
+			System.out.println(ioX);
+	     }
+	     catch(JSchException jschX)
+	     {
+				System.out.println(jschX);
+	     }
     	return true;
     }
 	
@@ -104,14 +134,18 @@ public class VisionProcessing extends Subsystem {
     public boolean terminateTargeting() {
 		try {
 	   	System.out.println("Terminate Targeting");
+		channel=session.openChannel("exec");
     	((ChannelExec)channel).setCommand(TERMINATE_COMMAND);
-    	((ChannelExec)channel).setCommand("Terminating");
+		channel.connect();//This is important
+    	System.out.println("Terminating");
 
         channel.setInputStream(null);
         channel.disconnect();
         session.disconnect();
         System.out.println("DONE");
-	}catch(Exception ee){}
+	}catch(Exception ee){
+    	System.out.println(ee);
+	}
     	return true;
     }
     
@@ -135,8 +169,8 @@ public class VisionProcessing extends Subsystem {
 		}catch(Exception ee)
 			{
 	    	System.out.println("No target data");
-			ee.printStackTrace();
-			}
+	    	System.out.println(ee);
+		    }
     	return true;
     }
 
