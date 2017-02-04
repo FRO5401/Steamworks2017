@@ -29,7 +29,7 @@ public class DriveBase extends Subsystem {
 	private Timer driveTimer;
 	private Encoder leftEncoder;
 	private Encoder rightEncoder;
-//	private ADXRS450_Gyro gyro;
+	private ADXRS450_Gyro gyro;
 	
 	public DriveBase(){
 		
@@ -131,9 +131,9 @@ public class DriveBase extends Subsystem {
     	SmartDashboard.putNumber("leftDistance", leftDistance);
     	SmartDashboard.putNumber("rightDistance", rightDistance);
     }
-/*    
+    
     public void reportGyro(){
     	gyro.getAngle();
     }
-*/
+
 }
