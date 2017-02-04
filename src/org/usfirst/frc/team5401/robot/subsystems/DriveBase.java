@@ -47,12 +47,12 @@ public class DriveBase extends Subsystem {
 		rightEncoder = new Encoder(RobotMap.DRIVE_ENC_RIGHT_A, RobotMap.DRIVE_ENC_RIGHT_B, true, Encoder.EncodingType.k4X);
 		driveTimer = new Timer();
 
-//		gyro = new ADXRS450_Gyro();
+		gyro = new ADXRS450_Gyro();
 	}
 	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-    	setDefaultCommand(new XboxMove());
+    	//setDefaultCommand(new XboxMove());
     }
     
     public void drive(double leftDriveDesired, double rightDriveDesired){
