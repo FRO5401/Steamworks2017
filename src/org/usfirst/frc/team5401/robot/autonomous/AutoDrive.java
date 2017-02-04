@@ -54,6 +54,7 @@ public class AutoDrive extends Command {
     	distanceTraveled = 0;
     	
     	SmartDashboard.putNumber("heading", heading);
+    	Robot.drivebase.setDPPLowGear();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -88,11 +89,11 @@ public class AutoDrive extends Command {
     	}
     	
     	/*****Shifting Gear Code*********/
-    	Robot.drivebase.getEncoderDistance();
+/*    	Robot.drivebase.getEncoderDistance();
    	
     	//Gets new final velocity
     	velocitySample2 = Robot.drivebase.getVelocityOfRobot();
-    	
+*/    	
     	//1/23/17 NOT NEEDED
     	//Gets change in time
     	//deltaTime = Robot.drivebase.getTimerValue();
@@ -123,7 +124,7 @@ public class AutoDrive extends Command {
     		//if(Math.abs(avgAccelerationFromSamples) <= 0 + accelerationThreshhold){
     			//Robot.drivebase.shiftGearLowToHigh();
     		//}
-    		
+/*    		
     	//Alternative Upshift using velocity
     		if(Math.abs(velocitySample2) >= MAXIMUM_VELOCITY_FOR_LOW_GEAR){
     			Robot.drivebase.shiftGearLowToHigh();
@@ -144,7 +145,7 @@ public class AutoDrive extends Command {
     		
     	
     	//Gear Shift Done
-    	
+*/    	
     }
 
     // Make this return true when this Command no longer needs to run execute()

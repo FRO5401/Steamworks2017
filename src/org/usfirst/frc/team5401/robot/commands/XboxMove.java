@@ -30,9 +30,7 @@ public class XboxMove extends Command {
 	//1/23/17 1/23/17 NOT NEEDED because the time for acceleration equation is no longer necessary
 	//double deltaTime;
 	
-	public XboxMove() {
-		Robot.drivebase.setDPPHighGear();
-		
+	public XboxMove() {		
 //        accelerationThreshhold = 0.01;
 		
 		//Min and Max velocity have to be different to prevent constant shifting if at the shift speed if there is only one shift speed
@@ -65,7 +63,7 @@ public class XboxMove extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	
+    	Robot.drivebase.setDPPLowGear();
     }
 
     // Called repeatedly when this Command is scheduled to run

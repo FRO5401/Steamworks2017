@@ -141,6 +141,7 @@ public class DriveBase extends Subsystem {
     
     public double reportGyro(){
     	double currentAngle = gyro.getAngle();
+    	SmartDashboard.putNumber("Current Angle", currentAngle);
     	return currentAngle;
     }
 

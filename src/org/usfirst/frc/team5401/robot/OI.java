@@ -100,7 +100,7 @@ public class OI {
 		xboxX_Operator.whenPressed(new HopperUnjammer(1));
 		xboxX_Operator.whenReleased(new HopperUnjammer(-1));
 	
-		xboxY_Driver.whenPressed(new AutoDrive(36, .85));
+		xboxY_Driver.whenPressed(new AutoDrive(50, .85));
 		xboxB_Driver.whenPressed(new AutoTurnAngle(180));
 	}
 	//Method Naming: 'read' = Analog; 'get' = Digital
