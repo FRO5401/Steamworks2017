@@ -144,5 +144,9 @@ public class DriveBase extends Subsystem {
     	SmartDashboard.putNumber("Current Angle", currentAngle);
     	return currentAngle;
     }
+    
+    public void recalibrateGyro(){
+    	gyro.calibrate();
+    }
 
 }
