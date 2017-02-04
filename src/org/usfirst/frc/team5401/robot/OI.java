@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import org.usfirst.frc.team5401.robot.commands.*;
+import org.usfirst.frc.team5401.robot.autonomous.*;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -67,7 +68,9 @@ public class OI {
 	
 	//Buttons
 	public OI(){
-		/*
+		//For testing pneumatic shifter on drivebase
+//		xboxY_Driver.toggleWhenPressed(new TestShift());
+		
 		//Shooter
 		xboxA_Driver.toggleWhenPressed(new FlyWheelControl());
 		
@@ -83,9 +86,9 @@ public class OI {
 		//will be left stick Y axis
 		
 		//GearManipulator
-		//xboxX_Driver.toggleWhenPressed(new PopGear());
-		xboxX_Driver.whenPressed(new PopGear(-1)); //out
-		xboxX_Driver.whenReleased(new PopGear(1)); //in
+		xboxX_Driver.toggleWhenPressed(new PopGear());//Figured out toggleWhenPressed, gear command PopGear will be changed in Gear subsystem branch
+//		xboxX_Driver.whenPressed(new PopGear(-1)); //out
+//		xboxX_Driver.whenReleased(new PopGear(1)); //in
 		
 		//Loader
 		xboxR3_Operator.toggleWhenPressed(new LoadShooter());
@@ -94,10 +97,11 @@ public class OI {
 		xboxBack_Operator.whenPressed(new HopperFlap(1));
 		xboxStart_Operator.whenPressed(new HopperFlap(-1));
 		
-		xboxX_Driver.whenPressed(new HopperUnjammer(1));
-		xboxX_Driver.whenReleased(new HopperUnjammer(-1));
-		*/
-		xboxStart_Operator.whenPressed(new TargetHigh());
+		xboxX_Operator.whenPressed(new HopperUnjammer(1));
+		xboxX_Operator.whenReleased(new HopperUnjammer(-1));
+	
+		xboxY_Driver.whenPressed(new AutoDrive(36, .85));
+		xboxB_Driver.whenPressed(new AutoTurnAngle(180));
 	}
 	//Method Naming: 'read' = Analog; 'get' = Digital
 	
@@ -129,8 +133,5 @@ public class OI {
 		return xboxController_Driver.getRawButton(2);
 	}
 	
-	public boolean getXboxstart_Operator(){ //Climb Button
-		return xboxController_Operator.getRawButton(8);
-	}
 	
 }
