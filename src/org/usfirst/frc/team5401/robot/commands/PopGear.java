@@ -19,7 +19,7 @@ public class PopGear extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.gearmechanism.gearInOut(-1);//Pushes Gear out
+    	Robot.gearmechanism.gearInOut(1);//closes around gear
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -39,6 +39,6 @@ public class PopGear extends Command {
     // subsystems is scheduled to run
     //Called when a toggleWhenPressed buttons is activated again
     protected void interrupted() {
-    	Robot.gearmechanism.gearInOut(1);
+    	Robot.gearmechanism.gearInOut(-1);//pushes gear out, this is called first when robotInit activates
     }
 }

@@ -52,7 +52,7 @@ public class DriveBase extends Subsystem {
 	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-    	//setDefaultCommand(new XboxMove());
+    	setDefaultCommand(new XboxMove());
     }
     
     public void drive(double leftDriveDesired, double rightDriveDesired){
