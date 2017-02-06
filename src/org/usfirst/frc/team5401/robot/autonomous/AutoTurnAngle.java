@@ -1,6 +1,8 @@
 package org.usfirst.frc.team5401.robot.autonomous;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import org.usfirst.frc.team5401.robot.Robot;
 
 /**
@@ -39,6 +41,7 @@ public class AutoTurnAngle extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	initAngle = Robot.drivebase.reportGyro();
+    	Robot.drivebase.recalibrateGyro();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -59,6 +62,8 @@ public class AutoTurnAngle extends Command {
     		}
     	currentAngle = Robot.drivebase.reportGyro() - initAngle;
     	}
+    	double angle = Robot.drivebase.reportGyro();
+    	SmartDashboard.putNumber("Gyro Angl", angle);
     }
 
     // Make this return true when this Command no longer needs to run execute()
