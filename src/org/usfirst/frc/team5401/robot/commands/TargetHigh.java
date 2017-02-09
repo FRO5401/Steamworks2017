@@ -15,7 +15,7 @@ public class TargetHigh extends Command {
         // Use requires() here to declare subsystem dependencies
     	requires(Robot.drivebase);
         requires(Robot.visionprocessing);
-        requires(Robot.shooter);
+//        requires(Robot.shooter);
         requires(Robot.loader);
     }
 
@@ -26,7 +26,8 @@ public class TargetHigh extends Command {
 //    	Robot.shooter.setSetpoint(RobotMap.SHOOTER_SETPOINT);
 //    	Robot.shooter.enable();
     	SmartDashboard.putBoolean("Shooter OnOff", true);
-    	Robot.visionprocessing.beginTargeting();
+    	SmartDashboard.putNumber("Target Angle", -99);
+
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -35,7 +36,9 @@ public class TargetHigh extends Command {
     	//determine movement values
     	//send an auto drive command instructions
     	SmartDashboard.putBoolean("AutoTargeting", true);
-    	double angle = Robot.visionprocessing.findTargetAngle();
+    	double angle = Robot.visionprocessing.readTargetingData();
+    	SmartDashboard.putNumber("Target Angle", angle);
+
 //    	Robot.loader.runConveyors();
 //    	Robot.shooter.setSetpoint(RobotMap.SHOOTER_SETPOINT);
 //    	Robot.drivebase.autoTurnAngle(angle);
@@ -50,6 +53,7 @@ public class TargetHigh extends Command {
     protected void end() {
     	SmartDashboard.putBoolean("Shooter OnOff", false);
 		System.out.println("Stop Targeting");
+    	Robot.visionprocessing.terminateTargeting(true);
 //    	Robot.shooter.reset();
 //    	Robot.loader.stopConveyors();
     }
