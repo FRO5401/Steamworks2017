@@ -29,7 +29,7 @@ public class Shooter extends PIDSubsystem {
 	
 	private double RPM;
 	
-	private double MAX_COUNTER_SECONDS = 1;
+	private double MAX_COUNTER_SECONDS = 100;
 	private double MOTOR_SPEED = 0.5;
     
 	// Initialize your subsystem here
@@ -66,10 +66,13 @@ public class Shooter extends PIDSubsystem {
     protected double returnPIDInput() {
     	if(counter.getStopped()){
     		RPM = 0;
+    		System.out.println("counter is stopped, rpm is 0");
     	} else {
     		RPM = Math.abs((1/counter.getPeriod()) * 60); //RPM
+    		System.out.println("counter works, rpm is below"); //XXX USING STARTMOTORS
     	}
     	SmartDashboard.putNumber("RPM", RPM);
+    	System.out.println("RPM: " + RPM);
     	return RPM;
     }
 
@@ -86,6 +89,18 @@ public class Shooter extends PIDSubsystem {
      */
     public void startMotors(){
     	motors.set(MOTOR_SPEED);
+    /*	if(counter.getStopped()){
+    		RPM = 0;
+    		System.out.println("counter is stopped, rpm is 0");
+    	} else {
+    		RPM = Math.abs((1/counter.getPeriod()) * 60); //RPM
+    		System.out.println("counter works, rpm is below");
+    	} */
+    	//counter.reset();
+    	//System.out.println("counter.get(): " + counter.get());
+    	RPM = counter.getPeriod();
+    	SmartDashboard.putNumber("RPM", RPM);
+    	System.out.println("RPM: " + RPM);
     }
     
     /** Resets the shooter motors, then sends SmartDashboard the values
@@ -104,7 +119,7 @@ public class Shooter extends PIDSubsystem {
      */
     public void stop(){
     	motors.set(0);
-    	setSetpoint(0);
+    	//setSetpoint(0);
     }
     
 }
