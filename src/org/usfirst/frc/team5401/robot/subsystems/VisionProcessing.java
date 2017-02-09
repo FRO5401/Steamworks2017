@@ -46,6 +46,7 @@ public class VisionProcessing extends Subsystem {
 		try {
 		System.out.println("Read Target Data");
     	targetRect = NetworkTable.getTable("BoilerPipeLineOut");
+    	targetValid = targetRect.getBoolean("valid", false);
     	if (targetValid){
         	targetX =  targetRect.getNumber("X", NETWORK_DEFAULT);
         	targetY =  targetRect.getNumber("Y", NETWORK_DEFAULT);
@@ -63,6 +64,7 @@ public class VisionProcessing extends Subsystem {
 	    	System.out.println("Target Data Null");
 	    	System.out.println(ee);
 		    }
+    	return 0;//this.findTargetAngle();//TODO change back to boolean when I figure out how to thread it
     }
 
 	//Method for computing the angle to put target in shooting sights
