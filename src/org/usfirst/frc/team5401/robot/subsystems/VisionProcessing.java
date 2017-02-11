@@ -47,6 +47,8 @@ public class VisionProcessing extends Subsystem {
 		System.out.println("Read Target Data");
     	targetRect = NetworkTable.getTable("BoilerPipeLineOut");
     	targetValid = targetRect.getBoolean("valid", false);
+    	SmartDashboard.putNumber("q", targetRect.getNumber("q", NETWORK_DEFAULT));
+		
     	if (targetValid){
         	targetX =  targetRect.getNumber("X", NETWORK_DEFAULT);
         	targetY =  targetRect.getNumber("Y", NETWORK_DEFAULT);
