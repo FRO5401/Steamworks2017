@@ -69,7 +69,8 @@ public class OI {
 	public OI(){
 		//Shooter
 		xboxA_Driver.toggleWhenPressed(new FlyWheelControl());
-
+		
+	
 	}
 	//Method Naming: 'read' = Analog; 'get' = Digital
 	
@@ -100,6 +101,8 @@ public class OI {
 	public boolean getXboxB_Driver(){ //Climb Button
 		return xboxController_Driver.getRawButton(2);
 	}
+	
+	
 	
 	
 }

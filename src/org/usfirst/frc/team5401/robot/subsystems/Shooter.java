@@ -1,6 +1,6 @@
 package org.usfirst.frc.team5401.robot.subsystems;
 
-import edu.wpi.first.wpilibj.command.PIDSubsystem;
+import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.PIDOutput;
@@ -19,27 +19,33 @@ import com.ctre.CANTalon.TalonControlMode;
  *
  *	<p> Declares VictorSP, Counter, PIDSource, PIDOutput, RPM, MAX_COUNTER_SECONDS, MOTOR_SPEED</p>
  */
-public class Shooter extends PIDSubsystem {
+public class Shooter extends Subsystem  {
 	
 	
 	//declare talon speed controller
-	CANTalon _talon = new CANTalon(0);
+	CANTalon _talonMaster;
+	CANTalon _talonSlave;
+	
+
 	
 	//declare shooter motors
-	private VictorSP motors;
+	//private VictorSP motors;
+	private VictorSP motor;
 	
 	//declare counter
 	private Counter counter;
 	
 	//declare pid stuff?
 	
-	private PIDSource source;
-	private PIDOutput output;
+	//private PIDSource source;
+	//private PIDOutput output;
 	
-	private double RPM;
+	private double RPM; 
+	private double METER_SPEED = -.5;
 	
 	private double MAX_COUNTER_SECONDS = 100;
-	private double MOTOR_SPEED = 0.5;
+	private double MOTOR_SPEED = -.5;
+	
     
 	// Initialize your subsystem here
     /**
@@ -50,14 +56,36 @@ public class Shooter extends PIDSubsystem {
      * @param kD Derivative Gain
      */
     public Shooter(double kP, double kI, double kD) {
-    	super(kP, kI, kD); //initializes pid //XXX Temporary to get rid of error status
+    	//super(kP, kI, kD); //initializes pid //XXX Temporary to get rid of error status
+    	
+    	_talonMaster = new CANTalon(0);
+    	_talonSlave = new CANTalon(1);
+    	
+    	_talonMaster.setProfile(0);
+    	_talonMaster.changeControlMode(TalonControlMode.PercentVbus);
+    	_talonSlave.changeControlMode(CANTalon.TalonControlMode.Follower);
+    	_talonSlave.set(_talonMaster.getDeviceID());
+    	
+    	SmartDashboard.putNumber("motor_speed", MOTOR_SPEED);
+    	SmartDashboard.putNumber("Meter_speed", METER_SPEED);
+    	
+    	_talonMaster.getEncPosition();
+    	SmartDashboard.putNumber("Position", _talonMaster.getEncPosition());
+    	_talonMaster.getEncVelocity();
+    	SmartDashboard.putNumber("Velocity",  _talonMaster.getEncVelocity());
+    	
+    	
+    	_talonMaster.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
+    	
+    	//_talonMaster.setPID(kP, kI, kD);
     	
     	//instantiate shooter motors
-    	motors = new VictorSP(RobotMap.SHOOTER_MOTORS);  
+    	//motors = new VictorSP(RobotMap.SHOOTER_MOTORS);  
+    	motor = new VictorSP(RobotMap.METERING_ROLLER);
     	
     	//instantiate counter
-    	counter = new Counter(RobotMap.PHOTOSWITCH_CHANNEL);
-    	counter.setMaxPeriod(MAX_COUNTER_SECONDS);
+    	//counter = new Counter(RobotMap.PHOTOSWITCH_CHANNEL);
+    	//counter.setMaxPeriod(MAX_COUNTER_SECONDS);
 
     	reset();
     	
@@ -90,14 +118,17 @@ public class Shooter extends PIDSubsystem {
         // e.g. yourMotor.set(output);
     	
     	//PID stuff
-    	motors.set(output);
+    	//motors.set(output);
     }
     
     /** Starts the shooter motors
      * 
      */
     public void startMotors(){
-    	motors.set(MOTOR_SPEED);
+    	MOTOR_SPEED = SmartDashboard.getNumber("motor_speed", MOTOR_SPEED);
+    	_talonMaster.set(MOTOR_SPEED);
+    	METER_SPEED = SmartDashboard.getNumber("meter_speed", METER_SPEED);
+    	motor.set(-.5);
     /*	if(counter.getStopped()){
     		RPM = 0;
     		System.out.println("counter is stopped, rpm is 0");
@@ -107,16 +138,16 @@ public class Shooter extends PIDSubsystem {
     	} */
     	//counter.reset();
     	//System.out.println("counter.get(): " + counter.get());
-    	RPM = counter.getPeriod();
-    	SmartDashboard.putNumber("RPM", RPM);
-    	System.out.println("RPM: " + RPM);
+    	//RPM = counter.getPeriod();
+    	//SmartDashboard.putNumber("RPM", RPM);
+    	//System.out.println("RPM: " + RPM);
     }
     
     /** Resets the shooter motors, then sends SmartDashboard the values
      * 
      */
     public void reset(){
-    	counter.reset();
+    	//counter.reset();
     	RPM = 0;
     	stop();
     	SmartDashboard.putBoolean("Shooter OnOff", false);
@@ -127,7 +158,8 @@ public class Shooter extends PIDSubsystem {
      * 
      */
     public void stop(){
-    	motors.set(0);
+    	_talonMaster.set(0);
+    	motor.set(0);
     	//setSetpoint(0);
     }
     
