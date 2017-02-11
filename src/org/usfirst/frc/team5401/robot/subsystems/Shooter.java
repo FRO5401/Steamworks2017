@@ -10,11 +10,20 @@ import org.usfirst.frc.team5401.robot.RobotMap;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.Counter;
 
+import com.ctre.CANTalon;
+import com.ctre.CANTalon.FeedbackDevice;
+import com.ctre.CANTalon.TalonControlMode;
+
+
 /** Uses PID to lineup and shoot, also uses motors to shoot
  *
  *	<p> Declares VictorSP, Counter, PIDSource, PIDOutput, RPM, MAX_COUNTER_SECONDS, MOTOR_SPEED</p>
  */
 public class Shooter extends PIDSubsystem {
+	
+	
+	//declare talon speed controller
+	CANTalon _talon = new CANTalon(0);
 	
 	//declare shooter motors
 	private VictorSP motors;
@@ -44,7 +53,7 @@ public class Shooter extends PIDSubsystem {
     	super(kP, kI, kD); //initializes pid //XXX Temporary to get rid of error status
     	
     	//instantiate shooter motors
-    	motors = new VictorSP(RobotMap.SHOOTER_MOTORS);
+    	motors = new VictorSP(RobotMap.SHOOTER_MOTORS);  
     	
     	//instantiate counter
     	counter = new Counter(RobotMap.PHOTOSWITCH_CHANNEL);
