@@ -40,8 +40,8 @@ public class RobotMap {
 	public static final int DRIVE_RIGHT_MOTOR     = 1;
 	public static final int SHOOTER_MOTORS   	  = 2;
 	public static final int INFEEDER_MOTOR		  = 3;
-	public static final int LOADER_CONVEYOR_LEFT  = 4;
-	public static final int LOADER_CONVEYOR_RIGHT = 5;
+	public static final int METERING_ROLLER  = 4;
+	public static final int HOPPER_CONVEYOR = 5;
 	public static final int CLIMBER_MOTOR 		  = 6;
 	public static final int HOPPER_SPINNER		  = 7;
 	

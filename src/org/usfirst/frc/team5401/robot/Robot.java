@@ -81,7 +81,7 @@ public class Robot extends IterativeRobot {
         
         //Start loader motors
         SmartDashboard.putBoolean("Loader Conveyors", true);
-        Robot.loader.runConveyors();
+        Robot.loader.runConveyorsAndMeteringMotor();
     }
 
     /**

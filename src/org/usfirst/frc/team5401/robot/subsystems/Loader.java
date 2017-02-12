@@ -14,8 +14,8 @@ public class Loader extends Subsystem {
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-	private VictorSP leftConveyor;
-	private VictorSP rightConveyor; 
+	private VictorSP MeteringMotor;
+	private VictorSP ConveyorMotor; 
 		
 	private double LOADER_SPEED;
 	
@@ -32,10 +32,10 @@ public class Loader extends Subsystem {
 	 */
 	public Loader(){
 		//initialize Victor motor
-		leftConveyor  = new VictorSP(RobotMap.LOADER_CONVEYOR_LEFT);
-		rightConveyor = new VictorSP(RobotMap.LOADER_CONVEYOR_RIGHT);
+		MeteringMotor  = new VictorSP(RobotMap.METERING_ROLLER);
+		ConveyorMotor = new VictorSP(RobotMap.HOPPER_CONVEYOR);
 		
-		LOADER_SPEED = 1;
+		LOADER_SPEED = -1;
 		SmartDashboard.putBoolean("Loader Conveyors", false);
 	}
 	
@@ -54,17 +54,17 @@ public class Loader extends Subsystem {
      *  Sets the conveyers to run at the default speed
      *  </p>
      */
-    public void runConveyors(){
-    	leftConveyor .set(LOADER_SPEED);
-    	rightConveyor.set(LOADER_SPEED);
+    public void runConveyorsAndMeteringMotor(){
+    	MeteringMotor.set(LOADER_SPEED);
+    	ConveyorMotor.set(LOADER_SPEED);
     }
     
     /** Turns off the conveyers
      * 
      */
-    public void stopConveyors(){
-    	leftConveyor .set(0);
-    	rightConveyor.set(0);
+    public void stopConveyorsAndMeteringMotor(){
+    	MeteringMotor .set(0);
+    	ConveyorMotor.set(0);
     }
     
 }

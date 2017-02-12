@@ -23,14 +23,14 @@ public class LoadShooter extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	SmartDashboard.putBoolean("Loader Conveyors", true);
-    	Robot.loader.runConveyors();
+    	Robot.loader.runConveyorsAndMeteringMotor();
     	//check button press
     	//if pressed, load ball
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+        return false;
     }
 
     // Called once after isFinished returns true
@@ -43,6 +43,6 @@ public class LoadShooter extends Command {
     protected void interrupted() {
     	//stop motors
     	SmartDashboard.putBoolean("Loader Conveyors", false);
-    	Robot.loader.stopConveyors();
+    	Robot.loader.stopConveyorsAndMeteringMotor();
     }
 }
