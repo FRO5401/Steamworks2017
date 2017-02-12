@@ -94,7 +94,7 @@ public class DriveBase extends Subsystem {
     	SmartDashboard.putNumber("Velocity of Robot", velocity);
     	return velocity;
     }
-   
+*/   
     public boolean autoTurnAngle(float desiredTurnAngle) {
     	float CurrentAngle = reportGyro();
     	boolean finished = false;
@@ -119,17 +119,17 @@ public class DriveBase extends Subsystem {
     public float reportGyro()
     {
     	//This adjusts for gyro creep which is current nonexistent
-     /*	float Angle = (GyroScalar * MainGyro.getAngle());
+     	float Angle = (GyroScalar * MainGyro.getAngle());
        	double Time = TimeCount.get();
        	float AdjAngle = Angle - (GyroLinearAdj * Time + GyroOffset);//Compensates for gyro creep - basically subtracts out mx+b the linear creep function
       	return AdjAngle;
-    */
+    
   	//error: cannot convert double to float, so I used casting
     	return (float) MainGyro.getAngle();
     }
 
-}
 
-    */
+
+    
 }
 

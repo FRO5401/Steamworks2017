@@ -48,7 +48,7 @@ public class XboxMove extends Command {
     protected void execute() {
     	Robot.visionprocessing.readTargetingData();
 
-    	double 	slew        =	Robot.oi.readXboxLeftX_Driver();
+    	double 	slew        =	-Robot.oi.readXboxLeftX_Driver();
     	double 	throttle 	=	Robot.oi.readRightTrigger_Driver();
     	double 	reverse 	=	Robot.oi.readLeftTrigger_Driver();
     	boolean precision	=	Robot.oi.getPrecision_Driver();
