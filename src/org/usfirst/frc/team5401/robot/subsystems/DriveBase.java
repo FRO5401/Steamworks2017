@@ -20,6 +20,7 @@ public class DriveBase extends Subsystem {
 	double LOW_GEAR_RIGHT_DPP;
 	double HIGH_GEAR_LEFT_DPP;
 	double HIGH_GEAR_RIGHT_DPP;
+	double GYRO_OFFSET;
 	
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
@@ -47,7 +48,7 @@ public class DriveBase extends Subsystem {
 		rightEncoder = new Encoder(RobotMap.DRIVE_ENC_RIGHT_A, RobotMap.DRIVE_ENC_RIGHT_B, true, Encoder.EncodingType.k4X);
 		driveTimer = new Timer();
 
-//		gyro = new ADXRS450_Gyro();
+		gyro = new ADXRS450_Gyro();
 	}
 	
     public void initDefaultCommand() {
@@ -121,7 +122,7 @@ public class DriveBase extends Subsystem {
     	rightEncoder.setDistancePerPulse(HIGH_GEAR_RIGHT_DPP);
     }
     
-    public void getEncoderValue(){
+    public double getEncoderDistance(){
     	double leftDistanceRaw = leftEncoder.get();
     	double rightDistanceRaw = rightEncoder.get();
     	SmartDashboard.putNumber("leftDistanceRaw", leftDistanceRaw);
@@ -130,10 +131,24 @@ public class DriveBase extends Subsystem {
     	double rightDistance = rightEncoder.getDistance();
     	SmartDashboard.putNumber("leftDistance", leftDistance);
     	SmartDashboard.putNumber("rightDistance", rightDistance);
+    	double encoderDistance = (leftDistance + rightDistance)/2;
+    	return encoderDistance;
     }
     
-    public void reportGyro(){
-    	gyro.getAngle();
+    public void encoderReset(){
+    	leftEncoder.reset();
+    	rightEncoder.reset();
     }
-
+    
+    public double reportGyro(){
+    	double currentAngle = gyro.getAngle();
+    	SmartDashboard.putNumber("Current Angle", currentAngle);
+    	currentAngle = currentAngle * GYRO_OFFSET;
+    	SmartDashboard.putNumber("Adjusted Gyro", currentAngle);
+    	return currentAngle;
+    }
+    
+    public void recalibrateGyro(){
+    	gyro.calibrate();
+    }
 }

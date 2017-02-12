@@ -1,10 +1,8 @@
 package org.usfirst.frc.team5401.robot;
 /**
- * The RobotMap is a mapping from the ports sensors and actuators are wired into
- * to a variable name. This provides flexibility changing wiring, makes checking
- * the wiring easier and significantly reduces the number of magic numbers
- * floating around.
- */
+* Steamworks 2017 RobotMap code
+* (c) 2017 Bensalem High School Fightin' Robotic Owls
+*/
 public class RobotMap {
     // For example to map the left and right motors, you could define the
     // following variables to use with your drivetrain subsystem.
@@ -22,6 +20,9 @@ public class RobotMap {
 	public static final double DRIVE_SENSITIVITY_PRECISE = 0.2;
 	public static final double DRIVE_SPIN_SENSITIVITY 	 = 0.5;
 	public static final double DRIVE_THRESHHOLD 		 = 0.1;
+	public static final double AUTO_TURN_THRESHOLD 		 = 0.1;
+	public static final double AUTO_TURN_PRECISION		 = 0.5;
+	public static final double AUTO_TURN_SPEED			 = 1.0;
 	
 	//Joysticks
 	public static final int XBOX_CONTROLLER_DRIVER 	 = 0;

@@ -31,7 +31,6 @@ public class XboxMove extends Command {
 	//double deltaTime;
 	
 	public XboxMove() {
-		Robot.drivebase.setDPPHighGear();
 		
 //        accelerationThreshhold = 0.01;
 		
@@ -65,11 +64,14 @@ public class XboxMove extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	
+    	Robot.drivebase.setDPPLowGear();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	double angle = Robot.drivebase.reportGyro();
+    	SmartDashboard.putNumber("Gyro",  angle);
+    	
     	double 	slew        =	-1 * Robot.oi.readXboxLeftX_Driver();
     	double 	throttle 	=	Robot.oi.readRightTrigger_Driver();
     	double 	reverse 	=	Robot.oi.readLeftTrigger_Driver();

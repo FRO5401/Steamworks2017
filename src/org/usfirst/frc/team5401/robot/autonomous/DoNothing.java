@@ -1,25 +1,19 @@
-package org.usfirst.frc.team5401.robot.commands;
-
-import org.usfirst.frc.team5401.robot.Robot;
+package org.usfirst.frc.team5401.robot.autonomous;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class PopGear extends Command {
+public class DoNothing extends Command {
 
-	//private int inout;
-	
-    public PopGear() {
+    public DoNothing() {
         // Use requires() here to declare subsystem dependencies
-        requires(Robot.gearmechanism); 
-        //inout = direction;
+        // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.gearmechanism.gearInOut(1);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -28,7 +22,7 @@ public class PopGear extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true
@@ -37,8 +31,6 @@ public class PopGear extends Command {
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
-    //Called when a toggleWhenPressed buttons is activated again
     protected void interrupted() {
-    	Robot.gearmechanism.gearInOut(-1);//this is called first when robotInit activates
     }
 }
