@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.command.Command;
 
 import org.usfirst.frc.team5401.robot.Robot;
 import org.usfirst.frc.team5401.robot.RobotMap;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -21,14 +22,15 @@ public class LoadShooter extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.loader.runConveyors();
+    	SmartDashboard.putBoolean("Loader Conveyors", true);
+    	Robot.loader.runConveyorsAndMeteringMotor();
     	//check button press
     	//if pressed, load ball
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+        return false;
     }
 
     // Called once after isFinished returns true
@@ -40,6 +42,7 @@ public class LoadShooter extends Command {
     // subsystems is scheduled to run
     protected void interrupted() {
     	//stop motors
-    	Robot.loader.stopConveyors();
+    	SmartDashboard.putBoolean("Loader Conveyors", false);
+    	Robot.loader.stopConveyorsAndMeteringMotor();
     }
 }

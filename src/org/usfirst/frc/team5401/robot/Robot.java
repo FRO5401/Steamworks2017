@@ -96,7 +96,6 @@ public class Robot extends IterativeRobot {
         if (autonomousCommand != null) autonomousCommand.start();
         
         //Start loader motors
-        Robot.loader.runConveyors();
         Robot.compressorsubsystem.startCompressor();
     }
 
