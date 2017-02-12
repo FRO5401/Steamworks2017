@@ -70,6 +70,8 @@ public class XboxMove extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	Robot.drivebase.shiftGearLowToHigh();
+    	
     	double 	slew        =	-1 * Robot.oi.readXboxLeftX_Driver();
     	double 	throttle 	=	Robot.oi.readRightTrigger_Driver();
     	double 	reverse 	=	Robot.oi.readLeftTrigger_Driver();
@@ -123,7 +125,7 @@ public class XboxMove extends Command {
     	
 /*****Shifting Gear Code*********/
     	Robot.drivebase.getEncoderValue();
-    	//Backlogs the old final velocity (velocity 2) into the new initial velocity (velocity 1)
+/*    	//Backlogs the old final velocity (velocity 2) into the new initial velocity (velocity 1)
     	velocitySample1 = velocitySample2;
    	
     	//Gets new final velocity
@@ -152,7 +154,7 @@ public class XboxMove extends Command {
     	//calculates the average acceleration from previous samples to balance out spikes in acceleration
     	avgAccelerationFromSamples = (accelerationSample1+accelerationSample2+accelerationSample3+accelerationSample4+accelerationSample5)/5;
 */
-    	
+/*    	
     	
     	//												vvvvv this is for no shifting at acceleration = 0 when robot is totally still, might be unnecessary
     	if(slew <= 0 + RobotMap.DRIVE_THRESHHOLD && velocitySample2 != 0){
@@ -183,7 +185,7 @@ public class XboxMove extends Command {
     		
     	}
     	//Gear Shift Done
-    }
+*/    }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
