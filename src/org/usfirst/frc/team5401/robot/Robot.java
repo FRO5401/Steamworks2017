@@ -28,7 +28,9 @@ public class Robot extends IterativeRobot {
 	public static Shooter shooter;
 	public static VisionProcessing visionprocessing;
 	public static Hopper hopper;
+	public static CompressorSubsystem compressorsubsystem;
 	public static OI oi;
+	
 
     Command autonomousCommand;
     SendableChooser chooser;
@@ -45,13 +47,16 @@ public class Robot extends IterativeRobot {
     	loader = new Loader();
     	shooter = new Shooter();
     	hopper = new Hopper();
-    	visionprocessing = new VisionProcessing();
+    	compressorsubsystem = new CompressorSubsystem();
     	
 		oi = new OI();/****ALWAYS Instantiate OI() last*****/
         
 		chooser = new SendableChooser();
 //        chooser.addObject("My Auto", new MyAutoCommand());
         SmartDashboard.putData("Auto mode", chooser);
+//        Robot.drivebase.recalibrateGyro();
+        Robot.compressorsubsystem.stopCompressor();
+        
     }
 	
 	/**
@@ -94,7 +99,8 @@ public class Robot extends IterativeRobot {
         if (autonomousCommand != null) autonomousCommand.start();
         
         //Start loader motors
-   //     Robot.loader.runConveyors();
+        Robot.loader.runConveyors();
+        //Robot.compressorsubsystem.startCompressor();
     }
 
     /**
@@ -110,6 +116,8 @@ public class Robot extends IterativeRobot {
         // continue until interrupted by another command, remove
         // this line or comment it out.
         if (autonomousCommand != null) autonomousCommand.cancel();
+        
+        Robot.compressorsubsystem.startCompressor();
     }
 
     /**
@@ -117,6 +125,7 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
+        Robot.compressorsubsystem.getCompressorStatus();
     }
     
     /**
