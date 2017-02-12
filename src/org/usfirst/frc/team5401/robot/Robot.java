@@ -54,7 +54,9 @@ public class Robot extends IterativeRobot {
 		chooser = new SendableChooser();
 //        chooser.addObject("My Auto", new MyAutoCommand());
         SmartDashboard.putData("Auto mode", chooser);
-        Robot.drivebase.recalibrateGyro();
+//        Robot.drivebase.recalibrateGyro();
+        Robot.compressorsubsystem.stopCompressor();
+        
     }
 	
 	/**
@@ -98,7 +100,7 @@ public class Robot extends IterativeRobot {
         
         //Start loader motors
         Robot.loader.runConveyors();
-        Robot.compressorsubsystem.startCompressor();
+        //Robot.compressorsubsystem.startCompressor();
     }
 
     /**

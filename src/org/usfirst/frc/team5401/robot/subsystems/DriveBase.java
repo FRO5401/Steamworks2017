@@ -20,6 +20,7 @@ public class DriveBase extends Subsystem {
 	double LOW_GEAR_RIGHT_DPP;
 	double HIGH_GEAR_LEFT_DPP;
 	double HIGH_GEAR_RIGHT_DPP;
+	double GYRO_OFFSET;
 	
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
@@ -39,6 +40,8 @@ public class DriveBase extends Subsystem {
 		HIGH_GEAR_LEFT_DPP = -1/51.27586;//NEED TO CHANGE
 		HIGH_GEAR_RIGHT_DPP = 1/51.27586;//NEED TO CHANGE
 		
+		GYRO_OFFSET = 19.0/18.0;
+		
 		leftDrive  = new VictorSP(RobotMap.DRIVE_LEFT_MOTOR);
 		rightDrive = new VictorSP(RobotMap.DRIVE_RIGHT_MOTOR);
 		gearShifter = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.DRIVE_SHIFT_IN, RobotMap.DRIVE_SHIFT_OUT);
@@ -52,7 +55,7 @@ public class DriveBase extends Subsystem {
 	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-    	setDefaultCommand(new XboxMove());
+    	//setDefaultCommand(new XboxMove());
     }
     
     public void drive(double leftDriveDesired, double rightDriveDesired){
@@ -139,9 +142,12 @@ public class DriveBase extends Subsystem {
     	rightEncoder.reset();
     }
     
+    //XXX Added offset to gyro
     public double reportGyro(){
     	double currentAngle = gyro.getAngle();
     	SmartDashboard.putNumber("Current Angle", currentAngle);
+    	currentAngle = currentAngle * GYRO_OFFSET;
+    	SmartDashboard.putNumber("Adjusted Gyro", currentAngle);
     	return currentAngle;
     }
     

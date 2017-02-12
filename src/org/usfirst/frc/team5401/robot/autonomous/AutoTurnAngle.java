@@ -41,7 +41,7 @@ public class AutoTurnAngle extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	initAngle = Robot.drivebase.reportGyro();
-    	Robot.drivebase.recalibrateGyro();
+//    	Robot.drivebase.recalibrateGyro();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -51,10 +51,10 @@ public class AutoTurnAngle extends Command {
     		finished = true;
     	} else {
     		if (desiredTurnAngle > 0 && (currentAngle < Math.abs(desiredTurnAngle) - angleThreshold)){
-    			Robot.drivebase.drive(autoTurnSpeed * autoTurnPrecision, -autoTurnSpeed * autoTurnPrecision);
+    			Robot.drivebase.drive(-autoTurnSpeed * autoTurnPrecision, autoTurnSpeed * autoTurnPrecision);
     			finished = false;
     		} else if (desiredTurnAngle < 0 && (currentAngle > angleThreshold - Math.abs(desiredTurnAngle))) {
-    			Robot.drivebase.drive(-autoTurnSpeed * autoTurnPrecision, autoTurnSpeed * autoTurnPrecision);
+    			Robot.drivebase.drive(autoTurnSpeed * autoTurnPrecision, -autoTurnSpeed * autoTurnPrecision);
     			finished = false;
     		} else { //error or exactly 0
     			//Finished
