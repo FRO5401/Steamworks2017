@@ -34,6 +34,9 @@ public class Robot extends IterativeRobot {
 
     Command autonomousCommand;
     SendableChooser chooser;
+    
+    //PID values for shooter
+    private double shooterKP, shooterKI, shooterKD, shooterKF;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -47,6 +50,9 @@ public class Robot extends IterativeRobot {
     	loader = new Loader();
     	shooter = new Shooter();
     	hopper = new Hopper();
+    	shooterKP = 0.0;
+    	shooterKI = 0.0;
+    	shooterKD = 0.0;
     	compressorsubsystem = new CompressorSubsystem();
     	
 		oi = new OI();/****ALWAYS Instantiate OI() last*****/
