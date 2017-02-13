@@ -40,7 +40,9 @@ public class Shooter extends Subsystem {
 	private double RPM; 
 	
 	private double MAX_COUNTER_SECONDS = 100;
-	private double MOTOR_SPEED = -.5;
+	private double MOTOR_SPEED = -.82;
+	
+	private double kP, kI, kD;
     
 	// Initialize your subsystem here
 	   /**
@@ -50,7 +52,7 @@ public class Shooter extends Subsystem {
 	    * @param kI Integral Gain
 	    * @param kD Derivative Gain
 	    */
-	public Shooter(double kP, double kI, double kD) {
+	public Shooter() {
 	   	//super(kP, kI, kD); //initializes pid //XXX Temporary to get rid of error status
 	   	
 	   	_talonMaster = new CANTalon(0);
@@ -62,7 +64,6 @@ public class Shooter extends Subsystem {
     	_talonSlave.set(_talonMaster.getDeviceID());
 	   	
 	   	SmartDashboard.putNumber("motor_speed", MOTOR_SPEED);
-    	SmartDashboard.putNumber("Meter_speed", METER_SPEED);
 	    	
 	   	_talonMaster.getEncPosition();
 	   	SmartDashboard.putNumber("Position", _talonMaster.getEncPosition());
@@ -113,10 +114,11 @@ public class Shooter extends Subsystem {
     	//PID stuff
     }
     
-/*    public void startMotors(){
-    	motors.set(MOTOR_SPEED);
+    public void startMotors(){
+    	MOTOR_SPEED = SmartDashboard.getNumber("motor_speed", MOTOR_SPEED);
+    	_talonMaster.set(MOTOR_SPEED);
     }
-*/    
+    
     
     public void reset(){
     	//counter.reset();

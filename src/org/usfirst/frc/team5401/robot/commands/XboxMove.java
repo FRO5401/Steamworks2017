@@ -124,7 +124,7 @@ public class XboxMove extends Command {
     	
     	
 /*****Shifting Gear Code*********/
-    	Robot.drivebase.getEncoderValue();
+    	Robot.drivebase.getEncoderDistance();
     	//Backlogs the old final velocity (velocity 2) into the new initial velocity (velocity 1)
     	velocitySample1 = velocitySample2;
    	

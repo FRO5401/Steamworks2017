@@ -11,6 +11,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team5401.robot.subsystems.*;
 
+import org.usfirst.frc.team5401.robot.autonomous.AutoTurnAngle;
+import org.usfirst.frc.team5401.robot.autonomous.DoNothing;
+
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the IterativeRobot
@@ -35,8 +38,6 @@ public class Robot extends IterativeRobot {
     Command autonomousCommand;
     SendableChooser chooser;
     
-    //PID values for shooter
-    private double shooterKP, shooterKI, shooterKD, shooterKF;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -50,15 +51,13 @@ public class Robot extends IterativeRobot {
     	loader = new Loader();
     	shooter = new Shooter();
     	hopper = new Hopper();
-    	shooterKP = 0.0;
-    	shooterKI = 0.0;
-    	shooterKD = 0.0;
     	compressorsubsystem = new CompressorSubsystem();
     	
 		oi = new OI();/****ALWAYS Instantiate OI() last*****/
         
 		chooser = new SendableChooser();
-//        chooser.addObject("My Auto", new MyAutoCommand());
+		chooser.addDefault("Do Nothing", new DoNothing());
+        chooser.addObject("AutoTurn", new AutoTurnAngle(180));
         SmartDashboard.putData("Auto mode", chooser);
     }
 	

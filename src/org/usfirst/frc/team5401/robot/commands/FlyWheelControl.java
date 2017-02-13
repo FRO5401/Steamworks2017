@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class FlyWheelControl extends Command {
 
-	private final double FLYWHEEL_SPEED = 0; //TODO 
+	//private final double FLYWHEEL_SPEED = 0; //TODO 
 	
     public FlyWheelControl() {
         // Use requires() here to declare subsystem dependencies
