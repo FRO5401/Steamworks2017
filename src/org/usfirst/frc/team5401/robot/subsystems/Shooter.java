@@ -40,7 +40,7 @@ public class Shooter extends Subsystem {
 	private double RPM; 
 	
 	private double MAX_COUNTER_SECONDS = 100;
-	private double MOTOR_SPEED = 5000;
+	private double MOTOR_SPEED = -.82;
 	private double feed_forward;
 	
 	private double kP, kI, kD;
@@ -58,27 +58,35 @@ public class Shooter extends Subsystem {
 	   	
 	   	_talonMaster = new CANTalon(0);
 	   	_talonSlave = new CANTalon(1);
+		 //XXX Set mode is ok, here, add a set mode to V% in the stop command, set v% to 0 to stop
 	    	
 	   	_talonMaster.setProfile(0);
-	   	_talonMaster.changeControlMode(TalonControlMode.Speed);
+	   	_talonMaster.changeControlMode(TalonControlMode.PercentVbus);
 	   	_talonMaster.set(MOTOR_SPEED);
 	   	_talonSlave.changeControlMode(CANTalon.TalonControlMode.Follower);
     	_talonSlave.set(_talonMaster.getDeviceID());
 	   	
 	   	SmartDashboard.putNumber("motor_speed", MOTOR_SPEED);
-	   SmartDashboard.putNumber("feed_forward", feed_forward);
 	    	
 	 	_talonMaster.getEncPosition();
 	   	SmartDashboard.putNumber("Position", _talonMaster.getEncPosition());
 	   	_talonMaster.getEncVelocity();
 	   	SmartDashboard.putNumber("Velocity",  _talonMaster.getEncVelocity());
+	   	_talonMaster.setEncPosition(0);
 	   	
-	   	
-	   feed_forward = 0;
+	   feed_forward = 0.034;
+	   kP = 0;
+	   kI = 0;
+	   kD = 0;
+	   
+	   SmartDashboard.putNumber("feed_forward", feed_forward);
+	   SmartDashboard.putNumber("kP", kP);
+	   SmartDashboard.putNumber("kI", kI);
+	   SmartDashboard.putNumber("kD", kD);
 	    	
 	   	_talonMaster.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
 	    	
-	   	_talonMaster.setPID(kP, kI, kD);
+	   	
     	 	
     	//instantiate counter
     	counter = new Counter(RobotMap.PHOTOSWITCH_CHANNEL);
@@ -122,13 +130,16 @@ public class Shooter extends Subsystem {
     public void startMotors(){
     	MOTOR_SPEED = SmartDashboard.getNumber("motor_speed", MOTOR_SPEED);
       feed_forward = SmartDashboard.getNumber("feed_forward", feed_forward);
+      kP = SmartDashboard.getNumber("kP", kP);
+      kI = SmartDashboard.getNumber("kI", kI);
+      kD = SmartDashboard.getNumber("kD", kD);
       _talonMaster.setF(feed_forward);
+      _talonMaster.setPID(kP, kI, kD);//XXX Comment this out next
     	_talonMaster.set(MOTOR_SPEED);
      	_talonMaster.getEncPosition();
 	   	SmartDashboard.putNumber("Position", _talonMaster.getEncPosition());
 	   	_talonMaster.getEncVelocity();
 	   	SmartDashboard.putNumber("Velocity",  _talonMaster.getEncVelocity());
-	 
     }
     
     
@@ -145,6 +156,8 @@ public class Shooter extends Subsystem {
     * 
     */
     public void stop(){
+    	//_talonMaster.set(0);
+    	_talonMaster.changeControlMode(TalonControlMode.PercentVbus);
     	_talonMaster.set(0);
     }
 }
