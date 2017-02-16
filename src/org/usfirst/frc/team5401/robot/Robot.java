@@ -2,6 +2,7 @@
 package org.usfirst.frc.team5401.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -10,6 +11,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team5401.robot.subsystems.*;
+import org.usfirst.frc.team5401.robot.autonomous.*;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -52,7 +54,13 @@ public class Robot extends IterativeRobot {
 		oi = new OI();/****ALWAYS Instantiate OI() last*****/
         
 		chooser = new SendableChooser();
-//        chooser.addObject("My Auto", new MyAutoCommand());
+		chooser.addDefault("Do Nothing", new DoNothing());
+		chooser.addObject("Drive Forward", new AutoDrive(36, .5));
+		chooser.addObject("Auto Turn Angle", new AutoTurnAngle(180));
+        chooser.addObject("Center Gear", new AutoCenterGear());
+        chooser.addObject("Center Gear, Blue, Shoot", new AutoCenterGearBlueShoot());
+        chooser.addObject("Center Gear, Red, Shoot", new AutoCenterGearRedShoot());
+        chooser.addObject("Left Gear, Blue", new AutoLeftGearBlue());
         SmartDashboard.putData("Auto mode", chooser);
 //        Robot.drivebase.recalibrateGyro();
         Robot.compressorsubsystem.stopCompressor();
@@ -99,7 +107,7 @@ public class Robot extends IterativeRobot {
         if (autonomousCommand != null) autonomousCommand.start();
         
         //Start loader motors
-        Robot.loader.runConveyors();
+      //  Robot.loader.runConveyors();
         //Robot.compressorsubsystem.startCompressor();
     }
 
