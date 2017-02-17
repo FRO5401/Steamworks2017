@@ -64,7 +64,7 @@ public class XboxMove extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.drivebase.setDPPLowGear();
+    	Robot.drivebase.shiftGearLowToHigh();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -125,7 +125,7 @@ public class XboxMove extends Command {
     	
 /*****Shifting Gear Code*********/
     	Robot.drivebase.getEncoderDistance();
-    	//Backlogs the old final velocity (velocity 2) into the new initial velocity (velocity 1)
+/*    	//Backlogs the old final velocity (velocity 2) into the new initial velocity (velocity 1)
     	velocitySample1 = velocitySample2;
    	
     	//Gets new final velocity
@@ -157,7 +157,7 @@ public class XboxMove extends Command {
     	
     	
     	//												vvvvv this is for no shifting at acceleration = 0 when robot is totally still, might be unnecessary
-    	if(slew <= 0 + RobotMap.DRIVE_THRESHHOLD && velocitySample2 != 0){
+/*    	if(slew <= 0 + RobotMap.DRIVE_THRESHHOLD && velocitySample2 != 0){
     	//Uses average acceleration for gear shifting up to higher speeds
     	//0 is just there to understand original logic
 		//Commented out because of problems of unwanted shifting up if running at a low constant velocity
@@ -184,7 +184,7 @@ public class XboxMove extends Command {
     		//}
     		
     	}
-    	//Gear Shift Done
+*/    	//Gear Shift Done
     }
 
     // Make this return true when this Command no longer needs to run execute()
