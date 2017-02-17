@@ -102,11 +102,6 @@ public class OI {
 		xboxLeftBumper_Operator.whenPressed(new FeederUpDown(1));
 		xboxRightBumper_Operator.whenPressed(new FeederUpDown(-1));
 		//will be left stick Y axis
-		
-		//GearManipulator
-		xboxX_Driver.toggleWhenPressed(new PopGear());//Figured out toggleWhenPressed, gear command PopGear will be changed in Gear subsystem branch
-//		xboxX_Driver.whenPressed(new PopGear(-1)); //out
-//		xboxX_Driver.whenReleased(new PopGear(1)); //in
 	}
 	
 	/**Method Naming: 'read' = Analog; 'get' = Digital **/
@@ -135,8 +130,16 @@ public class OI {
 		return xboxController_Driver.getRawButton(9);
 	}
 	
-	public boolean getXboxB_Driver(){ //Climb Button
-		return xboxController_Driver.getRawButton(2);
+	//For GearMechanism
+	public int getXboxRightStickX_Driver(){
+		double value = xboxController_Driver.getRawAxis(RobotMap.XBOX_AXIS_RIGHT_X);
+		if (value > .1){
+			return 1;
+		} else if (value < -.1){
+			return -1;
+		} else {
+			return 0;
+		}
 	}
 	
 	
