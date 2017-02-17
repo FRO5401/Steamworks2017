@@ -131,7 +131,7 @@ public class OI {
 	}
 	
 	//For GearMechanism
-	public int getXboxRightStickX_Driver(){
+	public int getXboxRightStickY_Driver(){
 		double value = xboxController_Driver.getRawAxis(RobotMap.XBOX_AXIS_RIGHT_X);
 		if (value > .1){
 			return 1;
@@ -142,5 +142,29 @@ public class OI {
 		}
 	}
 	
+	//For Feeder Up/Down
+	public int getXboxLeftStickY_Operator(){
+		double value = xboxController_Driver.getRawAxis(RobotMap.XBOX_AXIS_LEFT_Y);
+		if (value > .1){
+			return 1;
+		} else if (value < -.1){
+			return -1;
+		} else {
+			return 0;
+		}
+	}
+	
+	//For Feeder In/Out
+	public int getXboxTriggers_Operator(){
+		double left  = xboxController_Operator.getRawAxis(RobotMap.XBOX_AXIS_LEFT_TRIGGER);
+		double right = xboxController_Operator.getRawAxis(RobotMap.XBOX_AXIS_RIGHT_TRIGGER);
+		if (right > .1){ //Feeder In in prioritized over Out
+			return 1;
+		} else if (left > .1){
+			return -1;
+		} else {
+			return 0;
+		}
+	}
 	
 }

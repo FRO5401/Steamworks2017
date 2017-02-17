@@ -19,7 +19,7 @@ public class PopGear extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	input = Robot.oi.getXboxRightStickX_Driver();
+    	input = Robot.oi.getXboxRightStickY_Driver();
     	Robot.gearmechanism.gearInOut(input);
     }
 

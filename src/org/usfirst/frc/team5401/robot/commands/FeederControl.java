@@ -7,16 +7,17 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class Climb extends Command {
-
-	private boolean input;
+public class FeederControl extends Command {
 	
-    public Climb() {
+	private int upDown;
+	private int inOrOut;
+	
+    public FeederControl() {
         // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
-    	requires(Robot.climber);
-    	
-    	input = false;
+        requires(Robot.infeed);
+        
+        upDown = 0;
+        inOrOut = 0;
     }
 
     // Called just before this Command runs the first time
@@ -25,30 +26,24 @@ public class Climb extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	input = true;
+    	upDown  = Robot.oi.getXboxLeftStickY_Operator();
+    	inOrOut = Robot.oi.getXboxTriggers_Operator();
     	
-    	if (input){
-    		Robot.climber.climbUp();
-    	} else {
-    		Robot.climber.climbStop();
-    		input = false;
-    	}    	
-
+    	Robot.infeed.armUpDown(upDown);
+    	Robot.infeed.feederDirection(inOrOut);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return !input;
+        return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.climber.climbStop();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	Robot.climber.climbStop();
     }
 }
