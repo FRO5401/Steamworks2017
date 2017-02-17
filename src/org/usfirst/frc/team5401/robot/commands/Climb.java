@@ -21,23 +21,25 @@ public class Climb extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	input = true;
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	input = Robot.oi.getXboxB_Driver();
+    	input = true;
     	
     	if (input){
     		Robot.climber.climbUp();
     	} else {
     		Robot.climber.climbStop();
+    		input = false;
     	}    	
 
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return !input;
     }
 
     // Called once after isFinished returns true
