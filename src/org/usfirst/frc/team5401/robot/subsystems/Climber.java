@@ -23,21 +23,13 @@ public class Climber extends Subsystem {
 	 * TouchLimitSwitch;
 	 */
 	private VictorSP climberMotor;
-	private DigitalInput climbSwitch;
-	//private boolean limitSwitch;
+	
 	private double SPEED;
 	
-	
-	
-	
 	public Climber(){
-		//declare victor location
 		climberMotor = new VictorSP(RobotMap.CLIMBER_MOTOR);
-		//declare switch locations
-		climbSwitch = new DigitalInput(RobotMap.CLIMBER_LIMITSWITCH);
-		//limitSwitch = false;
+
 		SPEED = 1;
-		
 	}
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
@@ -52,12 +44,7 @@ public class Climber extends Subsystem {
     
     public void climbStop(){
     	climberMotor.set(0);
-    }
-    
-    public boolean checkSwitch(){
-    	return climbSwitch.get();
-    }
-    	
+    }	
 }
     
 
