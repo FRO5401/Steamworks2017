@@ -52,6 +52,6 @@ public class FlyWheelControl extends Command {
     // subsystems is scheduled to run
     protected void interrupted() {
     	SmartDashboard.putBoolean("Shooter OnOff", false);
-    	Robot.shooter.reset();
+    	Robot.shooter.stop();
     }
 }

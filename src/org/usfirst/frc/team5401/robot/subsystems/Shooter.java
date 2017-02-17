@@ -3,17 +3,17 @@ package org.usfirst.frc.team5401.robot.subsystems;
 
 
 import org.usfirst.frc.team5401.robot.RobotMap;
-import edu.wpi.first.wpilibj.VictorSP;
-import edu.wpi.first.wpilibj.Counter;
+//import edu.wpi.first.wpilibj.VictorSP;
+//import edu.wpi.first.wpilibj.Counter;
 
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.PIDSource;
-import edu.wpi.first.wpilibj.PIDOutput;
+//import edu.wpi.first.wpilibj.PIDSource;
+//import edu.wpi.first.wpilibj.PIDOutput;
 
 import com.ctre.CANTalon;
-import com.ctre.CANTalon.FeedbackDevice;
+//import com.ctre.CANTalon.FeedbackDevice;  //XXX Why is this not used? Its used line 86. Wierd error.
 import com.ctre.CANTalon.TalonControlMode;
 
 /** Uses PID to lineup and shoot, also uses motors to shoot
@@ -30,7 +30,7 @@ public class Shooter extends Subsystem {
 
 	
 	//declare counter
-	private Counter counter;
+//	private Counter counter;
 	
 	//declare pid stuff?
 	
@@ -39,8 +39,8 @@ public class Shooter extends Subsystem {
 		
 	private double RPM; 
 	
-	private double MAX_COUNTER_SECONDS = 100;
-	private double MOTOR_SPEED = -.82;
+//	private double MAX_COUNTER_SECONDS = 100;
+	private double MOTOR_SPEED = -23750;
 	private double feed_forward;
 	
 	private double kP, kI, kD;
@@ -58,11 +58,10 @@ public class Shooter extends Subsystem {
 	   	
 	   	_talonMaster = new CANTalon(0);
 	   	_talonSlave = new CANTalon(1);
-		 //XXX Set mode is ok, here, add a set mode to V% in the stop command, set v% to 0 to stop
 	    	
 	   	_talonMaster.setProfile(0);
-	   	_talonMaster.changeControlMode(TalonControlMode.PercentVbus);
-	   	_talonMaster.set(MOTOR_SPEED);
+	   	_talonMaster.set(MOTOR_SPEED);//XXX We shouldn't set the speed here in the constructor, might even want to set mode to v% and speed to 0 to deliberately stop
+	   	_talonMaster.changeControlMode(TalonControlMode.Speed);
 	   	_talonSlave.changeControlMode(CANTalon.TalonControlMode.Follower);
     	_talonSlave.set(_talonMaster.getDeviceID());
 	   	
@@ -85,12 +84,9 @@ public class Shooter extends Subsystem {
 	   SmartDashboard.putNumber("kD", kD);
 	    	
 	   	_talonMaster.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
-	    	
-	   	
-    	 	
     	//instantiate counter
-    	counter = new Counter(RobotMap.PHOTOSWITCH_CHANNEL);
-    	counter.setMaxPeriod(MAX_COUNTER_SECONDS);
+//    	counter = new Counter(RobotMap.PHOTOSWITCH_CHANNEL);
+//    	counter.setMaxPeriod(MAX_COUNTER_SECONDS);
     	
     	reset();
     	
@@ -104,7 +100,7 @@ public class Shooter extends Subsystem {
         // Set the default command for a subsystem here.
         //setDefaultCommand();
     }
-
+/*
     protected double returnPIDInput() {
         
 
@@ -119,7 +115,7 @@ public class Shooter extends Subsystem {
     	System.out.println("RPM: " + RPM);
     	return RPM;
     }
-
+*/
     protected void usePIDOutput(double output) {
         // Use output to drive your system, like a motor
         // e.g. yourMotor.set(output);
@@ -128,17 +124,19 @@ public class Shooter extends Subsystem {
     }
     
     public void startMotors(){
+    	_talonMaster.changeControlMode(TalonControlMode.Speed);
     	MOTOR_SPEED = SmartDashboard.getNumber("motor_speed", MOTOR_SPEED);
       feed_forward = SmartDashboard.getNumber("feed_forward", feed_forward);
+      SmartDashboard.putNumber("feed_forward_test", feed_forward);
       kP = SmartDashboard.getNumber("kP", kP);
       kI = SmartDashboard.getNumber("kI", kI);
       kD = SmartDashboard.getNumber("kD", kD);
       _talonMaster.setF(feed_forward);
-      _talonMaster.setPID(kP, kI, kD);//XXX Comment this out next
+      _talonMaster.setPID(kP, kI, kD);//XXX We commented this in and out last night when it worked/stopped working
     	_talonMaster.set(MOTOR_SPEED);
-     	_talonMaster.getEncPosition();
+     	_talonMaster.getEncPosition(); //XXX Comment this out, this shouldn't be doing anything
 	   	SmartDashboard.putNumber("Position", _talonMaster.getEncPosition());
-	   	_talonMaster.getEncVelocity();
+	   	_talonMaster.getEncVelocity(); //XXX Comment this out, this shouldn't be doing anything
 	   	SmartDashboard.putNumber("Velocity",  _talonMaster.getEncVelocity());
     }
     
@@ -146,7 +144,7 @@ public class Shooter extends Subsystem {
     public void reset(){
     	//counter.reset();
     	
-    	RPM = 0;
+    	RPM = 0;//XXX Does this still do anything?
     	stop();
     	SmartDashboard.putBoolean("Shooter OnOff", false);
     	SmartDashboard.putNumber("RPM", RPM);

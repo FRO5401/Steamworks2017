@@ -55,6 +55,7 @@ public class Robot extends IterativeRobot {
     	
 		oi = new OI();/****ALWAYS Instantiate OI() last*****/
         
+		Robot.compressorsubsystem.stopCompressor();
 		chooser = new SendableChooser();
 		chooser.addDefault("Do Nothing", new DoNothing());
         chooser.addObject("AutoTurn", new AutoTurnAngle(180));
@@ -101,7 +102,7 @@ public class Robot extends IterativeRobot {
         if (autonomousCommand != null) autonomousCommand.start();
         
         //Start loader motors
-        Robot.compressorsubsystem.startCompressor();
+        //Robot.compressorsubsystem.startCompressor();
     }
 
     /**

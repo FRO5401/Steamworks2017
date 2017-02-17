@@ -26,8 +26,8 @@ public class CompressorSubsystem extends Subsystem {
     }
     
     public void startCompressor(){
-    	compressor.setClosedLoopControl(true);
-    	compressor.start();
+    	//compressor.setClosedLoopControl(true);
+    	//compressor.start();
     }
     
     public void stopCompressor(){
@@ -35,14 +35,14 @@ public class CompressorSubsystem extends Subsystem {
     }
     
     public void getCompressorStatus(){
-    	boolean enabled = compressor.enabled();
-    	SmartDashboard.putBoolean("Compressor Enabled", enabled);
-    	boolean loopOn = compressor.getClosedLoopControl();
-    	SmartDashboard.putBoolean("Compressor in Closed Looop", loopOn);
-    	double currentValue = compressor.getCompressorCurrent();
-    	SmartDashboard.putNumber("Compressor Current Value", currentValue);
-    	boolean pressureSwitch = compressor.getPressureSwitchValue();
-    	SmartDashboard.putBoolean("Pressure Switch On/Off", pressureSwitch);
+    	//boolean enabled = compressor.enabled();
+    	//SmartDashboard.putBoolean("Compressor Enabled", enabled);
+    	//boolean loopOn = compressor.getClosedLoopControl();
+    	//SmartDashboard.putBoolean("Compressor in Closed Looop", loopOn);
+    	//double currentValue = compressor.getCompressorCurrent();
+    	//SmartDashboard.putNumber("Compressor Current Value", currentValue);
+    	//boolean pressureSwitch = compressor.getPressureSwitchValue();
+    	//SmartDashboard.putBoolean("Pressure Switch On/Off", pressureSwitch);
     }
 }
 
