@@ -91,17 +91,6 @@ public class OI {
 		//XXX TEMPORARY BUTTON
 			//For testing pneumatic shifter on drivebase
 		xboxBack_Driver.toggleWhenPressed(new TestShift());
-		
-		//Infeeder
-		xboxRightBumper_Operator.whenPressed(new FeedInAndOut(1));
-		xboxRightBumper_Operator.whenReleased(new FeedStop());
-		
-		xboxLeftBumper_Operator.whenPressed(new FeedInAndOut(-1));
-		xboxLeftBumper_Operator.whenReleased(new FeedStop());
-		
-		xboxLeftBumper_Operator.whenPressed(new FeederUpDown(1));
-		xboxRightBumper_Operator.whenPressed(new FeederUpDown(-1));
-		//will be left stick Y axis
 	}
 	
 	/**Method Naming: 'read' = Analog; 'get' = Digital **/
