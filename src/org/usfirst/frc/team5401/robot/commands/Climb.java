@@ -20,7 +20,7 @@ public class Climb extends Command {
     	
     	input = false;
     	override = false;
-    	switchTriggered = Robot.climber.checkSwitch();
+ //   	switchTriggered = Robot.climber.checkSwitch();
     }
     
     // Called just before this Command runs the first time
@@ -30,14 +30,19 @@ public class Climb extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	input 			= Robot.oi.getXboxB_Operator();
-    	switchTriggered = Robot.climber.checkSwitch();
+    	switchTriggered = false;//Robot.climber.checkSwitch();
     	override 		= Robot.oi.getXboxY_Operator();
     	
-    	if ((!switchTriggered || override) && input){
+    	//if ((!switchTriggered || override) && input){
+    		//Robot.climber.climbUp();
+    //	} else{
+    //		Robot.climber.climbStop();
+    //	}
+    	if (input){
     		Robot.climber.climbUp();
-    	} else{
+    	} else {
     		Robot.climber.climbStop();
-    	}    	
+    	}
     	
     	//TODO needs override
     }
