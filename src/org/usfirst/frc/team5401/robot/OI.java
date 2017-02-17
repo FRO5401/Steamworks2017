@@ -80,18 +80,17 @@ public class OI {
 		
 		//TODO Make feeder arms work off left stick (operator)
 		
-		//TODO Climber Button
+		//Climber Button
 		xboxY_Operator.whenPressed(new Climb());
 		
-		//TODO Flywheels Button
+		//Flywheels Button
+		xboxB_Operator.toggleWhenPressed(new FlyWheelControl());
 		
 		//TODO AutoTarget Button
 		
-		//For testing pneumatic shifter on drivebase
-		xboxY_Driver.toggleWhenPressed(new TestShift());
-		
-		//Shooter
-		xboxA_Driver.toggleWhenPressed(new FlyWheelControl());
+		//XXX TEMPORARY BUTTON
+			//For testing pneumatic shifter on drivebase
+		xboxBack_Driver.toggleWhenPressed(new TestShift());
 		
 		//Infeeder
 		xboxRightBumper_Operator.whenPressed(new FeedInAndOut(1));
@@ -108,21 +107,9 @@ public class OI {
 		xboxX_Driver.toggleWhenPressed(new PopGear());//Figured out toggleWhenPressed, gear command PopGear will be changed in Gear subsystem branch
 //		xboxX_Driver.whenPressed(new PopGear(-1)); //out
 //		xboxX_Driver.whenReleased(new PopGear(1)); //in
-		
-		//Loader
-		xboxR3_Operator.toggleWhenPressed(new LoadShooter());
-		
-		//Hopper
-		xboxBack_Operator.whenPressed(new HopperFlap(1));
-		xboxStart_Operator.whenPressed(new HopperFlap(-1));
-		
-		xboxX_Operator.whenPressed(new HopperUnjammer(1));
-		xboxX_Operator.whenReleased(new HopperUnjammer(-1));
-		
-	//	xboxY_Driver.whenPressed(new AutoDrive(50, .85));
-	//	xboxB_Driver.whenPressed(new AutoTurnAngle(-180));
 	}
-	//Method Naming: 'read' = Analog; 'get' = Digital
+	
+	/**Method Naming: 'read' = Analog; 'get' = Digital **/
 	
 	public double readXboxLeftX_Driver(){
 		return xboxController_Driver.getRawAxis(RobotMap.XBOX_AXIS_LEFT_X);
