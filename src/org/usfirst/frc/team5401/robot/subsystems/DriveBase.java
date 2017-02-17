@@ -38,7 +38,7 @@ public class DriveBase extends Subsystem {
 		LOW_GEAR_RIGHT_DPP = 0.018796;
 
 		HIGH_GEAR_LEFT_DPP = -0.0183463796477;//NEED TO CHANGE
-		HIGH_GEAR_RIGHT_DPP = -0.0183463796477;//NEED TO CHANGE
+		HIGH_GEAR_RIGHT_DPP = 0.0183463796477;//NEED TO CHANGE
 		
 		leftDrive  = new VictorSP(RobotMap.DRIVE_LEFT_MOTOR);
 		rightDrive = new VictorSP(RobotMap.DRIVE_RIGHT_MOTOR);
@@ -76,12 +76,15 @@ public class DriveBase extends Subsystem {
     public void shiftGearLowToHigh(){//Meaning Low speed to high speed
     	//Assumes Pneumatic forward/out shifts low to high
     	gearShifter.set(DoubleSolenoid.Value.kForward);
-    	
+    	leftEncoder.setDistancePerPulse(HIGH_GEAR_LEFT_DPP);
+    	rightEncoder.setDistancePerPulse(HIGH_GEAR_RIGHT_DPP);
     }
 
     public void shiftGearHighToLow(){
     	//Assumes Pneumatic reverse/in shifts high to low
     	gearShifter.set(DoubleSolenoid.Value.kReverse);
+    	leftEncoder.setDistancePerPulse(LOW_GEAR_LEFT_DPP);
+    	rightEncoder.setDistancePerPulse(LOW_GEAR_RIGHT_DPP);
     	
     }
 /*    
