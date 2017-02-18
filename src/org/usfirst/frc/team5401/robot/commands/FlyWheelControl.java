@@ -35,25 +35,20 @@ public class FlyWheelControl extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true
-    protected void end() {
+    protected void end() {  
+    	//end() does nothing because this command toggles the state
     }
 
     
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	Robot.shooter.switchState();
-    	
-    	if (Robot.shooter.isEnabled()){
-    		Robot.compressorsubsystem.stopCompressor();
-    	} else {
-    		Robot.compressorsubsystem.startCompressor();
-    	}
-    	
+    	Robot.shooter.stop();
+    	Robot.compressorsubsystem.stopCompressor();
     	SmartDashboard.putBoolean("Shooter OnOff", Robot.shooter.isEnabled());
     }
 }

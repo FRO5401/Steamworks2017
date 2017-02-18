@@ -70,13 +70,13 @@ public class OI {
 	public OI(){
 
 		//Shoot (Loader) Button
-		xboxA_Driver.toggleWhenPressed(new LoadShooter());
+		xboxA_Driver.whenPressed(new LoadShooter());
 		
 		//Climber Button
 		xboxY_Operator.whenPressed(new Climb());
 		
 		//Flywheels Button
-		xboxB_Operator.toggleWhenPressed(new FlyWheelControl());
+		xboxB_Operator.whenPressed(new FlyWheelControl());
 		
 		//AutoTarget Button
 		xboxA_Operator.toggleWhenPressed(new TargetHigh());
@@ -88,7 +88,7 @@ public class OI {
 		xboxLeftBumper_Operator.whenPressed(new UnjamIn());
 		
 		//Compressor Override
-		xboxStart_Operator.toggleWhenPressed(new CompressorToggle());
+		xboxStart_Operator.whenPressed(new CompressorToggle());
 
 		//XXX TEMPORARY BUTTON
 			//For testing pneumatic shifter on drivebase
