@@ -233,5 +233,6 @@ public class XboxMove extends Command {
     // subsystems is scheduled to run
     protected void interrupted() {
     	Robot.drivebase.stop();
+    	System.out.println("XboxMove Interrupted");
     }
 }

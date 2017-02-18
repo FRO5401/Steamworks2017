@@ -1,26 +1,35 @@
 package org.usfirst.frc.team5401.robot.commands;
 
+import org.usfirst.frc.team5401.robot.Robot;
+
 import edu.wpi.first.wpilibj.command.Command;
 
-import org.usfirst.frc.team5401.robot.Robot;
-import org.usfirst.frc.team5401.robot.RobotMap;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
 /**
- *
+ * Requires drivebase, shooter, compressor, and loader in order to cause
+ * other commands that have control of it to run their interrupts which
+ * should be deactivating the systems.
+ * 
+ * Should Trigger:
+ * 	AutoTurnAngle interrupted()
+ * 	GetShooterUpToSpeed interrupted()
+ * 	Shoot interrupted()
+ * 
+ * Note: It is intended that the compressor turns on and the shooter off.
+ * 
  */
-public class LoadShooter extends Command {
-	
-    public LoadShooter() {
+public class CeaseFire extends Command {
+
+    public CeaseFire() {
         // Use requires() here to declare subsystem dependencies
+        requires(Robot.drivebase);
+        requires(Robot.shooter);
+        requires(Robot.compressorsubsystem);
         requires(Robot.loader);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.loader.switchState();
-    	SmartDashboard.putBoolean("Loader Conveyors", Robot.loader.isEnabled());
-	}
+    }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
@@ -28,18 +37,15 @@ public class LoadShooter extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+        return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	//end() does nothing because this command toggles the state
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	Robot.loader.stopConveyorsAndMeteringMotor();
-    	System.out.println("LoadShooter Interrupted");
     }
 }
