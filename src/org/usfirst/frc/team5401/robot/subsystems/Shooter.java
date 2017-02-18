@@ -135,4 +135,12 @@ public class Shooter extends Subsystem {
     public void stop(){
     	_talonMaster.set(0);
     }
+    
+    public double getTargetSpeed(){
+    	return MOTOR_SPEED;
+    }
+    
+    public double getVelocity(){
+    	return _talonMaster.getEncVelocity();
+    }
 }

@@ -79,7 +79,7 @@ public class OI {
 		//Flywheels Button
 		xboxB_Operator.toggleWhenPressed(new FlyWheelControl());
 		
-		//TODO AutoTarget Button
+		//AutoTarget Button
 		xboxA_Operator.toggleWhenPressed(new TargetHigh());
 		
 		//Unjammer Button
