@@ -1,8 +1,6 @@
 package org.usfirst.frc.team5401.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-
-import org.usfirst.frc.team5401.robot.Robot;
 import org.usfirst.frc.team5401.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.Solenoid;
@@ -11,7 +9,7 @@ import edu.wpi.first.wpilibj.Solenoid;
 /**
  *
  */
-public class Hopper extends Subsystem {
+public class Unjammer extends Subsystem {
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
@@ -19,8 +17,8 @@ public class Hopper extends Subsystem {
 	private Solenoid leftUnjammer;
 	private Solenoid rightUnjammer;
 	
-	public Hopper(){
-		leftUnjammer = new Solenoid(RobotMap.HOPPER_UNJAMMER_LEFT);
+	public Unjammer(){
+		leftUnjammer  = new Solenoid(RobotMap.HOPPER_UNJAMMER_LEFT);
 		rightUnjammer = new Solenoid(RobotMap.HOPPER_UNJAMMER_RIGHT);
 	}
 
@@ -39,4 +37,3 @@ public class Hopper extends Subsystem {
     	rightUnjammer.set(false);
     }
 }
-

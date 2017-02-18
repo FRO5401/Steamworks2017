@@ -1,21 +1,22 @@
 package org.usfirst.frc.team5401.robot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team5401.robot.Robot;
+
+import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class HopperBlender extends Command {
+public class Unjam extends Command {
 
-    public HopperBlender() {
+    public Unjam() {
         // Use requires() here to declare subsystem dependencies
-        requires(Robot.hopper);
+        requires(Robot.unjammer);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.hopper.blenderTurn(1);
+    	Robot.unjammer.unjammerOut();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -24,7 +25,7 @@ public class HopperBlender extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+        return false;
     }
 
     // Called once after isFinished returns true
@@ -34,5 +35,6 @@ public class HopperBlender extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	Robot.unjammer.unjammerIn();
     }
 }
