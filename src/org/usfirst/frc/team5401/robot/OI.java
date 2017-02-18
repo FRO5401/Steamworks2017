@@ -141,10 +141,10 @@ public class OI {
 	//For Feeder Up/Down
 	public int getXboxLeftStickY_Operator(){
 		double value = xboxController_Driver.getRawAxis(RobotMap.XBOX_AXIS_LEFT_Y);
-		if (value > .3){
-			return 1;
-		} else if (value < -.3){
-			return -1;
+		if (value > .3){//this is controller down
+			return -1;// so down as in negative
+		} else if (value < -.3){//this is controller up
+			return 1;// so up as in positive
 		} else {
 			return 0;
 		}
