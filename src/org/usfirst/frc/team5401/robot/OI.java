@@ -68,7 +68,7 @@ public class OI {
 	
 	//Buttons
 	public OI(){
-
+/*
 		//Shoot (Loader) Button
 		xboxA_Driver.toggleWhenPressed(new LoadShooter());
 
@@ -92,7 +92,7 @@ public class OI {
 		//XXX TEMPORARY BUTTON
 			//For testing pneumatic shifter on drivebase
 		xboxBack_Driver.toggleWhenPressed(new TestShift());
-
+*/
 	}
 	
 	/**Method Naming: 'read' = Analog; 'get' = Digital **/
