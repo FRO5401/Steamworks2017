@@ -82,6 +82,15 @@ public class XboxMove extends Command {
     	boolean precision	=	Robot.oi.getPrecision_Driver();
     	boolean brake		=	Robot.oi.getBrake_Driver();
     	boolean turn		= 	Robot.oi.getTurnButton_Driver();
+    	
+    	boolean gearShiftLow = Robot.oi.getXboxBack_Driver();
+    	boolean gearShiftHigh = Robot.oi.getXboxStart_Driver();
+    	
+    	if (gearShiftHigh){
+    		Robot.drivebase.shiftGearLowToHigh();;
+    	} else if (gearShiftLow){
+    		Robot.drivebase.shiftGearHighToLow();
+    	}
     		
  /*   		//Alternative Upshift using velocity
     		if(velocitySample2 >= maximumVelocityForLowGear){
@@ -147,12 +156,12 @@ public class XboxMove extends Command {
     	
     	
 /*****Shifting Gear Code*********/
-    	Robot.drivebase.getEncoderDistance();
+//    	Robot.drivebase.getEncoderDistance();
 /*    	//Backlogs the old final velocity (velocity 2) into the new initial velocity (velocity 1)
     	velocitySample1 = velocitySample2;
 */   	
     	//Gets new final velocity
-    	velocitySample2 = Robot.drivebase.getVelocityOfRobot();
+ //   	velocitySample2 = Robot.drivebase.getVelocityOfRobot();
     	
     	//1/23/17 NOT NEEDED
     	//Gets change in time
@@ -180,7 +189,7 @@ public class XboxMove extends Command {
     	
     	
     	//												vvvvv this is for no shifting at acceleration = 0 when robot is totally still, might be unnecessary
-    	if(slew <= 0 + RobotMap.DRIVE_THRESHHOLD && velocitySample2 != 0){
+//    	if(slew <= 0 + RobotMap.DRIVE_THRESHHOLD && velocitySample2 != 0){
     	//Uses average acceleration for gear shifting up to higher speeds
     	//0 is just there to understand original logic
 		//Commented out because of problems of unwanted shifting up if running at a low constant velocity
@@ -189,24 +198,24 @@ public class XboxMove extends Command {
     		//}
     		
     	//Alternative Upshift using velocity
-    		if(Math.abs(velocitySample2) >= MAXIMUM_VELOCITY_FOR_LOW_GEAR){
-    			Robot.drivebase.shiftGearLowToHigh();
-    			Robot.drivebase.setDPPHighGear();
-    		}
+//    		if(Math.abs(velocitySample2) >= MAXIMUM_VELOCITY_FOR_LOW_GEAR){
+//    			Robot.drivebase.shiftGearLowToHigh();
+//    			Robot.drivebase.setDPPHighGear();
+//    		}
 
 
     	//Uses Current Velocity to Shift High to Low
-    		if(Math.abs(velocitySample2) <= MINIMUM_VELOCITY_FOR_HIGH_GEAR){
-    			Robot.drivebase.shiftGearHighToLow();
-    			Robot.drivebase.setDPPLowGear();
-    		}
+//    		if(Math.abs(velocitySample2) <= MINIMUM_VELOCITY_FOR_HIGH_GEAR){
+//    			Robot.drivebase.shiftGearHighToLow();
+//    			Robot.drivebase.setDPPLowGear();
+//    		}
 
     	//Alternative Downshift Due to release in Thottle
     		//if(Math.abs(thottle) <= 0 + RobotMap.DRIVE_THRESHHOLD) {
     		//	Robot.drivebase.shiftGearHighToLow();
     		//}
     		
-    	}
+//    	}
     	//Gear Shift Done
     }
 

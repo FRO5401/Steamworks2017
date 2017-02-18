@@ -92,7 +92,7 @@ public class OI {
 
 		//XXX TEMPORARY BUTTON
 			//For testing pneumatic shifter on drivebase
-		xboxBack_Driver.toggleWhenPressed(new TestShift());
+		//xboxBack_Driver.toggleWhenPressed(new TestShift());
 
 	}
 	
@@ -160,4 +160,11 @@ public class OI {
 		}
 	}
 	
+	public boolean getXboxBack_Driver(){
+		return xboxController_Driver.getRawButton(7);
+	}
+	
+	public boolean getXboxStart_Driver(){
+		return xboxController_Driver.getRawButton(8);
+	}
 }
