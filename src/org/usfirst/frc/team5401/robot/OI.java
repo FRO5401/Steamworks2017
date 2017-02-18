@@ -68,8 +68,10 @@ public class OI {
 	
 	//Buttons
 	public OI(){
+
 		//Shoot (Loader) Button
 		xboxA_Driver.toggleWhenPressed(new LoadShooter());
+
 		
 		//Climber Button
 		xboxY_Operator.whenPressed(new Climb());
@@ -85,9 +87,11 @@ public class OI {
 		//Unjammer In Only Button
 		xboxLeftBumper_Operator.whenPressed(new UnjamIn());
 		
+
 		//XXX TEMPORARY BUTTON
 			//For testing pneumatic shifter on drivebase
 		xboxBack_Driver.toggleWhenPressed(new TestShift());
+
 	}
 	
 	/**Method Naming: 'read' = Analog; 'get' = Digital **/
@@ -128,6 +132,7 @@ public class OI {
 		}
 	}
 	
+
 	//For Feeder Up/Down
 	public int getXboxLeftStickY_Operator(){
 		double value = xboxController_Driver.getRawAxis(RobotMap.XBOX_AXIS_LEFT_Y);

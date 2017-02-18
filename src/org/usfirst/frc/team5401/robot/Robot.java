@@ -49,6 +49,7 @@ public class Robot extends IterativeRobot {
     	infeed = new Infeed();
     	loader = new Loader();
     	shooter = new Shooter();
+    	visionprocessing = new VisionProcessing();
     	compressorsubsystem = new CompressorSubsystem();
     	unjammer = new Unjammer();
     	
@@ -100,6 +101,7 @@ public class Robot extends IterativeRobot {
         if (autonomousCommand != null) autonomousCommand.start();
         
         //Start loader motors
+
         Robot.compressorsubsystem.startCompressor();
     }
 

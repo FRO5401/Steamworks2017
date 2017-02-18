@@ -3,7 +3,7 @@ package org.usfirst.frc.team5401.robot.subsystems;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.Timer;
+//import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 
@@ -26,8 +26,10 @@ public class DriveBase extends Subsystem {
     // here. Call these from Commands.
 	private VictorSP leftDrive;
 	private VictorSP rightDrive;
+
 	private DoubleSolenoid gearShifter;
 	private Timer driveTimer;
+
 	private Encoder leftEncoder;
 	private Encoder rightEncoder;
 	private ADXRS450_Gyro gyro;
@@ -53,16 +55,16 @@ public class DriveBase extends Subsystem {
 	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-    	setDefaultCommand(new XboxMove());
+//    	setDefaultCommand(new XboxMove());
     }
     
     public void drive(double leftDriveDesired, double rightDriveDesired){
     	leftDrive .set(leftDriveDesired); //passes desired state to speed controllers
     	rightDrive.set(-1* rightDriveDesired);
     	
+
     	System.out.println("LEFT DESIRED: " + leftDriveDesired);
     	System.out.println("RIGHT DESIRED: " + rightDriveDesired);
-    	
     	
     }
 
@@ -87,7 +89,9 @@ public class DriveBase extends Subsystem {
     	rightEncoder.setDistancePerPulse(LOW_GEAR_RIGHT_DPP);
     	
     }
+
 /*    
+
     public double getTimerValue(){
     	double timerValue = driveTimer.get();
     	//Also displays for testings
@@ -114,6 +118,7 @@ public class DriveBase extends Subsystem {
     	SmartDashboard.putNumber("Velocity (With DPP", velocity);
     	return velocity;
     }
+
     
     public void setDPPLowGear(){
     	leftEncoder.setDistancePerPulse(LOW_GEAR_LEFT_DPP);
@@ -154,4 +159,5 @@ public class DriveBase extends Subsystem {
     public void recalibrateGyro(){
     	gyro.calibrate();
     }
+
 }

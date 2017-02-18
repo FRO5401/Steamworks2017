@@ -20,9 +20,13 @@ public class RobotMap {
 	public static final double DRIVE_SENSITIVITY_PRECISE = 0.2;
 	public static final double DRIVE_SPIN_SENSITIVITY 	 = 0.5;
 	public static final double DRIVE_THRESHHOLD 		 = 0.1;
+
+	public static final double SHOOTER_SETPOINT 		 = 0.0;
+
 	public static final double AUTO_TURN_THRESHOLD 		 = 0.1;
 	public static final double AUTO_TURN_PRECISION		 = 0.5;
 	public static final double AUTO_TURN_SPEED			 = 1.0;
+
 	
 	//Joysticks
 	public static final int XBOX_CONTROLLER_DRIVER 	 = 0;

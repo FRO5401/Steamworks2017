@@ -56,6 +56,7 @@ public class XboxMove extends Command {
 		
 		
 		// Use requires() here to declare subsystem dependencies
+
         requires(Robot.drivebase);
         
         //Starts timer, 1/23/17 NOT NEEDED because no timer necessary
@@ -65,28 +66,52 @@ public class XboxMove extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	Robot.drivebase.shiftGearHighToLow();
+
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+
     	double angle = Robot.drivebase.reportGyro();
     	SmartDashboard.putNumber("Gyro",  angle);
     	
     	double 	slew        =	-1 * Robot.oi.readXboxLeftX_Driver();
+
     	double 	throttle 	=	Robot.oi.readRightTrigger_Driver();
     	double 	reverse 	=	Robot.oi.readLeftTrigger_Driver();
     	boolean precision	=	Robot.oi.getPrecision_Driver();
     	boolean brake		=	Robot.oi.getBrake_Driver();
     	boolean turn		= 	Robot.oi.getTurnButton_Driver();
+    		}
+*/    		
+ /*   		//Alternative Upshift using velocity
+    		if(velocitySample2 >= maximumVelocityForLowGear){
+    			Robot.drivebase.shiftGearLowToHigh();
+    		}
+
+
+    		//Uses Current Velocity to Shift High to Low
+    		if(velocitySample2 <= minimumVelocityForHighGear){
+    			Robot.drivebase.shiftGearHighToLow();
+    		}
+
+    		//Alternative Downshift Due to release in Thottle
+    		//if(Math.abs(thottle) <= 0 + RobotMap.DRIVE_THRESHHOLD) {
+    		//	Robot.drivebase.shiftGearHighToLow();
+    		//}
+*/    		
+    	}
+    	//Gear Shift Done
+    	
 
     	//Driving Code
     	double right = 0, left = 0, sensitivity;
-    	
+    	/*
     	System.out.println("LEFT STICK X: " + slew + "\n"
     					 + "RIGHT TRIGGER: " + throttle + "\n"
     					 + "LEFT TRIGGER: " + reverse + "\n"
     					 + "BRAKE: " + brake);
-    	
+    	*/
     	
     	if (precision) { //Sets drive precision based on RobotMap and Precision Mode
     		sensitivity	=	RobotMap.DRIVE_SENSITIVITY_PRECISE;
@@ -115,8 +140,8 @@ public class XboxMove extends Command {
     		}
     	}
     	
-    	System.out.println("LEFT: " + left);
-    	System.out.println("RIGHT: " + right);
+//    	System.out.println("LEFT: " + left);
+//    	System.out.println("RIGHT: " + right);
     	
     	Robot.drivebase.drive(left, right);
     
