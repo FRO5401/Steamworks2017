@@ -141,9 +141,9 @@ public class OI {
 	//For Feeder Up/Down
 	public int getXboxLeftStickY_Operator(){
 		double value = xboxController_Driver.getRawAxis(RobotMap.XBOX_AXIS_LEFT_Y);
-		if (value > .1){
+		if (value > .3){
 			return 1;
-		} else if (value < -.1){
+		} else if (value < -.3){
 			return -1;
 		} else {
 			return 0;
