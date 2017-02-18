@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import org.usfirst.frc.team5401.robot.commands.*;
+import org.usfirst.frc.team5401.robot.autonomous.*;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -67,39 +68,33 @@ public class OI {
 	
 	//Buttons
 	public OI(){
-		/*
-		//Shooter
-		xboxA_Driver.toggleWhenPressed(new FlyWheelControl());
+
+		//Shoot (Loader) Button
+		xboxA_Driver.toggleWhenPressed(new LoadShooter());
+
 		
-		//Infeeder
-		xboxRightBumper_Operator.whenPressed(new FeedInAndOut(1));
-		xboxRightBumper_Operator.whenReleased(new FeedStop());
+		//Climber Button
+		xboxY_Operator.whenPressed(new Climb());
 		
-		xboxLeftBumper_Operator.whenPressed(new FeedInAndOut(-1));
-		xboxLeftBumper_Operator.whenReleased(new FeedStop());
+		//Flywheels Button
+		xboxB_Operator.toggleWhenPressed(new FlyWheelControl());
 		
-		xboxLeftBumper_Operator.whenPressed(new FeederUpDown(1));
-		xboxRightBumper_Operator.whenPressed(new FeederUpDown(-1));
-		//will be left stick Y axis
+		//TODO AutoTarget Button
 		
-		//GearManipulator
-		//xboxX_Driver.toggleWhenPressed(new PopGear());
-		xboxX_Driver.whenPressed(new PopGear(-1)); //out
-		xboxX_Driver.whenReleased(new PopGear(1)); //in
+		//Unjammer Button
+		xboxRightBumper_Operator.whileHeld(new UnjamToggle());
 		
-		//Loader
-		xboxR3_Operator.toggleWhenPressed(new LoadShooter());
+		//Unjammer In Only Button
+		xboxLeftBumper_Operator.whenPressed(new UnjamIn());
 		
-		//Hopper
-		xboxBack_Operator.whenPressed(new HopperFlap(1));
-		xboxStart_Operator.whenPressed(new HopperFlap(-1));
-		
-		xboxX_Driver.whenPressed(new HopperUnjammer(1));
-		xboxX_Driver.whenReleased(new HopperUnjammer(-1));
-		*/
-		xboxStart_Operator.whenPressed(new TargetHigh());
+
+		//XXX TEMPORARY BUTTON
+			//For testing pneumatic shifter on drivebase
+		xboxBack_Driver.toggleWhenPressed(new TestShift());
+
 	}
-	//Method Naming: 'read' = Analog; 'get' = Digital
+	
+	/**Method Naming: 'read' = Analog; 'get' = Digital **/
 	
 	public double readXboxLeftX_Driver(){
 		return xboxController_Driver.getRawAxis(RobotMap.XBOX_AXIS_LEFT_X);
@@ -125,12 +120,42 @@ public class OI {
 		return xboxController_Driver.getRawButton(9);
 	}
 	
-	public boolean getXboxB_Driver(){ //Climb Button
-		return xboxController_Driver.getRawButton(2);
+	//For GearMechanism
+	public int getXboxRightStickY_Driver(){
+		double value = xboxController_Driver.getRawAxis(RobotMap.XBOX_AXIS_RIGHT_X);
+		if (value > .1){
+			return 1;
+		} else if (value < -.1){
+			return -1;
+		} else {
+			return 0;
+		}
 	}
 	
-	public boolean getXboxBack_Operator(){ //TODO TEST Button
-		return xboxController_Operator.getRawButton(7);
+
+	//For Feeder Up/Down
+	public int getXboxLeftStickY_Operator(){
+		double value = xboxController_Driver.getRawAxis(RobotMap.XBOX_AXIS_LEFT_Y);
+		if (value > .1){
+			return 1;
+		} else if (value < -.1){
+			return -1;
+		} else {
+			return 0;
+		}
+	}
+	
+	//For Feeder In/Out
+	public int getXboxTriggers_Operator(){
+		double left  = xboxController_Operator.getRawAxis(RobotMap.XBOX_AXIS_LEFT_TRIGGER);
+		double right = xboxController_Operator.getRawAxis(RobotMap.XBOX_AXIS_RIGHT_TRIGGER);
+		if (right > .1){ //Feeder In in prioritized over Out
+			return 1;
+		} else if (left > .1){
+			return -1;
+		} else {
+			return 0;
+		}
 	}
 	
 }

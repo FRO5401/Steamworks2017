@@ -1,21 +1,23 @@
-package org.usfirst.frc.team5401.robot.commands;
+package org.usfirst.frc.team5401.robot.autonomous;
 
 import edu.wpi.first.wpilibj.command.Command;
+
 import org.usfirst.frc.team5401.robot.Robot;
+import org.usfirst.frc.team5401.robot.subsystems.Shooter;
 
 /**
  *
  */
-public class HopperBlender extends Command {
+public class AutoShoot extends Command {
 
-    public HopperBlender() {
+    public AutoShoot() {
         // Use requires() here to declare subsystem dependencies
-        requires(Robot.hopper);
+        requires(Robot.shooter);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.hopper.blenderTurn(1);
+    	
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -24,7 +26,7 @@ public class HopperBlender extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+        return false;
     }
 
     // Called once after isFinished returns true

@@ -1,19 +1,17 @@
 package org.usfirst.frc.team5401.robot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
-
 import org.usfirst.frc.team5401.robot.Robot;
-import org.usfirst.frc.team5401.robot.RobotMap;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class LoadShooter extends Command {
-	
-    public LoadShooter() {
+public class UnjamToggle extends Command {
+
+    public UnjamToggle() {
         // Use requires() here to declare subsystem dependencies
-        requires(Robot.loader);
+        requires(Robot.unjammer);
     }
 
     // Called just before this Command runs the first time
@@ -22,10 +20,7 @@ public class LoadShooter extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	SmartDashboard.putBoolean("Loader Conveyors", true);
-    	Robot.loader.runConveyorsAndMeteringMotor();
-    	//check button press
-    	//if pressed, load ball
+    	Robot.unjammer.unjammerIn();
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -35,14 +30,11 @@ public class LoadShooter extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	//stop motors
+    	Robot.unjammer.unjammerOut();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	//stop motors
-    	SmartDashboard.putBoolean("Loader Conveyors", false);
-    	Robot.loader.stopConveyorsAndMeteringMotor();
     }
 }

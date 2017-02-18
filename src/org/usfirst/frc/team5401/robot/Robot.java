@@ -11,6 +11,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team5401.robot.subsystems.*;
 
+import org.usfirst.frc.team5401.robot.autonomous.AutoTurnAngle;
+import org.usfirst.frc.team5401.robot.autonomous.DoNothing;
+
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the IterativeRobot
@@ -27,11 +30,13 @@ public class Robot extends IterativeRobot {
 	public static Loader loader;
 	public static Shooter shooter;
 	public static VisionProcessing visionprocessing;
-	public static Hopper hopper;
+	public static CompressorSubsystem compressorsubsystem;
+	public static Unjammer unjammer;
 	public static OI oi;
 
     Command autonomousCommand;
     SendableChooser chooser;
+    
 
     /**
      * This function is run when the robot is first started up and should be
@@ -44,13 +49,15 @@ public class Robot extends IterativeRobot {
     	infeed = new Infeed();
     	loader = new Loader();
     	shooter = new Shooter();
-    	hopper = new Hopper();
     	visionprocessing = new VisionProcessing();
+    	compressorsubsystem = new CompressorSubsystem();
+    	unjammer = new Unjammer();
     	
 		oi = new OI();/****ALWAYS Instantiate OI() last*****/
         
 		chooser = new SendableChooser();
-//        chooser.addObject("My Auto", new MyAutoCommand());
+		chooser.addDefault("Do Nothing", new DoNothing());
+        chooser.addObject("AutoTurn", new AutoTurnAngle(180));
         SmartDashboard.putData("Auto mode", chooser);
     }
 	
@@ -94,7 +101,8 @@ public class Robot extends IterativeRobot {
         if (autonomousCommand != null) autonomousCommand.start();
         
         //Start loader motors
-   //     Robot.loader.runConveyors();
+
+        Robot.compressorsubsystem.startCompressor();
     }
 
     /**
@@ -110,6 +118,8 @@ public class Robot extends IterativeRobot {
         // continue until interrupted by another command, remove
         // this line or comment it out.
         if (autonomousCommand != null) autonomousCommand.cancel();
+        
+        Robot.compressorsubsystem.startCompressor();
     }
 
     /**
@@ -117,6 +127,7 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
+        Robot.compressorsubsystem.getCompressorStatus();
     }
     
     /**

@@ -1,10 +1,8 @@
 package org.usfirst.frc.team5401.robot;
 /**
- * The RobotMap is a mapping from the ports sensors and actuators are wired into
- * to a variable name. This provides flexibility changing wiring, makes checking
- * the wiring easier and significantly reduces the number of magic numbers
- * floating around.
- */
+* Steamworks 2017 RobotMap code
+* (c) 2017 Bensalem High School Fightin' Robotic Owls
+*/
 public class RobotMap {
     // For example to map the left and right motors, you could define the
     // following variables to use with your drivetrain subsystem.
@@ -22,7 +20,13 @@ public class RobotMap {
 	public static final double DRIVE_SENSITIVITY_PRECISE = 0.2;
 	public static final double DRIVE_SPIN_SENSITIVITY 	 = 0.5;
 	public static final double DRIVE_THRESHHOLD 		 = 0.1;
+
 	public static final double SHOOTER_SETPOINT 		 = 0.0;
+
+	public static final double AUTO_TURN_THRESHOLD 		 = 0.1;
+	public static final double AUTO_TURN_PRECISION		 = 0.5;
+	public static final double AUTO_TURN_SPEED			 = 1.0;
+
 	
 	//Joysticks
 	public static final int XBOX_CONTROLLER_DRIVER 	 = 0;
@@ -41,8 +45,8 @@ public class RobotMap {
 	public static final int DRIVE_RIGHT_MOTOR     = 1;
 	public static final int SHOOTER_MOTORS   	  = 2;
 	public static final int INFEEDER_MOTOR		  = 3;
-	public static final int LOADER_CONVEYOR_LEFT  = 4;
-	public static final int LOADER_CONVEYOR_RIGHT = 5;
+	public static final int METERING_ROLLER       = 4;
+	public static final int HOPPER_CONVEYOR       = 5;
 	public static final int CLIMBER_MOTOR 		  = 6;
 	public static final int HOPPER_SPINNER		  = 7;
 	
@@ -56,14 +60,14 @@ public class RobotMap {
 	
 	//Pneumatics
 	public static final int PCM_ID 			= 0;
-	public static final int DRIVE_SHIFT_IN   	 = 0;
-	public static final int DRIVE_SHIFT_OUT  	 = 1;
-	public static final int INFEEDER_IN		 	 = 2;
-	public static final int INFEEDER_OUT     	 = 3;
-	public static final int HOPPER_UNJAMMER_IN   = 4;
-	public static final int HOPPER_UNJAMMER_OUT  = 5;
-	public static final int GEAR_MANIPULATOR_IN  = 6;
-	public static final int GEAR_MANIPULATOR_OUT = 7;
+	public static final int DRIVE_SHIFT_IN   	  = 0;
+	public static final int DRIVE_SHIFT_OUT  	  = 1;
+	public static final int INFEEDER_IN		 	  = 2;
+	public static final int INFEEDER_OUT     	  = 3;
+	public static final int HOPPER_UNJAMMER_RIGHT = 4;
+	public static final int HOPPER_UNJAMMER_LEFT  = 5;
+	public static final int GEAR_MANIPULATOR_IN   = 6;
+	public static final int GEAR_MANIPULATOR_OUT  = 7;
 //	public static final int HOPPER_FLAP_IN		 = 6;
 //	public static final int HOPPER_FLAP_OUT      = 7;
 	

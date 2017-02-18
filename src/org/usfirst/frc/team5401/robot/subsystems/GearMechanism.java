@@ -3,7 +3,9 @@ package org.usfirst.frc.team5401.robot.subsystems;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import org.usfirst.frc.team5401.robot.RobotMap;
+import org.usfirst.frc.team5401.robot.commands.PopGear;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
@@ -20,6 +22,7 @@ public class GearMechanism extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
+    	setDefaultCommand(new PopGear());
     }
     
     public void gearInOut(int direction){
