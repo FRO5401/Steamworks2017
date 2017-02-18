@@ -39,14 +39,15 @@ public class TargetHigh extends Command {
     	double angle = Robot.visionprocessing.readTargetingData();
     	SmartDashboard.putNumber("Target Angle", angle);
 
-//    	Robot.loader.runConveyors();
 //    	Robot.shooter.setSetpoint(RobotMap.SHOOTER_SETPOINT);
 //    	Robot.drivebase.autoTurnAngle(angle);
+//		Robot.loader.runConveyors();    	
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Robot.oi.getXboxBack_Operator();//TODO Make sure this is the button
+       // return Robot.oi.getXboxBack_Operator();//TODO Make sure this is the button
+    	return false;
     }
 
     // Called once after isFinished returns true

@@ -28,7 +28,7 @@ public class DriveBase extends Subsystem {
 	private VictorSP rightDrive;
 
 	private DoubleSolenoid gearShifter;
-	private Timer driveTimer;
+//	private Timer driveTimer; //TODO Remove
 
 	private Encoder leftEncoder;
 	private Encoder rightEncoder;
@@ -48,7 +48,7 @@ public class DriveBase extends Subsystem {
 		leftEncoder = new Encoder(RobotMap.DRIVE_ENC_LEFT_A, RobotMap.DRIVE_ENC_LEFT_B, true, Encoder.EncodingType.k4X);
 		//																					vvv if this was false, DPP doesn't have to be negative
 		rightEncoder = new Encoder(RobotMap.DRIVE_ENC_RIGHT_A, RobotMap.DRIVE_ENC_RIGHT_B, true, Encoder.EncodingType.k4X);
-		driveTimer = new Timer();
+//		driveTimer = new Timer(); //TODO Remove
 
 		gyro = new ADXRS450_Gyro();
 	}
