@@ -3,6 +3,7 @@ package org.usfirst.frc.team5401.robot.commands;
 import org.usfirst.frc.team5401.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * Starts the loader.
@@ -18,6 +19,9 @@ public class Shoot extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	Robot.loader.runConveyorsAndMeteringMotor();
+    	
+    	//XXX Might have to give back control of xboxmove to drivebase
+		System.out.println("Stop Targeting");
     }
 
     // Called repeatedly when this Command is scheduled to run
