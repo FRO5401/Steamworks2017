@@ -89,7 +89,10 @@ public class OI {
 		//TODO AutoTarget Button
 		
 		//Unjammer Button
-		xboxR3_Operator.toggleWhenPressed(new Unjam());
+		xboxRightBumper_Operator.whileHeld(new UnjamToggle());
+		
+		//Unjammer In Only Button
+		xboxLeftBumper_Operator.whenPressed(new UnjamIn());
 		
 		//XXX TEMPORARY BUTTON
 			//For testing pneumatic shifter on drivebase

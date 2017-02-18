@@ -7,20 +7,20 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class Unjam extends Command {
+public class UnjamIn extends Command {
 
-    public Unjam() {
+    public UnjamIn() {
         // Use requires() here to declare subsystem dependencies
-        requires(Robot.unjammer);
+    	requires(Robot.unjammer);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.unjammer.unjammerOut();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	Robot.unjammer.unjammerIn();
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -35,6 +35,5 @@ public class Unjam extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	Robot.unjammer.unjammerIn();
     }
 }
