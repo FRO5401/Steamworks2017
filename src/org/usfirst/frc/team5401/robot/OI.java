@@ -68,17 +68,8 @@ public class OI {
 	
 	//Buttons
 	public OI(){
-		
-		//Drive Controls
-		
-		//TODO Make gear pop use right stick (driver)
-		
 		//Shoot (Loader) Button
 		xboxA_Driver.toggleWhenPressed(new LoadShooter());
-		
-		//TODO Make the feeder run off trigger buttons
-		
-		//TODO Make feeder arms work off left stick (operator)
 		
 		//Climber Button
 		xboxY_Operator.whenPressed(new Climb());
@@ -87,6 +78,12 @@ public class OI {
 		xboxB_Operator.toggleWhenPressed(new FlyWheelControl());
 		
 		//TODO AutoTarget Button
+		
+		//Unjammer Button
+		xboxRightBumper_Operator.whileHeld(new UnjamToggle());
+		
+		//Unjammer In Only Button
+		xboxLeftBumper_Operator.whenPressed(new UnjamIn());
 		
 		//XXX TEMPORARY BUTTON
 			//For testing pneumatic shifter on drivebase

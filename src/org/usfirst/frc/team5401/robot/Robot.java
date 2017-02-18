@@ -30,10 +30,9 @@ public class Robot extends IterativeRobot {
 	public static Loader loader;
 	public static Shooter shooter;
 	public static VisionProcessing visionprocessing;
-	public static Hopper hopper;
 	public static CompressorSubsystem compressorsubsystem;
+	public static Unjammer unjammer;
 	public static OI oi;
-	
 
     Command autonomousCommand;
     SendableChooser chooser;
@@ -50,8 +49,8 @@ public class Robot extends IterativeRobot {
     	infeed = new Infeed();
     	loader = new Loader();
     	shooter = new Shooter();
-    	hopper = new Hopper();
     	compressorsubsystem = new CompressorSubsystem();
+    	unjammer = new Unjammer();
     	
 		oi = new OI();/****ALWAYS Instantiate OI() last*****/
         
