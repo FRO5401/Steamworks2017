@@ -75,7 +75,8 @@ public class OI {
 		xboxA_Driver.whenPressed(new LoadShooter());
 		
 		//Climber Button
-		xboxY_Operator.whenPressed(new Climb());
+		xboxY_Operator.whenPressed(new Climb(1));
+		xboxY_Operator.whenReleased(new Climb(0));
 		
 		//Flywheels Button
 		xboxB_Operator.whenPressed(new FlyWheelControl());

@@ -29,7 +29,7 @@ public class Climber extends Subsystem {
 	public Climber(){
 		climberMotor = new VictorSP(RobotMap.CLIMBER_MOTOR);
 
-		SPEED = 1;
+		SPEED = 0.1;
 	}
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
