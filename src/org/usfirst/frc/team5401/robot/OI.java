@@ -71,7 +71,6 @@ public class OI {
 
 		//Shoot (Loader) Button
 		xboxA_Driver.toggleWhenPressed(new LoadShooter());
-
 		
 		//Climber Button
 		xboxY_Operator.whenPressed(new Climb());

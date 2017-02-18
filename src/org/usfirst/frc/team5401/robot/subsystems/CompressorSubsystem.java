@@ -44,5 +44,9 @@ public class CompressorSubsystem extends Subsystem {
     	boolean pressureSwitch = compressor.getPressureSwitchValue();
     	SmartDashboard.putBoolean("Pressure Switch On/Off", pressureSwitch);
     }
+    
+    public boolean isEnabled(){
+    	return compressor.enabled();
+    }
 }
 
