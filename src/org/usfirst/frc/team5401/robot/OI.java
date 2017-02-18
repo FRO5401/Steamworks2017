@@ -93,7 +93,10 @@ public class OI {
 			//For testing pneumatic shifter on drivebase
 		xboxBack_Driver.toggleWhenPressed(new TestShift());
 */
-		
+		xboxA_Driver.whenPressed(new getServer0());
+		xboxB_Driver.whenPressed(new startCapture0());
+		xboxX_Driver.whenPressed(new RemoveCapture0());
+		xboxY_Driver.whenPressed(new RemoveServer0());
 	}
 	
 	/**Method Naming: 'read' = Analog; 'get' = Digital **/

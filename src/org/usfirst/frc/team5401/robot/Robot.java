@@ -32,6 +32,7 @@ public class Robot extends IterativeRobot {
 	public static VisionProcessing visionprocessing;
 	public static CompressorSubsystem compressorsubsystem;
 	public static Unjammer unjammer;
+	public static DummyCamera dummycamera;
 	public static OI oi;
 
     Command autonomousCommand;
@@ -51,7 +52,9 @@ public class Robot extends IterativeRobot {
     	shooter = new Shooter();
     	visionprocessing = new VisionProcessing();
     	compressorsubsystem = new CompressorSubsystem();
+    	dummycamera = new DummyCamera();
     	unjammer = new Unjammer();
+    	
     	
 		oi = new OI();/****ALWAYS Instantiate OI() last*****/
         
