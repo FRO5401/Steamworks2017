@@ -42,7 +42,7 @@ public class CompressorSubsystem extends Subsystem {
     	double currentValue = compressor.getCompressorCurrent();
     	SmartDashboard.putNumber("Compressor Current Value", currentValue);
     	boolean pressureSwitch = compressor.getPressureSwitchValue();
-    	SmartDashboard.putBoolean("Pressure Switch On/Off", pressureSwitch);
+    	SmartDashboard.putBoolean("Compressor Pressure Switch On/Off", pressureSwitch);
     }
     
     public boolean isEnabled(){
