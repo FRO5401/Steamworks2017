@@ -87,6 +87,8 @@ public class OI {
 		//Unjammer In Only Button
 		xboxLeftBumper_Operator.whenPressed(new UnjamIn());
 		
+		//Compressor Override
+		xboxStart_Operator.toggleWhenPressed(new CompressorToggle());
 
 		//XXX TEMPORARY BUTTON
 			//For testing pneumatic shifter on drivebase

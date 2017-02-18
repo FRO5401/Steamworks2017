@@ -48,5 +48,13 @@ public class CompressorSubsystem extends Subsystem {
     public boolean isEnabled(){
     	return compressor.enabled();
     }
+    
+    public void switchState(){
+    	if (isEnabled()){
+    		stopCompressor();
+    	} else {
+    		startCompressor();
+    	}
+    }
 }
 
