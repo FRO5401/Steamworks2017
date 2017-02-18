@@ -49,6 +49,7 @@ public class CompressorSubsystem extends Subsystem {
     	return compressor.enabled();
     }
     
+    //Tested and works
     public void switchState(){
     	if (isEnabled()){
     		stopCompressor();
