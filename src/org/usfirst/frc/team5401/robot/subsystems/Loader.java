@@ -75,7 +75,7 @@ public class Loader extends Subsystem {
    }
    
    public void switchState(){
-	   if (enabled){
+	   if (!enabled){
 		   runConveyorsAndMeteringMotor();
 	   } else {
 		   stopConveyorsAndMeteringMotor();

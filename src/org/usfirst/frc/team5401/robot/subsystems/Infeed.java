@@ -45,5 +45,9 @@ public class Infeed extends Subsystem {
     	}
 
     }
+    
+    public void switchState(){
+    	
+    }
 }
 
