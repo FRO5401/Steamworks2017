@@ -47,6 +47,12 @@ public class AutoDrive extends Command {
     	autoDistThresh = 2;
     	MAXIMUM_VELOCITY_FOR_LOW_GEAR = 50;
     	MINIMUM_VELOCITY_FOR_HIGH_GEAR = 40;
+    	
+    	if (SpeedInput > .5){
+    		Robot.drivebase.shiftGearLowToHigh();
+    	} else {
+    		Robot.drivebase.shiftGearHighToLow();
+    	}
     }
 
     // Called just before this Command runs the first time

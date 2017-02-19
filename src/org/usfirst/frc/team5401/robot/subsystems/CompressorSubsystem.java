@@ -18,6 +18,7 @@ public class CompressorSubsystem extends Subsystem {
 	
 	public CompressorSubsystem(){
 		compressor = new Compressor(RobotMap.PCM_ID);
+		startCompressor();
 	}
 	
     public void initDefaultCommand() {
