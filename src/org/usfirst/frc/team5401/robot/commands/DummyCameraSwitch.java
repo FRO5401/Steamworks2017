@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team5401.robot.Robot;
 
 /**
- *
+ *Command not needed
  */
 public class DummyCameraSwitch extends Command {
 
@@ -16,7 +16,7 @@ public class DummyCameraSwitch extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.dummycameras.startCameras();
+    	//Robot.dummycameras.startCameras();
     }
 
     // Called repeatedly when this Command is scheduled to run
