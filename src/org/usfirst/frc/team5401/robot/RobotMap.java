@@ -62,17 +62,12 @@ public class RobotMap {
 	public static final int PCM_ID 			= 0;
 	public static final int DRIVE_SHIFT_IN   	  = 0;
 	public static final int DRIVE_SHIFT_OUT  	  = 1;
-	public static final int INFEEDER_IN		 	  = 3;
 	public static final int INFEEDER_OUT     	  = 2;
-//	public static final int HOPPER_UNJAMMER_RIGHT = 4;
-//	public static final int HOPPER_UNJAMMER_LEFT  = 5;
-	public static final int UNJAMMER = 5;
+	public static final int INFEEDER_IN		 	  = 3;
+	//NOTHING IN 4
+	public static final int UNJAMMER              = 5;
 	public static final int GEAR_MANIPULATOR_IN   = 6;
 	public static final int GEAR_MANIPULATOR_OUT  = 7;
-//	public static final int HOPPER_FLAP_IN		 = 6;
-//	public static final int HOPPER_FLAP_OUT      = 7;
-	
-//	public static final int PCM_ID_2 		= 1;
 
 							
 }

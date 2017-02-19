@@ -21,8 +21,7 @@ public class Climb extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	if (input == 1) {
-    		Robot.climber.climbUp();
-    		
+    		Robot.climber.climbUp();	
     	} else if (input == 0) {
     		Robot.climber.climbStop();
     	}

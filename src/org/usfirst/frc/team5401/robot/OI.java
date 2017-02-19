@@ -68,8 +68,6 @@ public class OI {
 	
 	//Buttons
 	public OI(){
-		
-		//xboxX_Driver.toggleWhenPressed(new FeederUpDown());
 
 		//Shoot (Loader) Button
 		xboxA_Driver.whenPressed(new LoadShooter());
@@ -85,7 +83,8 @@ public class OI {
 		xboxA_Operator.whenPressed(new TargetHigh());
 		
 		//Unjammer Button
-		xboxRightBumper_Operator.whileHeld(new UnjamToggle());
+		xboxRightBumper_Operator.whenPressed(new UnjamToggle(1));
+		xboxRightBumper_Operator.whenReleased(new UnjamToggle(-1));
 		
 		//Unjammer In Only Button
 		xboxLeftBumper_Operator.whenPressed(new UnjamIn());
@@ -129,11 +128,11 @@ public class OI {
 	
 	//For GearMechanism
 	public int getXboxRightStickY_Driver(){
-		double value = xboxController_Driver.getRawAxis(RobotMap.XBOX_AXIS_RIGHT_X);
+		double value = xboxController_Driver.getRawAxis(RobotMap.XBOX_AXIS_RIGHT_Y);
 		if (value > .1){
-			return 1;
-		} else if (value < -.1){
 			return -1;
+		} else if (value < -.1){
+			return 1;
 		} else {
 			return 0;
 		}
@@ -142,7 +141,7 @@ public class OI {
 
 	//For Feeder Up/Down
 	public int getXboxLeftStickY_Operator(){
-		double value = xboxController_Driver.getRawAxis(RobotMap.XBOX_AXIS_LEFT_Y);
+		double value = xboxController_Operator.getRawAxis(RobotMap.XBOX_AXIS_LEFT_Y);
 		if (value > .3){//this is controller down
 			return -1;// so down as in negative
 		} else if (value < -.3){//this is controller up
