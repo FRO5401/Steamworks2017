@@ -55,5 +55,6 @@ public class Climb extends Command {
     // subsystems is scheduled to run
     protected void interrupted() {
     	Robot.climber.climbStop();
+    	System.out.println("Climb Interrupted");
     }
 }

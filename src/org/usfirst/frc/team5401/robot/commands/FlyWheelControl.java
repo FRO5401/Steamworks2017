@@ -50,5 +50,6 @@ public class FlyWheelControl extends Command {
     	Robot.shooter.stop();
     	Robot.compressorsubsystem.stopCompressor();
     	SmartDashboard.putBoolean("Shooter OnOff", Robot.shooter.isEnabled());
+    	System.out.println("FlyWheelControl Interrupted");
     }
 }

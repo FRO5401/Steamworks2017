@@ -33,6 +33,7 @@ public class TargetHigh extends Command {
     	double angle = Robot.visionprocessing.findTargetAngle();
     	SmartDashboard.putNumber("Target Angle", angle);
     	
+    	System.out.println("Starting AutoTargetAndShoot CmdGroup from TargetHigh Cmd");
     	AutoTargetAndShoot shoot = new AutoTargetAndShoot(angle);    	
     }
 

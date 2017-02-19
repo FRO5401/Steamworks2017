@@ -15,6 +15,8 @@ public class AutoTarget extends CommandGroup {
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
     	
+    	System.out.println("AutoTarget Started!");
+    	
     	addParallel(new AutoTurnAngle(angle));
     	addSequential(new GetShooterUpToSpeed());
     }

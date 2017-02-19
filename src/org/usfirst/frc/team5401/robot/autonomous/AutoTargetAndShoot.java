@@ -13,6 +13,9 @@ public class AutoTargetAndShoot extends CommandGroup {
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
     	
+    	System.out.println("AutoTargetAndShoot Started!");
+    	System.out.println("Starting AutoTarget CmdGroup from AutoTargetAndShoot CmdGroup");
+    	
     	addSequential(new AutoTarget(angle));
     	addSequential(new Shoot());
     }

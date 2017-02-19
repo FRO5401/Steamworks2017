@@ -41,5 +41,6 @@ public class CompressorToggle extends Command {
     protected void interrupted() {
     	Robot.compressorsubsystem.stopCompressor();
     	//TODO SmartDashboard
+    	System.out.println("CompressorToggle Interrupted");
     }
 }
