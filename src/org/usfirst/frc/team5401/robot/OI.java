@@ -72,7 +72,7 @@ public class OI {
 		xboxY_Driver.toggleWhenPressed(new TestShift());
 		
 		//Shooter
-		xboxA_Driver.toggleWhenPressed(new FlyWheelControl());
+		xboxB_Operator.toggleWhenPressed(new FlyWheelControl());
 		
 		//Infeeder
 		xboxRightBumper_Operator.whenPressed(new FeedInAndOut(1));
@@ -91,7 +91,7 @@ public class OI {
 //		xboxX_Driver.whenReleased(new PopGear(1)); //in
 		
 		//Loader
-		xboxR3_Operator.toggleWhenPressed(new LoadShooter());
+		xboxR3_Driver.toggleWhenPressed(new LoadShooter());
 		
 		//Hopper
 		xboxBack_Operator.whenPressed(new HopperFlap(1));

@@ -37,13 +37,16 @@ public class Shooter extends Subsystem {
 		//private PIDSource source;
 		//private PIDOutput output;
 		
-	private double RPM; 
+	//private double RPM; 
 	
 //	private double MAX_COUNTER_SECONDS = 100;
 	private double MOTOR_SPEED = -23750;
 	private double feed_forward;
 	
 	private double kP, kI, kD;
+    private int Izone;
+    private double rampRate;
+    private int channel;
     
 	// Initialize your subsystem here
 	   /**
@@ -60,7 +63,7 @@ public class Shooter extends Subsystem {
 	   	_talonSlave = new CANTalon(1);
 	    	
 	   	_talonMaster.setProfile(0);
-	   	_talonMaster.set(MOTOR_SPEED);//XXX We shouldn't set the speed here in the constructor, might even want to set mode to v% and speed to 0 to deliberately stop
+	   	//_talonMaster.set(MOTOR_SPEED);//XXX We shouldn't set the speed here in the constructor, might even want to set mode to v% and speed to 0 to deliberately stop
 	   	_talonMaster.changeControlMode(TalonControlMode.Speed);
 	   	_talonSlave.changeControlMode(CANTalon.TalonControlMode.Follower);
     	_talonSlave.set(_talonMaster.getDeviceID());
@@ -73,10 +76,14 @@ public class Shooter extends Subsystem {
 	   	SmartDashboard.putNumber("Velocity",  _talonMaster.getEncVelocity());
 	   	_talonMaster.setEncPosition(0);
 	   	
-	   feed_forward = 0.034;
-	   kP = 0;
-	   kI = 0;
-	   kD = 0;
+	   feed_forward = SmartDashboard.getNumber("feed forward", feed_forward);
+	   kP = SmartDashboard.getNumber("kP", kP);
+	   kI = SmartDashboard.getNumber("kI", kI);
+	   kD = SmartDashboard.getNumber("kI", kD);
+	   
+	  Izone = 0;
+	  rampRate = 10.23;
+	  channel = 0;
 	   
 	   SmartDashboard.putNumber("feed_forward", feed_forward);
 	   SmartDashboard.putNumber("kP", kP);
@@ -131,8 +138,9 @@ public class Shooter extends Subsystem {
       kP = SmartDashboard.getNumber("kP", kP);
       kI = SmartDashboard.getNumber("kI", kI);
       kD = SmartDashboard.getNumber("kD", kD);
-      _talonMaster.setF(feed_forward);
-      _talonMaster.setPID(kP, kI, kD);//XXX We commented this in and out last night when it worked/stopped working
+      //_talonMaster.setF(feed_forward);
+      //_talonMaster.setPID(kP, kI, kD);//XXX We commented this in and out last night when it worked/stopped working
+      _talonMaster.setPID(kP,  kI, kD, feed_forward, Izone, rampRate, channel );
     	_talonMaster.set(MOTOR_SPEED);
      	_talonMaster.getEncPosition(); //XXX Comment this out, this shouldn't be doing anything
 	   	SmartDashboard.putNumber("Position", _talonMaster.getEncPosition());
@@ -144,10 +152,10 @@ public class Shooter extends Subsystem {
     public void reset(){
     	//counter.reset();
     	
-    	RPM = 0;//XXX Does this still do anything?
+    	//RPM = 0;//XXX Does this still do anything?
     	stop();
     	SmartDashboard.putBoolean("Shooter OnOff", false);
-    	SmartDashboard.putNumber("RPM", RPM);
+    	//SmartDashboard.putNumber("RPM", RPM);
     }
     
     /** Sets the shooter motors to 0
