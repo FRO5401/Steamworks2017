@@ -19,6 +19,7 @@ public class Loader extends Subsystem {
 	private VictorSP ConveyorMotor;
 		
 	private double LOADER_SPEED;
+	private boolean enabled;
 	
 	/** 
 	 *  <p>
@@ -38,16 +39,13 @@ public class Loader extends Subsystem {
 		
 		LOADER_SPEED = -.8;
 		SmartDashboard.putBoolean("Loader Conveyors", false);
+		enabled = false;
 	}
 	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-
         //setDefaultCommand(new LoadShooter());
     }
-    
-    //load action method (direction parameter)
-    	//send motor values 
     
     /** Runs the conveyers
      *  
@@ -58,6 +56,7 @@ public class Loader extends Subsystem {
      *  </p>
      */
     public void runConveyorsAndMeteringMotor(){
+    	enabled = true;
     	MeteringMotor.set(LOADER_SPEED);
     	ConveyorMotor.set(LOADER_SPEED);
     }
@@ -66,8 +65,21 @@ public class Loader extends Subsystem {
      * 
      */
     public void stopConveyorsAndMeteringMotor(){
-    	MeteringMotor .set(0);
+    	enabled = false;
+    	MeteringMotor.set(0);
     	ConveyorMotor.set(0);
+   }
+    
+   public boolean isEnabled(){
+	   return enabled;
+   }
+   
+   public void switchState(){
+	   if (!enabled){
+		   runConveyorsAndMeteringMotor();
+	   } else {
+		   stopConveyorsAndMeteringMotor();
+	   }
    }
     
 }

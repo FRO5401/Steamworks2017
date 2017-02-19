@@ -82,6 +82,15 @@ public class XboxMove extends Command {
     	boolean precision	=	Robot.oi.getPrecision_Driver();
     	boolean brake		=	Robot.oi.getBrake_Driver();
     	boolean turn		= 	Robot.oi.getTurnButton_Driver();
+    	
+    	boolean gearShiftLow = Robot.oi.getXboxBack_Driver();
+    	boolean gearShiftHigh = Robot.oi.getXboxStart_Driver();
+    	
+    	if (gearShiftHigh){
+    		Robot.drivebase.shiftGearLowToHigh();;
+    	} else if (gearShiftLow){
+    		Robot.drivebase.shiftGearHighToLow();
+    	}
     		
  /*   		//Alternative Upshift using velocity
     		if(velocitySample2 >= maximumVelocityForLowGear){

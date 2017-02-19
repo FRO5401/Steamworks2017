@@ -25,7 +25,7 @@ public class Infeed extends Subsystem {
 		feederArm =  new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.INFEEDER_IN, RobotMap.INFEEDER_OUT);
 		feederMotor = new VictorSP(RobotMap.INFEEDER_MOTOR);
 	
-		FEED_SPEED = 0.5;
+		FEED_SPEED = 0.9;
 	}
 
     public void initDefaultCommand() {
@@ -44,6 +44,10 @@ public class Infeed extends Subsystem {
     		feederArm.set(DoubleSolenoid.Value.kReverse);
     	}
 
+    }
+    
+    public void switchState(){
+    	
     }
 }
 

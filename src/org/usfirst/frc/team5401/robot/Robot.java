@@ -102,7 +102,7 @@ public class Robot extends IterativeRobot {
         
         //Start loader motors
 
-        Robot.compressorsubsystem.startCompressor();
+        //Robot.compressorsubsystem.startCompressor();
     }
 
     /**
@@ -119,7 +119,7 @@ public class Robot extends IterativeRobot {
         // this line or comment it out.
         if (autonomousCommand != null) autonomousCommand.cancel();
         
-        Robot.compressorsubsystem.startCompressor();
+        //Robot.compressorsubsystem.startCompressor();
     }
 
     /**

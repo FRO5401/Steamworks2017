@@ -18,31 +18,27 @@ public class LoadShooter extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    }
+    	Robot.loader.switchState();
+    	SmartDashboard.putBoolean("Loader Conveyors", Robot.loader.isEnabled());
+	}
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	SmartDashboard.putBoolean("Loader Conveyors", true);
-    	Robot.loader.runConveyorsAndMeteringMotor();
-    	//check button press
-    	//if pressed, load ball
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	//stop motors
+    	//end() does nothing because this command toggles the state
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	//stop motors
-    	SmartDashboard.putBoolean("Loader Conveyors", false);
     	Robot.loader.stopConveyorsAndMeteringMotor();
     }
 }

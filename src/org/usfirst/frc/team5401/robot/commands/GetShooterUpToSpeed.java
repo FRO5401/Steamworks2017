@@ -13,11 +13,13 @@ public class GetShooterUpToSpeed extends Command {
 	private boolean upToSpeed;
 	private double targetSpeed;
 	private double currentSpeed;
+	
 	private final double THRESH;
 	
     public GetShooterUpToSpeed() {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.shooter);
+        requires(Robot.compressorsubsystem);
         upToSpeed = false;
         targetSpeed = 0;
         currentSpeed = 0;
@@ -26,6 +28,7 @@ public class GetShooterUpToSpeed extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.compressorsubsystem.stopCompressor();
     	Robot.shooter.startMotors();
     	targetSpeed = Math.abs(Robot.shooter.getTargetSpeed());
     	upToSpeed = false;

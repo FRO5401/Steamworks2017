@@ -98,7 +98,7 @@ public class VisionProcessing extends Subsystem {
     	return distance;
     }
 
-    public boolean terminateTargeting(boolean terminate){
+/*    public boolean terminateTargeting(boolean terminate){
     	try {    			
     		outCmd = NetworkTable.getTable("BoilerCommands");
             outCmd.putBoolean("Cmd", terminate);
@@ -109,6 +109,6 @@ public class VisionProcessing extends Subsystem {
        	}
 //    	return true; //Unreachable due to try/catch
     }
-
+*/
 }
 

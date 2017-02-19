@@ -22,12 +22,9 @@ import com.ctre.CANTalon.TalonControlMode;
 */
 public class Shooter extends Subsystem {
 	
-	
-	
 	//declare talon speed controller
 	CANTalon _talonMaster;
 	CANTalon _talonSlave;
-
 	
 	//declare counter
 	private Counter counter;
@@ -43,6 +40,8 @@ public class Shooter extends Subsystem {
 	private double MOTOR_SPEED = -.82;
 	
 	private double kP, kI, kD;
+	
+	private boolean enabled;
     
 	// Initialize your subsystem here
 	   /**
@@ -115,6 +114,7 @@ public class Shooter extends Subsystem {
     }
     
     public void startMotors(){
+    	enabled = true;
     	MOTOR_SPEED = SmartDashboard.getNumber("motor_speed", MOTOR_SPEED);
     	_talonMaster.set(MOTOR_SPEED);
     }
@@ -127,6 +127,7 @@ public class Shooter extends Subsystem {
     	stop();
     	SmartDashboard.putBoolean("Shooter OnOff", false);
     	SmartDashboard.putNumber("RPM", RPM);
+    	enabled = false;
     }
     
     /** Sets the shooter motors to 0
@@ -134,6 +135,7 @@ public class Shooter extends Subsystem {
     */
     public void stop(){
     	_talonMaster.set(0);
+    	enabled = false;
     }
     
     public double getTargetSpeed(){
@@ -142,5 +144,17 @@ public class Shooter extends Subsystem {
     
     public double getVelocity(){
     	return _talonMaster.getEncVelocity();
+    }
+    
+    public boolean isEnabled(){
+    	return enabled;
+    }
+    
+    public void switchState(){
+    	if (enabled){
+    		reset();
+    	} else {
+    		startMotors();
+    	}
     }
 }
