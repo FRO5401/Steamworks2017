@@ -1,39 +1,41 @@
 package org.usfirst.frc.team5401.robot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team5401.robot.Robot;
-import org.usfirst.frc.team5401.robot.subsystems.Hopper;
+
+import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class HopperFlap extends Command {
+public class FeederControl extends Command {
 	
-	private int openClose;
+	private int upDown;
+	private int inOrOut;
 	
-    public HopperFlap(int direction) {
+    public FeederControl() {
         // Use requires() here to declare subsystem dependencies
-        requires(Robot.hopper);
-        openClose = direction;
+        requires(Robot.infeed);
+        
+        upDown = 0;
+        inOrOut = 0;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	if(openClose == 1){
-    		Robot.hopper.flapOpen();
-    	}
-    	else if (openClose == -1){
-    		Robot.hopper.flapClose();
-    	}
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	upDown  = Robot.oi.getXboxLeftStickY_Operator();
+    	inOrOut = Robot.oi.getXboxTriggers_Operator();
+    	
+    	Robot.infeed.armUpDown(upDown);
+    	Robot.infeed.feederDirection(inOrOut);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+        return false;
     }
 
     // Called once after isFinished returns true

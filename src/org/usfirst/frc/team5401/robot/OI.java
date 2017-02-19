@@ -68,42 +68,44 @@ public class OI {
 	
 	//Buttons
 	public OI(){
-		//For testing pneumatic shifter on drivebase
-		xboxY_Driver.toggleWhenPressed(new TestShift());
 		
 		//Shooter
-		xboxA_Driver.toggleWhenPressed(new FlyWheelControl());
+		xboxB_Operator.toggleWhenPressed(new FlyWheelControl());
+
+		//Shoot (Loader) Button
+		xboxA_Driver.whenPressed(new LoadShooter());
 		
-		//Infeeder
-		xboxRightBumper_Operator.whenPressed(new FeedInAndOut(1));
-		xboxRightBumper_Operator.whenReleased(new FeedStop());
+		//Climber Button
+		xboxY_Operator.whenPressed(new Climb(1));
+		xboxY_Operator.whenReleased(new Climb(0));
 		
-		xboxLeftBumper_Operator.whenPressed(new FeedInAndOut(-1));
-		xboxLeftBumper_Operator.whenReleased(new FeedStop());
+		//Flywheels Button
+		xboxB_Operator.whenPressed(new FlyWheelControl());
 		
-		xboxLeftBumper_Operator.whenPressed(new FeederUpDown(1));
-		xboxRightBumper_Operator.whenPressed(new FeederUpDown(-1));
-		//will be left stick Y axis
+		//AutoTarget Button
+		xboxA_Operator.whenPressed(new TargetHigh());
 		
-		//GearManipulator
-		xboxX_Driver.toggleWhenPressed(new PopGear());//Figured out toggleWhenPressed, gear command PopGear will be changed in Gear subsystem branch
-//		xboxX_Driver.whenPressed(new PopGear(-1)); //out
-//		xboxX_Driver.whenReleased(new PopGear(1)); //in
+		//Unjammer Button
+		xboxRightBumper_Operator.whenPressed(new UnjamToggle(1));
+		xboxRightBumper_Operator.whenReleased(new UnjamToggle(-1));
 		
-		//Loader
-		xboxR3_Operator.toggleWhenPressed(new LoadShooter());
+
+		//Unjammer In Only Button
+		xboxLeftBumper_Operator.whenPressed(new UnjamIn());
+
 		
-		//Hopper
-		xboxBack_Operator.whenPressed(new HopperFlap(1));
-		xboxStart_Operator.whenPressed(new HopperFlap(-1));
+		//Compressor Override
+		xboxStart_Operator.whenPressed(new CompressorToggle());
 		
-		xboxX_Operator.whenPressed(new HopperUnjammer(1));
-		xboxX_Operator.whenReleased(new HopperUnjammer(-1));
+		//Cease Fire
+		xboxR3_Operator.whenPressed(new CeaseFire());
 		
-	//	xboxY_Driver.whenPressed(new AutoDrive(50, .85));
-	//	xboxB_Driver.whenPressed(new AutoTurnAngle(-180));
+		//XXX TEMPORARY BUTTON
+			//For testing pneumatic shifter on drivebase
+//		xboxBack_Driver.toggleWhenPressed(new TestShift());
 	}
-	//Method Naming: 'read' = Analog; 'get' = Digital
+	
+	/**Method Naming: 'read' = Analog; 'get' = Digital **/
 	
 	public double readXboxLeftX_Driver(){
 		return xboxController_Driver.getRawAxis(RobotMap.XBOX_AXIS_LEFT_X);
@@ -129,9 +131,55 @@ public class OI {
 		return xboxController_Driver.getRawButton(9);
 	}
 	
-	public boolean getXboxB_Driver(){ //Climb Button
+	public boolean getDriveInvertButton_Driver() {
 		return xboxController_Driver.getRawButton(2);
 	}
 	
+	//For GearMechanism
+	public int getXboxRightStickY_Driver(){
+		double value = xboxController_Driver.getRawAxis(RobotMap.XBOX_AXIS_RIGHT_Y);
+		if (value > .1){
+			return -1;
+		} else if (value < -.1){
+			return 1;
+		} else {
+			return 0;
+		}
+	}
 	
+
+	//For Feeder Up/Down
+	public int getXboxLeftStickY_Operator(){
+		double value = xboxController_Operator.getRawAxis(RobotMap.XBOX_AXIS_LEFT_Y);
+		if (value > .3){//this is controller down
+			return -1;// so down as in negative
+		} else if (value < -.3){//this is controller up
+			return 1;// so up as in positive
+		} else {
+			return 0;
+		}
+	}
+	
+	//For Feeder In/Out
+	public int getXboxTriggers_Operator(){
+		double left  = xboxController_Operator.getRawAxis(RobotMap.XBOX_AXIS_LEFT_TRIGGER);
+		double right = xboxController_Operator.getRawAxis(RobotMap.XBOX_AXIS_RIGHT_TRIGGER);
+		if (right > .1){ //Feeder In in prioritized over Out
+			return 1;
+		} else if (left > .1){
+			return -1;
+		} else {
+			return 0;
+		}
+	}
+	
+	//Gear Shift to Low
+	public boolean getXboxBack_Driver(){
+		return xboxController_Driver.getRawButton(7);
+	}
+	
+	//Gear Shift to High
+	public boolean getXboxStart_Driver(){
+		return xboxController_Driver.getRawButton(8);
+	}
 }

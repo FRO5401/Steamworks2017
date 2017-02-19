@@ -1,30 +1,27 @@
 package org.usfirst.frc.team5401.robot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
-import org.usfirst.frc.team5401.robot.subsystems.Hopper;
 import org.usfirst.frc.team5401.robot.Robot;
 
-/**
- *
- */
-public class HopperUnjammer extends Command {
-	
-	private int upDown;
+import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-    public HopperUnjammer(int direction) {
+/**
+ * Starts the loader.
+ * Note: The loader must be turned off manually.
+ */
+public class Shoot extends Command {
+	
+    public Shoot() {
         // Use requires() here to declare subsystem dependencies
-        requires(Robot.hopper);
-        upDown = direction;
+        requires(Robot.loader);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	if(upDown == 1){
-    		Robot.hopper.unjammerUp();
-    	}
-    	else if (upDown == -1){
-    		Robot.hopper.unjammerDown();
-    	}
+    	Robot.loader.runConveyorsAndMeteringMotor();
+    	
+    	//XXX Might have to give back control of xboxmove to drivebase
+		System.out.println("Stop Targeting");
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -43,5 +40,7 @@ public class HopperUnjammer extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	Robot.loader.stopConveyorsAndMeteringMotor();
+    	System.out.println("Shoot Interrupted");
     }
 }

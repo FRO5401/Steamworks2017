@@ -9,49 +9,47 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class FlyWheelControl extends Command {
-
-	//private final double FLYWHEEL_SPEED = 0; //TODO 
 	
     public FlyWheelControl() {
         // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
     	requires(Robot.shooter);
+    	requires(Robot.compressorsubsystem);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.shooter.reset();
-    	//Robot.shooter.startMotors();
-    	//Robot.shooter.setSetpoint(0);
-    	//Robot.shooter.enabe();
-    	SmartDashboard.putBoolean("Shooter OnOff", true);
+    	Robot.shooter.switchState();
     	
+    	if (Robot.shooter.isEnabled()){
+    		Robot.compressorsubsystem.stopCompressor();
+    	} else {
+    		Robot.compressorsubsystem.startCompressor();
+    	}
+    	
+    	SmartDashboard.putBoolean("Shooter OnOff", Robot.shooter.isEnabled());    	
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	//Robot.shooter.setSetpoint(FLYWHEEL_SPEED);
-    	Robot.shooter.startMotors();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true
-    protected void end() {
-    	//Not necessary for toggleWhenPressed
-    	//Robot.shooter.reset();
-    	//Robot.shooter.setSetpoint(0);
-    	Robot.shooter.stop();
+    protected void end() {  
+    	//end() does nothing because this command toggles the state
     }
 
     
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	SmartDashboard.putBoolean("Shooter OnOff", false);
     	Robot.shooter.stop();
+    	Robot.compressorsubsystem.stopCompressor();
+    	SmartDashboard.putBoolean("Shooter OnOff", Robot.shooter.isEnabled());
+    	System.out.println("FlyWheelControl Interrupted");
     }
 }

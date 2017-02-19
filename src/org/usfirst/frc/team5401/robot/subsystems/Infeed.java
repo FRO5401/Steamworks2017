@@ -1,9 +1,11 @@
 package org.usfirst.frc.team5401.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.VictorSP;
 import org.usfirst.frc.team5401.robot.RobotMap;
+import org.usfirst.frc.team5401.robot.commands.FeederControl;
 
 /**
  *
@@ -13,7 +15,7 @@ public class Infeed extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	
-	private  DoubleSolenoid feederArm;
+	private DoubleSolenoid feederArm;
 	private VictorSP feederMotor;
 	
 	private double FEED_SPEED;
@@ -24,12 +26,21 @@ public class Infeed extends Subsystem {
 		feederArm =  new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.INFEEDER_IN, RobotMap.INFEEDER_OUT);
 		feederMotor = new VictorSP(RobotMap.INFEEDER_MOTOR);
 	
-		FEED_SPEED = 0.5;
+		FEED_SPEED = 0.9;
+		
+		SmartDashboard.putString("FeederArm_text", "Feeder Arm");
+		SmartDashboard.putString("FeederOut_text", "GREEN = Feeder Out");
+		SmartDashboard.putString("FeederIn_text" , "RED = Feeder In");
+		if ((DoubleSolenoid.Value.kForward).equals(feederArm.get())){
+			SmartDashboard.putNumber("Feeder Arm", -1); //Feeder Arm is out
+		} else {
+			SmartDashboard.putNumber("Feeder Arm", 1); //Feeder Arm is in
+		}
 	}
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
+        setDefaultCommand(new FeederControl());
     }
     
     public void feederDirection(int direction){
@@ -39,10 +50,11 @@ public class Infeed extends Subsystem {
     public void armUpDown(int direction){
     	if (direction == 1) {
     		feederArm.set(DoubleSolenoid.Value.kForward);
+    		SmartDashboard.putNumber("Feeder Arm", -1); //Feeder Arm is out
     	} else if (direction == -1) {
     		feederArm.set(DoubleSolenoid.Value.kReverse);
+    		SmartDashboard.putNumber("Feeder Arm", 1); //Feeder Arm is in
     	}
-
     }
 }
 

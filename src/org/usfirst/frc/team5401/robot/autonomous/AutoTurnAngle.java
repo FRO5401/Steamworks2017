@@ -34,8 +34,6 @@ public class AutoTurnAngle extends Command {
     	currentAngle = 0;
     	initAngle = 0;
     	finished = true;
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
@@ -63,7 +61,7 @@ public class AutoTurnAngle extends Command {
     	currentAngle = Robot.drivebase.reportGyro() - initAngle;
     	}
     	double angle = Robot.drivebase.reportGyro();
-    	SmartDashboard.putNumber("Gyro Angl", angle);
+    	SmartDashboard.putNumber("Gyro Angle", angle);
     }
 
     // Make this return true when this Command no longer needs to run execute()

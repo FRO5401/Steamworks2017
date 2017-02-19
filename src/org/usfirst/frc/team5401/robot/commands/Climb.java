@@ -9,43 +9,31 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class Climb extends Command {
 
-	private boolean input;
-	private boolean switchTriggered;
+	private int input;
 	
-	
-    public Climb() {
+    public Climb(int direction) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.climber);
-    	
-    	input = false;
-    	switchTriggered = Robot.climber.checkSwitch();
+    	input = direction;
     }
-    
-    
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	if (input == 1) {
+    		Robot.climber.climbUp();	
+    	} else if (input == 0) {
+    		Robot.climber.climbStop();
+    	}
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	input 			= Robot.oi.getXboxB_Driver();
-    	switchTriggered = Robot.climber.checkSwitch();
-    	
-    	
-    	if (input && !switchTriggered){
-    		Robot.climber.climbUp();
-    	} else {
-    		Robot.climber.climbStop();
-    	}    	
-    	
-    	//TODO needs override
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true
@@ -55,5 +43,7 @@ public class Climb extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	Robot.climber.climbStop();
+    	System.out.println("Climb Interrupted");
     }
 }
