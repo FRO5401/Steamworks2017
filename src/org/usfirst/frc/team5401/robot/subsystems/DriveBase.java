@@ -51,6 +51,15 @@ public class DriveBase extends Subsystem {
 //		driveTimer = new Timer(); //TODO Remove
 
 		gyro = new ADXRS450_Gyro();
+		
+		SmartDashboard.putString("Transmisison_text", "Transmission");
+		SmartDashboard.putString("HighGear_text", "GREEN = High");
+		SmartDashboard.putString("LowGear_text" , "RED = Low");
+		if ((DoubleSolenoid.Value.kForward).equals(gearShifter.get())){
+			SmartDashboard.putNumber("Transmisison", -1); //Transmisison is High
+		} else {
+			SmartDashboard.putNumber("Transmisison", 1); //Transmisison is Low
+		}
 	}
 	
     public void initDefaultCommand() {
@@ -79,6 +88,7 @@ public class DriveBase extends Subsystem {
     	gearShifter.set(DoubleSolenoid.Value.kForward);
     	leftEncoder.setDistancePerPulse(HIGH_GEAR_LEFT_DPP);
     	rightEncoder.setDistancePerPulse(HIGH_GEAR_RIGHT_DPP);
+    	SmartDashboard.putNumber("Transmisison", -1); //Transmisison is High
     }
 
     public void shiftGearHighToLow(){
@@ -86,7 +96,7 @@ public class DriveBase extends Subsystem {
     	gearShifter.set(DoubleSolenoid.Value.kReverse);
     	leftEncoder.setDistancePerPulse(LOW_GEAR_LEFT_DPP);
     	rightEncoder.setDistancePerPulse(LOW_GEAR_RIGHT_DPP);
-    	
+    	SmartDashboard.putNumber("Transmisison", 1); //Transmisison is Low
     }
 
 /*    
