@@ -11,10 +11,10 @@ import org.usfirst.frc.team5401.robot.commands.PopGear;
 public class AutoPopGear extends CommandGroup {
 
     public AutoPopGear() {
-/*		addSequential(new PopGear(Open));
-		addSequential(new AutoDrive(backwards));
-		addSequential(new PopGear(Close));
-*/
+		addSequential(new AutoPopGearOnly(1));
+		addSequential(new AutoDrive(-12, .5));
+		addSequential(new AutoPopGearOnly(-1));
+		
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
