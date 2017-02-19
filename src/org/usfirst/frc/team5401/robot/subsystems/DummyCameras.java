@@ -8,16 +8,19 @@ import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 
 /**
- *Thank you team401 Camera.kt 2017 Robot for switching cameras code
+ *Thank you team401 Camera.kt 2017 Robot for switching cameras code, not yet implemented
+ *Using one dummy display camera
  */
 public class DummyCameras extends Subsystem {
 	CameraServer cameraServer;
 	UsbCamera frontCamera;
 	UsbCamera backCamera;
 	CameraServer cam;
+	
 	final int localWidth;
 	final int localHeight;
 	final int localFPS;
+	
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	public DummyCameras(){
