@@ -89,6 +89,9 @@ public class OI {
 		
 		//Compressor Override
 		xboxStart_Operator.whenPressed(new CompressorToggle());
+		
+		//CeaseFire
+		xboxR3_Operator.whenPressed(new CeaseFire());
 
 		//XXX TEMPORARY BUTTON
 			//For testing pneumatic shifter on drivebase
@@ -160,10 +163,12 @@ public class OI {
 		}
 	}
 	
+	//Gear Shift to Low
 	public boolean getXboxBack_Driver(){
 		return xboxController_Driver.getRawButton(7);
 	}
 	
+	//Gear Shift to High
 	public boolean getXboxStart_Driver(){
 		return xboxController_Driver.getRawButton(8);
 	}
