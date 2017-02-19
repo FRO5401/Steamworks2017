@@ -11,7 +11,7 @@ import org.usfirst.frc.team5401.robot.commands.PopGear;
 public class AutoCenterGear extends CommandGroup {
 
     public AutoCenterGear() {
-    	addSequential(new AutoDrive(36, .5));//75.25, .5)); //from wall to peg - robot length + length to get peg into gear
+    	addSequential(new AutoDrive(-75.25, .5)); //from wall to peg - robot length + length to get peg into gear
 		addSequential(new AutoPopGear());
 		
         // Add Commands here:

@@ -12,7 +12,7 @@ public class AutoPopGear extends CommandGroup {
 
     public AutoPopGear() {
 		addSequential(new AutoPopGearOnly(1));
-		addSequential(new AutoDrive(-12, .5));
+		addSequential(new AutoDrive(36, .5));
 		addSequential(new AutoPopGearOnly(-1));
 		
         // Add Commands here:
