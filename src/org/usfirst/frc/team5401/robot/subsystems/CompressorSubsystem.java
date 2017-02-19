@@ -19,6 +19,7 @@ public class CompressorSubsystem extends Subsystem {
 	public CompressorSubsystem(){
 		compressor = new Compressor(RobotMap.PCM_ID);
 		startCompressor();
+
 		SmartDashboard.putBoolean("Compressor On/Off", true);
 	}
 	

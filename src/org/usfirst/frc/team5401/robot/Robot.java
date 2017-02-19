@@ -11,8 +11,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team5401.robot.subsystems.*;
 
-import org.usfirst.frc.team5401.robot.autonomous.AutoTurnAngle;
-import org.usfirst.frc.team5401.robot.autonomous.DoNothing;
+//import org.usfirst.frc.team5401.robot.autonomous.AutoTurnAngle;
+//import org.usfirst.frc.team5401.robot.autonomous.DoNothing;
+import org.usfirst.frc.team5401.robot.autonomous.*; //XXX Temporary - Should import only the ones being used
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -60,7 +61,29 @@ public class Robot extends IterativeRobot {
 		Robot.compressorsubsystem.stopCompressor();
 		chooser = new SendableChooser();
 		chooser.addDefault("Do Nothing", new DoNothing());
-        chooser.addObject("AutoTurn", new AutoTurnAngle(180));
+		chooser.addObject("CenterGear", new AutoCenterGear());
+		chooser.addObject("CenterGearBlueShoot", new AutoCenterGearBlueShoot());
+		chooser.addObject("CenterGearRedShoot", new AutoCenterGearRedShoot());
+		chooser.addObject("Drive", new AutoDrive(12, .5)); //Takes in distance to drive in inches, speed to drive at
+		chooser.addObject("LeftGearBlue", new AutoLeftGearBlue());
+		chooser.addObject("LeftGearBlueShoot", new AutoLeftGearBlueShoot());
+		chooser.addObject("LeftGearRed", new AutoLeftGearRed());
+		chooser.addObject("NoGearBlueTargetedShootBaseline", new AutoNoGearBlueTargetedShootBaseline());
+		chooser.addObject("NoGearBlueTargetShooterHopper", new AutoNoGearBlueTargetShooterHopper());
+		chooser.addObject("NoGearRedTargetedShootBaseline", new AutoNoGearRedTargetedShootBaseline());
+		chooser.addObject("NoGearRedTargetShooterHopper", new AutoNoGearRedTargetShooterHopper());
+		chooser.addObject("NoGearShootBaselineBlue", new AutoNoGearShootBaselineBlue());
+		chooser.addObject("NoGearShootBaselineRed", new AutoNoGearShootBaselineRed());
+		chooser.addObject("NoGearShootHopperBlue", new AutoNoGearShootHopperBlue());
+		chooser.addObject("NoGearShootHopperRed", new AutoNoGearShootHopperRed());
+		chooser.addObject("PopGear", new AutoPopGear());
+		chooser.addObject("RightGearBlue", new AutoRightGearBlue());
+		chooser.addObject("RightGearRed", new AutoRightGearRed());
+		chooser.addObject("RightGearRedShoot", new AutoRightGearRedShoot());
+		chooser.addObject("Shoot", new AutoShoot());
+		chooser.addObject("Target", new AutoTarget(90)); //takes in angle to turn
+		chooser.addObject("TargetAndShoot", new AutoTargetAndShoot(90)); //takes in angle to turn
+		chooser.addObject("TurnAngle", new AutoTurnAngle(90)); //takes in angle to turn
         SmartDashboard.putData("Auto mode", chooser);
     }
 	
