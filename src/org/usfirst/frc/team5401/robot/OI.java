@@ -68,6 +68,9 @@ public class OI {
 	
 	//Buttons
 	public OI(){
+		
+		//Shooter
+		xboxB_Operator.toggleWhenPressed(new FlyWheelControl());
 
 		//Shoot (Loader) Button
 		xboxA_Driver.whenPressed(new LoadShooter());
@@ -86,8 +89,10 @@ public class OI {
 		xboxRightBumper_Operator.whenPressed(new UnjamToggle(1));
 		xboxRightBumper_Operator.whenReleased(new UnjamToggle(-1));
 		
+
 		//Unjammer In Only Button
 		xboxLeftBumper_Operator.whenPressed(new UnjamIn());
+
 		
 		//Compressor Override
 		xboxStart_Operator.whenPressed(new CompressorToggle());
