@@ -11,13 +11,13 @@ public class TestShift extends Command {
     public TestShift() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	//requires(Robot.drivebase);
+    	requires(Robot.drivebase);
     	
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	//Robot.drivebase.shiftGearLowToHigh();
+    	Robot.drivebase.shiftGearLowToHigh();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -36,6 +36,6 @@ public class TestShift extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	//Robot.drivebase.shiftGearHighToLow();
+    	Robot.drivebase.shiftGearHighToLow();
     }
 }

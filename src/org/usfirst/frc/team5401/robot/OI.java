@@ -68,19 +68,21 @@ public class OI {
 	
 	//Buttons
 	public OI(){
+		
+		//xboxX_Driver.toggleWhenPressed(new FeederUpDown());
 
 		//Shoot (Loader) Button
-		xboxA_Driver.toggleWhenPressed(new LoadShooter());
-
+		xboxA_Driver.whenPressed(new LoadShooter());
 		
 		//Climber Button
-		xboxY_Operator.whenPressed(new Climb());
+		xboxY_Operator.whenPressed(new Climb(1));
+		xboxY_Operator.whenReleased(new Climb(0));
 		
 		//Flywheels Button
-		xboxB_Operator.toggleWhenPressed(new FlyWheelControl());
+		xboxB_Operator.whenPressed(new FlyWheelControl());
 		
 		//AutoTarget Button
-		xboxA_Operator.toggleWhenPressed(new TargetHigh());
+		xboxA_Operator.whenPressed(new TargetHigh());
 		
 		//Unjammer Button
 		xboxRightBumper_Operator.whileHeld(new UnjamToggle());
@@ -88,10 +90,13 @@ public class OI {
 		//Unjammer In Only Button
 		xboxLeftBumper_Operator.whenPressed(new UnjamIn());
 		
+		//Compressor Override
+		xboxStart_Operator.whenPressed(new CompressorToggle());
+		
 
 		//XXX TEMPORARY BUTTON
 			//For testing pneumatic shifter on drivebase
-		xboxBack_Driver.toggleWhenPressed(new TestShift());
+		//xboxBack_Driver.toggleWhenPressed(new TestShift());
 
 	}
 	
@@ -137,10 +142,10 @@ public class OI {
 	//For Feeder Up/Down
 	public int getXboxLeftStickY_Operator(){
 		double value = xboxController_Driver.getRawAxis(RobotMap.XBOX_AXIS_LEFT_Y);
-		if (value > .1){
-			return 1;
-		} else if (value < -.1){
-			return -1;
+		if (value > .3){//this is controller down
+			return -1;// so down as in negative
+		} else if (value < -.3){//this is controller up
+			return 1;// so up as in positive
 		} else {
 			return 0;
 		}
@@ -159,4 +164,11 @@ public class OI {
 		}
 	}
 	
+	public boolean getXboxBack_Driver(){
+		return xboxController_Driver.getRawButton(7);
+	}
+	
+	public boolean getXboxStart_Driver(){
+		return xboxController_Driver.getRawButton(8);
+	}
 }

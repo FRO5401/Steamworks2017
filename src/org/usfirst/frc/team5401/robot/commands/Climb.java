@@ -9,41 +9,46 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class Climb extends Command {
 
-	private boolean input;
+	private int input;
 	
-    public Climb() {
+    public Climb(int direction) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.climber);
     	
-    	input = false;
+    	input = direction;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	if(input == 1){
+    		Robot.climber.climbUp();
+    	}else if(input == 0){
+    		Robot.climber.climbStop();
+    	}
+    	//Robot.climber.climbUp();
+    	//input = true;
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	input = true;
-    	
-    	if (input){
-    		Robot.climber.climbUp();
-    	} else {
+    	/*if (!input){
     		Robot.climber.climbStop();
     		input = false;
-    	}    	
+    	}
+    	*/    	
 
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return !input;
+    	
+        return true;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.climber.climbStop();
+    	//Robot.climber.climbStop();
     }
 
     // Called when another command which requires one or more of the same
