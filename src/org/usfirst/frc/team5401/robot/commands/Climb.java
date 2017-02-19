@@ -15,40 +15,30 @@ public class Climb extends Command {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.climber);
-    	
     	input = direction;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	if(input == 1){
+    	if (input == 1) {
     		Robot.climber.climbUp();
-    	}else if(input == 0){
+    		
+    	} else if (input == 0) {
     		Robot.climber.climbStop();
     	}
-    	//Robot.climber.climbUp();
-    	//input = true;
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	/*if (!input){
-    		Robot.climber.climbStop();
-    		input = false;
-    	}
-    	*/    	
-
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	
         return true;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	//Robot.climber.climbStop();
     }
 
     // Called when another command which requires one or more of the same
