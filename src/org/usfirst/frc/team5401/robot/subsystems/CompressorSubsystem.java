@@ -18,6 +18,8 @@ public class CompressorSubsystem extends Subsystem {
 	
 	public CompressorSubsystem(){
 		compressor = new Compressor(RobotMap.PCM_ID);
+		startCompressor();
+		SmartDashboard.putBoolean("Compressor On/Off", true);
 	}
 	
     public void initDefaultCommand() {
@@ -26,23 +28,38 @@ public class CompressorSubsystem extends Subsystem {
     }
     
     public void startCompressor(){
-    	//compressor.setClosedLoopControl(true);
-    	//compressor.start();
+    	compressor.setClosedLoopControl(true);
+    	compressor.start();
+    	SmartDashboard.putBoolean("Compressor On/Off", true);
     }
     
     public void stopCompressor(){
     	compressor.stop();
+    	SmartDashboard.putBoolean("Compressor On/Off", false);
     }
     
     public void getCompressorStatus(){
-    	//boolean enabled = compressor.enabled();
-    	//SmartDashboard.putBoolean("Compressor Enabled", enabled);
-    	//boolean loopOn = compressor.getClosedLoopControl();
-    	//SmartDashboard.putBoolean("Compressor in Closed Looop", loopOn);
-    	//double currentValue = compressor.getCompressorCurrent();
-    	//SmartDashboard.putNumber("Compressor Current Value", currentValue);
-    	//boolean pressureSwitch = compressor.getPressureSwitchValue();
-    	//SmartDashboard.putBoolean("Pressure Switch On/Off", pressureSwitch);
+    	boolean enabled = compressor.enabled();
+    	SmartDashboard.putBoolean("Compressor Enabled", enabled);
+    	boolean loopOn = compressor.getClosedLoopControl();
+    	SmartDashboard.putBoolean("Compressor in Closed Looop", loopOn);
+    	double currentValue = compressor.getCompressorCurrent();
+    	SmartDashboard.putNumber("Compressor Current Value", currentValue);
+    	boolean pressureSwitch = compressor.getPressureSwitchValue();
+    	SmartDashboard.putBoolean("Compressor Pressure Switch On/Off", pressureSwitch);
+    }
+    
+    public boolean isEnabled(){
+    	return compressor.enabled();
+    }
+    
+    //Tested and works
+    public void switchState(){
+    	if (isEnabled()){
+    		stopCompressor();
+    	} else {
+    		startCompressor();
+    	}
     }
 }
 

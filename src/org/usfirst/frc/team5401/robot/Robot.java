@@ -30,10 +30,10 @@ public class Robot extends IterativeRobot {
 	public static Loader loader;
 	public static Shooter shooter;
 	public static VisionProcessing visionprocessing;
-	public static Hopper hopper;
 	public static CompressorSubsystem compressorsubsystem;
+	public static Unjammer unjammer;
+	public static DummyCameras dummycameras;
 	public static OI oi;
-	
 
     Command autonomousCommand;
     SendableChooser chooser;
@@ -50,8 +50,10 @@ public class Robot extends IterativeRobot {
     	infeed = new Infeed();
     	loader = new Loader();
     	shooter = new Shooter();
-    	hopper = new Hopper();
+    	visionprocessing = new VisionProcessing();
     	compressorsubsystem = new CompressorSubsystem();
+    	unjammer = new Unjammer();
+    	dummycameras = new DummyCameras();
     	
 		oi = new OI();/****ALWAYS Instantiate OI() last*****/
         
@@ -102,6 +104,7 @@ public class Robot extends IterativeRobot {
         if (autonomousCommand != null) autonomousCommand.start();
         
         //Start loader motors
+
         //Robot.compressorsubsystem.startCompressor();
     }
 
@@ -119,7 +122,7 @@ public class Robot extends IterativeRobot {
         // this line or comment it out.
         if (autonomousCommand != null) autonomousCommand.cancel();
         
-        Robot.compressorsubsystem.startCompressor();
+        //Robot.compressorsubsystem.startCompressor();
     }
 
     /**

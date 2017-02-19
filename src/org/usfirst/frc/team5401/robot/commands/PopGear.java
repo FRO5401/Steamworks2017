@@ -8,22 +8,23 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class PopGear extends Command {
-
-	//private int inout;
+	
+	private int input;
 	
     public PopGear() {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.gearmechanism); 
-        //inout = direction;
+        input = 0;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.gearmechanism.gearInOut(1);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	input = Robot.oi.getXboxRightStickY_Driver();
+    	Robot.gearmechanism.gearInOut(input);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -39,6 +40,5 @@ public class PopGear extends Command {
     // subsystems is scheduled to run
     //Called when a toggleWhenPressed buttons is activated again
     protected void interrupted() {
-    	Robot.gearmechanism.gearInOut(-1);//this is called first when robotInit activates
     }
 }
