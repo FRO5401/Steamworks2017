@@ -75,25 +75,33 @@ public class XboxMove extends Command {
     	double angle = Robot.drivebase.reportGyro();
     	SmartDashboard.putNumber("Gyro",  angle);
     	
-    	double 	slew        =	-1 * Robot.oi.readXboxLeftX_Driver();
+    	double  slew      = Robot.oi.readXboxLeftX_Driver() * -1;
 
-    	double 	throttle 	=	Robot.oi.readRightTrigger_Driver();
-    	double 	reverse 	=	Robot.oi.readLeftTrigger_Driver();
-    	boolean precision	=	Robot.oi.getPrecision_Driver();
-    	boolean brake		=	Robot.oi.getBrake_Driver();
-    	boolean turn		= 	Robot.oi.getTurnButton_Driver();
+    	double 	throttle  = Robot.oi.readRightTrigger_Driver();
+    	double 	reverse   = Robot.oi.readLeftTrigger_Driver();
+    	boolean precision = Robot.oi.getPrecision_Driver();
+    	boolean brake	  = Robot.oi.getBrake_Driver();
+    	boolean turn	  = Robot.oi.getTurnButton_Driver();
+    	boolean invert	  = Robot.oi.getDriveInvertButton_Driver();
     	
-    	boolean gearShiftLow = Robot.oi.getXboxBack_Driver();
+    	boolean gearShiftLow  = Robot.oi.getXboxBack_Driver();
     	boolean gearShiftHigh = Robot.oi.getXboxStart_Driver();
     	
+    	//Manual Gear Shift
     	if (gearShiftHigh){
     		Robot.drivebase.shiftGearLowToHigh();;
     	} else if (gearShiftLow){
     		Robot.drivebase.shiftGearHighToLow();
     	}
     	
-    	//XXX TEMP
-    //XXX	Robot.drivebase.getEncoderDistance();	
+    	//Inverts Drive
+    	if (invert){
+    		slew *= -1;
+    		double temp = throttle;
+    		throttle = reverse;
+    		reverse = temp;
+    	}
+	
  /*   		//Alternative Upshift using velocity
     		if(velocitySample2 >= maximumVelocityForLowGear){
     			Robot.drivebase.shiftGearLowToHigh();

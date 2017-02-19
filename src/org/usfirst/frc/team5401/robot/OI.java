@@ -126,6 +126,10 @@ public class OI {
 		return xboxController_Driver.getRawButton(9);
 	}
 	
+	public boolean getDriveInvertButton_Driver() {
+		return xboxController_Driver.getRawButton(2);
+	}
+	
 	//For GearMechanism
 	public int getXboxRightStickY_Driver(){
 		double value = xboxController_Driver.getRawAxis(RobotMap.XBOX_AXIS_RIGHT_Y);
