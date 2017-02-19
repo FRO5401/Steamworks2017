@@ -23,16 +23,26 @@ public class GearMechanism extends Subsystem {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     	setDefaultCommand(new PopGear());
+    	
+    	SmartDashboard.putString("GearMechanism_text", "Gear Mechanism");
+    	SmartDashboard.putString("GearOut_text" , "GREEN = Gear Out");
+    	SmartDashboard.putString("GearIn_text"  , "RED = Gear In");
+    	if ((DoubleSolenoid.Value.kForward).equals(gearManip.get())){
+			SmartDashboard.putNumber("Gear Mechanism", -1); //Gear Mechanism is out
+		} else {
+			SmartDashboard.putNumber("Gear Mechanism", 1); //Gear Mechanism is in
+		}
     }
     
+    //1 == red == out, -1 == green == in XXX REMOVE
     public void gearInOut(int direction){
     	if (direction == 1) {
     		gearManip.set(DoubleSolenoid.Value.kForward);
+    		SmartDashboard.putNumber("Gear Mechanism", -1); //Gear Mechanism is out
     	} else if (direction == -1) {
     		gearManip.set(DoubleSolenoid.Value.kReverse);
+    		SmartDashboard.putNumber("Gear Mechanism", 1); //Gear Mechanism is in
     	}
-
-    }
-    
+    }  
 }
 

@@ -34,8 +34,6 @@ public class AutoTurnAngle extends Command {
     	currentAngle = 0;
     	initAngle = 0;
     	finished = true;
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time

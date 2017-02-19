@@ -1,6 +1,7 @@
 package org.usfirst.frc.team5401.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.VictorSP;
 import org.usfirst.frc.team5401.robot.RobotMap;
@@ -26,6 +27,15 @@ public class Infeed extends Subsystem {
 		feederMotor = new VictorSP(RobotMap.INFEEDER_MOTOR);
 	
 		FEED_SPEED = 0.9;
+		
+		SmartDashboard.putString("FeederArm_text", "Feeder Arm");
+		SmartDashboard.putString("FeederOut_text", "GREEN = Feeder Out");
+		SmartDashboard.putString("FeederIn_text" , "RED = Feeder In");
+		if ((DoubleSolenoid.Value.kForward).equals(feederArm.get())){
+			SmartDashboard.putNumber("Feeder Arm", -1); //Feeder Arm is out
+		} else {
+			SmartDashboard.putNumber("Feeder Arm", 1); //Feeder Arm is in
+		}
 	}
 
     public void initDefaultCommand() {
@@ -40,14 +50,11 @@ public class Infeed extends Subsystem {
     public void armUpDown(int direction){
     	if (direction == 1) {
     		feederArm.set(DoubleSolenoid.Value.kForward);
+    		SmartDashboard.putNumber("Feeder Arm", -1); //Feeder Arm is out
     	} else if (direction == -1) {
     		feederArm.set(DoubleSolenoid.Value.kReverse);
+    		SmartDashboard.putNumber("Feeder Arm", 1); //Feeder Arm is in
     	}
-
-    }
-    
-    public void switchState(){
-    	
     }
 }
 

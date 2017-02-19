@@ -58,6 +58,7 @@ public class Robot extends IterativeRobot {
     	
 		oi = new OI();/****ALWAYS Instantiate OI() last*****/
         
+		Robot.compressorsubsystem.stopCompressor();
 		chooser = new SendableChooser();
 		chooser.addDefault("Do Nothing", new DoNothing());
 		chooser.addObject("CenterGear", new AutoCenterGear());
