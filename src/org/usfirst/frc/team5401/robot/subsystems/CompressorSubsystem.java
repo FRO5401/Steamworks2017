@@ -26,8 +26,8 @@ public class CompressorSubsystem extends Subsystem {
     }
     
     public void startCompressor(){
-    	compressor.setClosedLoopControl(true);
-    	compressor.start();
+    	//compressor.setClosedLoopControl(true);
+    	//compressor.start();
     }
     
     public void stopCompressor(){
