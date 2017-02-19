@@ -3,6 +3,7 @@ package org.usfirst.frc.team5401.robot.subsystems;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.usfirst.frc.team5401.robot.RobotMap;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Solenoid;
 
 
@@ -14,14 +15,10 @@ public class Unjammer extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	
-	private Solenoid leftUnjammer;
-	private Solenoid rightUnjammer;
-//	private Solenoid unjammer;
+	private DoubleSolenoid unjammer;
 	
 	public Unjammer(){
-		leftUnjammer  = new Solenoid(RobotMap.UNJAMMER_LEFT);
-		rightUnjammer = new Solenoid(RobotMap.UNJAMMER_RIGHT);
-//		unjammer = new Solenoid(RobotMap.UNJAMMER);
+		unjammer = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.UNJAMMER_IN, RobotMap.UNJAMMER_OUT);
 	}
 
     public void initDefaultCommand() {
@@ -30,14 +27,10 @@ public class Unjammer extends Subsystem {
     }
     
     public void unjammerOut(){
-    	leftUnjammer .set(true);
-    	rightUnjammer.set(true);
-//    	unjammer.set(true);
+    	unjammer.set(DoubleSolenoid.Value.kForward);
     }
     
     public void unjammerIn(){
-    	leftUnjammer .set(false);
-    	rightUnjammer.set(false);
-//    	unjammer.set(false);
+    	unjammer.set(DoubleSolenoid.Value.kReverse);
     }
 }
