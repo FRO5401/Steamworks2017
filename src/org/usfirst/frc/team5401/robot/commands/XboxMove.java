@@ -91,7 +91,9 @@ public class XboxMove extends Command {
     	} else if (gearShiftLow){
     		Robot.drivebase.shiftGearHighToLow();
     	}
-    		
+    	
+    	//XXX TEMP
+    //XXX	Robot.drivebase.getEncoderDistance();	
  /*   		//Alternative Upshift using velocity
     		if(velocitySample2 >= maximumVelocityForLowGear){
     			Robot.drivebase.shiftGearLowToHigh();

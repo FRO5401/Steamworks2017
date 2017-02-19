@@ -62,9 +62,8 @@ public class DriveBase extends Subsystem {
     	leftDrive .set(leftDriveDesired); //passes desired state to speed controllers
     	rightDrive.set(-1* rightDriveDesired);
     	
-
-    	System.out.println("LEFT DESIRED: " + leftDriveDesired);
-    	System.out.println("RIGHT DESIRED: " + rightDriveDesired);
+ //   	System.out.println("LEFT DESIRED: " + leftDriveDesired);
+ //   	System.out.println("RIGHT DESIRED: " + rightDriveDesired);
     	
     }
 

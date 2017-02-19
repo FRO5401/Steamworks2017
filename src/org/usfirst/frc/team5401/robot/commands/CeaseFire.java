@@ -27,6 +27,7 @@ public class CeaseFire extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	System.out.println("CeaseFire start!");
     }
 
     // Called repeatedly when this Command is scheduled to run

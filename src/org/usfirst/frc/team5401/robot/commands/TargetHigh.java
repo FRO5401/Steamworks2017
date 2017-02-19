@@ -30,7 +30,8 @@ public class TargetHigh extends Command {
     	//determine movement values
     	//send an auto drive command instructions
     	SmartDashboard.putBoolean("AutoTargeting", true);
-    	double angle = Robot.visionprocessing.findTargetAngle();
+//XXX    	double angle = Robot.visionprocessing.findTargetAngle();
+    	double angle = 90;
     	SmartDashboard.putNumber("Target Angle", angle);
     	
     	System.out.println("Starting AutoTargetAndShoot CmdGroup from TargetHigh Cmd");

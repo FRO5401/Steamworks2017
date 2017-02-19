@@ -14,14 +14,14 @@ public class Unjammer extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	
-//	private Solenoid leftUnjammer;
-//	private Solenoid rightUnjammer;
-	private Solenoid unjammer;
+	private Solenoid leftUnjammer;
+	private Solenoid rightUnjammer;
+//	private Solenoid unjammer;
 	
 	public Unjammer(){
-//		leftUnjammer  = new Solenoid(RobotMap.HOPPER_UNJAMMER_LEFT);
-//		rightUnjammer = new Solenoid(RobotMap.HOPPER_UNJAMMER_RIGHT);
-		unjammer = new Solenoid(RobotMap.UNJAMMER);
+		leftUnjammer  = new Solenoid(RobotMap.UNJAMMER_LEFT);
+		rightUnjammer = new Solenoid(RobotMap.UNJAMMER_RIGHT);
+//		unjammer = new Solenoid(RobotMap.UNJAMMER);
 	}
 
     public void initDefaultCommand() {
@@ -30,14 +30,14 @@ public class Unjammer extends Subsystem {
     }
     
     public void unjammerOut(){
-//    	leftUnjammer .set(true);
-//    	rightUnjammer.set(true);
-    	unjammer.set(true);
+    	leftUnjammer .set(true);
+    	rightUnjammer.set(true);
+//    	unjammer.set(true);
     }
     
     public void unjammerIn(){
-//    	leftUnjammer .set(false);
-//    	rightUnjammer.set(false);
-    	unjammer.set(false);
+    	leftUnjammer .set(false);
+    	rightUnjammer.set(false);
+//    	unjammer.set(false);
     }
 }

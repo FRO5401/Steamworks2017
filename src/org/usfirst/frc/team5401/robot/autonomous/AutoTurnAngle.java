@@ -63,7 +63,7 @@ public class AutoTurnAngle extends Command {
     	currentAngle = Robot.drivebase.reportGyro() - initAngle;
     	}
     	double angle = Robot.drivebase.reportGyro();
-    	SmartDashboard.putNumber("Gyro Angl", angle);
+    	SmartDashboard.putNumber("Gyro Angle", angle);
     }
 
     // Make this return true when this Command no longer needs to run execute()

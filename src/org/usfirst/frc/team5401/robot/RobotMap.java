@@ -64,8 +64,8 @@ public class RobotMap {
 	public static final int DRIVE_SHIFT_OUT  	  = 1;
 	public static final int INFEEDER_OUT     	  = 2;
 	public static final int INFEEDER_IN		 	  = 3;
-	//NOTHING IN 4
-	public static final int UNJAMMER              = 5;
+	public static final int UNJAMMER_OUT		  = 4;
+	public static final int UNJAMMER_IN           = 5;
 	public static final int GEAR_MANIPULATOR_IN   = 6;
 	public static final int GEAR_MANIPULATOR_OUT  = 7;
 
