@@ -27,6 +27,10 @@ public class RobotMap {
 	public static final double AUTO_TURN_PRECISION		 = 0.5;
 	public static final double AUTO_TURN_SPEED			 = 1.0;
 
+		//For Cameras
+	public static final double CAMERA_WIDTH				= 320.0;
+	public static final double CAMERA_HEIGHT			= 240.0;
+	public static final double CAMERGA_FPS				= 15.0;
 	
 	//Joysticks
 	public static final int XBOX_CONTROLLER_DRIVER 	 = 0;
