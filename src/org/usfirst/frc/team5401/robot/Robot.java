@@ -14,6 +14,7 @@ import org.usfirst.frc.team5401.robot.subsystems.*;
 //import org.usfirst.frc.team5401.robot.autonomous.AutoTurnAngle;
 //import org.usfirst.frc.team5401.robot.autonomous.DoNothing;
 import org.usfirst.frc.team5401.robot.autonomous.*; //XXX Temporary - Should import only the ones being used
+import org.usfirst.frc.team5401.robot.commands.XboxMove;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -148,6 +149,8 @@ public class Robot extends IterativeRobot {
         // this line or comment it out.
         if (autonomousCommand != null) autonomousCommand.cancel();
         
+//        XboxMove move = new XboxMove();
+//        move.start();
         SmartDashboard.putNumber("Velocity",  Robot.shooter.getVelocity());
         Robot.compressorsubsystem.startCompressor();
     }

@@ -58,7 +58,7 @@ public class XboxMove extends Command {
 		// Use requires() here to declare subsystem dependencies
 
         requires(Robot.drivebase);
-        
+        System.out.println("XBoxMove Constructed");
         //Starts timer, 1/23/17 NOT NEEDED because no timer necessary
         //Robot.drivebase.startTimer();
 	}
@@ -66,12 +66,12 @@ public class XboxMove extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
    // 	Robot.drivebase.shiftGearHighToLow();
-
+    	
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-
+    	System.out.println("XBoxMove Excute");
     	double angle = Robot.drivebase.reportGyro();
     	SmartDashboard.putNumber("Gyro",  angle);
     	
@@ -237,6 +237,7 @@ public class XboxMove extends Command {
     // Called once after isFinished returns true
     protected void end() {
     	Robot.drivebase.stop();
+    	System.out.println("XboxMove end()");
     }
 
     // Called when another command which requires one or more of the same

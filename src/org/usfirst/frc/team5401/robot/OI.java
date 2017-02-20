@@ -100,6 +100,9 @@ public class OI {
 		//Cease Fire
 		xboxR3_Operator.whenPressed(new CeaseFire());
 		
+		//XBoxMovetest
+//		xboxX_Driver.whenPressed(new XboxMove());
+		
 		//XXX TEMPORARY BUTTON
 			//For testing pneumatic shifter on drivebase
 //		xboxBack_Driver.toggleWhenPressed(new TestShift());
