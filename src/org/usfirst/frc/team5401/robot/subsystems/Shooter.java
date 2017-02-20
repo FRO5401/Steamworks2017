@@ -45,6 +45,7 @@ public class Shooter extends Subsystem {
     private int Izone;
     private double rampRate;
     private int channel;
+    private boolean enabled;
 
     
 	// Initialize your subsystem here
@@ -155,6 +156,7 @@ public class Shooter extends Subsystem {
     	stop();
     	SmartDashboard.putBoolean("Shooter OnOff", false);
     	//SmartDashboard.putNumber("RPM", RPM);
+    	enabled = false;
     }
     
     /** Sets the shooter motors to 0
