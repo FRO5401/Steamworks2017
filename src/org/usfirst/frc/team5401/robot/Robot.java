@@ -130,6 +130,7 @@ public class Robot extends IterativeRobot {
 
         //Robot.compressorsubsystem.startCompressor();
         SmartDashboard.putNumber("Velocity",  Robot.shooter.getVelocity());
+        Robot.compressorsubsystem.startCompressor();
     }
 
     /**
@@ -148,6 +149,7 @@ public class Robot extends IterativeRobot {
         if (autonomousCommand != null) autonomousCommand.cancel();
         
         SmartDashboard.putNumber("Velocity",  Robot.shooter.getVelocity());
+        Robot.compressorsubsystem.startCompressor();
     }
 
     /**
