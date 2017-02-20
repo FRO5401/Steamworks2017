@@ -35,7 +35,7 @@ public class TargetHigh extends Command {
     	SmartDashboard.putNumber("Target Angle", angle);
     	
     	System.out.println("Starting AutoTargetAndShoot CmdGroup from TargetHigh Cmd");
-    	AutoTargetAndShoot shoot = new AutoTargetAndShoot(angle);    	
+    	AutoTargetAndShoot shoot = new AutoTargetAndShoot(angle, false);    	
     }
 
     // Make this return true when this Command no longer needs to run execute()

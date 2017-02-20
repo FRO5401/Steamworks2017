@@ -21,13 +21,16 @@ public class AutoTurnAngle extends Command {
 	private final double autoDistThresh;
 	private final double autoTurnSpeed;
 	private final double autoTurnPrecision;
+	private final boolean modeAuto;
 
-    public AutoTurnAngle(double angle) {
+    public AutoTurnAngle(double angle, boolean inAuto) {
     	//Initialize Constants
     	angleThreshold	= 2; 		//Turn angle in degrees
     	autoDistThresh	= 2; 		//Distance threshold in inches
     	autoTurnSpeed	= 0.95;
     	autoTurnPrecision = .5;
+    	
+    	modeAuto = inAuto;
     	
     	requires(Robot.drivebase);
     	desiredTurnAngle = angle;
@@ -42,6 +45,8 @@ public class AutoTurnAngle extends Command {
     protected void initialize() {
     	initAngle = Robot.drivebase.reportGyro();
 //    	Robot.drivebase.recalibrateGyro();
+    	XboxMove move = new XboxMove();
+    	move.cancel(); 
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -75,7 +80,12 @@ public class AutoTurnAngle extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.drivebase.stop();
+    	if (modeAuto) {	 //if in auto, stop motors
+    		Robot.drivebase.stop();
+    	} else { //if in teleop, start xboxmove
+    		XboxMove move = new XboxMove();
+    		move.start();
+    	}
     	System.out.println("AutoTurnAngle end()");
     }
 

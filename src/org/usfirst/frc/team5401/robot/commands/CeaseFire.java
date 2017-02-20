@@ -36,7 +36,8 @@ public class CeaseFire extends Command {
     	Robot.shooter.stop();
     	Robot.compressorsubsystem.startCompressor();
     	Robot.loader.stopConveyorsAndMeteringMotor();
-//    	XboxMove move = new XboxMove();
+    	XboxMove move = new XboxMove();
+        move.start();
     }
 
     // Make this return true when this Command no longer needs to run execute()

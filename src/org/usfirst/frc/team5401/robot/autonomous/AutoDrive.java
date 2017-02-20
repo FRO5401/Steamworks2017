@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team5401.robot.Robot;
 import org.usfirst.frc.team5401.robot.subsystems.DriveBase;
 import org.usfirst.frc.team5401.robot.RobotMap;
+import org.usfirst.frc.team5401.robot.commands.XboxMove;
 
 
 /**
@@ -48,11 +49,11 @@ public class AutoDrive extends Command {
     	MAXIMUM_VELOCITY_FOR_LOW_GEAR = 50;
     	MINIMUM_VELOCITY_FOR_HIGH_GEAR = 40;
     	
-    	if (SpeedInput > .5){
-    		Robot.drivebase.shiftGearLowToHigh();
-    	} else {
-    		Robot.drivebase.shiftGearHighToLow();
-    	}
+//    	if (SpeedInput > .5){
+//    		Robot.drivebase.shiftGearLowToHigh();
+//    	} else {
+//    		Robot.drivebase.shiftGearHighToLow();
+//    	}
     }
 
     // Called just before this Command runs the first time

@@ -8,7 +8,7 @@ import org.usfirst.frc.team5401.robot.commands.Shoot;
  */
 public class AutoTargetAndShoot extends CommandGroup {
 
-    public AutoTargetAndShoot(double angle) {
+    public AutoTargetAndShoot(double angle, boolean inAuto) {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
@@ -16,7 +16,7 @@ public class AutoTargetAndShoot extends CommandGroup {
     	System.out.println("AutoTargetAndShoot Started!");
     	System.out.println("Starting AutoTarget CmdGroup from AutoTargetAndShoot CmdGroup");
     	
-    	addSequential(new AutoTarget(angle));
+    	addSequential(new AutoTarget(angle, inAuto));
     	addSequential(new Shoot());
     }
 }

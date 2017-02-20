@@ -10,7 +10,7 @@ import org.usfirst.frc.team5401.robot.autonomous.AutoTurnAngle;
  */
 public class AutoTarget extends CommandGroup {
 	
-    public AutoTarget(double angle) {
+    public AutoTarget(double angle, boolean inAuto) {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
@@ -20,6 +20,6 @@ public class AutoTarget extends CommandGroup {
 //XXX    	addParallel(new AutoTurnAngle(angle));
 //XXX    	addSequential(new GetShooterUpToSpeed());
     
-    	addSequential(new AutoTurnAngle(angle));
+    	addSequential(new AutoTurnAngle(angle, inAuto));
     }
 }
