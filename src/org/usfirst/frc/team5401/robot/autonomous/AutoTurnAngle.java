@@ -44,9 +44,7 @@ public class AutoTurnAngle extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	initAngle = Robot.drivebase.reportGyro();
-//    	Robot.drivebase.recalibrateGyro();
-    	XboxMove move = new XboxMove();
-    	move.cancel(); 
+//    	Robot.drivebase.recalibrateGyro(); 
     }
 
     // Called repeatedly when this Command is scheduled to run

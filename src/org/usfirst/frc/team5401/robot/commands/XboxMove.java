@@ -235,9 +235,10 @@ public class XboxMove extends Command {
     }
 
     // Called once after isFinished returns true
-    protected void end() {
+    protected void end() { //SHOULD never run
     	Robot.drivebase.stop();
     	System.out.println("XboxMove end()");
+    	this.cancel();
     }
 
     // Called when another command which requires one or more of the same
@@ -245,5 +246,6 @@ public class XboxMove extends Command {
     protected void interrupted() {
     	Robot.drivebase.stop();
     	System.out.println("XboxMove Interrupted");
+    	this.cancel();
     }
 }
