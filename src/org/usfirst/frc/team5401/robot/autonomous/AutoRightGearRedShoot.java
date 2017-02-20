@@ -11,10 +11,13 @@ import org.usfirst.frc.team5401.robot.subsystems.Shooter;
 public class AutoRightGearRedShoot extends CommandGroup {
 
     public AutoRightGearRedShoot() {
-/*		addSequential(new AutoRightGearRed());
- * 		addSequential(new AutoShoot());
- * 
- */
+    	
+		addSequential(new AutoRightGearRed());
+//  	addSequential(new AutoTurnAngle());
+//  	addSequential(new AutoDrive());
+//  	addSequential(new AutoTurnAngle());
+		addSequential(new AutoShoot());
+  
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

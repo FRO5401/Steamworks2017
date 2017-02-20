@@ -11,11 +11,10 @@ public class AutoNoGearShootBaselineRed extends CommandGroup {
 
     public AutoNoGearShootBaselineRed() {
     	
-/*
- *		addSequential(AutoShoot());
- *		addSequential(AutoTurnAngle(some angle));
- *		addSequential(AutoDrive());
- */
+//    	addSequential(new AutoShoot());
+//		addSequential(new AutoTurnAngle(some angle));
+//		addSequential(new AutoDrive());
+ 
     	
         // Add Commands here:
         // e.g. addSequential(new Command1());

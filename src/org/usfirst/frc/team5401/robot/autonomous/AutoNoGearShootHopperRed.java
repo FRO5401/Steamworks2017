@@ -12,13 +12,10 @@ public class AutoNoGearShootHopperRed extends CommandGroup {
 
     public AutoNoGearShootHopperRed() {
     	
-/*
- *		addSequential(AutoShoot());
- *		addSequential(AutoTurnAngle(some angle));
- *		addSequential(AutoDrive()); 	
- *		addSequential(AutoTurnAngle(some angle));
- *		addSequential(AutoDrive()); 	
- */
+    	addSequential(new AutoNoGearShootBaselineRed());
+//    	addSequential(AutoTurnAngle(some angle));
+//		addSequential(AutoDrive()); 	
+
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
