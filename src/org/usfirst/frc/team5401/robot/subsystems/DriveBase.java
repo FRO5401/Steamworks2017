@@ -24,8 +24,10 @@ public class DriveBase extends Subsystem {
 	
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-	private VictorSP leftDrive;
-	private VictorSP rightDrive;
+	private VictorSP leftDrive1;
+	private VictorSP rightDrive1;
+	private VictorSP leftDrive2;
+	private VictorSP rightDrive2;
 
 	private DoubleSolenoid gearShifter;
 //	private Timer driveTimer; //TODO Remove
@@ -42,8 +44,10 @@ public class DriveBase extends Subsystem {
 		HIGH_GEAR_LEFT_DPP = -0.0183463796477;//NEED TO CHANGE
 		HIGH_GEAR_RIGHT_DPP = 0.0183463796477;//NEED TO CHANGE
 		
-		leftDrive   = new VictorSP(RobotMap.DRIVE_LEFT_MOTOR);
-		rightDrive  = new VictorSP(RobotMap.DRIVE_RIGHT_MOTOR);
+		leftDrive1   = new VictorSP(RobotMap.DRIVE_LEFT_MOTOR_1);
+		rightDrive1  = new VictorSP(RobotMap.DRIVE_RIGHT_MOTOR_1);
+		leftDrive2  = new VictorSP(RobotMap.DRIVE_LEFT_MOTOR_2);
+		rightDrive2 = new VictorSP(RobotMap.DRIVE_RIGHT_MOTOR_2);
 		gearShifter = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.DRIVE_SHIFT_IN, RobotMap.DRIVE_SHIFT_OUT);
 		leftEncoder = new Encoder(RobotMap.DRIVE_ENC_LEFT_A, RobotMap.DRIVE_ENC_LEFT_B, true, Encoder.EncodingType.k4X);
 		//																					vvv if this was false, DPP doesn't have to be negative
@@ -76,8 +80,10 @@ public class DriveBase extends Subsystem {
     }
     
     public void drive(double leftDriveDesired, double rightDriveDesired){
-    	leftDrive .set(leftDriveDesired); //passes desired state to speed controllers
-    	rightDrive.set(-1* rightDriveDesired);
+    	leftDrive1 .set(leftDriveDesired); //passes desired state to speed controllers
+    	rightDrive1.set(-1* rightDriveDesired);
+    	leftDrive2.set(leftDriveDesired);
+    	rightDrive2.set(-1 * rightDriveDesired);
     	
     	SmartDashboard.putNumber("Left Enc Raw" , leftEncoder.get());
 		SmartDashboard.putNumber("Right Enc Raw", rightEncoder.get());
@@ -86,8 +92,10 @@ public class DriveBase extends Subsystem {
     }
 
     public void stop(){
-    	leftDrive .set(0);
-    	rightDrive.set(0);
+    	leftDrive1 .set(0);
+    	rightDrive1.set(0);
+    	leftDrive2.set(0);
+    	rightDrive2.set(0);
     	SmartDashboard.putNumber("Robot Velocity", 0);
     }
 

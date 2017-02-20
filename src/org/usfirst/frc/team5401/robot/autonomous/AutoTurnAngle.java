@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team5401.robot.Robot;
+import org.usfirst.frc.team5401.robot.commands.XboxMove;
 
 /**
  *
@@ -34,6 +35,7 @@ public class AutoTurnAngle extends Command {
     	currentAngle = 0;
     	initAngle = 0;
     	finished = true;
+    	System.out.println("AutoTurnAngle Constructed");
     }
 
     // Called just before this Command runs the first time
@@ -46,6 +48,7 @@ public class AutoTurnAngle extends Command {
     protected void execute() {
     	if (Math.abs(desiredTurnAngle) <= angleThreshold){
     		//DesiredTurnAngle too small
+    		System.out.println("AutoTurnAngle should stop");
     		finished = true;
     	} else {
     		if (desiredTurnAngle > 0 && (currentAngle < Math.abs(desiredTurnAngle) - angleThreshold)){
@@ -57,6 +60,7 @@ public class AutoTurnAngle extends Command {
     		} else { //error or exactly 0
     			//Finished
     			finished = true;
+    			System.out.println("AutoTurnAngle should stop");
     		}
     	currentAngle = Robot.drivebase.reportGyro() - initAngle;
     	}
@@ -72,11 +76,13 @@ public class AutoTurnAngle extends Command {
     // Called once after isFinished returns true
     protected void end() {
     	Robot.drivebase.stop();
+    	System.out.println("AutoTurnAngle end()");
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
     	Robot.drivebase.stop();
+    	System.out.println("AutoTurnAngle Interrupted");
     }
 }

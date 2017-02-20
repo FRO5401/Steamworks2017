@@ -49,14 +49,15 @@ public class RobotMap {
 	public static final int CAMERA_BACK 	= 1;
 	
 	//PWM Motors
-	public static final int DRIVE_LEFT_MOTOR	  = 0;
-	public static final int DRIVE_RIGHT_MOTOR     = 1;
+	public static final int DRIVE_LEFT_MOTOR_1	  = 0;
+	public static final int DRIVE_RIGHT_MOTOR_1   = 1;
 	public static final int SHOOTER_MOTORS   	  = 2;
 	public static final int INFEEDER_MOTOR		  = 3;
 	public static final int METERING_ROLLER       = 4;
 	public static final int HOPPER_CONVEYOR       = 5;
 	public static final int CLIMBER_MOTOR 		  = 6;
-	public static final int HOPPER_SPINNER		  = 7;
+	public static final int DRIVE_LEFT_MOTOR_2	  = 7;
+	public static final int DRIVE_RIGHT_MOTOR_2   = 8;
 	
 	//Sensor Channels
 	public static final int PHOTOSWITCH_CHANNEL = 0;
