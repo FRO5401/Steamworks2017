@@ -27,10 +27,6 @@ public class RobotMap {
 	public static final double AUTO_TURN_PRECISION		 = 0.5;
 	public static final double AUTO_TURN_SPEED			 = 1.0;
 
-		//Camera variables
-	public static final int CAMERA_WIDTH 		= 320;
-	public static final int CAMERA_HEIGHT 		= 240;
-	public static final int CAMERA_FPS			= 15;
 	
 	//Joysticks
 	public static final int XBOX_CONTROLLER_DRIVER 	 = 0;
@@ -43,10 +39,6 @@ public class RobotMap {
 	public static final int XBOX_AXIS_RIGHT_TRIGGER = 3;
 	public static final int XBOX_AXIS_RIGHT_X 		= 4;
 	public static final int XBOX_AXIS_RIGHT_Y 		= 5;
-	
-	//USB Camera Locations
-	public static final int CAMERA_FRONT 	= 0;
-	public static final int CAMERA_BACK 	= 1;
 	
 	//PWM Motors
 	public static final int DRIVE_LEFT_MOTOR	  = 0;
