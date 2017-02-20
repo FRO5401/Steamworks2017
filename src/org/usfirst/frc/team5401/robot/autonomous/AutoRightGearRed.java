@@ -13,10 +13,10 @@ public class AutoRightGearRed extends CommandGroup {
 
     public AutoRightGearRed() {
     	
-/*		addSequential(AutoDrive(forwards));
- * 		addSequential(AutoTurnAngle(angle));
- * 		addSequential(AutoPopGear());
- */
+//		addSequential(new AutoDrive(forwards));
+// 		addSequential(new AutoTurnAngle(angle));
+ 		addSequential(new AutoPopGear());
+ 		
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

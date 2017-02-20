@@ -10,11 +10,13 @@ import org.usfirst.frc.team5401.robot.subsystems.Shooter;
 public class AutoCenterGearBlueShoot extends CommandGroup {
 
     public AutoCenterGearBlueShoot() {
- /*		
-  * 		addSequential(AutoDrive());
-  * 		addSequential(AutoPopGear());
-  * 		addSequential(AutoShoot());
-  */
+		
+ 		addSequential(new AutoCenterGear());
+// 		addSequential(new AutoTurnAngle());
+// 		addSequential(new AutoDrive());
+//		addSequnntial(new AutoTurnAngle());
+ 		addSequential(new AutoShoot());
+ 		
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

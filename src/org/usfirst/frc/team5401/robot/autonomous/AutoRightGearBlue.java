@@ -11,11 +11,11 @@ import org.usfirst.frc.team5401.robot.commands.PopGear;
 public class AutoRightGearBlue extends CommandGroup {
 
    public AutoRightGearBlue() {
-/*
- * 		addSequential(new AutoDrive(forwards));
- * 		addSequential(new AutoTurnAngle(some angle));
- * 		addSequential(new AutoPopGear());
- */
+
+//		addSequential(new AutoDrive(forwards));
+// 		addSequential(new AutoTurnAngle(some angle));
+ 		addSequential(new AutoPopGear());
+ 		
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
