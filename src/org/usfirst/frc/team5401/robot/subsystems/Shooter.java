@@ -59,8 +59,8 @@ public class Shooter extends Subsystem {
 	public Shooter() {
 	   	//super(kP, kI, kD); //initializes pid //XXX Temporary to get rid of error status
 	   	
-	   	_talonMaster = new CANTalon(0);
-	   	_talonSlave = new CANTalon(1);
+	   	_talonMaster = new CANTalon(1);
+	   	_talonSlave = new CANTalon(0);
 	    	
 	   	_talonMaster.setProfile(0);
 	   	//_talonMaster.set(MOTOR_SPEED);//XXX We shouldn't set the speed here in the constructor, might even want to set mode to v% and speed to 0 to deliberately stop
