@@ -70,7 +70,7 @@ public class OI {
 	public OI(){
 		
 		//Shooter
-		xboxB_Operator.toggleWhenPressed(new FlyWheelControl());
+		xboxB_Operator.whenPressed(new FlyWheelControl());
 
 		//Shoot (Loader) Button
 		xboxA_Driver.whenPressed(new LoadShooter());
@@ -138,10 +138,10 @@ public class OI {
 	//For GearMechanism
 	public int getXboxRightStickY_Driver(){
 		double value = xboxController_Driver.getRawAxis(RobotMap.XBOX_AXIS_RIGHT_Y);
-		if (value > .1){
-			return -1;
-		} else if (value < -.1){
+		if (value > .5){
 			return 1;
+		} else if (value < -.5){
+			return -1;
 		} else {
 			return 0;
 		}
@@ -151,9 +151,9 @@ public class OI {
 	//For Feeder Up/Down
 	public int getXboxLeftStickY_Operator(){
 		double value = xboxController_Operator.getRawAxis(RobotMap.XBOX_AXIS_LEFT_Y);
-		if (value > .3){//this is controller down
+		if (value > .5){//this is controller down
 			return -1;// so down as in negative
-		} else if (value < -.3){//this is controller up
+		} else if (value < -.5){//this is controller up
 			return 1;// so up as in positive
 		} else {
 			return 0;

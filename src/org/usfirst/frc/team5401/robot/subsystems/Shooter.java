@@ -76,10 +76,10 @@ public class Shooter extends Subsystem {
 	   	SmartDashboard.putNumber("Velocity",  _talonMaster.getEncVelocity());
 	   	_talonMaster.setEncPosition(0);
 	   	
-	   feed_forward = SmartDashboard.getNumber("feed forward", feed_forward);
-	   kP = SmartDashboard.getNumber("kP", kP);
-	   kI = SmartDashboard.getNumber("kI", kI);
-	   kD = SmartDashboard.getNumber("kI", kD);
+	   feed_forward = .033;
+	   kP = .19;
+	   kI = .000000005;
+	   kD = 00000002;
 	   
 	  Izone = 0;
 	  rampRate = 10.23;
@@ -133,11 +133,11 @@ public class Shooter extends Subsystem {
     public void startMotors(){
     	_talonMaster.changeControlMode(TalonControlMode.Speed);
     	MOTOR_SPEED = SmartDashboard.getNumber("motor_speed", MOTOR_SPEED);
-      feed_forward = SmartDashboard.getNumber("feed_forward", feed_forward);
+      //feed_forward = SmartDashboard.getNumber("feed_forward", feed_forward);
       SmartDashboard.putNumber("feed_forward_test", feed_forward);
-      kP = SmartDashboard.getNumber("kP", kP);
-      kI = SmartDashboard.getNumber("kI", kI);
-      kD = SmartDashboard.getNumber("kD", kD);
+      //kP = SmartDashboard.getNumber("kP", kP);
+      //kI = SmartDashboard.getNumber("kI", kI);
+      //kD = SmartDashboard.getNumber("kD", kD);
       //_talonMaster.setF(feed_forward);
       //_talonMaster.setPID(kP, kI, kD);//XXX We commented this in and out last night when it worked/stopped working
       _talonMaster.setPID(kP,  kI, kD, feed_forward, Izone, rampRate, channel );
@@ -146,6 +146,7 @@ public class Shooter extends Subsystem {
 	   	SmartDashboard.putNumber("Position", _talonMaster.getEncPosition());
 	   	_talonMaster.getEncVelocity(); //XXX Comment this out, this shouldn't be doing anything
 	   	SmartDashboard.putNumber("Velocity",  _talonMaster.getEncVelocity());
+	   	enabled = true;
     }
     
     
