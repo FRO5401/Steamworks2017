@@ -184,5 +184,9 @@ public class DriveBase extends Subsystem {
     public void recalibrateGyro(){
     	gyro.calibrate();
     }
+    
+    public void resetGyro(){
+    	gyro.reset();
+    }
 
 }

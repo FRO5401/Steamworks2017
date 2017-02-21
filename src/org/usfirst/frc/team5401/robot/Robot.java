@@ -132,6 +132,7 @@ public class Robot extends IterativeRobot {
         //Start loader motors
 
         //Robot.compressorsubsystem.startCompressor();
+        Robot.drivebase.resetGyro();
         SmartDashboard.putNumber("Velocity",  Robot.shooter.getVelocity());
         Robot.compressorsubsystem.startCompressor();
     }
