@@ -36,15 +36,10 @@ public class AutoTurnAngle extends Command {
     	modeAutoTarget = autoTarget;
     	
     	requires(Robot.visionprocessing);
-    	
-    	if (modeAutoTarget){
-//XXX    	desiredTurnAngle = Robot.visionprocessing.findTargetAngle(); //To be added
-    		desiredTurnAngle = 90;
-    	} else {
-    		desiredTurnAngle = angle;
-    	}
-    	
     	requires(Robot.drivebase);
+    	
+    	desiredTurnAngle = angle;
+    	
     	//XXX Switched to using ReportGyro rather than the raw value; if there's problems, have ReportGyro return MainGyro.GetAngle()
     	currentAngle = 0;
     	initAngle = 0;
@@ -55,14 +50,24 @@ public class AutoTurnAngle extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	initAngle = Robot.drivebase.reportGyro();
+    	currentAngle = 0;
+    	
+    	if (modeAutoTarget){
+//XXX    	desiredTurnAngle = Robot.visionprocessing.findTargetAngle(); //To be added
+    		desiredTurnAngle = 90;
+    	}
+    	
 //    	Robot.drivebase.recalibrateGyro(); 
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	System.out.println("InitAngle: " + initAngle);
+    	System.out.println("AutoTurning: " + desiredTurnAngle);
+    	System.out.println("Current Angle: " + currentAngle);
     	if (Math.abs(desiredTurnAngle) <= angleThreshold){
     		//DesiredTurnAngle too small
-    		System.out.println("AutoTurnAngle should stop");
+    		System.out.println("AutoTurnAngle should stop1");
     		finished = true;
     	} else {
     		if (desiredTurnAngle > 0 && (currentAngle < Math.abs(desiredTurnAngle) - angleThreshold)){
@@ -74,7 +79,7 @@ public class AutoTurnAngle extends Command {
     		} else { //error or exactly 0
     			//Finished
     			finished = true;
-    			System.out.println("AutoTurnAngle should stop");
+    			System.out.println("AutoTurnAngle should stop2");
     		}
     	currentAngle = Robot.drivebase.reportGyro() - initAngle;
     	}
