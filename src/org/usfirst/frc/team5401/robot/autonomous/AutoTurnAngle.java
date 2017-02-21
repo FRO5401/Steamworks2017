@@ -25,7 +25,6 @@ public class AutoTurnAngle extends Command {
 	private final boolean modeAuto;
 	private final boolean modeAutoTarget;
 
-	//XXX Send AutoTurnAngle and angle of 0 to auto target!
     public AutoTurnAngle(double angle, boolean inAuto, boolean autoTarget) {
     	//Initialize Constants
     	angleThreshold	= 2; 		//Turn angle in degrees
@@ -36,8 +35,11 @@ public class AutoTurnAngle extends Command {
     	modeAuto = inAuto;
     	modeAutoTarget = autoTarget;
     	
+    	requires(Robot.visionprocessing);
+    	
     	if (modeAutoTarget){
-    		desiredTurnAngle = SmartDashboard.getNumber("Target Angle", 0); //0 is the default value
+//XXX    	desiredTurnAngle = Robot.visionprocessing.findTargetAngle(); //To be added
+    		desiredTurnAngle = 90;
     	} else {
     		desiredTurnAngle = angle;
     	}

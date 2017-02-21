@@ -83,7 +83,7 @@ public class OI {
 		xboxB_Operator.whenPressed(new FlyWheelControl());
 		
 		//AutoTarget Button
-		xboxA_Operator.whenPressed(new AutoTargetAndShoot(0, false, true));
+		xboxA_Operator.whenPressed(new AutoTargetAndShoot(0, false, true)); //should be sending 0
 		
 		//Unjammer Button
 		xboxRightBumper_Operator.whenPressed(new UnjamToggle(1));
