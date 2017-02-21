@@ -13,10 +13,10 @@ public class AutoLeftGearBlue extends CommandGroup {
 
     public AutoLeftGearBlue() {
     	
-//    	addSequential(new AutoDrive(forwards));
-//    	addSequential(new AutoTurnAngle(some angle));
-//    	addSequential(new AutoDrive(forwards));
-//    	addSequential(new AutoPopGear());
+    	addSequential(new AutoDrive(-75.8, .5));
+    	addSequential(new AutoTurnAngle(50, true, false)); //should be 60
+    	addSequential(new AutoDrive(-45.25, .5)); //54.5 start
+    	addSequential(new AutoPopGear());
     	
         // Add Commands here:
         // e.g. addSequential(new Command1());

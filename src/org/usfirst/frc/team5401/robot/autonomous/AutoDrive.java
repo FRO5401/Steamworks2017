@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team5401.robot.Robot;
 import org.usfirst.frc.team5401.robot.subsystems.DriveBase;
 import org.usfirst.frc.team5401.robot.RobotMap;
+import org.usfirst.frc.team5401.robot.commands.XboxMove;
 
 
 /**
@@ -48,11 +49,11 @@ public class AutoDrive extends Command {
     	MAXIMUM_VELOCITY_FOR_LOW_GEAR = 50;
     	MINIMUM_VELOCITY_FOR_HIGH_GEAR = 40;
     	
-    	if (SpeedInput > .5){
-    		Robot.drivebase.shiftGearLowToHigh();
-    	} else {
-    		Robot.drivebase.shiftGearHighToLow();
-    	}
+//    	if (SpeedInput > .5){
+//    		Robot.drivebase.shiftGearLowToHigh();
+//    	} else {
+//    		Robot.drivebase.shiftGearHighToLow();
+//    	}
     }
 
     // Called just before this Command runs the first time
@@ -77,19 +78,19 @@ public class AutoDrive extends Command {
     		SmartDashboard.putNumber("Drift", drift);
     			if (desiredDistance > 0 && (distanceTraveled < Math.abs(desiredDistance) - autoDistThresh)){ //DesiredDistance is positive, go forward
     				//Drive Forward
-    				if (drift < -.5){ //Currently assumes we always drift left while going forwards
-    					Robot.drivebase.drive(autoDriveSpeed, autoDriveSpeed + (kP_Drift * drift)); //Adjust right motor when driving forward
-    				} else {
+//    				if (drift < -.5){ //Currently assumes we always drift left while going forwards
+//    					Robot.drivebase.drive(autoDriveSpeed, autoDriveSpeed + (kP_Drift * drift)); //Adjust right motor when driving forward
+//    				} else {
     					Robot.drivebase.drive(autoDriveSpeed, autoDriveSpeed);
-    				}
+//    				}
     				doneTraveling = false;
     			} else if (desiredDistance < 0 && (distanceTraveled > autoDistThresh - Math.abs(desiredDistance))){ //DesiredDistance is negative, go backward
     				//Drive Backward
-    				if(drift > .5){ //Currently assumes we always drift right while going backwards
-    					Robot.drivebase.drive(-(autoDriveSpeed + (kP_Drift * drift)), -autoDriveSpeed);//Adjusts left motor when driving backwards
-    				}else{
+//    				if(drift > .5){ //Currently assumes we always drift right while going backwards
+//    					Robot.drivebase.drive(-(autoDriveSpeed + (kP_Drift * drift)), -autoDriveSpeed);//Adjusts left motor when driving backwards
+//    				}else{
     					Robot.drivebase.drive(-autoDriveSpeed, -autoDriveSpeed);
-    				}
+//    				}
     				doneTraveling = false;
     			} else { //error, exactly 0, or done
     				//Finished

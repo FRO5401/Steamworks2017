@@ -83,25 +83,23 @@ public class OI {
 		xboxB_Operator.whenPressed(new FlyWheelControl());
 		
 		//AutoTarget Button
-		xboxA_Operator.whenPressed(new TargetHigh());
+		xboxA_Operator.whenPressed(new AutoTargetAndShoot(0, false, true)); //should be sending 0
 		
 		//Unjammer Button
 		xboxRightBumper_Operator.whenPressed(new UnjamToggle(1));
 		xboxRightBumper_Operator.whenReleased(new UnjamToggle(-1));
-		
 
 		//Unjammer In Only Button
 		xboxLeftBumper_Operator.whenPressed(new UnjamIn());
 
-		
 		//Compressor Override
 		xboxStart_Operator.whenPressed(new CompressorToggle());
 		
 		//Cease Fire
 		xboxR3_Operator.whenPressed(new CeaseFire());
 		
-		//XBoxMovetest
-//		xboxX_Driver.whenPressed(new XboxMove());
+		//Override for starting the XboxMove command
+		xboxX_Driver.whenPressed(new XboxMove());
 		
 		//XXX TEMPORARY BUTTON
 			//For testing pneumatic shifter on drivebase

@@ -39,7 +39,6 @@ public class Robot extends IterativeRobot {
 
     Command autonomousCommand;
     SendableChooser chooser;
-    
 
     /**
      * This function is run when the robot is first started up and should be
@@ -82,10 +81,13 @@ public class Robot extends IterativeRobot {
 		chooser.addObject("RightGearRed", new AutoRightGearRed());
 		chooser.addObject("RightGearRedShoot", new AutoRightGearRedShoot());
 		chooser.addObject("Shoot", new AutoShoot());
-		chooser.addObject("Target", new AutoTarget(90)); //takes in angle to turn
-		chooser.addObject("TargetAndShoot", new AutoTargetAndShoot(90)); //takes in angle to turn
-		chooser.addObject("TurnAngle", new AutoTurnAngle(90)); //takes in angle to turn
+		chooser.addObject("Target", new AutoTarget(90, true, false)); //takes in angle to turn //CommandGroup
+		chooser.addObject("TargetAndShoot", new AutoTargetAndShoot(90, true, false)); //takes in angle to turn
+		chooser.addObject("TurnAngle", new AutoTurnAngle(90, true, false)); //takes in angle to turn
         SmartDashboard.putData("Auto mode", chooser);
+        
+        //Ensures that the "Target Angle" value is on the dashboard
+        SmartDashboard.putNumber("Target Angle", 0);
     }
 	
 	/**
@@ -149,10 +151,10 @@ public class Robot extends IterativeRobot {
         // this line or comment it out.
         if (autonomousCommand != null) autonomousCommand.cancel();
         
-//        XboxMove move = new XboxMove();
-//        move.start();
         SmartDashboard.putNumber("Velocity",  Robot.shooter.getVelocity());
         Robot.compressorsubsystem.startCompressor();
+        
+        Scheduler.getInstance().add(new XboxMove());
     }
 
     /**

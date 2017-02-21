@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 
 import org.usfirst.frc.team5401.robot.autonomous.AutoDrive;
 import org.usfirst.frc.team5401.robot.commands.PopGear;
+import edu.wpi.first.wpilibj.command.WaitCommand;
 
 /**
  *
@@ -11,9 +12,10 @@ import org.usfirst.frc.team5401.robot.commands.PopGear;
 public class AutoPopGear extends CommandGroup {
 
     public AutoPopGear() {
-		addSequential(new AutoPopGearOnly(1));
+		addSequential(new AutoPopGearOnly(-1)); //out
+		addSequential(new WaitCommand(1));
 		addSequential(new AutoDrive(36, .5));
-		addSequential(new AutoPopGearOnly(-1));
+		addSequential(new AutoPopGearOnly(1)); //in
 		
         // Add Commands here:
         // e.g. addSequential(new Command1());
