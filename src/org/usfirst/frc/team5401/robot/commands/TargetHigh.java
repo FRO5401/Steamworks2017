@@ -11,16 +11,19 @@ import org.usfirst.frc.team5401.robot.autonomous.AutoTargetAndShoot;
  *
  */
 public class TargetHigh extends Command {
-		
+	
+	double angle;
+	
     public TargetHigh() {
         // Use requires() here to declare subsystem dependencies
           requires(Robot.visionprocessing);
+          angle = 0;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	SmartDashboard.putBoolean("Shooter OnOff", true);
-    	SmartDashboard.putNumber("Target Angle", -99);
+   // 	SmartDashboard.putBoolean("Shooter OnOff", true);
+    	SmartDashboard.putNumber("Target Angle", angle);
 
     }
 
@@ -30,12 +33,12 @@ public class TargetHigh extends Command {
     	//determine movement values
     	//send an auto drive command instructions
     	SmartDashboard.putBoolean("AutoTargeting", true);
-//XXX    	double angle = Robot.visionprocessing.findTargetAngle();
-    	double angle = 90;
+//XXX    	angle = Robot.visionprocessing.findTargetAngle();
+    	angle = 90;
     	SmartDashboard.putNumber("Target Angle", angle);
     	
-    	System.out.println("Starting AutoTargetAndShoot CmdGroup from TargetHigh Cmd");
-    	AutoTargetAndShoot shoot = new AutoTargetAndShoot(angle, false);    	
+//    	System.out.println("Starting AutoTargetAndShoot CmdGroup from TargetHigh Cmd");
+//    	AutoTargetAndShoot shoot = new AutoTargetAndShoot(angle, false);    	
     }
 
     // Make this return true when this Command no longer needs to run execute()

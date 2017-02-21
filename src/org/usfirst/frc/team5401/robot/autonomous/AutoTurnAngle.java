@@ -5,9 +5,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team5401.robot.Robot;
 import org.usfirst.frc.team5401.robot.commands.XboxMove;
+import edu.wpi.first.wpilibj.command.Scheduler;
 
 /**
- *
+ * 
  */
 public class AutoTurnAngle extends Command {
 	
@@ -22,8 +23,10 @@ public class AutoTurnAngle extends Command {
 	private final double autoTurnSpeed;
 	private final double autoTurnPrecision;
 	private final boolean modeAuto;
+	private final boolean modeAutoTarget;
 
-    public AutoTurnAngle(double angle, boolean inAuto) {
+	//XXX Send AutoTurnAngle and angle of 0 to auto target!
+    public AutoTurnAngle(double angle, boolean inAuto, boolean autoTarget) {
     	//Initialize Constants
     	angleThreshold	= 2; 		//Turn angle in degrees
     	autoDistThresh	= 2; 		//Distance threshold in inches
@@ -31,9 +34,15 @@ public class AutoTurnAngle extends Command {
     	autoTurnPrecision = .5;
     	
     	modeAuto = inAuto;
+    	modeAutoTarget = autoTarget;
+    	
+    	if (modeAutoTarget){
+    		desiredTurnAngle = SmartDashboard.getNumber("Target Angle", 0); //0 is the default value
+    	} else {
+    		desiredTurnAngle = angle;
+    	}
     	
     	requires(Robot.drivebase);
-    	desiredTurnAngle = angle;
     	//XXX Switched to using ReportGyro rather than the raw value; if there's problems, have ReportGyro return MainGyro.GetAngle()
     	currentAngle = 0;
     	initAngle = 0;
@@ -81,8 +90,7 @@ public class AutoTurnAngle extends Command {
     	if (modeAuto) {	 //if in auto, stop motors
     		Robot.drivebase.stop();
     	} else { //if in teleop, start xboxmove
-    		XboxMove move = new XboxMove();
-    		move.start();
+    		Scheduler.getInstance().add(new XboxMove());
     	}
     	System.out.println("AutoTurnAngle end()");
     }

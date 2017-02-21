@@ -2,6 +2,8 @@ package org.usfirst.frc.team5401.robot.commands;
 
 import org.usfirst.frc.team5401.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.Scheduler;
+
 import org.usfirst.frc.team5401.robot.commands.XboxMove;
 
 /**
@@ -36,8 +38,7 @@ public class CeaseFire extends Command {
     	Robot.shooter.stop();
     	Robot.compressorsubsystem.startCompressor();
     	Robot.loader.stopConveyorsAndMeteringMotor();
-    	XboxMove move = new XboxMove();
-        move.start();
+    	Scheduler.getInstance().add(new XboxMove());
     }
 
     // Make this return true when this Command no longer needs to run execute()
