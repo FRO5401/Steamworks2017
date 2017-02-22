@@ -14,8 +14,8 @@ public class AutoLeftGearBlueShoot extends CommandGroup {
     public AutoLeftGearBlueShoot() {
     	
     	addSequential(new AutoLeftGearBlue());
-//		addSequnntial(new AutoTurnAngle());
-// 		addSequential(new AutoDrive());
+//		addSequential(new AutoTurnAngle(10, true, false));
+ 		addSequential(new AutoDrive(14, .5));
 // 		addSequential(new AutoTurnAngle());
     	addSequential(new AutoShoot()); 
     	

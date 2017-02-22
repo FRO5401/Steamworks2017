@@ -59,6 +59,7 @@ public class AutoDrive extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	Robot.drivebase.encoderReset();
+    	Robot.drivebase.resetGyro();
     	heading = Robot.drivebase.reportGyro();
     	drift = 0;
     	doneTraveling = true;
@@ -80,15 +81,19 @@ public class AutoDrive extends Command {
     				//Drive Forward
     				if (drift > .5){ //Currently assumes we always drift right while going forwards
     					Robot.drivebase.drive(autoDriveSpeed, autoDriveSpeed + (kP_Drift * drift)); //Adjust right motor when driving forward
+//    				} else if (drift < -.5){
+//    					Robot.drivebase.drive(autoDriveSpeed + (kP_Drift * drift), autoDriveSpeed);
     				} else {
     					Robot.drivebase.drive(autoDriveSpeed, autoDriveSpeed);
     				}
     				doneTraveling = false;
     			} else if (desiredDistance < 0 && (distanceTraveled > autoDistThresh - Math.abs(desiredDistance))){ //DesiredDistance is negative, go backward
     				//Drive Backward
-    				if(drift > .5){ //Currently assumes we always drift left (while looking backward as the front) while going backwards
+    				if (drift > .5){ //Currently assumes we always drift left (while looking backward as the front) while going backwards
     					Robot.drivebase.drive(-autoDriveSpeed, -(autoDriveSpeed + (kP_Drift * drift)));//Adjusts left motor when driving backwards
-    				}else{
+//    				} else if (drift < -.5){
+//    					Robot.drivebase.drive(-autoDriveSpeed + (kP_Drift * drift), -autoDriveSpeed);
+    				} else {
     					Robot.drivebase.drive(-autoDriveSpeed, -autoDriveSpeed);
     				}
     				doneTraveling = false;
