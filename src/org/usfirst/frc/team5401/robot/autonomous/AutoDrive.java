@@ -78,7 +78,7 @@ public class AutoDrive extends Command {
     		SmartDashboard.putNumber("Drift", drift);
     			if (desiredDistance > 0 && (distanceTraveled < Math.abs(desiredDistance) - autoDistThresh)){ //DesiredDistance is positive, go forward
     				//Drive Forward
-    				if (drift > .5){ //Currently assumes we always drift left while going forwards
+    				if (drift > .5){ //Currently assumes we always drift right while going forwards
     					Robot.drivebase.drive(autoDriveSpeed, autoDriveSpeed + (kP_Drift * drift)); //Adjust right motor when driving forward
     				} else {
     					Robot.drivebase.drive(autoDriveSpeed, autoDriveSpeed);
