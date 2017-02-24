@@ -45,8 +45,9 @@ public class Shooter extends Subsystem {
     private int Izone;
     private double rampRate;
     private int channel;
+    
     private boolean compressorEnabled;
-
+    private boolean pidEnabled;
     
 	// Initialize your subsystem here
 	   /**
@@ -77,6 +78,7 @@ public class Shooter extends Subsystem {
 	   	_talonMaster.getEncVelocity();
 	   	SmartDashboard.putNumber("Velocity",  _talonMaster.getEncVelocity());
 	   	_talonMaster.setEncPosition(0);
+	   	SmartDashboard.putBoolean("PID_Enabled", pidEnabled);
 	   	
 	   	
 	   feed_forward = .033;
@@ -128,21 +130,21 @@ public class Shooter extends Subsystem {
 */
     
     public void startMotors(){
-    	_talonMaster.changeControlMode(TalonControlMode.Speed);
+    	//_talonMaster.changeControlMode(TalonControlMode.Speed);
     	MOTOR_SPEED = SmartDashboard.getNumber("motor_speed", MOTOR_SPEED);
       //feed_forward = SmartDashboard.getNumber("feed_forward", feed_forward);
       SmartDashboard.putNumber("feed_forward_test", feed_forward);
       //kP = SmartDashboard.getNumber("kP", kP);
       //kI = SmartDashboard.getNumber("kI", kI);
       //kD = SmartDashboard.getNumber("kD", kD);
-//      _talonMaster.setF(feed_forward);
-//      _talonMaster.setPID(kP, kI, kD);//XXX We commented this in and out last night when it worked/stopped working
-      _talonMaster.setPID(kP,  kI, kD, feed_forward, Izone, rampRate, channel);
-    	_talonMaster.set(MOTOR_SPEED);
-	   	SmartDashboard.putNumber("Position", _talonMaster.getEncPosition());
-	   	SmartDashboard.putNumber("Velocity",  _talonMaster.getEncVelocity());
+//    _talonMaster.setF(feed_forward);
+//    _talonMaster.setPID(kP, kI, kD);
+      _talonMaster.setPID(kP,  kI, kD, feed_forward, Izone, rampRate, channel); //in percentVBus this SHOULD be ignored
+      _talonMaster.set(MOTOR_SPEED);
+	  SmartDashboard.putNumber("Position", _talonMaster.getEncPosition());
+	  SmartDashboard.putNumber("Velocity",  _talonMaster.getEncVelocity());
 	   	
-	   	compressorEnabled = true;
+	  compressorEnabled = true;
     }
     
     
@@ -184,5 +186,16 @@ public class Shooter extends Subsystem {
     	} else {
     		startMotors();
     	}
+    }
+    
+    public void shootOverrideSwitchState() {
+    	if (_talonMaster.getControlMode().getValue() == 7) {
+    		_talonMaster.changeControlMode(TalonControlMode.PercentVbus);
+    		pidEnabled = false;
+    	} else if (_talonMaster.getControlMode().getValue() == 5) {
+    		_talonMaster.changeControlMode(TalonControlMode.Speed);
+    		pidEnabled = true;
+    	}
+    	SmartDashboard.putBoolean("PID_Enabled", pidEnabled);
     }
 }
