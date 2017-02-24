@@ -2,6 +2,7 @@ package org.usfirst.frc.team5401.robot.subsystems;
 
 
 
+import org.usfirst.frc.team5401.robot.Robot;
 import org.usfirst.frc.team5401.robot.RobotMap;
 //import edu.wpi.first.wpilibj.VictorSP;
 //import edu.wpi.first.wpilibj.Counter;
@@ -46,6 +47,7 @@ public class Shooter extends Subsystem {
     private double rampRate;
     private int channel;
     private boolean compressorEnabled;
+    private int THRESH;
 
     
 	// Initialize your subsystem here
@@ -99,6 +101,8 @@ public class Shooter extends Subsystem {
 //    	counter = new Counter(RobotMap.PHOTOSWITCH_CHANNEL);
 //    	counter.setMaxPeriod(MAX_COUNTER_SECONDS);
     	
+	   	THRESH = 200;
+	   	
     	reset();
     	
         // Use these to get going:
@@ -186,6 +190,14 @@ public class Shooter extends Subsystem {
     		reset();
     	} else {
     		startMotors();
+    	}
+    }
+    
+    public void printReadyToShoot(){
+    	if (_talonMaster.getEncVelocity() < MOTOR_SPEED + THRESH || _talonMaster.getEncVelocity() > MOTOR_SPEED - THRESH){
+    		SmartDashboard.putBoolean("Ready to Shoot", true);        	
+    	} else {
+    		SmartDashboard.putBoolean("Ready to Shoot", false);
     	}
     }
 }

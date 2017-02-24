@@ -169,13 +169,7 @@ public class Robot extends IterativeRobot {
         Robot.compressorsubsystem.getCompressorStatus();
         SmartDashboard.putNumber("Velocity",  Robot.shooter.getVelocity());
         SmartDashboard.putNumber("Gyro", Robot.drivebase.reportGyro());
-        //TODO Move out of Robot.java
-        if (Robot.shooter.getVelocity() < Robot.shooter.getTargetSpeed() + 200 || Robot.shooter.getVelocity() > Robot.shooter.getTargetSpeed() - 200){
-        	SmartDashboard.putBoolean("Ready to Shoot", true);        	
-        } else {
-        	SmartDashboard.putBoolean("Ready to Shoot", false);
-        }
-        	
+        Robot.shooter.printReadyToShoot();
     }
     
     /**
