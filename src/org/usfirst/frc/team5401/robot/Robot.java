@@ -134,6 +134,7 @@ public class Robot extends IterativeRobot {
         //Robot.compressorsubsystem.startCompressor();
         Robot.drivebase.resetGyro();
         SmartDashboard.putNumber("Velocity",  Robot.shooter.getVelocity());
+        SmartDashboard.putNumber("Gyro", Robot.drivebase.reportGyro());
         Robot.compressorsubsystem.startCompressor();
     }
 
@@ -143,6 +144,7 @@ public class Robot extends IterativeRobot {
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
         SmartDashboard.putNumber("Velocity",  Robot.shooter.getVelocity());
+        SmartDashboard.putNumber("Gyro", Robot.drivebase.reportGyro());
     }
 
     public void teleopInit() {
@@ -153,6 +155,7 @@ public class Robot extends IterativeRobot {
         if (autonomousCommand != null) autonomousCommand.cancel();
         
         SmartDashboard.putNumber("Velocity",  Robot.shooter.getVelocity());
+        SmartDashboard.putNumber("Gyro", Robot.drivebase.reportGyro());
         Robot.compressorsubsystem.startCompressor();
         
         Scheduler.getInstance().add(new XboxMove());
@@ -165,6 +168,8 @@ public class Robot extends IterativeRobot {
         Scheduler.getInstance().run();
         Robot.compressorsubsystem.getCompressorStatus();
         SmartDashboard.putNumber("Velocity",  Robot.shooter.getVelocity());
+        SmartDashboard.putNumber("Gyro", Robot.drivebase.reportGyro());
+        Robot.shooter.printReadyToShoot();
     }
     
     /**
