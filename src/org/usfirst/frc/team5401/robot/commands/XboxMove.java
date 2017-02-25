@@ -171,8 +171,8 @@ public class XboxMove extends Command {
     	velocitySample1 = velocitySample2;
 */   	
     	//Gets new final velocity
-/*    	velocitySample2 = Robot.drivebase.getVelocityOfRobot();
-    	
+    	velocitySample2 = Robot.drivebase.getVelocityOfRobot();
+/*    	
     	//1/23/17 NOT NEEDED
     	//Gets change in time
     	//deltaTime = Robot.drivebase.getTimerValue();
