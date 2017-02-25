@@ -89,7 +89,9 @@ public class Shooter extends Subsystem {
 	  Izone = 0;
 	  rampRate = 10.23;
 	  channel = 0;
-	   
+	  
+	  pidEnabled = true;
+	  
 	   SmartDashboard.putNumber("feed_forward", feed_forward);
 	   SmartDashboard.putNumber("kP", kP);
 	   SmartDashboard.putNumber("kI", kI);
@@ -130,8 +132,15 @@ public class Shooter extends Subsystem {
 */
     
     public void startMotors(){
-    	//_talonMaster.changeControlMode(TalonControlMode.Speed);
-    	MOTOR_SPEED = SmartDashboard.getNumber("motor_speed", MOTOR_SPEED);
+    	if (pidEnabled) {
+    		_talonMaster.changeControlMode(TalonControlMode.Speed);
+    		System.out.println("mode: SPD SPD SPD");
+    	} else {
+    		_talonMaster.changeControlMode(TalonControlMode.PercentVbus);
+    		System.out.println("mode: VBUS VBUS VBUS");
+    	}
+    	
+    	//MOTOR_SPEED = SmartDashboard.getNumber("motor_speed", MOTOR_SPEED);
       //feed_forward = SmartDashboard.getNumber("feed_forward", feed_forward);
       SmartDashboard.putNumber("feed_forward_test", feed_forward);
       //kP = SmartDashboard.getNumber("kP", kP);
@@ -189,12 +198,16 @@ public class Shooter extends Subsystem {
     }
     
     public void shootOverrideSwitchState() {
-    	if (_talonMaster.getControlMode().getValue() == 7) {
+    	if (pidEnabled) {
     		_talonMaster.changeControlMode(TalonControlMode.PercentVbus);
+    		MOTOR_SPEED = -.80;
     		pidEnabled = false;
-    	} else if (_talonMaster.getControlMode().getValue() == 5) {
+    		System.out.println("switch to VBUS VBUS VBUS");
+    	} else {
     		_talonMaster.changeControlMode(TalonControlMode.Speed);
+    		MOTOR_SPEED = -23750;
     		pidEnabled = true;
+    		System.out.println("switch to PID PID PID");
     	}
     	SmartDashboard.putBoolean("PID_Enabled", pidEnabled);
     }

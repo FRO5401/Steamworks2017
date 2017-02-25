@@ -71,7 +71,7 @@ public class XboxMove extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	System.out.println("XBoxMove Excute");
+    	//System.out.println("XBoxMove Excute");
     	double angle = Robot.drivebase.reportGyro();
     	SmartDashboard.putNumber("Gyro",  angle);
     	
