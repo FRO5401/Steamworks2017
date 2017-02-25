@@ -47,8 +47,8 @@ public class Shooter extends Subsystem {
     private double rampRate;
     private int channel;
     private boolean compressorEnabled;
+    private boolean pidEnabled;
     private int THRESH;
-
     
 	// Initialize your subsystem here
 	   /**
@@ -79,6 +79,7 @@ public class Shooter extends Subsystem {
 	   	_talonMaster.getEncVelocity();
 	   	SmartDashboard.putNumber("Velocity",  _talonMaster.getEncVelocity());
 	   	_talonMaster.setEncPosition(0);
+	   	SmartDashboard.putBoolean("PID_Enabled", pidEnabled);
 	   	
 	   	
 	   feed_forward = .033;
@@ -89,7 +90,9 @@ public class Shooter extends Subsystem {
 	   Izone = 0;
 	   rampRate = 10.23;
 	   channel = 0;
-	   
+	  
+	   pidEnabled = true;
+
 	   SmartDashboard.putNumber("feed_forward", feed_forward);
 	   SmartDashboard.putNumber("kP", kP);
 	   SmartDashboard.putNumber("kI", kI);
@@ -133,23 +136,30 @@ public class Shooter extends Subsystem {
 */
     
     public void startMotors(){
-    	_talonMaster.changeControlMode(TalonControlMode.Speed);
-    	MOTOR_SPEED = SmartDashboard.getNumber("motor_speed", MOTOR_SPEED);
+    	if (pidEnabled) {
+    		_talonMaster.changeControlMode(TalonControlMode.Speed);
+    		System.out.println("mode: SPD SPD SPD");
+    	} else {
+    		_talonMaster.changeControlMode(TalonControlMode.PercentVbus);
+    		System.out.println("mode: VBUS VBUS VBUS");
+    	}
+    	
+    	//MOTOR_SPEED = SmartDashboard.getNumber("motor_speed", MOTOR_SPEED);
       //feed_forward = SmartDashboard.getNumber("feed_forward", feed_forward);
       SmartDashboard.putNumber("feed_forward_test", feed_forward);
       /** Uncomment to get PID values from the dashboard **/
       //kP = SmartDashboard.getNumber("kP", kP);
       //kI = SmartDashboard.getNumber("kI", kI);
       //kD = SmartDashboard.getNumber("kD", kD);
-      //rampRate = SmartDashboard.putNumber("rampRate", rampRate);
-//      _talonMaster.setF(feed_forward);
-//      _talonMaster.setPID(kP, kI, kD);//XXX We commented this in and out last night when it worked/stopped working
-      _talonMaster.setPID(kP,  kI, kD, feed_forward, Izone, rampRate, channel);
-    	_talonMaster.set(MOTOR_SPEED);
-	   	SmartDashboard.putNumber("Position", _talonMaster.getEncPosition());
-	   	SmartDashboard.putNumber("Velocity",  _talonMaster.getEncVelocity());
+      
+//    _talonMaster.setF(feed_forward);
+//    _talonMaster.setPID(kP, kI, kD);
+      _talonMaster.setPID(kP,  kI, kD, feed_forward, Izone, rampRate, channel); //in percentVBus this is ignored
+      _talonMaster.set(MOTOR_SPEED);
+	    SmartDashboard.putNumber("Position", _talonMaster.getEncPosition());
+	    SmartDashboard.putNumber("Velocity",  _talonMaster.getEncVelocity());
 	   	
-	   	compressorEnabled = true;
+	  compressorEnabled = true;
     }
     
     
@@ -193,6 +203,20 @@ public class Shooter extends Subsystem {
     	}
     }
     
+    public void shootOverrideSwitchState() {
+    	if (pidEnabled) {
+    		_talonMaster.changeControlMode(TalonControlMode.PercentVbus);
+    		MOTOR_SPEED = -.80;
+    		pidEnabled = false;
+    		System.out.println("switch to VBUS VBUS VBUS");
+    	} else {
+    		_talonMaster.changeControlMode(TalonControlMode.Speed);
+    		MOTOR_SPEED = -23750;
+    		pidEnabled = true;
+    		System.out.println("switch to PID PID PID");
+    	}
+    	SmartDashboard.putBoolean("PID_Enabled", pidEnabled);
+
     public void printReadyToShoot(){
     	if (_talonMaster.getEncVelocity() < MOTOR_SPEED + THRESH || _talonMaster.getEncVelocity() > MOTOR_SPEED - THRESH){
     		SmartDashboard.putBoolean("Ready to Shoot", true);        	

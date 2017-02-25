@@ -95,6 +95,9 @@ public class OI {
 		//Compressor Override
 		xboxStart_Operator.whenPressed(new CompressorToggle());
 		
+		//Shooter %VBus Override
+		xboxBack_Operator.whenPressed(new ShooterToggle());
+		
 		//Cease Fire
 		xboxR3_Operator.whenPressed(new CeaseFire());
 		
