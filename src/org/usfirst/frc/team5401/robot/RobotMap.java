@@ -77,6 +77,9 @@ public class RobotMap {
 	public static final int UNJAMMER_OUT          = 5;
 	public static final int GEAR_MANIPULATOR_IN   = 6;
 	public static final int GEAR_MANIPULATOR_OUT  = 7;
+	
+	//Analog Channels
+	public static final int PRESSURE_SENSOR = 0;
 
 							
 }
