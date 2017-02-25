@@ -36,6 +36,11 @@ public class Infeed extends Subsystem {
 		} else {
 			SmartDashboard.putNumber("Feeder Arm", 1); //Feeder Arm is in
 		}
+		
+		SmartDashboard.putString("FeederRollers_text", "Feeder Rollers");
+		SmartDashboard.putString("FeederRollersOut_text", "GREEN = Rollers Out");
+		SmartDashboard.putString("FeederRollersIn_text" , "RED = Rollers In");
+		SmartDashboard.putNumber("Feeder Rollers", 0); 
 	}
 
     public void initDefaultCommand() {
@@ -45,6 +50,7 @@ public class Infeed extends Subsystem {
     
     public void feederDirection(int direction){
     	feederMotor.set(FEED_SPEED * direction);
+    	SmartDashboard.putNumber("Feeder Rollers", direction); //XXX Might have to reverse
     }
    
     public void armUpDown(int direction){

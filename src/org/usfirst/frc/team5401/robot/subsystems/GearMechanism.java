@@ -28,9 +28,9 @@ public class GearMechanism extends Subsystem {
     	SmartDashboard.putString("GearOut_text" , "GREEN = Gear Out");
     	SmartDashboard.putString("GearIn_text"  , "RED = Gear In");
     	if ((DoubleSolenoid.Value.kForward).equals(gearManip.get())){
-			SmartDashboard.putNumber("Gear Mechanism", -1); //Gear Mechanism is out
-		} else {
 			SmartDashboard.putNumber("Gear Mechanism", 1); //Gear Mechanism is in
+		} else {
+			SmartDashboard.putNumber("Gear Mechanism", -1); //Gear Mechanism is out
 		}
     }
     
@@ -38,10 +38,10 @@ public class GearMechanism extends Subsystem {
     public void gearInOut(int direction){
     	if (direction == 1) {
     		gearManip.set(DoubleSolenoid.Value.kForward);
-    		SmartDashboard.putNumber("Gear Mechanism", -1); //Gear Mechanism is out
+    		SmartDashboard.putNumber("Gear Mechanism", 1); //Gear Mechanism is in
     	} else if (direction == -1) {
     		gearManip.set(DoubleSolenoid.Value.kReverse);
-    		SmartDashboard.putNumber("Gear Mechanism", 1); //Gear Mechanism is in
+    		SmartDashboard.putNumber("Gear Mechanism", -1); //Gear Mechanism is out
     	}
     }  
 }

@@ -56,13 +56,13 @@ public class DriveBase extends Subsystem {
 
 		gyro = new ADXRS450_Gyro();
 		
-		SmartDashboard.putString("Transmisison_text", "Transmission");
+		SmartDashboard.putString("Transmission_text", "Transmission");
 		SmartDashboard.putString("HighGear_text", "GREEN = High");
 		SmartDashboard.putString("LowGear_text" , "RED = Low");
 		if ((DoubleSolenoid.Value.kForward).equals(gearShifter.get())){
-			SmartDashboard.putNumber("Transmisison", -1); //Transmisison is High
+			SmartDashboard.putNumber("Transmission", -1); //Transmisison is High
 		} else {
-			SmartDashboard.putNumber("Transmisison", 1); //Transmisison is Low
+			SmartDashboard.putNumber("Transmission", 1); //Transmisison is Low
 		}
 		
 		SmartDashboard.putNumber("Robot Velocity", 0);
@@ -104,7 +104,7 @@ public class DriveBase extends Subsystem {
     	gearShifter.set(DoubleSolenoid.Value.kForward);
     	leftEncoder.setDistancePerPulse(HIGH_GEAR_LEFT_DPP);
     	rightEncoder.setDistancePerPulse(HIGH_GEAR_RIGHT_DPP);
-    	SmartDashboard.putNumber("Transmisison", -1); //Transmisison is High
+    	SmartDashboard.putNumber("Transmission", -1); //Transmisison is High
     }
 
     public void shiftGearHighToLow(){
@@ -112,7 +112,7 @@ public class DriveBase extends Subsystem {
     	gearShifter.set(DoubleSolenoid.Value.kReverse);
     	leftEncoder.setDistancePerPulse(LOW_GEAR_LEFT_DPP);
     	rightEncoder.setDistancePerPulse(LOW_GEAR_RIGHT_DPP);
-    	SmartDashboard.putNumber("Transmisison", 1); //Transmisison is Low
+    	SmartDashboard.putNumber("Transmission", 1); //Transmisison is Low
     }
 
 /*    
@@ -175,9 +175,9 @@ public class DriveBase extends Subsystem {
     
     public double reportGyro(){
     	double currentAngle = gyro.getAngle();
-    	SmartDashboard.putNumber("Current Angle", currentAngle);
+//    	SmartDashboard.putNumber("Current Angle", currentAngle);
     	//currentAngle *= GYRO_OFFSET; //XXX How does this work if GYRO_OFFSET is undefined? Used in AutoTurnAngle
-    	SmartDashboard.putNumber("Adjusted Gyro (NOT ADJUSTING)", currentAngle);
+//    	SmartDashboard.putNumber("Adjusted Gyro (NOT ADJUSTING)", currentAngle);
     	return currentAngle;
     }
     
