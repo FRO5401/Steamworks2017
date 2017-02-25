@@ -73,13 +73,13 @@ public class Shooter extends Subsystem {
     	_talonSlave.set(_talonMaster.getDeviceID());
 	   	
 	   	SmartDashboard.putNumber("motor_speed", MOTOR_SPEED);
+	   	SmartDashboard.putBoolean("AutoTargeting", false);
 	    	
 	 	_talonMaster.getEncPosition();
 	   	SmartDashboard.putNumber("Position", _talonMaster.getEncPosition());
 	   	_talonMaster.getEncVelocity();
 	   	SmartDashboard.putNumber("Velocity",  _talonMaster.getEncVelocity());
 	   	_talonMaster.setEncPosition(0);
-	   	SmartDashboard.putBoolean("PID_Enabled", pidEnabled);
 	   	
 	   	
 	   feed_forward = .033;
@@ -92,6 +92,7 @@ public class Shooter extends Subsystem {
 	   channel = 0;
 	  
 	   pidEnabled = true;
+	   SmartDashboard.putBoolean("PID_Enabled", pidEnabled);
 
 	   SmartDashboard.putNumber("feed_forward", feed_forward);
 	   SmartDashboard.putNumber("kP", kP);
@@ -168,6 +169,7 @@ public class Shooter extends Subsystem {
     	
     	//RPM = 0;//XXX Does this still do anything?
     	stop();
+    	SmartDashboard.putBoolean("AutoTargeting", false);
     	SmartDashboard.putBoolean("Shooter OnOff", false);
     	//SmartDashboard.putNumber("RPM", RPM);
     	compressorEnabled = false;
