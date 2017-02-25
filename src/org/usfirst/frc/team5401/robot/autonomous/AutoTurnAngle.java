@@ -53,8 +53,8 @@ public class AutoTurnAngle extends Command {
     	currentAngle = 0;
     	
     	if (modeAutoTarget){
-//XXX    	desiredTurnAngle = Robot.visionprocessing.findTargetAngle(); //To be added
-    		desiredTurnAngle = 90;
+    		desiredTurnAngle = Robot.visionprocessing.findTargetAngle(); //To be added
+//    		desiredTurnAngle = 90;
     	}
     	
 //    	Robot.drivebase.recalibrateGyro(); 

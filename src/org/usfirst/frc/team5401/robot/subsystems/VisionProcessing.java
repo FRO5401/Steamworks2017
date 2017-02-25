@@ -33,6 +33,12 @@ public class VisionProcessing extends Subsystem {
 	*/
 	public VisionProcessing(){
 		SmartDashboard.putBoolean("VALID", targetValid);
+    	SmartDashboard.putNumber("q", 0);
+    	SmartDashboard.putNumber("targetX", 0);
+    	SmartDashboard.putNumber("targetY", 0);
+    	SmartDashboard.putNumber("targetHeight", 0);
+    	SmartDashboard.putNumber("targetWidth", 0);
+
 	}
 	
     public void initDefaultCommand() {
@@ -54,11 +60,11 @@ public class VisionProcessing extends Subsystem {
         	targetY =  targetRect.getNumber("Y", NETWORK_DEFAULT);
         	targetHeight =  targetRect.getNumber("height", NETWORK_DEFAULT);
         	targetWidth =  targetRect.getNumber("width", NETWORK_DEFAULT);
-        	System.out.println(targetValid);
-        	System.out.println(targetX);
-        	System.out.println(targetY);
-        	System.out.println(targetHeight);
-        	System.out.println(targetWidth);    		
+    		SmartDashboard.putBoolean("VALID", targetValid);
+        	SmartDashboard.putNumber("targetX", targetX);
+        	SmartDashboard.putNumber("targetY", targetY);
+        	SmartDashboard.putNumber("targetHeight", targetHeight);
+        	SmartDashboard.putNumber("targetWidth", targetWidth);
     	}
     	SmartDashboard.putBoolean("VALID", targetValid);
 		}catch(Exception ee)
@@ -80,6 +86,7 @@ public class VisionProcessing extends Subsystem {
         	} else {
         		Angle = 0;
         	} 
+        	SmartDashboard.putNumber("targetAngle", Angle);
     	}catch (Exception ee) {
         		System.out.println("No Target");
        	}
