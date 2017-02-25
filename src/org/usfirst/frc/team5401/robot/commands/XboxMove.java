@@ -35,8 +35,8 @@ public class XboxMove extends Command {
 //        accelerationThreshhold = 0.01;
 		
 		//Min and Max velocity have to be different to prevent constant shifting if at the shift speed if there is only one shift speed
-		MINIMUM_VELOCITY_FOR_HIGH_GEAR 	= 45;//NEED TO CHANGE, REMEMBER inches per second
-		MAXIMUM_VELOCITY_FOR_LOW_GEAR 	= 50;//NEED TO CHANGE
+		MINIMUM_VELOCITY_FOR_HIGH_GEAR 	= 25;//NEED TO CHANGE, REMEMBER inches per second
+		MAXIMUM_VELOCITY_FOR_LOW_GEAR 	= 35;//NEED TO CHANGE
 		
 /*		1/23/17 NOT NEEDED
   		//Remember to initialize to zero
