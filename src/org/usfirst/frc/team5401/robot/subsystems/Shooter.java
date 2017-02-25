@@ -145,6 +145,8 @@ public class Shooter extends Subsystem {
     	//	_talonMaster.changeControlMode(TalonControlMode.PercentVbus);
     	//	System.out.println("mode: VBUS VBUS VBUS");
     //	}
+    	_talonMaster.changeControlMode(TalonControlMode.Voltage);
+    	_talonMaster.set(6.0);
     	
     	//MOTOR_SPEED = SmartDashboard.getNumber("motor_speed", MOTOR_SPEED);
       //feed_forward = SmartDashboard.getNumber("feed_forward", feed_forward);
@@ -157,7 +159,7 @@ public class Shooter extends Subsystem {
 //    _talonMaster.setF(feed_forward);
 //    _talonMaster.setPID(kP, kI, kD);
       _talonMaster.setPID(kP, kI, kD, feed_forward, Izone, rampRate, channel); //in percentVBus this is ignored
-      _talonMaster.set(MOTOR_SPEED);
+      //_talonMaster.set(MOTOR_SPEED);
 	    SmartDashboard.putNumber("Position", _talonMaster.getEncPosition());
 	    SmartDashboard.putNumber("Velocity",  _talonMaster.getEncVelocity());
 	   	
