@@ -227,7 +227,7 @@ public class XboxMove extends Command {
     		
     	}
     	//Gear Shift Done
-    }
+    } 
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
