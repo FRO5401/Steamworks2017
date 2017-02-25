@@ -218,6 +218,7 @@ public class Shooter extends Subsystem {
     		System.out.println("switch to PID PID PID");
     	}
     	SmartDashboard.putBoolean("PID_Enabled", pidEnabled);
+    }
 
     public void printReadyToShoot(){
     	if (_talonMaster.getEncVelocity() < MOTOR_SPEED + THRESH || _talonMaster.getEncVelocity() > MOTOR_SPEED - THRESH){
