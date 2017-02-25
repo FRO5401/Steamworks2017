@@ -11,10 +11,10 @@ public class PopGear extends Command {
 	
 	private int input;
 	
-    public PopGear() {
+    public PopGear(int inputOI) {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.gearmechanism); 
-        input = 0;
+        input = inputOI;
     }
 
     // Called just before this Command runs the first time
@@ -23,7 +23,7 @@ public class PopGear extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	input = Robot.oi.getXboxRightStickY_Driver();
+    	//input = Robot.oi.getXboxRightStickY_Driver();
     	Robot.gearmechanism.gearInOut(input);
     }
 
