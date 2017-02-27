@@ -26,7 +26,7 @@ public class Infeed extends Subsystem {
 	private double inputVoltage; //The input voltage provided to the sensor
     private final static double DEFAULT_VOLTS = 5.0; //What to use if we are no provided with another input voltage
 	private final int SLOPE = 250; //The slope of the conversion of the return volts to pressure. From documentation.
-	private final int Y_INTERCEPT = -25; //The Y intercept of the conversion of the return volts to pressure. From the docs. 
+	private final int Y_INTERCEPT = -20; //The Y intercept of the conversion of the return volts to pressure. From the docs. //Manually added 5
 
 	
 	public Infeed(){
