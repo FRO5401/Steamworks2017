@@ -31,6 +31,7 @@ public class FeederControl extends Command {
     	
     	Robot.infeed.armUpDown(upDown);
     	Robot.infeed.feederDirection(inOrOut);
+    	Robot.infeed.reportPressure(); //pressure sensor
     }
 
     // Make this return true when this Command no longer needs to run execute()
