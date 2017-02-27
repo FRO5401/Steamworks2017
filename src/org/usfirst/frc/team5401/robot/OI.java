@@ -85,6 +85,10 @@ public class OI {
 		//AutoTarget Button
 		xboxA_Operator.whenPressed(new AutoTargetAndShoot(0, false, true)); //should be sending 0
 		
+		//Gear Mechanism Button
+		xboxX_Driver.whenPressed(new PopGear(-1)); //out
+		xboxX_Driver.whenReleased(new PopGear(1)); //in
+		
 		//Unjammer Button
 		xboxRightBumper_Operator.whenPressed(new UnjamToggle(1));
 		xboxRightBumper_Operator.whenReleased(new UnjamToggle(-1));
@@ -140,7 +144,7 @@ public class OI {
 	}
 	
 	//For GearMechanism
-	public int getXboxRightStickY_Driver(){
+	public int getXboxRightStickY_Driver(){ //TODO remove
 		double value = xboxController_Driver.getRawAxis(RobotMap.XBOX_AXIS_RIGHT_Y);
 		if (value > .5){
 			return 1;

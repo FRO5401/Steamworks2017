@@ -22,7 +22,7 @@ public class GearMechanism extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
-    	setDefaultCommand(new PopGear());
+    	//setDefaultCommand(new PopGear());
     	
     	SmartDashboard.putString("GearMechanism_text", "Gear Mechanism");
     	SmartDashboard.putString("GearOut_text" , "GREEN = Gear Out");
