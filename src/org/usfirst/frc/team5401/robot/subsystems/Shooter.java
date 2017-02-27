@@ -219,6 +219,7 @@ public class Shooter extends Subsystem {
     	}
     	SmartDashboard.putBoolean("PID_Enabled", pidEnabled);
     }
+
     public void printReadyToShoot(){
     	if (_talonMaster.getEncVelocity() < MOTOR_SPEED + THRESH || _talonMaster.getEncVelocity() > MOTOR_SPEED - THRESH){
     		SmartDashboard.putBoolean("Ready to Shoot", true);        	
