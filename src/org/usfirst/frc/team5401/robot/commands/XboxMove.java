@@ -151,6 +151,9 @@ public class XboxMove extends Command {
     			right = (throttle - reverse) * sensitivity;
     		}
     	} else {
+    		if (invert){
+    			slew *= -1;
+    		}
     		if (Math.abs(slew) > RobotMap.DRIVE_THRESHHOLD){
     			left  = RobotMap.DRIVE_SPIN_SENSITIVITY * slew;
     			right = RobotMap.DRIVE_SPIN_SENSITIVITY * slew * -1;
