@@ -3,6 +3,7 @@ package org.usfirst.frc.team5401.robot.commands;
 import org.usfirst.frc.team5401.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
@@ -35,6 +36,7 @@ public class Shoot extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	Scheduler.getInstance().add(new FlyWheelControl());
     }
 
     // Called when another command which requires one or more of the same
