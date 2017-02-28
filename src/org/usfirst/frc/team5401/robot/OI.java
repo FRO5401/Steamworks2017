@@ -68,9 +68,6 @@ public class OI {
 	
 	//Buttons
 	public OI(){
-		
-		//Shooter
-		xboxB_Operator.whenPressed(new FlyWheelControl());
 
 		//Shoot (Loader) Button
 		xboxA_Driver.whenPressed(new LoadShooter());

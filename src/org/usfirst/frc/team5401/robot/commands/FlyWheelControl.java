@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class FlyWheelControl extends Command {
-	
+
     public FlyWheelControl() {
         // Use requires() here to declare subsystem dependencies
     	requires(Robot.shooter);
@@ -25,7 +25,7 @@ public class FlyWheelControl extends Command {
     	} else {
     		Robot.compressorsubsystem.startCompressor();
     	}
-    	
+    
     	SmartDashboard.putBoolean("Shooter OnOff", Robot.shooter.isEnabled());    	
     }
 
@@ -49,7 +49,7 @@ public class FlyWheelControl extends Command {
     // subsystems is scheduled to run
     protected void interrupted() {
     	Robot.shooter.stop();
-    	Robot.compressorsubsystem.stopCompressor();
+    	Robot.compressorsubsystem.stopCompressor(); //XXX Remove?
     	SmartDashboard.putBoolean("Shooter OnOff", Robot.shooter.isEnabled());
     	System.out.println("FlyWheelControl Interrupted");
     }

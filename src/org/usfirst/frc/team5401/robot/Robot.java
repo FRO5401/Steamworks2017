@@ -136,6 +136,7 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putNumber("Velocity",  Robot.shooter.getVelocity());
         SmartDashboard.putNumber("Gyro", Robot.drivebase.reportGyro());
         Robot.compressorsubsystem.startCompressor();
+        Robot.shooter.stop();
     }
 
     /**
@@ -157,6 +158,7 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putNumber("Velocity",  Robot.shooter.getVelocity());
         SmartDashboard.putNumber("Gyro", Robot.drivebase.reportGyro());
         Robot.compressorsubsystem.startCompressor();
+        Robot.shooter.stop();
         
         Scheduler.getInstance().add(new XboxMove());
     }
