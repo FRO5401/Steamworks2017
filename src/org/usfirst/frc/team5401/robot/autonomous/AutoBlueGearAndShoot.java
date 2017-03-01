@@ -9,11 +9,11 @@ import org.usfirst.frc.team5401.robot.subsystems.Shooter;
 /**
  *
  */
-public class AutoLeftGearBlueShoot extends CommandGroup {
+public class AutoBlueGearAndShoot extends CommandGroup {
 	
-    public AutoLeftGearBlueShoot() {
+    public AutoBlueGearAndShoot() {
     	
-    	addSequential(new AutoLeftGearBlue());
+    	addSequential(new AutoLeftGear());
 		addSequential(new AutoTurnAngle(-25, true, false));
     	addSequential(new AutoShoot()); 
     	

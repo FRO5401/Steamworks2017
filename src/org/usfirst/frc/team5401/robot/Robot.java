@@ -65,8 +65,8 @@ public class Robot extends IterativeRobot {
 		chooser.addObject("CenterGearBlueShoot", new AutoCenterGearBlueShoot());
 		chooser.addObject("CenterGearRedShoot", new AutoCenterGearRedShoot());
 		chooser.addObject("Drive", new AutoDrive(150, .5)); //Takes in distance to drive in inches, speed to drive at
-		chooser.addObject("LeftGearBlue", new AutoLeftGearBlue());
-		chooser.addObject("LeftGearBlueShoot", new AutoLeftGearBlueShoot());
+		chooser.addObject("LeftGearBlue", new AutoLeftGear());
+		chooser.addObject("LeftGearBlueShoot", new AutoBlueGearAndShoot());
 		chooser.addObject("LeftGearRed", new AutoLeftGearRed());
 		chooser.addObject("NoGearBlueTargetedShootBaseline", new AutoNoGearBlueTargetedShootBaseline());
 		chooser.addObject("NoGearBlueTargetShooterHopper", new AutoNoGearBlueTargetShooterHopper());
@@ -77,9 +77,9 @@ public class Robot extends IterativeRobot {
 		chooser.addObject("NoGearShootHopperBlue", new AutoNoGearShootHopperBlue());
 		chooser.addObject("NoGearShootHopperRed", new AutoNoGearShootHopperRed());
 		chooser.addObject("PopGear", new AutoPopGear());
-		chooser.addObject("RightGearBlue", new AutoRightGearBlue());
+		chooser.addObject("RightGearBlue", new AutoRightGear());
 		chooser.addObject("RightGearRed", new AutoRightGearRed());
-		chooser.addObject("RightGearRedShoot", new AutoRightGearRedShoot());
+		chooser.addObject("RightGearRedShoot", new AutoRedGearAndShoot());
 		chooser.addObject("Shoot", new AutoShoot());
 		chooser.addObject("Target", new AutoTarget(90, true, false)); //takes in angle to turn //CommandGroup
 		chooser.addObject("TargetAndShoot", new AutoTargetAndShoot(90, true, false)); //takes in angle to turn
