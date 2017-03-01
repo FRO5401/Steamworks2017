@@ -13,7 +13,7 @@ import org.usfirst.frc.team5401.robot.commands.XboxMove;
 
 
 /**
- *
+ * This command is also used as a "BaselineOnly" command 
  */
 public class AutoDrive extends Command {
 
