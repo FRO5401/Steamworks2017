@@ -14,7 +14,7 @@ public class AutoBlueGearAndShoot extends CommandGroup {
     public AutoBlueGearAndShoot() {
     	
     	addSequential(new AutoLeftGear());
-		addSequential(new AutoTurnAngle(-25, true, false));
+		addSequential(new AutoTurnAngle(-23, true, false));
     	addSequential(new AutoShoot()); 
     	
         // Add Commands here:
