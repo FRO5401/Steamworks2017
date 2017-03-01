@@ -17,7 +17,7 @@ public class AutoShoot extends CommandGroup {
         // these will run in order.
 
     	addSequential(new GetShooterUpToSpeed());
-    	addSequential(new WaitCommand(1));
+    	addSequential(new WaitCommand(2));
     	addSequential(new Shoot());
     	
         // To run multiple commands at the same time,
