@@ -1,22 +1,21 @@
 package org.usfirst.frc.team5401.robot.autonomous;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-
 import org.usfirst.frc.team5401.robot.autonomous.AutoDrive;
 import org.usfirst.frc.team5401.robot.autonomous.AutoTurnAngle;
 import org.usfirst.frc.team5401.robot.commands.PopGear;
+import org.usfirst.frc.team5401.robot.subsystems.Shooter;
 
 /**
  *
  */
-public class AutoLeftGearBlue extends CommandGroup {
-
-    public AutoLeftGearBlue() {
+public class AutoBlueGearAndShoot extends CommandGroup {
+	
+    public AutoBlueGearAndShoot() {
     	
-    	addSequential(new AutoDrive(-75.8, .5));
-    	addSequential(new AutoTurnAngle(50, true, false)); //should be 60
-    	addSequential(new AutoDrive(-45.25, .5)); //54.5 start
-    	addSequential(new AutoPopGear());
+    	addSequential(new AutoLeftGear());
+		addSequential(new AutoTurnAngle(-23, true, false));
+    	addSequential(new AutoShoot()); 
     	
         // Add Commands here:
         // e.g. addSequential(new Command1());
