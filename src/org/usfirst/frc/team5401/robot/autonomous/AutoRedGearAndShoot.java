@@ -13,7 +13,7 @@ public class AutoRedGearAndShoot extends CommandGroup {
     public AutoRedGearAndShoot() {
     	
 		addSequential(new AutoRightGear());
-		addSequential(new AutoTurnAngle(25, true, false));
+		addSequential(new AutoTurnAngle(18, true, false));
 		addSequential(new AutoShoot());
   
         // Add Commands here:

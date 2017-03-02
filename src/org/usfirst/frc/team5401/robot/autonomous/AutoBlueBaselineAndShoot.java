@@ -12,7 +12,7 @@ public class AutoBlueBaselineAndShoot extends CommandGroup {
     	addSequential(new AutoDrive(-101.25, .5));
     	addSequential(new AutoTurnAngle(60, true, false)); //based off 50 on the left side
     	addSequential(new AutoDrive(24, .5));
-    	addSequential(new AutoTurnAngle(-25, true, false));
+    	addSequential(new AutoTurnAngle(-18, true, false));
     	addSequential(new AutoShoot());
     	
         // Add Commands here:
