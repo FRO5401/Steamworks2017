@@ -23,7 +23,7 @@ public class GetShooterUpToSpeed extends Command {
         upToSpeed = false;
         targetSpeed = 0;
         currentSpeed = 0;
-        THRESH = 1000;
+        THRESH = 500;
     }
 
     // Called just before this Command runs the first time
