@@ -14,7 +14,7 @@ import org.usfirst.frc.team5401.robot.subsystems.*;
 //import org.usfirst.frc.team5401.robot.autonomous.AutoTurnAngle;
 //import org.usfirst.frc.team5401.robot.autonomous.DoNothing;
 import org.usfirst.frc.team5401.robot.autonomous.*; //XXX Temporary - Should import only the ones being used
-import org.usfirst.frc.team5401.robot.commands.XboxMove;
+import org.usfirst.frc.team5401.robot.commands.CeaseFire;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -64,7 +64,7 @@ public class Robot extends IterativeRobot {
 		chooser.addObject("Center Gear", new AutoCenterGear());
 //		chooser.addObject("CenterGearBlueShoot", new AutoCenterGearBlueShoot());
 //		chooser.addObject("CenterGearRedShoot", new AutoCenterGearRedShoot());
-		chooser.addObject("Baseline Only", new AutoDrive(100, .5)); //Takes in distance to drive in inches, speed to drive at
+		chooser.addObject("Baseline Only", new AutoDrive(-100, .5)); //Takes in distance to drive in inches, speed to drive at
 		chooser.addObject("Left Gear", new AutoLeftGear());
 		chooser.addObject("BLUE LEFT Gear and Shoot", new AutoBlueGearAndShoot());
 //		chooser.addObject("NoGearBlueTargetedShootBaseline", new AutoNoGearBlueTargetedShootBaseline());
@@ -156,11 +156,8 @@ public class Robot extends IterativeRobot {
         if (autonomousCommand != null) autonomousCommand.cancel();
         
         SmartDashboard.putNumber("Velocity",  Robot.shooter.getVelocity());
-        SmartDashboard.putNumber("Gyro", Robot.drivebase.reportGyro());
-        Robot.compressorsubsystem.startCompressor();
-        Robot.shooter.stop();
-        
-        Scheduler.getInstance().add(new XboxMove());
+        SmartDashboard.putNumber("Gyro", Robot.drivebase.reportGyro());        
+        Scheduler.getInstance().add(new CeaseFire());
     }
 
     /**

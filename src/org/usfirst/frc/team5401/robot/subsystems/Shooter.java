@@ -83,9 +83,15 @@ public class Shooter extends Subsystem {
 	   	
 	   	
 	   feed_forward = .033;
-	   kP = .19;
+	   //kP = SmartDashboard.getNumber("kP", kP);
+	   //kI = SmartDashboard.getNumber("kI", kI);
+	   //kD = SmartDashboard.getNumber("kD", kD);
+	   
+	   
+	   kP = .1;
 	   kI = .000000005;
-	   kD = 00000002;
+	   kD = 2;
+	   
 	   
 	   Izone = 0;
 	   rampRate = 10.23;

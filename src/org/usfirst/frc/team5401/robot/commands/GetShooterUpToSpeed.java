@@ -23,7 +23,7 @@ public class GetShooterUpToSpeed extends Command {
         upToSpeed = false;
         targetSpeed = 0;
         currentSpeed = 0;
-        THRESH = 200;
+        THRESH = 500;
     }
 
     // Called just before this Command runs the first time
@@ -38,7 +38,7 @@ public class GetShooterUpToSpeed extends Command {
     protected void execute() {
     	currentSpeed = Math.abs(Robot.shooter.getVelocity());
     	
-    	if (currentSpeed <= targetSpeed + THRESH || currentSpeed >= targetSpeed - THRESH){
+    	if (currentSpeed <= targetSpeed + THRESH && currentSpeed >= targetSpeed - THRESH){
     		upToSpeed = true;
     	}
     }
