@@ -62,9 +62,9 @@ public class AutoTurnAngle extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	System.out.println("InitAngle: " + initAngle);
-    	System.out.println("AutoTurning: " + desiredTurnAngle);
-    	System.out.println("Current Angle: " + currentAngle);
+    	//System.out.println("InitAngle: " + initAngle);
+    	//System.out.println("AutoTurning: " + desiredTurnAngle);
+    	//System.out.println("Current Angle: " + currentAngle);
     	if (Math.abs(desiredTurnAngle) <= angleThreshold){
     		//DesiredTurnAngle too small
     		System.out.println("AutoTurnAngle should stop1");
