@@ -80,7 +80,7 @@ public class OI {
 		xboxB_Operator.whenPressed(new FlyWheelControl());
 		
 		//AutoTarget Button
-//		xboxA_Operator.whenPressed(new AutoTargetAndShoot(0, false, true)); //should be sending 0
+		xboxA_Operator.whenPressed(new AutoTargetAndShoot(0, false, true)); //should be sending 0
 		
 		//Gear Mechanism Button
 		xboxX_Driver.whenPressed(new PopGear(-1)); //out
