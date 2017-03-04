@@ -66,7 +66,7 @@ public class AutoDrive extends Command {
     	distanceTraveled = 0;
     	
     	SmartDashboard.putNumber("heading", heading);
-    	Robot.drivebase.setDPPLowGear();
+    	Robot.drivebase.shiftGearHighToLow();
     }
 
     // Called repeatedly when this Command is scheduled to run
