@@ -105,6 +105,7 @@ public class DriveBase extends Subsystem {
 //    	leftEncoder.setDistancePerPulse(HIGH_GEAR_LEFT_DPP);
     	rightEncoder.setDistancePerPulse(HIGH_GEAR_RIGHT_DPP);
     	SmartDashboard.putNumber("Transmission", -1); //Transmisison is High
+    	System.out.println("Shifting Drive Gear to High Gear");
     }
 
     public void shiftGearHighToLow(){
@@ -113,6 +114,7 @@ public class DriveBase extends Subsystem {
 //    	leftEncoder.setDistancePerPulse(LOW_GEAR_LEFT_DPP);
     	rightEncoder.setDistancePerPulse(LOW_GEAR_RIGHT_DPP);
     	SmartDashboard.putNumber("Transmission", 1); //Transmisison is Low
+    	System.out.println("Shifting Drive Gear to Low Gear");
     }
 
 /*    
