@@ -65,7 +65,10 @@ public class AutoDrive extends Command {
     	doneTraveling = true;
     	distanceTraveled = 0;
     	
+    	System.out.println("AutoDriveInitializing");
+    	System.out.println("Angle when starting DriveShift:" + Robot.drivebase.reportGyro());
     	SmartDashboard.putNumber("heading", heading);
+    	
     	Robot.drivebase.shiftGearHighToLow();
     }
 
@@ -172,6 +175,7 @@ public class AutoDrive extends Command {
     // Called once after isFinished returns true
     protected void end() {
     	Robot.drivebase.stop();
+    	System.out.println("Angle when starting DriveShift:" + Robot.drivebase.reportGyro());
     }
 
     // Called when another command which requires one or more of the same
