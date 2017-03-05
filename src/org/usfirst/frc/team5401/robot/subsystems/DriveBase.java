@@ -177,7 +177,7 @@ public class DriveBase extends Subsystem {
     
     public double reportGyro(){
     	double currentAngle = gyro.getAngle();
-//    	SmartDashboard.putNumber("Current Angle", currentAngle);
+    	SmartDashboard.putNumber("Current Angle", currentAngle);
     	//currentAngle *= GYRO_OFFSET; //XXX How does this work if GYRO_OFFSET is undefined? Used in AutoTurnAngle
 //    	SmartDashboard.putNumber("Adjusted Gyro (NOT ADJUSTING)", currentAngle);
     	return currentAngle;
