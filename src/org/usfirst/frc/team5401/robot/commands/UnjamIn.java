@@ -5,7 +5,7 @@ import org.usfirst.frc.team5401.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * This command only brings the Unjammer in.
  */
 public class UnjamIn extends Command {
 

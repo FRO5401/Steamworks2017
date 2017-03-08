@@ -5,7 +5,7 @@ import org.usfirst.frc.team5401.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * Toggles the state of the Unjammer.
  */
 public class UnjamToggle extends Command {
 
