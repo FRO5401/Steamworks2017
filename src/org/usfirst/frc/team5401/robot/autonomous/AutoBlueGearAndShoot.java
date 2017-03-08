@@ -14,7 +14,7 @@ public class AutoBlueGearAndShoot extends CommandGroup {
     public AutoBlueGearAndShoot() {
     	
     	addSequential(new AutoLeftGear());
-		addSequential(new AutoTurnAngle(-20, true, false)); //measured is 25, actual.. not so much
+		addSequential(new AutoTurnAngle(-14, true, false)); //measured is 25, actual.. not so much
     	addSequential(new AutoDrive(36, .5)); //added when shooter distance shortened
 		addSequential(new AutoShoot()); 
     	
