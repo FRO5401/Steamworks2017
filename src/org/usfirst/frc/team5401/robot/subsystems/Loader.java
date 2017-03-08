@@ -5,53 +5,44 @@ import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team5401.robot.RobotMap;
-import org.usfirst.frc.team5401.robot.commands.LoadShooter;
 
 /**
- *
+ * The Loader Subsystem controls the conveyers and the metering roller on the robot.
+ * 
+ * This subsystem is used to load balls into the shooter. It runs
+ * all the time starting in autonomous.
  */
 public class Loader extends Subsystem {
-
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
 		
 	private VictorSP MeteringMotor;
 	private VictorSP ConveyorMotor;
-		
+	
 	private double LOADER_SPEED;
 	private boolean enabled;
 	
 	/** 
-	 *  <p>
-	 *  This subsystem is used to load balls into the shooter. It runs
-	 *  all the time starting in autonomous.
-	 *  </p>
-	 *  
 	 *  <p>
 	 *  Instantiates the left and right conveyer. Sets the loader speed.
 	 *  Puts conveyer status on the SmartDashboard.
 	 *  </p>
 	 */
 	public Loader(){
-		//initialize Victor motor
-		MeteringMotor  = new VictorSP(RobotMap.METERING_ROLLER);
+		//Initialize Loader Motors
+		MeteringMotor = new VictorSP(RobotMap.METERING_ROLLER);
 		ConveyorMotor = new VictorSP(RobotMap.HOPPER_CONVEYOR);
 		
-		LOADER_SPEED = -.8;
-		SmartDashboard.putBoolean("Loader Conveyors", false);
+		LOADER_SPEED = -.8; //TODO Put in RobotMap
 		enabled = false;
+		SmartDashboard.putBoolean("Loader Conveyors", enabled);
 	}
 	
     public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new LoadShooter());
+        //Set the default command for a subsystem here.
     }
     
     /** Runs the conveyers
      *  
-     *  <p> 
-     *  NOTE: Fix spelling in code
-     *  </p><p>
+     *  <p>
      *  Sets the conveyers to run at the default speed
      *  </p>
      */
@@ -80,7 +71,5 @@ public class Loader extends Subsystem {
 	   } else {
 		   stopConveyorsAndMeteringMotor();
 	   }
-   }
-    
+   }  
 }
-
