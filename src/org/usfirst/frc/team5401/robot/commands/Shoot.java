@@ -20,8 +20,6 @@ public class Shoot extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	Robot.loader.runConveyorsAndMeteringMotor();
-    	
-    	//XXX Might have to give back control of xboxmove to drivebase
 		System.out.println("Stop Targeting");
     }
 
@@ -36,8 +34,6 @@ public class Shoot extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	//not needed
-    	//	Scheduler.getInstance().add(new FlyWheelControl());
     }
 
     // Called when another command which requires one or more of the same
