@@ -30,7 +30,7 @@ public class GetShooterUpToSpeed extends Command {
     protected void initialize() {
     	Robot.compressorsubsystem.stopCompressor();
     	Robot.shooter.startMotors();
-    	targetSpeed = Math.abs(Robot.shooter.getTargetSpeed());
+     	targetSpeed = Math.abs(Robot.shooter.getTargetSpeed());
     	upToSpeed = false;
     }
 
