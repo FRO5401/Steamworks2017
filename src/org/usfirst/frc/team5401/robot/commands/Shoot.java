@@ -36,7 +36,8 @@ public class Shoot extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Scheduler.getInstance().add(new FlyWheelControl());
+    	//not needed
+    	//	Scheduler.getInstance().add(new FlyWheelControl());
     }
 
     // Called when another command which requires one or more of the same

@@ -65,8 +65,11 @@ public class AutoDrive extends Command {
     	doneTraveling = true;
     	distanceTraveled = 0;
     	
+    	System.out.println("AutoDriveInitializing");
+    	System.out.println("Angle when starting DriveShift:" + Robot.drivebase.reportGyro());
     	SmartDashboard.putNumber("heading", heading);
-    	Robot.drivebase.setDPPLowGear();
+    	
+    	Robot.drivebase.shiftGearHighToLow();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -80,7 +83,7 @@ public class AutoDrive extends Command {
     			if (desiredDistance > 0 && (distanceTraveled < Math.abs(desiredDistance) - autoDistThresh)){ //DesiredDistance is positive, go forward
     				//Drive Forward
     				if (drift > .5){ //Currently assumes we always drift right while going forwards
-    					Robot.drivebase.drive(autoDriveSpeed, autoDriveSpeed + (kP_Drift * drift)); //Adjust right motor when driving forward
+    					Robot.drivebase.drive(autoDriveSpeed + (kP_Drift * drift), autoDriveSpeed); //Adjust right motor when driving forward
 //    				} else if (drift < -.5){
 //    					Robot.drivebase.drive(autoDriveSpeed + (kP_Drift * drift), autoDriveSpeed);
     				} else {
@@ -172,6 +175,7 @@ public class AutoDrive extends Command {
     // Called once after isFinished returns true
     protected void end() {
     	Robot.drivebase.stop();
+    	System.out.println("Angle when EXITING DriveShift:" + Robot.drivebase.reportGyro());
     }
 
     // Called when another command which requires one or more of the same
