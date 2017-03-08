@@ -14,31 +14,30 @@ import org.usfirst.frc.team5401.robot.commands.FeederControl;
  */
 public class Infeed extends Subsystem {
 
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
-	
 	private DoubleSolenoid feederArm;
 	private VictorSP feederMotor;
 	
-	private double FEED_SPEED;
+	private double FEED_SPEED; //TODO Put in RobotMap
 
-	private AnalogInput input; //The analog input that the sensor is on
+	private AnalogInput pressureSensor; //The analog input that the sensor is on
 	private double inputVoltage; //The input voltage provided to the sensor
-    private final static double DEFAULT_VOLTS = 5.0; //What to use if we are no provided with another input voltage
-	private final int SLOPE = 250; //The slope of the conversion of the return volts to pressure. From documentation.
-	private final int Y_INTERCEPT = -20; //The Y intercept of the conversion of the return volts to pressure. From the docs. //Manually added 5
+    private final static double DEFAULT_VOLTS = 5.0; //What to use if we are no provided with another input voltage //TODO Put in RobotMap
+	private final int SLOPE = 250; //The slope of the conversion of the return volts to pressure. From documentation. //TODO Put in RobotMap
+	private final int Y_INTERCEPT = -20; //The Y intercept of the conversion of the return volts to pressure. From the docs. //Manually added 5 //TODO Put in RobotMap
 
 	
 	public Infeed(){
-		//declare victor locations
+		//Instantiate Feeder Parts
 		feederArm =  new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.INFEEDER_IN, RobotMap.INFEEDER_OUT);
 		feederMotor = new VictorSP(RobotMap.INFEEDER_MOTOR);
 	
 		FEED_SPEED = 0.9;
 		
-		input = new AnalogInput(RobotMap.PRESSURE_SENSOR);
+		pressureSensor = new AnalogInput(RobotMap.PRESSURE_SENSOR);
 		inputVoltage = DEFAULT_VOLTS; //5 is how many volts are typically provided to the sensor according to AndyMark
 		
+		
+		//SmartDashboard Outputs
 		SmartDashboard.putString("FeederArm_text", "Feeder Arm");
 		SmartDashboard.putString("FeederOut_text", "GREEN = Feeder Out");
 		SmartDashboard.putString("FeederIn_text" , "RED = Feeder In");
@@ -53,7 +52,7 @@ public class Infeed extends Subsystem {
 		SmartDashboard.putString("FeederRollersIn_text" , "RED = Rollers In");
 		SmartDashboard.putNumber("Feeder Rollers", 0);
 		
-		SmartDashboard.putNumber("Pressure", SLOPE * (input.getVoltage()/inputVoltage) + Y_INTERCEPT);
+		SmartDashboard.putNumber("Pressure", SLOPE * (pressureSensor.getVoltage()/inputVoltage) + Y_INTERCEPT);
 	}
 
     public void initDefaultCommand() {
@@ -62,8 +61,8 @@ public class Infeed extends Subsystem {
     }
     
     public void feederDirection(int direction){
-    	feederMotor.set(FEED_SPEED * direction);
-    	SmartDashboard.putNumber("Feeder Rollers", direction); //XXX Might have to reverse
+    	feederMotor.set(FEED_SPEED * direction); //1 = in; -1 = out
+    	SmartDashboard.putNumber("Feeder Rollers", direction);
     }
    
     public void armUpDown(int direction){
@@ -78,10 +77,9 @@ public class Infeed extends Subsystem {
     
     /**
 	 * Formula comes from the official documentation
-	 * The pressure in PSI the sensor is reading
+	 * The pressure is the PSI the sensor is reading
 	 */
 	public void reportPressure(){
-		SmartDashboard.putNumber("Pressure", SLOPE * (input.getVoltage()/inputVoltage) + Y_INTERCEPT);
+		SmartDashboard.putNumber("Pressure", SLOPE * (pressureSensor.getVoltage()/inputVoltage) + Y_INTERCEPT);
 	}
 }
-
