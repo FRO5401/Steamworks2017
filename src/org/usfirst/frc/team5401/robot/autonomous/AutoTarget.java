@@ -5,7 +5,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team5401.robot.commands.GetShooterUpToSpeed;
 import org.usfirst.frc.team5401.robot.autonomous.AutoTurnAngle;
-import org.usfirst.frc.team5401.robot.commands.TargetHigh;
 
 /**
  * This command group ONLY auto targets. It does NOT shoot.

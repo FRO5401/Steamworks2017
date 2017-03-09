@@ -19,7 +19,6 @@ public class AutoTurnAngle extends Command {
 	
 	//Constants
 	private final double angleThreshold;
-	private final double autoDistThresh;
 	private final double autoTurnSpeed;
 	private final double autoTurnPrecision;
 	private final boolean modeAuto;
@@ -28,19 +27,15 @@ public class AutoTurnAngle extends Command {
     public AutoTurnAngle(double angle, boolean inAuto, boolean autoTarget) {
     	//Initialize Constants
     	angleThreshold	= 2; 		//Turn angle in degrees
-    	autoDistThresh	= 2; 		//Distance threshold in inches
     	autoTurnSpeed	= 0.95;
     	autoTurnPrecision = .5;
     	
     	modeAuto = inAuto;
     	modeAutoTarget = autoTarget;
     	
-    	requires(Robot.visionprocessing);
     	requires(Robot.drivebase);
     	
     	desiredTurnAngle = angle;
-    	
-    	//XXX Switched to using ReportGyro rather than the raw value; if there's problems, have ReportGyro return MainGyro.GetAngle()
     	currentAngle = 0;
     	initAngle = 0;
     	finished = true;
@@ -53,7 +48,6 @@ public class AutoTurnAngle extends Command {
     	currentAngle = 0;
     	
     	if (modeAutoTarget){
-//XXX    	desiredTurnAngle = Robot.visionprocessing.findTargetAngle(); //To be added
     		desiredTurnAngle = 90;
     	}
     	
