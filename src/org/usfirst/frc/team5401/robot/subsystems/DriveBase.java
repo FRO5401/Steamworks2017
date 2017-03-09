@@ -30,6 +30,7 @@ public class DriveBase extends Subsystem {
 	private VictorSP rightDrive2;
 
 	private DoubleSolenoid gearShifter;
+//	private Timer driveTimer; //TODO Remove
 
 //	private Encoder leftEncoder;
 	private Encoder rightEncoder;
@@ -51,6 +52,7 @@ public class DriveBase extends Subsystem {
 //		leftEncoder = new Encoder(RobotMap.DRIVE_ENC_LEFT_A, RobotMap.DRIVE_ENC_LEFT_B, true, Encoder.EncodingType.k4X);
 		//																					vvv if this was false, DPP doesn't have to be negative
 		rightEncoder = new Encoder(RobotMap.DRIVE_ENC_RIGHT_A, RobotMap.DRIVE_ENC_RIGHT_B, true, Encoder.EncodingType.k4X);
+//		driveTimer = new Timer(); //TODO Remove
 
 		gyro = new ADXRS450_Gyro();
 		
@@ -115,6 +117,28 @@ public class DriveBase extends Subsystem {
     	System.out.println("Shifting Drive Gear to Low Gear");
     }
 
+/*    
+
+    public double getTimerValue(){
+    	double timerValue = driveTimer.get();
+    	//Also displays for testings
+    	
+    	return timerValue;
+    }
+    
+    public void resetTimer(){
+    	driveTimer.reset();
+    	
+    }
+    
+    public void startTimer(){
+    	driveTimer.start();
+    }
+    
+    public void stopTimer(){
+    	driveTimer.stop();
+    }
+*/
     public double getVelocityOfRobot(){
     	double velocity = (/*Math.abs(leftEncoder.getRate()) + */Math.abs(rightEncoder.getRate()));//)/2;
     	//For testing
@@ -154,6 +178,8 @@ public class DriveBase extends Subsystem {
     public double reportGyro(){
     	double currentAngle = gyro.getAngle();
     	SmartDashboard.putNumber("Current Angle", currentAngle);
+    	//currentAngle *= GYRO_OFFSET; //XXX How does this work if GYRO_OFFSET is undefined? Used in AutoTurnAngle
+//    	SmartDashboard.putNumber("Adjusted Gyro (NOT ADJUSTING)", currentAngle);
     	return currentAngle;
     }
     
