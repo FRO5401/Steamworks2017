@@ -5,9 +5,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team5401.robot.RobotMap;
 
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.VictorSP;
-import org.usfirst.frc.team5401.robot.commands.Climb;
+
 
 
 /**
@@ -18,11 +17,6 @@ public class Climber extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	
-	/*
-	 * Private victor; 1 victor smotor
-	 * UpperLimitSwitch;
-	 * TouchLimitSwitch;
-	 */
 	private VictorSP climberMotor;
 	
 	private double SPEED;
