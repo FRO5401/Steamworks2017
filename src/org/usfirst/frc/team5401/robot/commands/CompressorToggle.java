@@ -16,13 +16,10 @@ public class CompressorToggle extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	 //XXX Used to be in execute, still have to test
-    	//TODO SmartDashboard
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	//end() does nothing because this command toggles the state
     	Robot.compressorsubsystem.switchState();
     }
 
@@ -40,7 +37,6 @@ public class CompressorToggle extends Command {
     // subsystems is scheduled to run
     protected void interrupted() {
     	Robot.compressorsubsystem.stopCompressor();
-    	//TODO SmartDashboard
     	System.out.println("CompressorToggle Interrupted");
     }
 }
