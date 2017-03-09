@@ -1,9 +1,9 @@
 package org.usfirst.frc.team5401.robot.subsystems;
 
-import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.Compressor;
 import org.usfirst.frc.team5401.robot.RobotMap;
 
+import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
@@ -11,9 +11,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class CompressorSubsystem extends Subsystem {
 
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
-	
 	private Compressor compressor;
 	
 	public CompressorSubsystem(){
@@ -24,7 +21,6 @@ public class CompressorSubsystem extends Subsystem {
 	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
     }
     
     public void startCompressor(){
@@ -39,21 +35,16 @@ public class CompressorSubsystem extends Subsystem {
     }
     
     public void getCompressorStatus(){
-    	boolean enabled = compressor.enabled();
-    	SmartDashboard.putBoolean("Compressor Enabled", enabled);
-    	boolean loopOn = compressor.getClosedLoopControl();
-    	SmartDashboard.putBoolean("Compressor in Closed Looop", loopOn);
-    	double currentValue = compressor.getCompressorCurrent();
-    	SmartDashboard.putNumber("Compressor Current Value", currentValue);
-    	boolean pressureSwitch = compressor.getPressureSwitchValue();
-    	SmartDashboard.putBoolean("Compressor Pressure Switch On/Off", pressureSwitch);
+    	SmartDashboard.putBoolean("Compressor Enabled", compressor.enabled());
+    	SmartDashboard.putBoolean("Compressor in Closed Looop", compressor.getClosedLoopControl());
+    	SmartDashboard.putNumber("Compressor Current Value", compressor.getCompressorCurrent());
+    	SmartDashboard.putBoolean("Compressor Pressure Switch On/Off", compressor.getPressureSwitchValue());
     }
     
     public boolean isEnabled(){
     	return compressor.enabled();
     }
     
-    //Tested and works
     public void switchState(){
     	if (isEnabled()){
     		stopCompressor();
@@ -62,4 +53,3 @@ public class CompressorSubsystem extends Subsystem {
     	}
     }
 }
-
