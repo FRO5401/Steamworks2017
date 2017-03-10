@@ -2,20 +2,16 @@ package org.usfirst.frc.team5401.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 
 import org.usfirst.frc.team5401.robot.RobotMap;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.Solenoid;
 
 
 /**
  *
  */
 public class Unjammer extends Subsystem {
-
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
 	
 	private DoubleSolenoid unjammer;
 	
@@ -34,7 +30,6 @@ public class Unjammer extends Subsystem {
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
     }
     
     public void unjammerOut(){
