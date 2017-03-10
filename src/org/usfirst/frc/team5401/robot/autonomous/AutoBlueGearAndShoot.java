@@ -3,7 +3,9 @@ package org.usfirst.frc.team5401.robot.autonomous;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import org.usfirst.frc.team5401.robot.autonomous.AutoDrive;
 import org.usfirst.frc.team5401.robot.autonomous.AutoTurnAngle;
+import org.usfirst.frc.team5401.robot.commands.GetShooterUpToSpeed;
 import org.usfirst.frc.team5401.robot.commands.PopGear;
+import org.usfirst.frc.team5401.robot.commands.Shoot;
 import org.usfirst.frc.team5401.robot.subsystems.Shooter;
 
 /**
@@ -15,7 +17,10 @@ public class AutoBlueGearAndShoot extends CommandGroup {
     	
     	addSequential(new AutoLeftGear());
 		addSequential(new AutoTurnAngle(-7, true, false)); //measured is 25, actual.. not so much
-    	addSequential(new AutoShoot()); 
+		addParallel  (new GetShooterUpToSpeed());
+		addSequential(new AutoDrive(36, .5)); //added when shooter distance shortened
+//		addSequential(new WaitCommand(2));
+    	addSequential(new Shoot());
     	
         // Add Commands here:
         // e.g. addSequential(new Command1());
