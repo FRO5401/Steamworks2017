@@ -2,7 +2,6 @@ package org.usfirst.frc.team5401.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team5401.robot.Robot;
-import org.usfirst.frc.team5401.robot.commands.FlyWheelControl;
 /**
  *
  */
@@ -20,9 +19,7 @@ public class ShooterToggle extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	Robot.shooter.shootOverrideSwitchState();
-    	System.out.println("switch");
-    	//FlyWheelControl shoot = new FlyWheelControl();
-    	//shoot.start();
+    	//System.out.println("switch");
     }
 
     // Make this return true when this Command no longer needs to run execute()
