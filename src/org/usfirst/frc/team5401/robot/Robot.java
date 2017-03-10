@@ -78,6 +78,7 @@ public class Robot extends IterativeRobot {
 //		chooser.addObject("TurnAngle", new AutoTurnAngle(90, true, false)); //takes in angle to turn
 		chooser.addObject("RED RIGHT Baseline and Shoot", new AutoRedBaselineAndShoot());
 		chooser.addObject("BLUE LEFT Baseline and Shoot", new AutoBlueBaselineAndShoot());
+		chooser.addObject("RED RIGHT Gear and Shoot and Drive", new AutoRedGearAndShootAndDrive());
         SmartDashboard.putData("Auto mode", chooser);
         
         //Ensures that the "Target Angle" value is on the dashboard
