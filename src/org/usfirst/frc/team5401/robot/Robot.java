@@ -5,14 +5,10 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team5401.robot.subsystems.*;
-
-//import org.usfirst.frc.team5401.robot.autonomous.AutoTurnAngle;
-//import org.usfirst.frc.team5401.robot.autonomous.DoNothing;
 import org.usfirst.frc.team5401.robot.autonomous.*; //XXX Temporary - Should import only the ones being used
 import org.usfirst.frc.team5401.robot.commands.CeaseFire;
 
@@ -31,7 +27,6 @@ public class Robot extends IterativeRobot {
 	public static Infeed infeed;
 	public static Loader loader;
 	public static Shooter shooter;
-	public static VisionProcessing visionprocessing;
 	public static CompressorSubsystem compressorsubsystem;
 	public static Unjammer unjammer;
 	public static DummyCameras dummycameras;
@@ -51,7 +46,6 @@ public class Robot extends IterativeRobot {
     	infeed = new Infeed();
     	loader = new Loader();
     	shooter = new Shooter();
-    	visionprocessing = new VisionProcessing();
     	compressorsubsystem = new CompressorSubsystem();
     	unjammer = new Unjammer();
     	dummycameras = new DummyCameras();

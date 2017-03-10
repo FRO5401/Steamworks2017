@@ -1,47 +1,25 @@
 package org.usfirst.frc.team5401.robot.subsystems;
 
-
-
-import org.usfirst.frc.team5401.robot.Robot;
-import org.usfirst.frc.team5401.robot.RobotMap;
-//import edu.wpi.first.wpilibj.VictorSP;
-//import edu.wpi.first.wpilibj.Counter;
-
-
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-//import edu.wpi.first.wpilibj.PIDSource;
-//import edu.wpi.first.wpilibj.PIDOutput;
 
 import com.ctre.CANTalon;
-//import com.ctre.CANTalon.FeedbackDevice;  //XXX Why is this not used? Its used line 86. Wierd error.
 import com.ctre.CANTalon.TalonControlMode;
 
 /** Uses PID to lineup and shoot, also uses motors to shoot
 *
-*	<p> Declares VictorSP, Counter, PIDSource, PIDOutput, RPM, MAX_COUNTER_SECONDS, MOTOR_SPEED</p>
+*	<p> MOTOR_SPEED</p>
 */
 public class Shooter extends Subsystem {
 	
 	//declare talon speed controller
 	CANTalon _talonMaster;
-	CANTalon _talonSlave;
+	CANTalon _talonSlave;	
 	
-	//declare counter
-//	private Counter counter;
-	
-	//declare pid stuff?
-	
-		//private PIDSource source;
-		//private PIDOutput output;
-		
-	//private double RPM; 
-	
-//	private double MAX_COUNTER_SECONDS = 100;
 	private double MOTOR_SPEED = -23750;
 	private double feed_forward;
 	
-	private double kP, kI, kD;
+	private double kP, kI, kD; //TODO Put in RobotMap
 
     private int Izone;
     private double rampRate;
@@ -59,16 +37,12 @@ public class Shooter extends Subsystem {
 	    * @param kD Derivative Gain
 	    */
 	public Shooter() {
-	   	//super(kP, kI, kD); //initializes pid //XXX Temporary to get rid of error status
 	   	
 	   	_talonMaster = new CANTalon(0);
 	   	_talonSlave = new CANTalon(1);
 	    	
     	_talonMaster.changeControlMode(TalonControlMode.Speed); //XXX Testing with this
-    	_talonMaster.set(0); //XXX Testing with this to see if only the constructor is running
-//	   	_talonMaster.setProfile(0);//XXX Let's ake sure we know what we do with this.  This sounds like we invoke a set of gains from the utility
-	   	//_talonMaster.set(MOTOR_SPEED);//XXX We shouldn't set the speed here in the constructor, might even want to set mode to v% and speed to 0 to deliberately stop
-//	   	_talonMaster.changeControlMode(TalonControlMode.Speed);
+//	   	_talonMaster.setProfile(0);//XXX  Probably don't need this, but if shooter doesn't work try putting this back in first
 	   	_talonSlave.changeControlMode(CANTalon.TalonControlMode.Follower);
     	_talonSlave.set(_talonMaster.getDeviceID());
 	   	
@@ -107,40 +81,16 @@ public class Shooter extends Subsystem {
 	   SmartDashboard.putNumber("rampRate", rampRate);
 	    	
 	   	_talonMaster.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
-    	//instantiate counter
-//    	counter = new Counter(RobotMap.PHOTOSWITCH_CHANNEL);
-//    	counter.setMaxPeriod(MAX_COUNTER_SECONDS);
     	
 	   	THRESH = 200;
 	   	
     	reset();
-    	
-        // Use these to get going:
-        // setSetpoint() -  Sets where the PID controller should move the system //set to RPM
-        //                  to
-        // enable() - Enables the PID controller.
     }
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand();
     }
-/*
-    protected double returnPIDInput() {
-        
-
-    	if(counter.getStopped()){
-    		RPM = 0;
-    		System.out.println("counter is stopped, rpm is 0");
-    	} else {
-    		RPM = Math.abs((1/counter.getPeriod()) * 60); //RPM
-    		System.out.println("counter works, rpm is below"); //USING STARTMOTORS    		
-    	}
-    	SmartDashboard.putNumber("RPM", RPM);
-    	System.out.println("RPM: " + RPM);
-    	return RPM;
-    }
-*/
     
     public void startMotors(){
     	if (pidEnabled) {
@@ -151,16 +101,14 @@ public class Shooter extends Subsystem {
     		System.out.println("mode: Voltage");
     	}
     	
-    	//MOTOR_SPEED = SmartDashboard.getNumber("motor_speed", MOTOR_SPEED);
+      //MOTOR_SPEED = SmartDashboard.getNumber("motor_speed", MOTOR_SPEED);
       //feed_forward = SmartDashboard.getNumber("feed_forward", feed_forward);
       SmartDashboard.putNumber("feed_forward_test", feed_forward);
       /** Uncomment to get PID values from the dashboard **/
       //kP = SmartDashboard.getNumber("kP", kP);
       //kI = SmartDashboard.getNumber("kI", kI);
       //kD = SmartDashboard.getNumber("kD", kD);
-      
-//    _talonMaster.setF(feed_forward);
-//    _talonMaster.setPID(kP, kI, kD);
+    
       _talonMaster.setPID(kP,  kI, kD, feed_forward, Izone, rampRate, channel); //in percentVBus this is ignored
       _talonMaster.set(MOTOR_SPEED);
 	    SmartDashboard.putNumber("Position", _talonMaster.getEncPosition());
@@ -171,13 +119,9 @@ public class Shooter extends Subsystem {
     
     
     public void reset(){
-    	//counter.reset();
-    	
-    	//RPM = 0;//XXX Does this still do anything?
     	stop();
     	SmartDashboard.putBoolean("AutoTargeting", false);
     	SmartDashboard.putBoolean("Shooter OnOff", false);
-    	//SmartDashboard.putNumber("RPM", RPM);
     	compressorEnabled = false;
     }
     
@@ -185,7 +129,6 @@ public class Shooter extends Subsystem {
     * 
     */
     public void stop(){
-    	//_talonMaster.set(0);
     	_talonMaster.changeControlMode(TalonControlMode.PercentVbus);
     	_talonMaster.set(0);
     	compressorEnabled = false;
