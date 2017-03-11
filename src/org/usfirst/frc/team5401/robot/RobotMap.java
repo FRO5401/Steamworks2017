@@ -61,7 +61,7 @@ public class RobotMap {
 	
 	//Sensor Channels
 	public static final int PHOTOSWITCH_CHANNEL = 0;
-	public static final int CLIMBER_LIMITSWITCH = 1;
+	
 	public static final int DRIVE_ENC_A    		= 2;
 	public static final int DRIVE_ENC_B    		= 3;
 		
