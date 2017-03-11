@@ -11,7 +11,7 @@ public class AutoRedGearAndShootAndDrive extends CommandGroup {
     public AutoRedGearAndShootAndDrive() {
     	
     	addSequential(new AutoRedGearAndShoot());
-    	addSequential(new WaitCommand(2));
+    	addSequential(new WaitCommand(3.5));
     	addSequential(new AutoTurnAngle(25, true, false));
     	addSequential(new AutoDrive(-240, .9));
     	
