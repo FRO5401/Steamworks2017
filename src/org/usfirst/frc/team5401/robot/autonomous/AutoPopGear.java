@@ -13,7 +13,7 @@ public class AutoPopGear extends CommandGroup {
     public AutoPopGear() {
 		addSequential(new AutoPopGearOnly(-1)); //out
 		addSequential(new WaitCommand(1));
-		addSequential(new AutoDrive(50, .5));
+		addSequential(new AutoDrive(50, .9));
 		addSequential(new AutoPopGearOnly(1)); //in
     }
 }

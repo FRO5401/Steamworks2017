@@ -1,9 +1,13 @@
 package org.usfirst.frc.team5401.robot.autonomous;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.command.WaitCommand;
+
 import org.usfirst.frc.team5401.robot.autonomous.AutoDrive;
 import org.usfirst.frc.team5401.robot.autonomous.AutoTurnAngle;
+import org.usfirst.frc.team5401.robot.commands.GetShooterUpToSpeed;
 import org.usfirst.frc.team5401.robot.commands.PopGear;
+import org.usfirst.frc.team5401.robot.commands.Shoot;
 import org.usfirst.frc.team5401.robot.subsystems.Shooter;
 /**
  *
@@ -13,9 +17,12 @@ public class AutoRedGearAndShoot extends CommandGroup {
     public AutoRedGearAndShoot() {
     	
 		addSequential(new AutoRightGear());
-		addSequential(new AutoTurnAngle(15, true, false));
-		addSequential(new AutoDrive(36, .5)); //added when shooter distance shortened
-		addSequential(new AutoShoot());
+		addSequential(new AutoTurnAngle(35, true, false));
+		addParallel  (new GetShooterUpToSpeed());
+		addSequential(new AutoDrive(60, .5)); //added when shooter distance shortened
+//		addSequential(new WaitCommand(2));
+    	addSequential(new Shoot());
+//		addSequential(new AutoShoot());
   
         // Add Commands here:
         // e.g. addSequential(new Command1());

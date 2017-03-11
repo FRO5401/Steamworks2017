@@ -94,8 +94,8 @@ public class AutoDrive extends Command {
     				//Drive Backward
     				if (drift > .5){ //Currently assumes we always drift left (while looking backward as the front) while going backwards
     					Robot.drivebase.drive(-autoDriveSpeed, -(autoDriveSpeed + (kP_Drift * drift)));//Adjusts left motor when driving backwards
-//    				} else if (drift < -.5){
-//    					Robot.drivebase.drive(-autoDriveSpeed + (kP_Drift * drift), -autoDriveSpeed);
+    				} else if (drift < -.5){
+    					Robot.drivebase.drive(-autoDriveSpeed + (kP_Drift * drift), -autoDriveSpeed);
     				} else {
     					Robot.drivebase.drive(-autoDriveSpeed, -autoDriveSpeed);
     				}
