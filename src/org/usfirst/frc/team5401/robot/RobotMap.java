@@ -62,11 +62,9 @@ public class RobotMap {
 	//Sensor Channels
 	public static final int PHOTOSWITCH_CHANNEL = 0;
 	public static final int CLIMBER_LIMITSWITCH = 1;
-	public static final int DRIVE_ENC_LEFT_A    = 2;
-	public static final int DRIVE_ENC_LEFT_B    = 3;
-	public static final int DRIVE_ENC_RIGHT_A   = 4;
-	public static final int DRIVE_ENC_RIGHT_B   = 5;
-	
+	public static final int DRIVE_ENC_A    		= 2;
+	public static final int DRIVE_ENC_B    		= 3;
+		
 	//Pneumatics
 	public static final int PCM_ID 			= 0;
 	public static final int DRIVE_SHIFT_IN   	  = 0;

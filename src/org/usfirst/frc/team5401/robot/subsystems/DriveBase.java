@@ -47,7 +47,7 @@ public class DriveBase extends Subsystem {
 		leftDrive2  = new VictorSP(RobotMap.DRIVE_LEFT_MOTOR_2);
 		rightDrive2 = new VictorSP(RobotMap.DRIVE_RIGHT_MOTOR_2);
 		gearShifter = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.DRIVE_SHIFT_IN, RobotMap.DRIVE_SHIFT_OUT);
-		encoder = new Encoder(RobotMap.DRIVE_ENC_LEFT_A, RobotMap.DRIVE_ENC_LEFT_B, true, Encoder.EncodingType.k4X);
+		encoder = new Encoder(RobotMap.DRIVE_ENC_A, RobotMap.DRIVE_ENC_B, true, Encoder.EncodingType.k4X);
 		//																					XXX if this was false, DPP doesn't have to be negative
 		
 		gyro = new ADXRS450_Gyro();
@@ -122,27 +122,20 @@ public class DriveBase extends Subsystem {
     }
     
     public double getEncoderDistance(){
-    	double leftDistanceRaw = encoder.get();
-    	SmartDashboard.putNumber("Left Enc Raw", leftDistanceRaw);
-//    	SmartDashboard.putNumber("Right Enc Raw", rightDistanceRaw);
-    	double leftDistance = leftEncoder.getDistance();
-//    	double rightDistance = rightEncoder.getDistance();
-    	SmartDashboard.putNumber("Left Enc Adj", leftDistance);
-//    	SmartDashboard.putNumber("Right Enc Adj", rightDistance);
-    	double encoderDistance = (leftDistance);// + rightDistance)/2;
-    	return encoderDistance;
+    	double distanceRaw = encoder.get();
+    	SmartDashboard.putNumber("Encoder Raw", distanceRaw);
+    	double distance = encoder.getDistance();
+    	SmartDashboard.putNumber("Encoder Adj", distance);
+    	return distance;
     }
     
     public void encoderReset(){
-    	leftEncoder.reset();
-//    	rightEncoder.reset();
+    	encoder.reset();
     }
     
     public double reportGyro(){
     	double currentAngle = gyro.getAngle();
     	SmartDashboard.putNumber("Current Angle", currentAngle);
-    	//currentAngle *= GYRO_OFFSET; //XXX How does this work if GYRO_OFFSET is undefined? Used in AutoTurnAngle
-//    	SmartDashboard.putNumber("Adjusted Gyro (NOT ADJUSTING)", currentAngle);
     	return currentAngle;
     }
     
