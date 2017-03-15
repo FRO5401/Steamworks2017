@@ -14,7 +14,7 @@ import org.usfirst.frc.team5401.robot.commands.XboxMove;
 /**
  *
  */
-/*
+/* Comment this line to use Single Encoder
 public class DriveBase extends Subsystem {
 	
 	double LOW_GEAR_LEFT_DPP;
@@ -168,7 +168,8 @@ public class DriveBase extends Subsystem {
     }
 
 }
-*/
+*/ //Comment this line to use Single encoder
+///* XXX Remove front two slashes to comment Single encoder and use Double Encoder on Drive
 public class DriveBase extends Subsystem {
 	
 	double LOW_GEAR_LEFT_DPP;
@@ -202,9 +203,8 @@ public class DriveBase extends Subsystem {
 		leftDrive2  = new VictorSP(RobotMap.DRIVE_LEFT_MOTOR_2);
 		rightDrive2 = new VictorSP(RobotMap.DRIVE_RIGHT_MOTOR_2);
 		gearShifter = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.DRIVE_SHIFT_IN, RobotMap.DRIVE_SHIFT_OUT);
-		leftEncoder = new Encoder(RobotMap.DRIVE_ENC_LEFT_A, RobotMap.DRIVE_ENC_LEFT_B, true, Encoder.EncodingType.k4X);
-		//																					vvv if this was false, DPP doesn't have to be negative
-		rightEncoder = new Encoder(RobotMap.DRIVE_ENC_RIGHT_A, RobotMap.DRIVE_ENC_RIGHT_B, true, Encoder.EncodingType.k4X);
+		//Encoder DIO slots say left, but is just for one encoder. Location Variable may be changed
+		encoder = new Encoder(RobotMap.DRIVE_ENC_LEFT_A, RobotMap.DRIVE_ENC_LEFT_B, true, Encoder.EncodingType.k4X);
 		
 		gyro = new ADXRS450_Gyro();
 		
@@ -220,10 +220,8 @@ public class DriveBase extends Subsystem {
 		SmartDashboard.putNumber("Robot Velocity", 0);
 		SmartDashboard.putNumber("Gyro", reportGyro());
 		
-		SmartDashboard.putNumber("Left Enc Raw" , leftEncoder.get());
-		SmartDashboard.putNumber("Right Enc Raw", rightEncoder.get());
-		SmartDashboard.putNumber("Left Enc Adj" , leftEncoder.getDistance());
-		SmartDashboard.putNumber("Right Enc Adj", rightEncoder.getDistance());
+		SmartDashboard.putNumber("Enc Raw" , encoder.get());
+		SmartDashboard.putNumber("Enc Adj" , encoder.getDistance());
 	}
 	
     public void initDefaultCommand() {
@@ -237,10 +235,8 @@ public class DriveBase extends Subsystem {
     	leftDrive2.set(leftDriveDesired);
     	rightDrive2.set(-1 * rightDriveDesired);
     	
-    	SmartDashboard.putNumber("Left Enc Raw" , leftEncoder.get());
-		SmartDashboard.putNumber("Right Enc Raw", rightEncoder.get());
-		SmartDashboard.putNumber("Left Enc Adj" , leftEncoder.getDistance());
-		SmartDashboard.putNumber("Right Enc Adj", rightEncoder.getDistance());
+    	SmartDashboard.putNumber("Enc Raw" , encoder.get());
+		SmartDashboard.putNumber("Enc Adj" , encoder.getDistance());
     }
 
     public void stop(){
@@ -254,8 +250,7 @@ public class DriveBase extends Subsystem {
     public void shiftGearLowToHigh(){//Meaning Low speed to high speed
     	//Assumes Pneumatic forward/out shifts low to high
     	gearShifter.set(DoubleSolenoid.Value.kForward);
-    	leftEncoder.setDistancePerPulse(HIGH_GEAR_LEFT_DPP);
-    	rightEncoder.setDistancePerPulse(HIGH_GEAR_RIGHT_DPP);
+    	encoder.setDistancePerPulse(HIGH_GEAR_LEFT_DPP);
     	SmartDashboard.putNumber("Transmission", -1); //Transmisison is High
     	System.out.println("Shifting Drive Gear to High Gear");
     }
@@ -263,13 +258,12 @@ public class DriveBase extends Subsystem {
     public void shiftGearHighToLow(){
     	//Assumes Pneumatic reverse/in shifts high to low
     	gearShifter.set(DoubleSolenoid.Value.kReverse);
-    	leftEncoder.setDistancePerPulse(LOW_GEAR_LEFT_DPP);
-    	rightEncoder.setDistancePerPulse(LOW_GEAR_RIGHT_DPP);
+    	encoder.setDistancePerPulse(LOW_GEAR_LEFT_DPP);
     	SmartDashboard.putNumber("Transmission", 1); //Transmisison is Low
     	System.out.println("Shifting Drive Gear to Low Gear");
     }
     public double getVelocityOfRobot(){
-    	double velocity = (Math.abs(leftEncoder.getRate()) + Math.abs(rightEncoder.getRate()))/2;
+    	double velocity = Math.abs(encoder.getRate());
     	//For testing
     	SmartDashboard.putNumber("Robot Velocity", velocity);
     	return velocity;
@@ -277,31 +271,24 @@ public class DriveBase extends Subsystem {
 
     
     public void setDPPLowGear(){
-    	leftEncoder.setDistancePerPulse(LOW_GEAR_LEFT_DPP);
-    	rightEncoder.setDistancePerPulse(LOW_GEAR_RIGHT_DPP);
+    	encoder.setDistancePerPulse(LOW_GEAR_LEFT_DPP);
     }
     
     public void setDPPHighGear(){
-    	leftEncoder.setDistancePerPulse(HIGH_GEAR_LEFT_DPP);
-    	rightEncoder.setDistancePerPulse(HIGH_GEAR_RIGHT_DPP);
+    	encoder.setDistancePerPulse(HIGH_GEAR_LEFT_DPP);
     }
     
     public double getEncoderDistance(){
-    	double leftDistanceRaw = leftEncoder.get();
-    	double rightDistanceRaw = rightEncoder.get();
-    	SmartDashboard.putNumber("Left Enc Raw", leftDistanceRaw);
-    	SmartDashboard.putNumber("Right Enc Raw", rightDistanceRaw);
-    	double leftDistance = leftEncoder.getDistance();
-    	double rightDistance = rightEncoder.getDistance();
-    	SmartDashboard.putNumber("Left Enc Adj", leftDistance);
-    	SmartDashboard.putNumber("Right Enc Adj", rightDistance);
-    	double encoderDistance = (leftDistance + rightDistance)/2;
+    	double distanceRaw = encoder.get();
+    	SmartDashboard.putNumber("Enc Raw", distanceRaw);
+    	double distance = encoder.getDistance();
+    	SmartDashboard.putNumber("Enc Adj", distance);
+    	double encoderDistance = distance;
     	return encoderDistance;
     }
     
     public void encoderReset(){
-    	leftEncoder.reset();
-    	rightEncoder.reset();
+    	encoder.reset();
     }
     
     public double reportGyro(){
@@ -321,3 +308,4 @@ public class DriveBase extends Subsystem {
     }
 
 }
+//*/ //XXX Remove front two slashes to use double encoders on Drive
