@@ -14,7 +14,7 @@ import org.usfirst.frc.team5401.robot.commands.XboxMove;
 /**
  *
  */
-/* Comment this line to use Single Encoder
+///* XXX Comment this line to use Double Encoder
 public class DriveBase extends Subsystem {
 	
 	double LOW_GEAR_LEFT_DPP;
@@ -168,8 +168,8 @@ public class DriveBase extends Subsystem {
     }
 
 }
-*/ //Comment this line to use Single encoder
-///* XXX Remove front two slashes to comment Single encoder and use Double Encoder on Drive
+//*/ // XXX Comment this line to use Double encoder
+/* XXX Remove front two slashes to comment Single encoder and use Double Encoder on Drive
 public class DriveBase extends Subsystem {
 	
 	double LOW_GEAR_LEFT_DPP;
@@ -308,4 +308,4 @@ public class DriveBase extends Subsystem {
     }
 
 }
-//*/ //XXX Remove front two slashes to use double encoders on Drive
+*/ //XXX Remove front two slashes to use double encoders on Drive
