@@ -77,7 +77,7 @@ public class OI {
 		xboxY_Operator.whenReleased(new Climb(0));
 		
 		//Flywheels Button
-		xboxB_Operator.whenPressed(new FlyWheelControl());
+		xboxY_Driver.whenPressed(new FlyWheelControl());
 		
 		//AutoTarget Button
 //		xboxA_Operator.whenPressed(new AutoTargetAndShoot(0, false, true)); //should be sending 0

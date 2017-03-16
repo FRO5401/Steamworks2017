@@ -84,8 +84,8 @@ public class XboxMove extends Command {
     	boolean turn	  = Robot.oi.getTurnButton_Driver();
     	boolean invert	  = Robot.oi.getDriveInvertButton_Driver();
     	
-    	boolean gearShiftLow  = Robot.oi.getXboxBack_Driver();
-    	boolean gearShiftHigh = Robot.oi.getXboxStart_Driver();
+    	boolean gearShiftLow  = false;//Robot.oi.getXboxBack_Driver();
+    	boolean gearShiftHigh = false;//Robot.oi.getXboxStart_Driver();
     	
     	//Manual Gear Shift
     	if (gearShiftHigh){
