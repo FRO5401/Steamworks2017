@@ -93,7 +93,7 @@ public class DriveBase extends Subsystem {
     public void stop(){
     	leftDrive1 .set(0);
     	rightDrive1.set(0);
-    	leftDrive2.set(0);
+    	leftDrive2 .set(0);
     	rightDrive2.set(0);
     	SmartDashboard.putNumber("Robot Velocity", 0);
     }

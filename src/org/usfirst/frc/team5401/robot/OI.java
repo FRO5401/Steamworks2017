@@ -77,7 +77,7 @@ public class OI {
 		xboxY_Operator.whenReleased(new Climb(0));
 		
 		//Flywheels Button
-		xboxB_Operator.whenPressed(new FlyWheelControl());
+		xboxY_Driver.whenPressed(new FlyWheelControl());
 		
 		//AutoTarget Button
 //		xboxA_Operator.whenPressed(new AutoTargetAndShoot(0, false, true)); //should be sending 0
@@ -103,7 +103,7 @@ public class OI {
 		xboxR3_Operator.whenPressed(new CeaseFire());
 		
 		//Override for starting the XboxMove command
-		xboxX_Driver.whenPressed(new XboxMove());
+		xboxA_Operator.whenPressed(new XboxMove());
 		
 		//XXX TEMPORARY BUTTON
 			//For testing pneumatic shifter on drivebase
