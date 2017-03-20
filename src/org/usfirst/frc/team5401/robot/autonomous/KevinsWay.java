@@ -11,8 +11,8 @@ public class KevinsWay extends CommandGroup {
     public KevinsWay() {
     	
     	addParallel(new GetShooterUpToSpeed());
-    	addSequential(new AutoDrive(-13.5, .5));
-    	addSequential(new AutoTurnAngle(-7, true,false));
+    	addSequential(new AutoDrive(-20, .5));
+    	addSequential(new AutoTurnAngle(7, true,false));
     	addSequential(new Shoot());
     	
         // Add Commands here:

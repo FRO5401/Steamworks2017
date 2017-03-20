@@ -6,7 +6,7 @@ import org.usfirst.frc.team5401.robot.commands.GetShooterUpToSpeed;
 import org.usfirst.frc.team5401.robot.commands.Shoot;
 
 /**
- *
+ *Load balls in left and center lanes
  */
 public class AutoBlueShootAndGear extends CommandGroup {
 
