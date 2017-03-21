@@ -38,10 +38,10 @@ public class DriveBase extends Subsystem {
 	
 	public DriveBase(){
 		
-		LOW_GEAR_LEFT_DPP = .020268;//<------for practice 0.019125;
+		LOW_GEAR_LEFT_DPP = -.020268;//<------for practice 0.019125;
 		LOW_GEAR_RIGHT_DPP = .020268;//<--- for comp //0.019125; //<--- for practice
 
-		HIGH_GEAR_LEFT_DPP = .019423;//<------for practice 0.0192999;
+		HIGH_GEAR_LEFT_DPP = -.019423;//<------for practice 0.0192999;
 		HIGH_GEAR_RIGHT_DPP = .019423; //<--- for comp //0.0192999;<--- for practice
 		
 		leftDrive1   = new VictorSP(RobotMap.DRIVE_LEFT_MOTOR_1);
