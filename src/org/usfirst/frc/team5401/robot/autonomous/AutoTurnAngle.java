@@ -26,7 +26,7 @@ public class AutoTurnAngle extends Command {
 
     public AutoTurnAngle(double angle, boolean inAuto, boolean autoTarget) {
     	//Initialize Constants
-    	angleThreshold	= 2; 		//Turn angle in degrees
+    	angleThreshold	= 1; 		//Turn angle in degrees
     	autoTurnSpeed	= 0.95;
     	autoTurnPrecision = .5;
     	

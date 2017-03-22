@@ -11,24 +11,24 @@ import org.usfirst.frc.team5401.robot.commands.UnjamToggle;
 /**
  *Balls on the left side of the robot
  */
-public class KevinsWay extends CommandGroup {
+public class KevinsWayRedRight extends CommandGroup {
 
-    public KevinsWay() {
+    public KevinsWayRedRight() {
     	
     	addParallel(new GetShooterUpToSpeed());
     	addSequential(new AutoDrive(-19, .5));
-    	addSequential(new AutoTurnAngle(7, true,false));
+    	addSequential(new AutoTurnAngle(-7, true,false));
     	addSequential(new Shoot());
     	addSequential(new WaitCommand(4));
     	addSequential(new ShooterToggle());
     	addSequential(new LoadShooter());
-    	addSequential(new AutoTurnAngle(-24.0, true, false));
-    	addSequential(new AutoDrive(-85, .9));
+    	addSequential(new AutoTurnAngle(24.0, true, false));
+    	addSequential(new AutoDrive(-90, .9));
     	addSequential(new AutoPopGearOnly(-1)); //out
 		addSequential(new WaitCommand(1));
 		addSequential(new AutoDrive(25, .9));
 		addSequential(new AutoPopGearOnly(1)); //in
-    	addSequential(new AutoTurnAngle(50, true, false));//turn 45 //XXX need to change angle
+    	addSequential(new AutoTurnAngle(-50, true, false));//turn 45 //XXX need to change angle
 		addSequential(new AutoDrive(82, .5));//forward 80
 		addSequential(new UnjamToggle(-1));
 		
