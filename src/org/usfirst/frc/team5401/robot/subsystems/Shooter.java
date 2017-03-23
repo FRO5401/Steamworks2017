@@ -157,7 +157,7 @@ public class Shooter extends Subsystem {
     public void shootOverrideSwitchState() {
     	if (pidEnabled) {
     		_talonMaster.changeControlMode(TalonControlMode.Voltage);
-    		MOTOR_SPEED = -9.0;
+    		MOTOR_SPEED = -8.4;
     		pidEnabled = false;
     		System.out.println("switch to Voltage");
     	} else {
