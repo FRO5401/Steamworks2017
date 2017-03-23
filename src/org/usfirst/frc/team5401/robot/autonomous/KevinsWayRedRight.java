@@ -22,13 +22,13 @@ public class KevinsWayRedRight extends CommandGroup {
     	addSequential(new WaitCommand(4));
     	addSequential(new ShooterToggle());
     	addSequential(new LoadShooter());
-    	addSequential(new AutoTurnAngle(24.0, true, false));
-    	addSequential(new AutoDrive(-90, .9));
+    	addSequential(new AutoTurnAngle(25.0, true, false)); //24 left
+    	addSequential(new AutoDrive(-95, .9));
     	addSequential(new AutoPopGearOnly(-1)); //out
 		addSequential(new WaitCommand(1));
 		addSequential(new AutoDrive(25, .9));
 		addSequential(new AutoPopGearOnly(1)); //in
-    	addSequential(new AutoTurnAngle(-50, true, false));//turn 45 //XXX need to change angle
+    	addSequential(new AutoTurnAngle(-49, true, false));//turn 45 //XXX need to change angle
 		addSequential(new AutoDrive(82, .5));//forward 80
 		addSequential(new UnjamToggle(-1));
 		
