@@ -62,6 +62,9 @@ public class Robot extends IterativeRobot {
 		chooser.addObject("Left Gear", new AutoLeftGear());
 		chooser.addObject("BLUE LEFT Gear and Shoot", new AutoBlueGearAndShoot());
 		chooser.addObject("BLUE LEFT Gear and Shoot and Drive", new AutoBlueGearAndShootAndDrive());
+		chooser.addObject("BLUE Shoot and LEFT Gear", new AutoBlueShootAndGear());
+		chooser.addObject("BLUE Shoot and LEFT Gear KEVIN'S WAY", new KevinsWay());
+		chooser.addObject("Red Shoot Gear Hopper Kevin's Way", new KevinsWayRedRight());
 //		chooser.addObject("NoGearBlueTargetedShootBaseline", new AutoNoGearBlueTargetedShootBaseline());
 //		chooser.addObject("NoGearBlueTargetShooterHopper", new AutoNoGearBlueTargetShooterHopper());
 //		chooser.addObject("NoGearRedTargetedShootBaseline", new AutoNoGearRedTargetedShootBaseline());

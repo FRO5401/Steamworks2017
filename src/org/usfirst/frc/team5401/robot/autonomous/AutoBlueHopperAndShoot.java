@@ -3,27 +3,28 @@ package org.usfirst.frc.team5401.robot.autonomous;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.WaitCommand;
 
-import org.usfirst.frc.team5401.robot.autonomous.AutoDrive;
-import org.usfirst.frc.team5401.robot.autonomous.AutoTurnAngle;
 import org.usfirst.frc.team5401.robot.commands.GetShooterUpToSpeed;
-import org.usfirst.frc.team5401.robot.commands.PopGear;
+import org.usfirst.frc.team5401.robot.commands.UnjamToggle;
 import org.usfirst.frc.team5401.robot.commands.Shoot;
-import org.usfirst.frc.team5401.robot.subsystems.Shooter;
 /**
  *
  */
-public class AutoRedGearAndShoot extends CommandGroup {
+public class AutoBlueHopperAndShoot extends CommandGroup {
 
-    public AutoRedGearAndShoot() {
-    	
-		addSequential(new AutoRightGear());
-		addSequential(new AutoTurnAngle(13, true, false)); //was 35
-		addParallel  (new GetShooterUpToSpeed());
-		addSequential(new AutoDrive(52, .5)); //added when shooter distance shortened
-//		addSequential(new WaitCommand(2));
+    public AutoBlueHopperAndShoot() {
+    	addSequential(new AutoDrive(-65.0,0.9));//Moves forward
+    	addSequential(new AutoTurnAngle(90, true, false));//Turns Unjammer into hopper direction
+    	addSequential(new AutoDrive(75,0.9));//Start experimenting on a shorter length//Rams robot towards Hopper
+    	addSequential(new UnjamToggle(-1));//Unjammer out
+    	addSequential(new WaitCommand(2));//wait for ball to fall into hopper
+    	addSequential(new AutoDrive(-5.0,0.9));//Drive backwards away from hopper
+    	addSequential(new AutoTurnAngle(-90, true, false));//Turns to move back toward the boiler
+    	addSequential(new GetShooterUpToSpeed());
+    	addSequential(new AutoDrive(51.0, 0.9));//Moves toward boiler
+    	addSequential(new AutoTurnAngle(41, true, false));//Turns toward boiler
     	addSequential(new Shoot());
-//		addSequential(new AutoShoot());
-  
+    	
+    	
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

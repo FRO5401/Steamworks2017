@@ -2,32 +2,26 @@ package org.usfirst.frc.team5401.robot.autonomous;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.WaitCommand;
-
-import org.usfirst.frc.team5401.robot.autonomous.AutoDrive;
-import org.usfirst.frc.team5401.robot.autonomous.AutoTurnAngle;
 import org.usfirst.frc.team5401.robot.commands.GetShooterUpToSpeed;
-import org.usfirst.frc.team5401.robot.commands.PopGear;
 import org.usfirst.frc.team5401.robot.commands.Shoot;
-import org.usfirst.frc.team5401.robot.subsystems.Shooter;
-/**
- *
- */
-public class AutoRedGearAndShoot extends CommandGroup {
 
-    public AutoRedGearAndShoot() {
+/**
+ *Load balls in left and center lanes
+ */
+public class AutoBlueShootAndGear extends CommandGroup {
+
+    public AutoBlueShootAndGear() {
     	
-		addSequential(new AutoRightGear());
-		addSequential(new AutoTurnAngle(13, true, false)); //was 35
-		addParallel  (new GetShooterUpToSpeed());
-		addSequential(new AutoDrive(52, .5)); //added when shooter distance shortened
-//		addSequential(new WaitCommand(2));
+    	addSequential(new AutoDrive(-12, .5));
+    	addParallel(new GetShooterUpToSpeed());
+    	addSequential(new AutoTurnAngle(90, true, false));
+    	addSequential(new AutoDrive(-10,0.5));
+    	
     	addSequential(new Shoot());
-//		addSequential(new AutoShoot());
-  
-        // Add Commands here:
-        // e.g. addSequential(new Command1());
-        //      addSequential(new Command2());
-        // these will run in order.
+    	addSequential(new WaitCommand(4));
+    	addSequential(new AutoTurnAngle(-6, true, false));
+    	addSequential(new AutoDrive(-50,0.9));
+    	
 
         // To run multiple commands at the same time,
         // use addParallel()

@@ -26,7 +26,7 @@ public class AutoTurnAngle extends Command {
 
     public AutoTurnAngle(double angle, boolean inAuto, boolean autoTarget) {
     	//Initialize Constants
-    	angleThreshold	= 2; 		//Turn angle in degrees
+    	angleThreshold	= 1; 		//Turn angle in degrees
     	autoTurnSpeed	= 0.95;
     	autoTurnPrecision = .5;
     	
@@ -78,7 +78,7 @@ public class AutoTurnAngle extends Command {
     	currentAngle = Robot.drivebase.reportGyro() - initAngle;
     	}
     	double angle = Robot.drivebase.reportGyro();
-    	SmartDashboard.putNumber("Gyro Angle", angle);
+    	SmartDashboard.putNumber("Gyro Angle", currentAngle);
     }
 
     // Make this return true when this Command no longer needs to run execute()
