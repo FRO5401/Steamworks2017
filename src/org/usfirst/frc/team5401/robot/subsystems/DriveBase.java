@@ -14,7 +14,7 @@ import org.usfirst.frc.team5401.robot.commands.XboxMove;
 /**
  *
  */
-/* XXX Comment this line to use Double Encoder
+///* XXX Comment this line to use Double Encoder
 public class DriveBase extends Subsystem {
 	
 	double LOW_GEAR_LEFT_DPP;
@@ -168,8 +168,8 @@ public class DriveBase extends Subsystem {
     }
 
 }
-*/ // XXX Comment this line to use Double encoder
-///* XXX Remove front two slashes to comment Single encoder and use Double Encoder on Drive
+//*/ // XXX Comment this line to use Double encoder
+/* XXX Remove front two slashes to comment Single encoder and use Double Encoder on Drive
 public class DriveBase extends Subsystem {
 	
 	double LOW_GEAR_LEFT_DPP;
@@ -192,10 +192,10 @@ public class DriveBase extends Subsystem {
 	
 	public DriveBase(){
 		
-		LOW_GEAR_LEFT_DPP = -0.0189249;//<---New Comp //-0.019125; //XXX Change DPP to positive for comp
+		LOW_GEAR_LEFT_DPP = 0.0189249;//<---New Comp //-0.019125; //XXX Change DPP to positive for comp
 		LOW_GEAR_RIGHT_DPP = 0.0189249;//<---New Comp //.020268;//<--- for comp //0.019125; //<--- for practice
 
-		HIGH_GEAR_LEFT_DPP = -0.019423;//<-----New Comp //-0.0192999; //XXX Change DPP to positive for comp
+		HIGH_GEAR_LEFT_DPP = 0.019423;//<-----New Comp //-0.0192999; //XXX Change DPP to positive for comp
 		HIGH_GEAR_RIGHT_DPP = 0.019423;//<-----New Comp //.019423; //<--- for comp //0.0192999;<--- for practice
 		
 		leftDrive1   = new VictorSP(RobotMap.DRIVE_LEFT_MOTOR_1);
@@ -308,4 +308,4 @@ public class DriveBase extends Subsystem {
     }
 
 }
-//*/ //XXX Remove front two slashes to use double encoders on Drive
+*/ //XXX Remove front two slashes to use double encoders on Drive
