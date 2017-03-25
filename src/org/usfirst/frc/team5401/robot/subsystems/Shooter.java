@@ -17,7 +17,7 @@ public class Shooter extends Subsystem {
 	CANTalon _talonSlave;	
 	
 	
-	private double Voltage_MOTOR_SPEED = -7.8;
+	private double VOLTAGE_MOTOR_SPEED = -7.8;
 	private double PID_MOTOR_SPEED = -19500;//-23750 original
 	private double MOTOR_SPEED = PID_MOTOR_SPEED;
 	private double feed_forward;
@@ -159,7 +159,7 @@ public class Shooter extends Subsystem {
     public void shootOverrideSwitchState() {
     	if (pidEnabled) {
     		_talonMaster.changeControlMode(TalonControlMode.Voltage);
-    		MOTOR_SPEED = Voltage_MOTOR_SPEED;
+    		MOTOR_SPEED = VOLTAGE_MOTOR_SPEED;
     		pidEnabled = false;
     		System.out.println("switch to Voltage");
     	} else {
