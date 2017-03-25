@@ -33,7 +33,7 @@ public class Loader extends Subsystem {
 		ConveyorMotor = new VictorSP(RobotMap.HOPPER_CONVEYOR);
 		
 		LOADER_SPEED = -0.9; //TODO Put in RobotMap
-		METERING_SPEED = -0.8;
+		METERING_SPEED = -0.7;
 		enabled = false;
 		SmartDashboard.putBoolean("Loader Conveyors", enabled);
 	}
