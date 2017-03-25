@@ -18,7 +18,7 @@ public class Shooter extends Subsystem {
 	
 	
 	private double VOLTAGE_MOTOR_SPEED = -7.8;
-	private double PID_MOTOR_SPEED = -19500;//-23750 original
+	private double PID_MOTOR_SPEED = -19875;//-23750 original
 	private double MOTOR_SPEED = PID_MOTOR_SPEED;
 	private double feed_forward;
 	
