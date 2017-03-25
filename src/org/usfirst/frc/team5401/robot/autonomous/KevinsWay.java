@@ -23,7 +23,7 @@ public class KevinsWay extends CommandGroup {
     	addSequential(new ShooterToggle());
     	addSequential(new LoadShooter());
     	addSequential(new AutoTurnAngle(-24.0, true, false));
-    	addSequential(new AutoDrive(-85, .9));
+    	addSequential(new AutoDrive(-104, .9));
     	addSequential(new AutoPopGearOnly(-1)); //out
 		addSequential(new WaitCommand(1));
 		addSequential(new AutoDrive(25, .9));
