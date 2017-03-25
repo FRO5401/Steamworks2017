@@ -16,7 +16,7 @@ public class Shooter extends Subsystem {
 	CANTalon _talonMaster;
 	CANTalon _talonSlave;	
 	
-	private double MOTOR_SPEED = -19000;//-23750 original
+	private double MOTOR_SPEED = -20000;//-23750 original
 	private double feed_forward;
 	
 	private double kP, kI, kD; //TODO Put in RobotMap
