@@ -16,12 +16,14 @@ public class KevinsWay extends CommandGroup {
     public KevinsWay() {
     	
     	addParallel(new GetShooterUpToSpeed());
-    	addSequential(new AutoDrive(-19, .5));
+    	addSequential(new AutoDrive(-4, .5));// changed from -19 to -4 due to change in Shooting Range
     	addSequential(new AutoTurnAngle(7, true,false));
     	addSequential(new Shoot());
     	addSequential(new WaitCommand(4));
     	addSequential(new ShooterToggle());
     	addSequential(new LoadShooter());
+    	addSequential(new AutoTurnAngle(-7, true, false));//Returns to Original path when the shooting Range used -19 in first AutoDrive. At the time, didn't have time to adjust
+    	addSequential(new AutoDrive(-15,0.9));//Compensate for the -15 missing from the -4
     	addSequential(new AutoTurnAngle(-24.0, true, false));
     	addSequential(new AutoDrive(-104, .9));
     	addSequential(new AutoPopGearOnly(-1)); //out
