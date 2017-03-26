@@ -13,7 +13,7 @@ public class AutoLeftGear extends CommandGroup {
 
     public AutoLeftGear() {
     	
-    	addSequential(new AutoDrive(-82, .9)); //was 90
+    	addSequential(new AutoDrive(-79, .9)); //was 90
     	addSequential(new AutoTurnAngle(47, true, false)); //should be 60
     	addSequential(new AutoDrive(-29, .5)); //54.5 start //-13
     	addSequential(new AutoPopGear());
