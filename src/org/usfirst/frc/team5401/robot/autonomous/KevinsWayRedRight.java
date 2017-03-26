@@ -16,7 +16,7 @@ public class KevinsWayRedRight extends CommandGroup {
     public KevinsWayRedRight() {
     	
     	addParallel(new GetShooterUpToSpeed());
-    	addSequential(new AutoDrive(-4, .5));
+    	addSequential(new AutoDrive(-2.5, .5));
     	addSequential(new AutoTurnAngle(-7, true,false));
     	addSequential(new Shoot());
     	addSequential(new WaitCommand(4));
