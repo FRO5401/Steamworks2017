@@ -12,9 +12,9 @@ import org.usfirst.frc.team5401.robot.commands.GetShooterUpToSpeed;
 /**
  *
  */
-public class AutoBlueShootAndBaseline extends CommandGroup {
+public class MOEsWayBlue extends CommandGroup {
 
-    public AutoBlueShootAndBaseline() {
+    public MOEsWayBlue() {
     	//From KevinsWay XXX update with KevinsWay
     	addSequential(new GetShooterUpToSpeed());
     	addSequential(new AutoDrive(-2.5, .5));
@@ -23,13 +23,16 @@ public class AutoBlueShootAndBaseline extends CommandGroup {
     	addSequential(new WaitCommand(4));
     	addSequential(new ShooterToggle());
     	addSequential(new LoadShooter());
-    	
-    	addSequential(new AutoTurnAngle(-61, true, false));
-    	addSequential(new AutoDrive(-87,0.9)); //-120
-    	addSequential(new AutoTurnAngle(90, true, false));
+    	//addSequential(new AutoTurnAngle(20, true, false));
+    	//addSequential(new AutoDrive(-100, .9));
+    	//addSequential(new AutoPopGearOnly(-1)); //out
+		//addSequential(new WaitCommand(1));
+		//addSequential(new AutoDrive(28, .9));
+		//addSequential(new AutoPopGearOnly(1)); //in
+    	//addSequential(new AutoTurnAngle(46, true, false));//turn 45 //XXX need to change angle
     	
     	/**UNCOMMENT THESE FOR HOPPER **/
-    	//addSequential(new AutoDrive(20,0.9));
+    	//addSequential(new AutoDrive(75, .5));//forward 80
     	//addSequential(new UnjamToggle(-1));
     	
     	
