@@ -23,8 +23,8 @@ public class MOEsWayBlue extends CommandGroup {
     	addSequential(new WaitCommand(4));
     	addSequential(new ShooterToggle());
     	addSequential(new LoadShooter());
-    	//addSequential(new AutoTurnAngle(20, true, false));
-    	//addSequential(new AutoDrive(-100, .9));
+    	addSequential(new AutoTurnAngle(-26, true, false));
+    	addSequential(new AutoDrive(-100, .9));
     	//addSequential(new AutoPopGearOnly(-1)); //out
 		//addSequential(new WaitCommand(1));
 		//addSequential(new AutoDrive(28, .9));
