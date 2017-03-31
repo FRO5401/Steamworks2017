@@ -210,8 +210,8 @@ public class DriveBase extends Subsystem {
 		encoder = new Encoder(RobotMap.DRIVE_ENC_LEFT_A, RobotMap.DRIVE_ENC_LEFT_B, true, Encoder.EncodingType.k4X);
 		
 		gyro = new ADXRS450_Gyro();
-//		navxGyro = new AHRS(SerialPort.Port.kMXP);
-//		navxGyro.reset();
+		navxGyro = new AHRS(SerialPort.Port.kMXP);
+		navxGyro.reset();
 		
 		SmartDashboard.putString("Transmission_text", "Transmission");
 		SmartDashboard.putString("HighGear_text", "GREEN = High");
@@ -297,7 +297,7 @@ public class DriveBase extends Subsystem {
     }
     
     public double reportGyro(){
-    	double currentAngle = gyro.getAngle();
+    	double currentAngle = navxGyro.getAngle();//gyro.getAngle();
     	
     	//currentAngle *= GYRO_OFFSET; //XXX How does this work if GYRO_OFFSET is undefined? Used in AutoTurnAngle
 //    	SmartDashboard.putNumber("Adjusted Gyro (NOT ADJUSTING)", currentAngle);
@@ -318,9 +318,9 @@ public class DriveBase extends Subsystem {
     	//gyro.calibrate();  //doesnt appear to be a calibration method for the navX
     }
     
-    public void resetGyro(){
-    	navxGyro.reset();
-    }
+//    public void resetGyro(){
+    //	navxGyro.reset(); //XXX DOESNT WORK
+//    }
 
 }
 //*/ //XXX Remove front two slashes to use double encoders on Drive

@@ -59,7 +59,7 @@ public class AutoDrive extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	Robot.drivebase.encoderReset();
-    	Robot.drivebase.resetGyro();
+//    	Robot.drivebase.resetGyro(); 
     	heading = Robot.drivebase.reportGyro();
     	drift = 0;
     	doneTraveling = true;
