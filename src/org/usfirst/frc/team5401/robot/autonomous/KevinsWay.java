@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 import org.usfirst.frc.team5401.robot.commands.GetShooterUpToSpeed;
 import org.usfirst.frc.team5401.robot.commands.LoadShooter;
 import org.usfirst.frc.team5401.robot.commands.Shoot;
-import org.usfirst.frc.team5401.robot.commands.ShooterToggle;
+import org.usfirst.frc.team5401.robot.commands.ShooterStop;
 
 import edu.wpi.first.wpilibj.command.WaitCommand;
 import org.usfirst.frc.team5401.robot.commands.UnjamToggle;
@@ -20,7 +20,7 @@ public class KevinsWay extends CommandGroup {
     	addSequential(new AutoTurnAngle(7, true,false));
     	addSequential(new Shoot());
     	addSequential(new WaitCommand(4));
-    	addSequential(new ShooterToggle());
+    	addSequential(new ShooterStop());
     	addSequential(new LoadShooter());
     	addSequential(new AutoTurnAngle(-7, true, false));//Returns to Original path when the shooting Range used -19 in first AutoDrive. At the time, didn't have time to adjust
     	addSequential(new AutoDrive(-15,0.9));//Compensate for the -15 missing from the -4

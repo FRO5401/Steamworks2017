@@ -5,27 +5,17 @@ import org.usfirst.frc.team5401.robot.Robot;
 /**
  *
  */
-public class LoaderDirectionSwitch extends Command {
+public class ShooterStop extends Command {
 
-	int wheelDirection;
-	
-    public LoaderDirectionSwitch(int direction) {
+    public ShooterStop() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.loader);
-    	wheelDirection = direction;
+    	requires(Robot.shooter);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	if(wheelDirection == 1)
-    	{
-    		Robot.loader.switchLoaderToForwards();
-    	}
-    	else if(wheelDirection == -1)
-    	{
-    		Robot.loader.switchLoaderToBackwards();
-    	}
+    	Robot.shooter.stop();
     }
 
     // Called repeatedly when this Command is scheduled to run

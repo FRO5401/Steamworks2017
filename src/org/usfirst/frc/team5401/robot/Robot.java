@@ -73,7 +73,7 @@ public class Robot extends IterativeRobot {
 //		chooser.addObject("NoGearShootBaselineRed", new AutoNoGearShootBaselineRed());
 //		chooser.addObject("NoGearShootHopperBlue", new AutoNoGearShootHopperBlue());
 //		chooser.addObject("NoGearShootHopperRed", new AutoNoGearShootHopperRed());
-//		chooser.addObject("PopGear", new AutoPopGear());
+//		chooser.addObject("PopGear", new AutoPopGear()); 
 		chooser.addObject("Right Gear", new AutoRightGear());
 		chooser.addObject("RED RIGHT Gear and Shoot", new AutoRedGearAndShoot());
 //		chooser.addObject("Shoot", new AutoShoot());
@@ -85,7 +85,9 @@ public class Robot extends IterativeRobot {
 		chooser.addObject("RED RIGHT Gear and Shoot and Drive", new AutoRedGearAndShootAndDrive());
 		chooser.addObject("RED Shoot and Baseline", new AutoRedShootAndBaseline());
 		chooser.addObject("Blue Shoot and Baseline", new AutoBlueShootAndBaseline());
-        SmartDashboard.putData("Auto mode", chooser);
+		chooser.addObject("Blue Shoot Gear Hopper MOE's Way", new MOEsWayBlue());
+		chooser.addObject("Red Shoot Gear Hopper MOE's Way", new MOEsWayRed());
+		SmartDashboard.putData("Auto mode", chooser);
         
         //Ensures that the "Target Angle" value is on the dashboard
         SmartDashboard.putNumber("Target Angle", 0);
