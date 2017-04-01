@@ -32,10 +32,12 @@ public class Loader extends Subsystem {
 		MeteringMotor = new VictorSP(RobotMap.METERING_ROLLER);
 		ConveyorMotor = new VictorSP(RobotMap.HOPPER_CONVEYOR);
 		
-		LOADER_SPEED = -0.7; //TODO Put in RobotMap
-		METERING_SPEED = -0.9;
+		LOADER_SPEED = 0.7; //TODO Put in RobotMap
+		METERING_SPEED = 0.9;
 		enabled = false;
 		SmartDashboard.putBoolean("Loader Conveyors", enabled);
+		SmartDashboard.putNumber("Loader Speed", LOADER_SPEED);
+		SmartDashboard.putNumber("Metering Speed", METERING_SPEED);
 	}
 	
     public void initDefaultCommand() {
@@ -49,6 +51,8 @@ public class Loader extends Subsystem {
      *  </p>
      */
     public void runConveyorsAndMeteringMotor(){
+    	SmartDashboard.getNumber("Loader Speed", LOADER_SPEED);
+    	SmartDashboard.getNumber("Metering Speed", METERING_SPEED);
     	enabled = true;
     	MeteringMotor.set(METERING_SPEED);
     	ConveyorMotor.set(LOADER_SPEED);
@@ -84,10 +88,19 @@ public class Loader extends Subsystem {
    }
    
    public void switchState(){
+	  //martDashboard.getNumber("Metering Speed", METERING_SPEED);
+//SmartDashboard.getNumber("Loader Speed", LOADER_SPEED);
 	   if (!enabled){
-		   runConveyorsAndMeteringMotor();
+			MeteringMotor.set(METERING_SPEED);
+	    	ConveyorMotor.set(LOADER_SPEED);
+	    	enabled = true;
+	   
+		 //runConveyorsAndMeteringMotor();
 	   } else {
-		   stopConveyorsAndMeteringMotor();
-	   }
+			MeteringMotor.set(-METERING_SPEED);
+	    	ConveyorMotor.set(-LOADER_SPEED);
+	    	enabled = false;
+		// runConveyorsAndMeteringMotor();
+		   }
    }  
 }
