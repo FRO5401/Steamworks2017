@@ -16,7 +16,10 @@ public class Shooter extends Subsystem {
 	CANTalon _talonMaster;
 	CANTalon _talonSlave;	
 	
-	private double MOTOR_SPEED = -21000;//-23750 original
+	
+	private double VOLTAGE_MOTOR_SPEED = -7.8;
+	private double PID_MOTOR_SPEED = -19875;//-23750 original
+	private double MOTOR_SPEED = PID_MOTOR_SPEED;
 	private double feed_forward;
 	
 	private double kP, kI, kD; //TODO Put in RobotMap
@@ -100,7 +103,6 @@ public class Shooter extends Subsystem {
     		_talonMaster.changeControlMode(TalonControlMode.Voltage);
     		System.out.println("mode: Voltage");
     	}
-    	
       //MOTOR_SPEED = SmartDashboard.getNumber("motor_speed", MOTOR_SPEED);
       //feed_forward = SmartDashboard.getNumber("feed_forward", feed_forward);
       SmartDashboard.putNumber("feed_forward_test", feed_forward);
@@ -157,12 +159,12 @@ public class Shooter extends Subsystem {
     public void shootOverrideSwitchState() {
     	if (pidEnabled) {
     		_talonMaster.changeControlMode(TalonControlMode.Voltage);
-    		MOTOR_SPEED = -8.4;
+    		MOTOR_SPEED = VOLTAGE_MOTOR_SPEED;
     		pidEnabled = false;
     		System.out.println("switch to Voltage");
     	} else {
     		_talonMaster.changeControlMode(TalonControlMode.Speed);
-    		MOTOR_SPEED = -23750;
+    		MOTOR_SPEED = PID_MOTOR_SPEED;
     		pidEnabled = true;
     		System.out.println("switch to Speed");
     	}

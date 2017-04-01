@@ -18,6 +18,7 @@ public class Loader extends Subsystem {
 	private VictorSP ConveyorMotor;
 	
 	private double LOADER_SPEED;
+	private double METERING_SPEED;
 	private boolean enabled;
 	
 	/** 
@@ -31,7 +32,8 @@ public class Loader extends Subsystem {
 		MeteringMotor = new VictorSP(RobotMap.METERING_ROLLER);
 		ConveyorMotor = new VictorSP(RobotMap.HOPPER_CONVEYOR);
 		
-		LOADER_SPEED = -.8; //TODO Put in RobotMap
+		LOADER_SPEED = -0.7; //TODO Put in RobotMap
+		METERING_SPEED = -0.9;
 		enabled = false;
 		SmartDashboard.putBoolean("Loader Conveyors", enabled);
 	}
@@ -48,7 +50,7 @@ public class Loader extends Subsystem {
      */
     public void runConveyorsAndMeteringMotor(){
     	enabled = true;
-    	MeteringMotor.set(LOADER_SPEED);
+    	MeteringMotor.set(METERING_SPEED);
     	ConveyorMotor.set(LOADER_SPEED);
     }
     

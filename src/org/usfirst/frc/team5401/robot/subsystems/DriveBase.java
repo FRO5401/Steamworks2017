@@ -192,10 +192,10 @@ public class DriveBase extends Subsystem {
 	
 	public DriveBase(){
 		
-		LOW_GEAR_LEFT_DPP = -0.0189249;//<---New Comp //-0.019125; //XXX Change DPP to positive for comp
+		LOW_GEAR_LEFT_DPP = 0.0189249;//<---New Comp //-0.019125; //XXX Change DPP to positive for comp
 		LOW_GEAR_RIGHT_DPP = 0.0189249;//<---New Comp //.020268;//<--- for comp //0.019125; //<--- for practice
 
-		HIGH_GEAR_LEFT_DPP = -0.019423;//<-----New Comp //-0.0192999; //XXX Change DPP to positive for comp
+		HIGH_GEAR_LEFT_DPP = 0.019423;//<-----New Comp //-0.0192999; //XXX Change DPP to positive for comp
 		HIGH_GEAR_RIGHT_DPP = 0.019423;//<-----New Comp //.019423; //<--- for comp //0.0192999;<--- for practice
 		
 		leftDrive1   = new VictorSP(RobotMap.DRIVE_LEFT_MOTOR_1);
@@ -204,7 +204,7 @@ public class DriveBase extends Subsystem {
 		rightDrive2 = new VictorSP(RobotMap.DRIVE_RIGHT_MOTOR_2);
 		gearShifter = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.DRIVE_SHIFT_IN, RobotMap.DRIVE_SHIFT_OUT);
 		//Encoder DIO slots say left, but is just for one encoder. Location Variable may be changed
-		encoder = new Encoder(RobotMap.DRIVE_ENC_LEFT_A, RobotMap.DRIVE_ENC_LEFT_B, true, Encoder.EncodingType.k4X);
+		encoder = new Encoder(RobotMap.DRIVE_ENC_RIGHT_A, RobotMap.DRIVE_ENC_RIGHT_B, true, Encoder.EncodingType.k4X);
 		
 		gyro = new ADXRS450_Gyro();
 		
