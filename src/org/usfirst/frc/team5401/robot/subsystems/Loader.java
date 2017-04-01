@@ -17,8 +17,8 @@ public class Loader extends Subsystem {
 	private VictorSP MeteringMotor;
 	private VictorSP ConveyorMotor;
 	
-	private double LOADER_SPEED;
-	private double METERING_SPEED;
+	double LOADER_SPEED;
+	double METERING_SPEED;
 	private boolean enabled;
 	
 	/** 
@@ -52,6 +52,22 @@ public class Loader extends Subsystem {
     	enabled = true;
     	MeteringMotor.set(METERING_SPEED);
     	ConveyorMotor.set(LOADER_SPEED);
+    }
+    
+    public void switchMeteringToBackwards(){
+    	METERING_SPEED = 0.9;
+    }
+    
+    public void switchMeteringToForwards(){
+    	METERING_SPEED = -0.9;
+    }
+
+    public void switchLoaderToBackwards(){
+    	LOADER_SPEED = 0.9;
+    }
+    
+    public void switchLoaderToForwards(){
+    	LOADER_SPEED = -0.9;
     }
     
     /** Turns off the conveyers

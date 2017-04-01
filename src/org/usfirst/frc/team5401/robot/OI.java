@@ -81,6 +81,15 @@ public class OI {
 		
 		//AutoTarget Button
 //		xboxA_Operator.whenPressed(new AutoTargetAndShoot(0, false, true)); //should be sending 0
+	
+		
+		//XXX Experimental Branch Stuff
+		xboxX_Operator.whenPressed(new MeteringDirectionSwitch(-1));
+		xboxX_Operator.whenReleased(new MeteringDirectionSwitch(1));
+		
+		xboxA_Operator.whenPressed(new LoaderDirectionSwitch(-1));
+		xboxA_Operator.whenReleased(new LoaderDirectionSwitch(1));
+		
 		
 		//Gear Mechanism Button
 		xboxX_Driver.whenPressed(new PopGear(-1)); //out
