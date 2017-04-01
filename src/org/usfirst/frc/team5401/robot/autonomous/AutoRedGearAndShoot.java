@@ -19,7 +19,7 @@ public class AutoRedGearAndShoot extends CommandGroup {
 		addSequential(new AutoRightGear());
 		addSequential(new AutoTurnAngle(13, true, false)); //was 35
 		addParallel  (new GetShooterUpToSpeed());
-		addSequential(new AutoDrive(52, .5)); //added when shooter distance shortened
+		addSequential(new AutoDrive(59, .5)); //was 52
 //		addSequential(new WaitCommand(2));
     	addSequential(new Shoot());
 //		addSequential(new AutoShoot());
