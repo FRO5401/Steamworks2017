@@ -3,7 +3,7 @@ package org.usfirst.frc.team5401.robot.autonomous;
 import org.usfirst.frc.team5401.robot.commands.GetShooterUpToSpeed;
 import org.usfirst.frc.team5401.robot.commands.LoadShooter;
 import org.usfirst.frc.team5401.robot.commands.Shoot;
-import org.usfirst.frc.team5401.robot.commands.ShooterToggle;
+import org.usfirst.frc.team5401.robot.commands.ShooterStop;
 import org.usfirst.frc.team5401.robot.commands.UnjamToggle;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -20,7 +20,7 @@ public class MOEsWayBlue extends CommandGroup {
     	addSequential(new AutoTurnAngle(7, true,false));
     	addSequential(new Shoot());
     	addSequential(new WaitCommand(4));
-    	addSequential(new ShooterToggle());
+    	addSequential(new ShooterStop());
     	addSequential(new LoadShooter());
     	addSequential(new AutoTurnAngle(-22, true, false));
     	addSequential(new AutoDrive(-128.5, .9));

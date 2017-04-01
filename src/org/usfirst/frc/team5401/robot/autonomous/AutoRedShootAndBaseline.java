@@ -2,7 +2,7 @@ package org.usfirst.frc.team5401.robot.autonomous;
 
 import org.usfirst.frc.team5401.robot.commands.LoadShooter;
 import org.usfirst.frc.team5401.robot.commands.Shoot;
-import org.usfirst.frc.team5401.robot.commands.ShooterToggle;
+import org.usfirst.frc.team5401.robot.commands.ShooterStop;
 import org.usfirst.frc.team5401.robot.commands.UnjamToggle;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -21,7 +21,7 @@ public class AutoRedShootAndBaseline extends CommandGroup {
     	addSequential(new AutoTurnAngle(-7, true,false));
     	addSequential(new Shoot());
     	addSequential(new WaitCommand(4));
-    	addSequential(new ShooterToggle());
+    	addSequential(new ShooterStop());
     	addSequential(new LoadShooter());
     	//End code from KevinsWay
     	addSequential(new AutoTurnAngle(61, true, false));
