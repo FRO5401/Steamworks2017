@@ -59,7 +59,7 @@ public class AutoDrive extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	Robot.drivebase.encoderReset();
-    	Robot.drivebase.resetGyro();
+//    	Robot.drivebase.resetGyro(); 
     	heading = Robot.drivebase.reportGyro();
     	drift = 0;
     	doneTraveling = true;
@@ -85,7 +85,7 @@ public class AutoDrive extends Command {
     				if (drift > .5){ //Currently assumes we always drift right while going forwards
     					Robot.drivebase.drive(autoDriveSpeed + (kP_Drift * drift), autoDriveSpeed); //Adjust right motor when driving forward
 //    				} else if (drift < -.5){
-//    					Robot.drivebase.drive(autoDriveSpeed + (kP_Drift * drift), autoDriveSpeed);
+//    					Robot.drivebase.drive(autoDriveSpeed, autoDriveSpeed + (kP_Drift * drift));
     				} else {
     					Robot.drivebase.drive(autoDriveSpeed, autoDriveSpeed);
     				}

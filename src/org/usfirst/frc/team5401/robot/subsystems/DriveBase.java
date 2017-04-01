@@ -5,7 +5,9 @@ import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import com.kauailabs.navx.frc.AHRS;
 
 import org.usfirst.frc.team5401.robot.RobotMap;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -189,6 +191,7 @@ public class DriveBase extends Subsystem {
 	
 	private Encoder encoder;
 	private ADXRS450_Gyro gyro;
+	AHRS navxGyro;
 	
 	public DriveBase(){
 		
@@ -207,6 +210,8 @@ public class DriveBase extends Subsystem {
 		encoder = new Encoder(RobotMap.DRIVE_ENC_RIGHT_A, RobotMap.DRIVE_ENC_RIGHT_B, true, Encoder.EncodingType.k4X);
 		
 		gyro = new ADXRS450_Gyro();
+		navxGyro = new AHRS(SerialPort.Port.kMXP);
+		navxGyro.reset();
 		
 		SmartDashboard.putString("Transmission_text", "Transmission");
 		SmartDashboard.putString("HighGear_text", "GREEN = High");
@@ -292,20 +297,30 @@ public class DriveBase extends Subsystem {
     }
     
     public double reportGyro(){
-    	double currentAngle = gyro.getAngle();
-    	SmartDashboard.putNumber("Current Angle", currentAngle);
+    	double currentAngle = navxGyro.getAngle();//gyro.getAngle();
+    	
     	//currentAngle *= GYRO_OFFSET; //XXX How does this work if GYRO_OFFSET is undefined? Used in AutoTurnAngle
 //    	SmartDashboard.putNumber("Adjusted Gyro (NOT ADJUSTING)", currentAngle);
     	return currentAngle;
     }
     
-    public void recalibrateGyro(){
-    	gyro.calibrate();
+    public double reportNavxGyro () {
+    	double currentAngle = navxGyro.getAngle();
+    	double currentPitch = navxGyro.getPitch();
+    	double currentRoll = navxGyro.getRoll();
+    	SmartDashboard.putNumber("navx Angle", currentAngle);
+    	SmartDashboard.putNumber("navx Pitch", currentPitch);
+    	SmartDashboard.putNumber("navx Roll", currentRoll);
+    	return currentAngle;
     }
     
-    public void resetGyro(){
-    	gyro.reset();
+    public void recalibrateGyro(){
+    	//gyro.calibrate();  //doesnt appear to be a calibration method for the navX
     }
+    
+//    public void resetGyro(){
+    //	navxGyro.reset(); //XXX DOESNT WORK
+//    }
 
 }
 //*/ //XXX Remove front two slashes to use double encoders on Drive
