@@ -16,7 +16,7 @@ import org.usfirst.frc.team5401.robot.commands.XboxMove;
 /**
  *
  */
-///* XXX Comment this line to use Double Encoder
+/* XXX Comment this line to use Double Encoder
 public class DriveBase extends Subsystem {
 	
 	double LOW_GEAR_LEFT_DPP;
@@ -185,8 +185,8 @@ public class DriveBase extends Subsystem {
 //    }
 
 }
-//*/ // XXX Comment this line to use Double encoder
-/* XXX Remove front two slashes to comment Single encoder and use Double Encoder on Drive
+*/ // XXX Comment this line to use Double encoder
+///* XXX Remove front two slashes to comment Single encoder and use Double Encoder on Drive
 public class DriveBase extends Subsystem {
 	
 	double LOW_GEAR_LEFT_DPP;
@@ -222,7 +222,7 @@ public class DriveBase extends Subsystem {
 		rightDrive2 = new VictorSP(RobotMap.DRIVE_RIGHT_MOTOR_2);
 		gearShifter = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.DRIVE_SHIFT_IN, RobotMap.DRIVE_SHIFT_OUT);
 		//Encoder DIO slots say left, but is just for one encoder. Location Variable may be changed
-		encoder = new Encoder(RobotMap.DRIVE_ENC_LEFT_A, RobotMap.DRIVE_ENC_LEFT_B, true, Encoder.EncodingType.k4X);
+		encoder = new Encoder(RobotMap.DRIVE_ENC_RIGHT_A, RobotMap.DRIVE_ENC_RIGHT_B, true, Encoder.EncodingType.k4X);
 		
 		gyro = new ADXRS450_Gyro();
 		navxGyro = new AHRS(SerialPort.Port.kMXP);
@@ -338,4 +338,4 @@ public class DriveBase extends Subsystem {
 //    }
 
 }
-*/ //XXX Remove front two slashes to use double encoders on Drive
+//*/ //XXX Remove front two slashes to use double encoders on Drive
