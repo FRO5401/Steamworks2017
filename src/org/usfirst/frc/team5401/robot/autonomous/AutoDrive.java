@@ -1,6 +1,7 @@
 package org.usfirst.frc.team5401.robot.autonomous;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -9,6 +10,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team5401.robot.Robot;
 import org.usfirst.frc.team5401.robot.subsystems.DriveBase;
 import org.usfirst.frc.team5401.robot.RobotMap;
+import org.usfirst.frc.team5401.robot.commands.CeaseFire;
 import org.usfirst.frc.team5401.robot.commands.XboxMove;
 
 
@@ -176,6 +178,9 @@ public class AutoDrive extends Command {
     protected void end() {
     	Robot.drivebase.stop();
     	System.out.println("Angle when EXITING DriveShift:" + Robot.drivebase.reportGyro());
+    	if (!doneTraveling){
+    		while(true);
+    	}
     }
 
     // Called when another command which requires one or more of the same
