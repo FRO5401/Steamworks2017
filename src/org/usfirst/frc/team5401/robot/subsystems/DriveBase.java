@@ -57,13 +57,9 @@ public class DriveBase extends Subsystem {
 		//																					vvv if this was false, DPP doesn't have to be negative
 		rightEncoder = new Encoder(RobotMap.DRIVE_ENC_RIGHT_A, RobotMap.DRIVE_ENC_RIGHT_B, true, Encoder.EncodingType.k4X);
 		
-<<<<<<< HEAD
 //		gyro = new ADXRS450_Gyro();
 		navxGyro = new AHRS(SerialPort.Port.kMXP);
 		navxGyro.reset();
-=======
-		gyro = new ADXRS450_Gyro();
->>>>>>> parent of 0384b08... DriveBase runs on two encoders and the navX is in the double encoder code as well
 		
 		SmartDashboard.putString("Transmission_text", "Transmission");
 		SmartDashboard.putString("HighGear_text", "GREEN = High");
