@@ -16,7 +16,7 @@ import org.usfirst.frc.team5401.robot.commands.XboxMove;
 /**
  *
  */
-/* XXX Comment this line to use Double Encoder
+///* XXX Comment this line to use Double Encoder
 public class DriveBase extends Subsystem {
 	
 	double LOW_GEAR_LEFT_DPP;
@@ -37,13 +37,14 @@ public class DriveBase extends Subsystem {
 	private Encoder leftEncoder;
 	private Encoder rightEncoder;
 	private ADXRS450_Gyro gyro;
+	AHRS navxGyro;
 	
 	public DriveBase(){
 		
-		LOW_GEAR_LEFT_DPP = 0.0189249;//<---New Comp DPP //-.020268;//<------for practice 0.019125;
+		LOW_GEAR_LEFT_DPP = 0.0189249;//<---New Comp //-0.019125; //XXX Change DPP to positive for comp
 		LOW_GEAR_RIGHT_DPP = 0.0189249;//<---New Comp //.020268;//<--- for comp //0.019125; //<--- for practice
 
-		HIGH_GEAR_LEFT_DPP = 0.019423;//<-----New Comp //-.019423;//<------for practice 0.0192999;
+		HIGH_GEAR_LEFT_DPP = 0.019423;//<-----New Comp //-0.0192999; //XXX Change DPP to positive for comp
 		HIGH_GEAR_RIGHT_DPP = 0.019423;//<-----New Comp //.019423; //<--- for comp //0.0192999;<--- for practice
 		
 		leftDrive1   = new VictorSP(RobotMap.DRIVE_LEFT_MOTOR_1);
@@ -51,11 +52,13 @@ public class DriveBase extends Subsystem {
 		leftDrive2  = new VictorSP(RobotMap.DRIVE_LEFT_MOTOR_2);
 		rightDrive2 = new VictorSP(RobotMap.DRIVE_RIGHT_MOTOR_2);
 		gearShifter = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.DRIVE_SHIFT_IN, RobotMap.DRIVE_SHIFT_OUT);
+		//Encoder DIO slots say left, but is just for one encoder. Location Variable may be changed
 		leftEncoder = new Encoder(RobotMap.DRIVE_ENC_LEFT_A, RobotMap.DRIVE_ENC_LEFT_B, true, Encoder.EncodingType.k4X);
-		//																					vvv if this was false, DPP doesn't have to be negative
 		rightEncoder = new Encoder(RobotMap.DRIVE_ENC_RIGHT_A, RobotMap.DRIVE_ENC_RIGHT_B, true, Encoder.EncodingType.k4X);
 		
 		gyro = new ADXRS450_Gyro();
+		navxGyro = new AHRS(SerialPort.Port.kMXP);
+		navxGyro.reset();
 		
 		SmartDashboard.putString("Transmission_text", "Transmission");
 		SmartDashboard.putString("HighGear_text", "GREEN = High");
@@ -70,9 +73,10 @@ public class DriveBase extends Subsystem {
 		SmartDashboard.putNumber("Gyro", reportGyro());
 		
 		SmartDashboard.putNumber("Left Enc Raw" , leftEncoder.get());
-		SmartDashboard.putNumber("Right Enc Raw", rightEncoder.get());
 		SmartDashboard.putNumber("Left Enc Adj" , leftEncoder.getDistance());
-		SmartDashboard.putNumber("Right Enc Adj", rightEncoder.getDistance());
+		SmartDashboard.putNumber("Right Enc Raw" , rightEncoder.get());
+		SmartDashboard.putNumber("Right Enc Adj" , rightEncoder.getDistance());
+	
 	}
 	
     public void initDefaultCommand() {
@@ -86,10 +90,10 @@ public class DriveBase extends Subsystem {
     	leftDrive2.set(leftDriveDesired);
     	rightDrive2.set(-1 * rightDriveDesired);
     	
-    	SmartDashboard.putNumber("Left Enc Raw" , leftEncoder.get());
-		SmartDashboard.putNumber("Right Enc Raw", rightEncoder.get());
+		SmartDashboard.putNumber("Left Enc Raw" , leftEncoder.get());
 		SmartDashboard.putNumber("Left Enc Adj" , leftEncoder.getDistance());
-		SmartDashboard.putNumber("Right Enc Adj", rightEncoder.getDistance());
+		SmartDashboard.putNumber("Right Enc Raw" , rightEncoder.get());
+		SmartDashboard.putNumber("Right Enc Adj" , rightEncoder.getDistance());
     }
 
     public void stop(){
@@ -105,6 +109,7 @@ public class DriveBase extends Subsystem {
     	gearShifter.set(DoubleSolenoid.Value.kForward);
     	leftEncoder.setDistancePerPulse(HIGH_GEAR_LEFT_DPP);
     	rightEncoder.setDistancePerPulse(HIGH_GEAR_RIGHT_DPP);
+    	
     	SmartDashboard.putNumber("Transmission", -1); //Transmisison is High
     	System.out.println("Shifting Drive Gear to High Gear");
     }
@@ -118,7 +123,7 @@ public class DriveBase extends Subsystem {
     	System.out.println("Shifting Drive Gear to Low Gear");
     }
     public double getVelocityOfRobot(){
-    	double velocity = (Math.abs(leftEncoder.getRate()) + Math.abs(rightEncoder.getRate()))/2;
+    	double velocity = (Math.abs(leftEncoder.getRate())+Math.abs(rightEncoder.getRate()))/2;
     	//For testing
     	SmartDashboard.putNumber("Robot Velocity", velocity);
     	return velocity;
@@ -144,7 +149,7 @@ public class DriveBase extends Subsystem {
     	double rightDistance = rightEncoder.getDistance();
     	SmartDashboard.putNumber("Left Enc Adj", leftDistance);
     	SmartDashboard.putNumber("Right Enc Adj", rightDistance);
-    	double encoderDistance = (leftDistance + rightDistance)/2;
+    	double encoderDistance = (Math.abs(leftDistance)+Math.abs(rightDistance))/2;
     	return encoderDistance;
     }
     
@@ -154,24 +159,34 @@ public class DriveBase extends Subsystem {
     }
     
     public double reportGyro(){
-    	double currentAngle = gyro.getAngle();
-    	SmartDashboard.putNumber("Current Angle", currentAngle);
+    	double currentAngle = navxGyro.getAngle();//gyro.getAngle();
+    	
     	//currentAngle *= GYRO_OFFSET; //XXX How does this work if GYRO_OFFSET is undefined? Used in AutoTurnAngle
 //    	SmartDashboard.putNumber("Adjusted Gyro (NOT ADJUSTING)", currentAngle);
     	return currentAngle;
     }
     
-    public void recalibrateGyro(){
-    	gyro.calibrate();
+    public double reportNavxGyro () {
+    	double currentAngle = navxGyro.getAngle();
+    	double currentPitch = navxGyro.getPitch();
+    	double currentRoll = navxGyro.getRoll();
+    	SmartDashboard.putNumber("navx Angle", currentAngle);
+    	SmartDashboard.putNumber("navx Pitch", currentPitch);
+    	SmartDashboard.putNumber("navx Roll", currentRoll);
+    	return currentAngle;
     }
     
-    public void resetGyro(){
-    	gyro.reset();
+    public void recalibrateGyro(){
+    	//gyro.calibrate();  //doesnt appear to be a calibration method for the navX
     }
+    
+//    public void resetGyro(){
+    //	navxGyro.reset(); //XXX DOESNT WORK
+//    }
 
 }
-*/ // XXX Comment this line to use Double encoder
-///* XXX Remove front two slashes to comment Single encoder and use Double Encoder on Drive
+//*/ // XXX Comment this line to use Double encoder
+/* XXX Remove front two slashes to comment Single encoder and use Double Encoder on Drive
 public class DriveBase extends Subsystem {
 	
 	double LOW_GEAR_LEFT_DPP;
@@ -207,7 +222,7 @@ public class DriveBase extends Subsystem {
 		rightDrive2 = new VictorSP(RobotMap.DRIVE_RIGHT_MOTOR_2);
 		gearShifter = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.DRIVE_SHIFT_IN, RobotMap.DRIVE_SHIFT_OUT);
 		//Encoder DIO slots say left, but is just for one encoder. Location Variable may be changed
-		encoder = new Encoder(RobotMap.DRIVE_ENC_RIGHT_A, RobotMap.DRIVE_ENC_RIGHT_B, true, Encoder.EncodingType.k4X);
+		encoder = new Encoder(RobotMap.DRIVE_ENC_LEFT_A, RobotMap.DRIVE_ENC_LEFT_B, true, Encoder.EncodingType.k4X);
 		
 		gyro = new ADXRS450_Gyro();
 		navxGyro = new AHRS(SerialPort.Port.kMXP);
@@ -323,4 +338,4 @@ public class DriveBase extends Subsystem {
 //    }
 
 }
-//*/ //XXX Remove front two slashes to use double encoders on Drive
+*/ //XXX Remove front two slashes to use double encoders on Drive
