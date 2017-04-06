@@ -36,7 +36,7 @@ public class DriveBase extends Subsystem {
 	
 	private Encoder leftEncoder;
 	private Encoder rightEncoder;
-	private ADXRS450_Gyro gyro;
+//	private ADXRS450_Gyro gyro;
 	AHRS navxGyro;
 	
 	public DriveBase(){
@@ -56,7 +56,7 @@ public class DriveBase extends Subsystem {
 		leftEncoder = new Encoder(RobotMap.DRIVE_ENC_LEFT_A, RobotMap.DRIVE_ENC_LEFT_B, true, Encoder.EncodingType.k4X);
 		rightEncoder = new Encoder(RobotMap.DRIVE_ENC_RIGHT_A, RobotMap.DRIVE_ENC_RIGHT_B, true, Encoder.EncodingType.k4X);
 		
-		gyro = new ADXRS450_Gyro();
+//		gyro = new ADXRS450_Gyro();
 		navxGyro = new AHRS(SerialPort.Port.kMXP);
 		navxGyro.reset();
 		
@@ -205,7 +205,7 @@ public class DriveBase extends Subsystem {
 	private DoubleSolenoid gearShifter;
 	
 	private Encoder encoder;
-	private ADXRS450_Gyro gyro;
+//	private ADXRS450_Gyro gyro;
 	AHRS navxGyro;
 	
 	public DriveBase(){
@@ -224,7 +224,7 @@ public class DriveBase extends Subsystem {
 		//Encoder DIO slots say left, but is just for one encoder. Location Variable may be changed
 		encoder = new Encoder(RobotMap.DRIVE_ENC_RIGHT_A, RobotMap.DRIVE_ENC_RIGHT_B, true, Encoder.EncodingType.k4X);
 		
-		gyro = new ADXRS450_Gyro();
+//		gyro = new ADXRS450_Gyro();
 		navxGyro = new AHRS(SerialPort.Port.kMXP);
 		navxGyro.reset();
 		
