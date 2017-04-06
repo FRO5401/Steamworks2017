@@ -36,8 +36,7 @@ public class DriveBase extends Subsystem {
 	
 	private Encoder leftEncoder;
 	private Encoder rightEncoder;
-	
-//	private ADXRS450_Gyro gyro;
+
 	AHRS navxGyro;
 	
 	public DriveBase(){
@@ -57,10 +56,9 @@ public class DriveBase extends Subsystem {
 		//																					vvv if this was false, DPP doesn't have to be negative
 		rightEncoder = new Encoder(RobotMap.DRIVE_ENC_RIGHT_A, RobotMap.DRIVE_ENC_RIGHT_B, true, Encoder.EncodingType.k4X);
 		
-//		gyro = new ADXRS450_Gyro();
 		navxGyro = new AHRS(SerialPort.Port.kMXP);
 		navxGyro.reset();
-		
+
 		SmartDashboard.putString("Transmission_text", "Transmission");
 		SmartDashboard.putString("HighGear_text", "GREEN = High");
 		SmartDashboard.putString("LowGear_text" , "RED = Low");
