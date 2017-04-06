@@ -255,7 +255,7 @@ public class DriveBase extends Subsystem {
     public void shiftGearLowToHigh(){//Meaning Low speed to high speed
     	//Assumes Pneumatic forward/out shifts low to high
     	gearShifter.set(DoubleSolenoid.Value.kForward);
-    	encoder.setDistancePerPulse(HIGH_GEAR_LEFT_DPP);
+    	encoder.setDistancePerPulse(HIGH_GEAR_RIGHT_DPP);
     	SmartDashboard.putNumber("Transmission", -1); //Transmisison is High
     	System.out.println("Shifting Drive Gear to High Gear");
     }
@@ -263,7 +263,7 @@ public class DriveBase extends Subsystem {
     public void shiftGearHighToLow(){
     	//Assumes Pneumatic reverse/in shifts high to low
     	gearShifter.set(DoubleSolenoid.Value.kReverse);
-    	encoder.setDistancePerPulse(LOW_GEAR_LEFT_DPP);
+    	encoder.setDistancePerPulse(LOW_GEAR_RIGHT_DPP);
     	SmartDashboard.putNumber("Transmission", 1); //Transmisison is Low
     	System.out.println("Shifting Drive Gear to Low Gear");
     }
@@ -276,11 +276,11 @@ public class DriveBase extends Subsystem {
 
     
     public void setDPPLowGear(){
-    	encoder.setDistancePerPulse(LOW_GEAR_LEFT_DPP);
+    	encoder.setDistancePerPulse(LOW_GEAR_RIGHT_DPP);
     }
     
     public void setDPPHighGear(){
-    	encoder.setDistancePerPulse(HIGH_GEAR_LEFT_DPP);
+    	encoder.setDistancePerPulse(HIGH_GEAR_RIGHT_DPP);
     }
     
     public double getEncoderDistance(){
