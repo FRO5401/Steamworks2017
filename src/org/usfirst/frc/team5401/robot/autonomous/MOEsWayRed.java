@@ -19,8 +19,8 @@ public class MOEsWayRed extends CommandGroup {
     	addSequential(new LoadShooter());
     	addSequential(new AutoTurnAngle(32, true, false));
     	addSequential(new AutoDrive(-47, .9));
-    	addSequential(new AutoTurnAngle(-14, true, false));
-    	addSequential(new AutoDrive(-24,0.9));
+    	addSequential(new AutoTurnAngle(-22, true, false));
+    	addSequential(new AutoDrive(-14,0.9));
     	addSequential(new AutoPopGearOnly(-1)); //out
 		addSequential(new WaitCommand(1));
 		addSequential(new AutoDrive(24, .9));
