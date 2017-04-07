@@ -18,9 +18,9 @@ public class MOEsWayRed extends CommandGroup {
     	addSequential(new ShooterStop());
     	addSequential(new LoadShooter());
     	addSequential(new AutoTurnAngle(32, true, false));
-    	addSequential(new AutoDrive(-55, .9));
-    	addSequential(new AutoTurnAngle(-38, true, false));
-    	addSequential(new AutoDrive(-35,0.9));
+    	addSequential(new AutoDrive(-36, .9));//Formerly -47
+    	addSequential(new AutoTurnAngle(-28, true, false));
+    	addSequential(new AutoDrive(-17,0.9));//formerly 30
     	addSequential(new AutoPopGearOnly(-1)); //out
 		addSequential(new WaitCommand(1));
 		addSequential(new AutoDrive(36, .9));
@@ -28,8 +28,8 @@ public class MOEsWayRed extends CommandGroup {
     	addSequential(new AutoTurnAngle(-24, true, false));//turn 45 //XXX need to change angle
     	
     	/**UNCOMMENT THESE FOR HOPPER **/
-    	addSequential(new AutoDrive(64, .5));//forward 80
-    	addSequential(new UnjamToggle(-1));
+    	addSequential(new AutoDrive(64, .5));
+    	//addSequential(new UnjamToggle(-1));
     	
     	
         // Add Commands here:
