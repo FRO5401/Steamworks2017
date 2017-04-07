@@ -87,6 +87,8 @@ public class Robot extends IterativeRobot {
 		chooser.addObject("Blue Shoot and Baseline", new AutoBlueShootAndBaseline());
 		chooser.addObject("Blue Shoot Gear Hopper MOE's Way", new MOEsWayBlue());
 		chooser.addObject("Red Shoot Gear Hopper MOE's Way", new MOEsWayRed());
+		chooser.addObject("Red Shoot and into Position to Place Gear", new AutoRedShootAndGearPosition());
+		chooser.addObject("Blue Shoot and into Position to Place Gear", new AutoBlueShootAndGearPosition());
 		SmartDashboard.putData("Auto mode", chooser);
         
         //Ensures that the "Target Angle" value is on the dashboard
