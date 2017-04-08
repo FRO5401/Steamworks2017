@@ -25,7 +25,9 @@ public class AutoBlueShootAndGearPosition extends CommandGroup {
     	addSequential(new LoadShooter());
     	addSequential(new AutoTurnAngle(-32, true, false));
     	addSequential(new AutoDrive(-55, .9));
-        // Add Commands here:
+    	addSequential(new AutoTurnAngle(38, true, false));
+
+    	// Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
         // these will run in order.

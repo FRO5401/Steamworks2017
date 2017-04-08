@@ -23,8 +23,9 @@ public class AutoRedShootAndGearPosition extends CommandGroup {
     	addSequential(new ShooterStop());
     	addSequential(new LoadShooter());
     	addSequential(new AutoTurnAngle(32, true, false));
-    	addSequential(new AutoDrive(-36, .9));//Formerly -47
-    	
+    	addSequential(new AutoDrive(-20, .9));//Formerly -47
+    	addSequential(new AutoTurnAngle(-28, true, false));
+
     	
     	
         // Add Commands here:
