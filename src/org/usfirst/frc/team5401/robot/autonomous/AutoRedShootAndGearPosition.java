@@ -14,17 +14,24 @@ import edu.wpi.first.wpilibj.command.WaitCommand;
 public class AutoRedShootAndGearPosition extends CommandGroup {
 
     public AutoRedShootAndGearPosition() {
+    	
     	//The following is from Moe's way red
     	addParallel(new GetShooterUpToSpeed());
+    	addSequential(new WaitCommand(2));
     	addSequential(new AutoDrive(-2.5, .5));
     	addSequential(new AutoTurnAngle(-7, true,false));
     	addSequential(new Shoot());
     	addSequential(new WaitCommand(4));
     	addSequential(new ShooterStop());
     	addSequential(new LoadShooter());
-    	addSequential(new AutoTurnAngle(32, true, false));
+    	addSequential(new AutoTurnAngle(0, true, false));// was 32, 0 is only for teamup with 225
     	addSequential(new AutoDrive(-20, .9));//Formerly -47
     	addSequential(new AutoTurnAngle(-28, true, false));
+    	
+    	
+    	//The following two lines of code is only for teamup with 225
+    	addSequential(new AutoTurnAngle(90, true, false));
+    	addSequential(new AutoDrive(-10,0.75));
 
     	
     	
