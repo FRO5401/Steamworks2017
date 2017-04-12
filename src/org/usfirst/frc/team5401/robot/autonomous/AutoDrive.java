@@ -47,6 +47,7 @@ public class AutoDrive extends Command {
     	kP_Drift = .1;
     	velocitySample2 = 0;
     	
+    	Robot.drivebase.resetNavxDistance();
     	navxStartX = Robot.drivebase.reportNavxDistanceX();
     	navxStartY = Robot.drivebase.reportNavxDistanceY();
     	

@@ -13,8 +13,6 @@ import org.usfirst.frc.team5401.robot.RobotMap;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team5401.robot.commands.XboxMove;
 
-import java.lang.Math;
-
 /**
  *
  */
