@@ -314,6 +314,25 @@ public class DriveBase extends Subsystem {
     	return currentAngle;
     }
     
+    public double reportNavxDistanceX () {
+    	double currentDistanceX = navxGyro.getDisplacementX();
+    	return currentDistanceX;
+    }
+    
+    public double reportNavxDistanceY () {
+    	double currentDistanceY = navxGyro.getDisplacementY();
+    	return currentDistanceY;
+    }
+    
+    public double reportNavxDistanceAdj (double navxStartX, double navxStartY) {
+    	double distance = Math.sqrt(Math.pow((reportNavxDistanceX() - navxStartX), 2) + Math.pow((reportNavxDistanceY() - navxStartY), 2));
+    	return distance;
+    }
+    
+    public void resetNavxDistance () {
+    	navxGyro.resetDisplacement();
+    }
+    
     public void recalibrateGyro(){
     	//gyro.calibrate();  //doesnt appear to be a calibration method for the navX
     }
