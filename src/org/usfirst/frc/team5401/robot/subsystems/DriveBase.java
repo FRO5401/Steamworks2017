@@ -13,6 +13,8 @@ import org.usfirst.frc.team5401.robot.RobotMap;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team5401.robot.commands.XboxMove;
 
+import java.lang.Math;
+
 /**
  *
  */
@@ -211,7 +213,8 @@ public class DriveBase extends Subsystem {
 		
 		gyro = new ADXRS450_Gyro();
 		navxGyro = new AHRS(SerialPort.Port.kMXP);
-		navxGyro.reset();
+		navxGyro.zeroYaw(); //navxGyro.reset();
+		navxGyro.resetDisplacement();
 		
 		SmartDashboard.putString("Transmission_text", "Transmission");
 		SmartDashboard.putString("HighGear_text", "GREEN = High");
@@ -312,6 +315,25 @@ public class DriveBase extends Subsystem {
     	SmartDashboard.putNumber("navx Pitch", currentPitch);
     	SmartDashboard.putNumber("navx Roll", currentRoll);
     	return currentAngle;
+    }
+    
+    public double reportNavxDistanceX () {
+    	double currentDistanceX = navxGyro.getDisplacementX();
+    	return currentDistanceX;
+    }
+    
+    public double reportNavxDistanceY () {
+    	double currentDistanceY = navxGyro.getDisplacementY();
+    	return currentDistanceY;
+    }
+    
+    public double reportNavxDistanceAdj (double navxStartX, double navxStartY) {
+    	double distance = Math.sqrt(Math.pow((reportNavxDistanceX() - navxStartX), 2) + Math.pow((reportNavxDistanceY() - navxStartY), 2));
+    	return distance;
+    }
+    
+    public void resetNavxDistance () {
+    	navxGyro.resetDisplacement();
     }
     
     public void recalibrateGyro(){

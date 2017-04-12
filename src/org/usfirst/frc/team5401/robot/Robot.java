@@ -89,7 +89,7 @@ public class Robot extends IterativeRobot {
 		chooser.addObject("Red Shoot Gear Hopper MOE's Way", new MOEsWayRed());
 		chooser.addObject("Red Shoot and into Position to Place Gear", new AutoRedShootAndGearPosition());
 		chooser.addObject("Blue Shoot and into Position to Place Gear", new AutoBlueShootAndGearPosition());
-		chooser.addObject("Blue Shoot and into Position to Place Gear TECHFIRE's Way", new AutoRedShootGearPositionTechFiresWay());
+//		chooser.addObject("Blue Shoot and into Position to Place Gear TECHFIRE's Way", new AutoRedShootGearPositionTechFiresWay());
 		SmartDashboard.putData("Auto mode", chooser);
         
         //Ensures that the "Target Angle" value is on the dashboard
