@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import com.kauailabs.navx.frc.AHRS;
 
+import org.usfirst.frc.team5401.robot.Robot;
 import org.usfirst.frc.team5401.robot.RobotMap;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team5401.robot.commands.XboxMove;
@@ -189,6 +190,9 @@ public class DriveBase extends Subsystem {
 
 	private DoubleSolenoid gearShifter;
 	
+	private double navxStartX;
+	private double navxStartY;
+	
 	private Encoder encoder;
 	private ADXRS450_Gyro gyro;
 	AHRS navxGyro;
@@ -212,6 +216,10 @@ public class DriveBase extends Subsystem {
 		gyro = new ADXRS450_Gyro();
 		navxGyro = new AHRS(SerialPort.Port.kMXP);
 		navxGyro.reset();
+		
+		Robot.drivebase.resetNavxDistance();
+    	navxStartX = Robot.drivebase.reportNavxDistanceX();
+    	navxStartY = Robot.drivebase.reportNavxDistanceY();
 		
 		SmartDashboard.putString("Transmission_text", "Transmission");
 		SmartDashboard.putString("HighGear_text", "GREEN = High");
@@ -324,13 +332,15 @@ public class DriveBase extends Subsystem {
     	return currentDistanceY;
     }
     
-    public double reportNavxDistanceAdj (double navxStartX, double navxStartY) {
+    public double reportNavxDistanceAdj () {
     	double distance = Math.sqrt(Math.pow((reportNavxDistanceX() - navxStartX), 2) + Math.pow((reportNavxDistanceY() - navxStartY), 2));
     	return distance;
     }
     
     public void resetNavxDistance () {
     	navxGyro.resetDisplacement();
+    	navxStartX = reportNavxDistanceX();
+    	navxStartY = reportNavxDistanceY();
     }
     
     public void recalibrateGyro(){

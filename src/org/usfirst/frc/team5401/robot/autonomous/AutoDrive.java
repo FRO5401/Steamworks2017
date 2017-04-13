@@ -26,9 +26,6 @@ public class AutoDrive extends Command {
 	private double kP_Drift;
 	private double velocitySample2;
 	
-	private double navxStartX;
-	private double navxStartY;
-	
 	private final double autoDistThresh;
 	private final double MAXIMUM_VELOCITY_FOR_LOW_GEAR;
 	private final double MINIMUM_VELOCITY_FOR_HIGH_GEAR;
@@ -47,9 +44,7 @@ public class AutoDrive extends Command {
     	kP_Drift = .1;
     	velocitySample2 = 0;
     	
-    	Robot.drivebase.resetNavxDistance();
-    	navxStartX = Robot.drivebase.reportNavxDistanceX();
-    	navxStartY = Robot.drivebase.reportNavxDistanceY();
+    	
     	
     	//Final Variables
     	autoDistThresh = 2;
@@ -73,8 +68,6 @@ public class AutoDrive extends Command {
     	distanceTraveled = 0;
     	
     	Robot.drivebase.resetNavxDistance();
-    	navxStartX = Robot.drivebase.reportNavxDistanceX();
-    	navxStartY = Robot.drivebase.reportNavxDistanceY();
     	
     	System.out.println("AutoDriveInitializing");
     	System.out.println("Angle when starting DriveShift:" + Robot.drivebase.reportGyro());
@@ -115,7 +108,7 @@ public class AutoDrive extends Command {
     				//Finished
     				doneTraveling = true;
     			}
-    		distanceTraveled = Robot.drivebase.reportNavxDistanceAdj(navxStartX, navxStartY); //(Robot.drivebase.getEncoderDistance());
+    		distanceTraveled = Robot.drivebase.reportNavxDistanceAdj(); //(Robot.drivebase.getEncoderDistance());
     	}
     	
     	/*****Shifting Gear Code*********/

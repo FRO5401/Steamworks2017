@@ -75,6 +75,7 @@ public class XboxMove extends Command {
     	double angle = Robot.drivebase.reportGyro();
     	SmartDashboard.putNumber("Gyro",  angle);
     	Robot.drivebase.reportNavxGyro();
+    	SmartDashboard.putNumber("navx encoder", Robot.drivebase.reportNavxDistanceAdj());
     	
     	double  slew      = Robot.oi.readXboxLeftX_Driver() * -1;
 
