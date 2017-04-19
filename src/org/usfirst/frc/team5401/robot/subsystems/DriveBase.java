@@ -16,7 +16,7 @@ import org.usfirst.frc.team5401.robot.commands.XboxMove;
 /**
  *
  */
-/* XXX Comment this line to use Double Encoder
+///* XXX Comment this line to use Double Encoder
 public class DriveBase extends Subsystem {
 	
 	double LOW_GEAR_LEFT_DPP;
@@ -37,14 +37,15 @@ public class DriveBase extends Subsystem {
 	private Encoder leftEncoder;
 	private Encoder rightEncoder;
 	private ADXRS450_Gyro gyro;
+	AHRS navxGyro;
 	
 	public DriveBase(){
-		
-		LOW_GEAR_LEFT_DPP = 0.0189249;//<---New Comp DPP //-.020268;//<------for practice 0.019125;
-		LOW_GEAR_RIGHT_DPP = 0.0189249;//<---New Comp //.020268;//<--- for comp //0.019125; //<--- for practice
+		                      //TODO check on comp bot
+		LOW_GEAR_LEFT_DPP = -.0189249;//0.0189249;//<---New Comp DPP //-.020268;//<------for practice 0.019125;
+		LOW_GEAR_RIGHT_DPP = .0189249;//0.0189249;//<---New Comp //.020268;//<--- for comp //0.019125; //<--- for practice
 
-		HIGH_GEAR_LEFT_DPP = 0.019423;//<-----New Comp //-.019423;//<------for practice 0.0192999;
-		HIGH_GEAR_RIGHT_DPP = 0.019423;//<-----New Comp //.019423; //<--- for comp //0.0192999;<--- for practice
+		//HIGH_GEAR_LEFT_DPP = 0.019423;//<-----New Comp //-.019423;//<------for practice 0.0192999; //High gear not used in auto
+		//HIGH_GEAR_RIGHT_DPP = 0.019423;//<-----New Comp //.019423; //<--- for comp //0.0192999;<--- for practice
 		
 		leftDrive1   = new VictorSP(RobotMap.DRIVE_LEFT_MOTOR_1);
 		rightDrive1  = new VictorSP(RobotMap.DRIVE_RIGHT_MOTOR_1);
@@ -56,6 +57,8 @@ public class DriveBase extends Subsystem {
 		rightEncoder = new Encoder(RobotMap.DRIVE_ENC_RIGHT_A, RobotMap.DRIVE_ENC_RIGHT_B, true, Encoder.EncodingType.k4X);
 		
 		gyro = new ADXRS450_Gyro();
+		navxGyro = new AHRS(SerialPort.Port.kMXP);
+		navxGyro.reset();
 		
 		SmartDashboard.putString("Transmission_text", "Transmission");
 		SmartDashboard.putString("HighGear_text", "GREEN = High");
@@ -153,11 +156,21 @@ public class DriveBase extends Subsystem {
     	rightEncoder.reset();
     }
     
-    public double reportGyro(){
-    	double currentAngle = gyro.getAngle();
-    	SmartDashboard.putNumber("Current Angle", currentAngle);
-    	//currentAngle *= GYRO_OFFSET; //XXX How does this work if GYRO_OFFSET is undefined? Used in AutoTurnAngle
+//    public double reportGyro(){
+//    	double currentAngle = gyro.getAngle();
+//    	SmartDashboard.putNumber("Current Angle", currentAngle);
+//    	//currentAngle *= GYRO_OFFSET; //XXX How does this work if GYRO_OFFSET is undefined? Used in AutoTurnAngle
 //    	SmartDashboard.putNumber("Adjusted Gyro (NOT ADJUSTING)", currentAngle);
+//    	return currentAngle;
+//    }
+    
+    public double reportGyro () {
+    	double currentAngle = navxGyro.getAngle();
+    	double currentPitch = navxGyro.getPitch();
+    	double currentRoll = navxGyro.getRoll();
+    	SmartDashboard.putNumber("navx Angle", currentAngle);
+    	SmartDashboard.putNumber("navx Pitch", currentPitch);
+    	SmartDashboard.putNumber("navx Roll", currentRoll);
     	return currentAngle;
     }
     
@@ -170,8 +183,8 @@ public class DriveBase extends Subsystem {
     }
 
 }
-*/ // XXX Comment this line to use Double encoder
-///* XXX Remove front two slashes to comment Single encoder and use Double Encoder on Drive
+//*/ // XXX Comment this line to use Double encoder
+/* XXX Remove front two slashes to comment Single encoder and use Double Encoder on Drive
 public class DriveBase extends Subsystem {
 	
 	double LOW_GEAR_LEFT_DPP;
@@ -195,11 +208,11 @@ public class DriveBase extends Subsystem {
 	
 	public DriveBase(){
 		
-		LOW_GEAR_LEFT_DPP = 0.0189249;//<---New Comp //-0.019125; //XXX Change DPP to positive for comp
+		LOW_GEAR_LEFT_DPP = -0.0189249;//<---New Comp //-0.019125; //XXX Change DPP to positive for comp
 		LOW_GEAR_RIGHT_DPP = 0.0189249;//<---New Comp //.020268;//<--- for comp //0.019125; //<--- for practice
 
-		HIGH_GEAR_LEFT_DPP = 0.019423;//<-----New Comp //-0.0192999; //XXX Change DPP to positive for comp
-		HIGH_GEAR_RIGHT_DPP = 0.019423;//<-----New Comp //.019423; //<--- for comp //0.0192999;<--- for practice
+		//HIGH_GEAR_LEFT_DPP = 0.019423;//<-----New Comp //-0.0192999; //XXX Change DPP to positive for comp
+		//HIGH_GEAR_RIGHT_DPP = 0.019423;//<-----New Comp //.019423; //<--- for comp //0.0192999;<--- for practice
 		
 		leftDrive1   = new VictorSP(RobotMap.DRIVE_LEFT_MOTOR_1);
 		rightDrive1  = new VictorSP(RobotMap.DRIVE_RIGHT_MOTOR_1);
@@ -323,4 +336,4 @@ public class DriveBase extends Subsystem {
 //    }
 
 }
-//*/ //XXX Remove front two slashes to use double encoders on Drive
+*/ //XXX Remove front two slashes to use double encoders on Drive

@@ -22,19 +22,20 @@ public class MOEsWayBlue extends CommandGroup {
     	addSequential(new WaitCommand(4));
     	addSequential(new ShooterStop());
     	addSequential(new LoadShooter());
-    	addSequential(new AutoTurnAngle(-32, true, false));
-    	addSequential(new AutoDrive(-55, .9));
-    	addSequential(new AutoTurnAngle(38, true, false));
-    	addSequential(new AutoDrive(-35,0.9));
+    	addSequential(new AutoTurnAngle(-28, true, false));
+    	addSequential(new AutoDrive(-86, .9));
+    	addSequential(new AutoTurnAngle(14, true, false));
+    	addSequential(new AutoDrive(-31,0.9));
     	addSequential(new AutoPopGearOnly(-1)); //out
 		addSequential(new WaitCommand(1));
-		addSequential(new AutoDrive(36, .9));
+		addSequential(new AutoDrive(30, .9));
 		addSequential(new AutoPopGearOnly(1)); //in
-    	addSequential(new AutoTurnAngle(24, true, false));//turn 45 //XXX need to change angle
+    	addSequential(new AutoTurnAngle(40, true, false));//turn 45 //XXX need to change angle
     	
     	/**UNCOMMENT THESE FOR HOPPER **/
-    	addSequential(new AutoDrive(64, .5));//forward 80
-    	addSequential(new UnjamToggle(-1));
+    	addParallel(new UnjamToggle(-1));
+    	addSequential(new AutoDrive(70, .5));//forward 80
+    	
     	
         // Add Commands here:
         // e.g. addSequential(new Command1());
