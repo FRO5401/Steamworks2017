@@ -20,7 +20,7 @@ public class MOEsWayRed extends CommandGroup {
     	addSequential(new AutoTurnAngle(28, true, false));
     	addSequential(new AutoDrive(-86, .9));
     	addSequential(new AutoTurnAngle(-14, true, false));
-    	addSequential(new AutoDrive(-31,0.9));
+    	addSequential(new AutoDrive(-31, .9));
     	addSequential(new AutoPopGearOnly(-1)); //out
 		addSequential(new WaitCommand(1));
 		addSequential(new AutoDrive(30, .9));
