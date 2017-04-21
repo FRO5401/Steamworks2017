@@ -169,9 +169,9 @@ public class OI {
 	public int getXboxTriggers_Operator(){
 		double left  = xboxController_Operator.getRawAxis(RobotMap.XBOX_AXIS_LEFT_TRIGGER);
 		double right = xboxController_Operator.getRawAxis(RobotMap.XBOX_AXIS_RIGHT_TRIGGER);
-		if (right > .1){ //Feeder In in prioritized over Out
+		if (right > .1){ 
 			return 1;
-		} else if (left > .1){
+		} else if (left > .1){//<--left is in
 			return -1;
 		} else {
 			return 0;

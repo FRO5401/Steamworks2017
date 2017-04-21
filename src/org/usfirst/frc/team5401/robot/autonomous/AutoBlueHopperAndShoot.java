@@ -6,22 +6,27 @@ import edu.wpi.first.wpilibj.command.WaitCommand;
 import org.usfirst.frc.team5401.robot.commands.GetShooterUpToSpeed;
 import org.usfirst.frc.team5401.robot.commands.UnjamToggle;
 import org.usfirst.frc.team5401.robot.commands.Shoot;
+import org.usfirst.frc.team5401.robot.commands.FeederInOut;
+import org.usfirst.frc.team5401.robot.commands.FeederArmUpDown;
+
 /**
  *
  */
 public class AutoBlueHopperAndShoot extends CommandGroup {
 
     public AutoBlueHopperAndShoot() {
-    	addSequential(new AutoDrive(-65.0,0.9));//Moves forward
-    	addSequential(new AutoTurnAngle(90, true, false));//Turns Unjammer into hopper direction
-    	addSequential(new AutoDrive(75,0.9));//Start experimenting on a shorter length//Rams robot towards Hopper
-    	addSequential(new UnjamToggle(-1));//Unjammer out
-    	addSequential(new WaitCommand(2));//wait for ball to fall into hopper
-    	addSequential(new AutoDrive(-5.0,0.9));//Drive backwards away from hopper
-    	addSequential(new AutoTurnAngle(-90, true, false));//Turns to move back toward the boiler
-    	addSequential(new GetShooterUpToSpeed());
-    	addSequential(new AutoDrive(51.0, 0.9));//Moves toward boiler
-    	addSequential(new AutoTurnAngle(41, true, false));//Turns toward boiler
+    	addParallel(new UnjamToggle(-1));
+    	addSequential(new AutoDrive(141, 0.9));
+    	addSequential(new AutoTurnAngle(-45, true, false));
+    	addSequential(new WaitCommand(3));
+    	
+    	addSequential(new AutoTurnAngle(-90, true, false));
+    	addSequential(new FeederArmUpDown(1));
+    	addParallel(new FeederInOut(-1));
+    	addSequential(new AutoDrive(75, 0.9));
+    	addSequential(new FeederArmUpDown(-1));
+    	addParallel(new GetShooterUpToSpeed());
+    	addSequential(new AutoDrive(5, 0.5));
     	addSequential(new Shoot());
     	
     	
