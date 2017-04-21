@@ -60,11 +60,13 @@ public class Robot extends IterativeRobot {
 //		chooser.addObject("CenterGearRedShoot", new AutoCenterGearRedShoot());
 		chooser.addObject("Baseline Only", new AutoDrive(-100, .5)); //Takes in distance to drive in inches, speed to drive at
 		chooser.addObject("Left Gear", new AutoLeftGear());
+		chooser.addObject("Left Gear and Drive", new AutoLeftGearAndDrive());
 		chooser.addObject("BLUE LEFT Gear and Shoot", new AutoBlueGearAndShoot());
 		chooser.addObject("BLUE LEFT Gear and Shoot and Drive", new AutoBlueGearAndShootAndDrive());
 		chooser.addObject("BLUE Shoot and LEFT Gear", new AutoBlueShootAndGear());
 		chooser.addObject("BLUE Shoot and LEFT Gear KEVIN'S WAY", new KevinsWay());
 		chooser.addObject("Red Shoot Gear Hopper Kevin's Way", new KevinsWayRedRight());
+		chooser.addObject("BLUE Shoot and Gear and Drive", new AutoBlueShootGearDrive());
 //		chooser.addObject("NoGearBlueTargetedShootBaseline", new AutoNoGearBlueTargetedShootBaseline());
 //		chooser.addObject("NoGearBlueTargetShooterHopper", new AutoNoGearBlueTargetShooterHopper());
 //		chooser.addObject("NoGearRedTargetedShootBaseline", new AutoNoGearRedTargetedShootBaseline());
@@ -75,6 +77,7 @@ public class Robot extends IterativeRobot {
 //		chooser.addObject("NoGearShootHopperRed", new AutoNoGearShootHopperRed());
 //		chooser.addObject("PopGear", new AutoPopGear()); 
 		chooser.addObject("Right Gear", new AutoRightGear());
+		chooser.addObject("Right Gear and Drive", new AutoRightGearAndDrive());
 		chooser.addObject("RED RIGHT Gear and Shoot", new AutoRedGearAndShoot());
 //		chooser.addObject("Shoot", new AutoShoot());
 //		chooser.addObject("Target", new AutoTarget(90, true, false)); //takes in angle to turn //CommandGroup
@@ -87,9 +90,11 @@ public class Robot extends IterativeRobot {
 		chooser.addObject("Blue Shoot and Baseline", new AutoBlueShootAndBaseline());
 		chooser.addObject("Blue Shoot Gear Hopper MOE's Way", new MOEsWayBlue());
 		chooser.addObject("Red Shoot Gear Hopper MOE's Way", new MOEsWayRed());
+		chooser.addObject("RED Shoot and Gear and Drive", new AutoRedShootAndGearAndDrive());
 //		chooser.addObject("Red Shoot and into Position to Place Gear", new AutoRedShootAndGearPosition());
 //		chooser.addObject("Blue Shoot and into Position to Place Gear", new AutoBlueShootAndGearPosition());
 //		chooser.addObject("Blue Shoot and into Position to Place Gear TECHFIRE's Way", new AutoRedShootGearPositionTechFiresWay());
+		chooser.addObject("BLUE Hopper Shoot", new AutoBlueHopperAndShoot());
 		SmartDashboard.putData("Auto mode", chooser);
         
         //Ensures that the "Target Angle" value is on the dashboard

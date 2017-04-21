@@ -68,7 +68,7 @@ public class Shooter extends Subsystem {
 	   kP = .1;
 	   kI = .000000005;
 	   kD = 4;
-	   
+	   //MOTOR_SPEED = SmartDashboard.getNumber("velocity", MOTOR_SPEED);
 	   
 	   Izone = 0;
 	   rampRate = 10.23;
@@ -103,13 +103,16 @@ public class Shooter extends Subsystem {
     		_talonMaster.changeControlMode(TalonControlMode.Voltage);
     		System.out.println("mode: Voltage");
     	}
+    	
+    	
       //MOTOR_SPEED = SmartDashboard.getNumber("motor_speed", MOTOR_SPEED);
       //feed_forward = SmartDashboard.getNumber("feed_forward", feed_forward);
       SmartDashboard.putNumber("feed_forward_test", feed_forward);
-      /** Uncomment to get PID values from the dashboard **/
+     /** Uncomment to get PID values from the dashboard **/
       //kP = SmartDashboard.getNumber("kP", kP);
       //kI = SmartDashboard.getNumber("kI", kI);
       //kD = SmartDashboard.getNumber("kD", kD);
+      //MOTOR_SPEED = SmartDashboard.getNumber("Velocity", MOTOR_SPEED);
     
       _talonMaster.setPID(kP,  kI, kD, feed_forward, Izone, rampRate, channel); //in percentVBus this is ignored
       _talonMaster.set(MOTOR_SPEED);
@@ -118,6 +121,8 @@ public class Shooter extends Subsystem {
 	   	
 	  compressorEnabled = true;
     }
+
+
     
     
     public void reset(){
