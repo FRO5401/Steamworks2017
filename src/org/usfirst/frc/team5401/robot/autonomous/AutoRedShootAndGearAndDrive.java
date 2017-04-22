@@ -24,7 +24,7 @@ public class AutoRedShootAndGearAndDrive extends CommandGroup {
     	addSequential(new AutoTurnAngle(28, true, false));
     	addSequential(new AutoDrive(-105, .9));
     	addSequential(new AutoTurnAngle(-14, true, false));
-    	addSequential(new AutoDrive(-28,0.9));
+    	addSequential(new AutoDrive(-26,0.9));
     	addSequential(new AutoPopGearOnly(-1)); //out
 		addSequential(new WaitCommand(1));
 		addSequential(new AutoDrive(42, .9));
