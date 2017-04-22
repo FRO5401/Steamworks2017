@@ -56,7 +56,7 @@ public class DriveBase extends Subsystem {
 		//																					vvv if this was false, DPP doesn't have to be negative
 		rightEncoder = new Encoder(RobotMap.DRIVE_ENC_RIGHT_A, RobotMap.DRIVE_ENC_RIGHT_B, true, Encoder.EncodingType.k4X);
 		
-		gyro = new ADXRS450_Gyro();
+//		gyro = new ADXRS450_Gyro();
 		navxGyro = new AHRS(SerialPort.Port.kMXP);
 		navxGyro.reset();
 		

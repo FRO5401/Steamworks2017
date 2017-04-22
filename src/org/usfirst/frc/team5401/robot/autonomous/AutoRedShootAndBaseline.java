@@ -25,7 +25,7 @@ public class AutoRedShootAndBaseline extends CommandGroup {
     	addSequential(new LoadShooter());
     	//End code from KevinsWay
     	addSequential(new AutoTurnAngle(61, true, false));
-    	addSequential(new AutoDrive(-60,0.9)); //120
+    	addSequential(new AutoDrive(-120,0.9)); //120
     	addSequential(new AutoTurnAngle(-90, true, false));
     	
     	/**UNCOMMENT THESE FOR HOPPER **/
