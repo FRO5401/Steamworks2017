@@ -15,15 +15,14 @@ import org.usfirst.frc.team5401.robot.commands.GetShooterUpToSpeed;
 public class AutoBlueShootAndBaseline extends CommandGroup {
 
     public AutoBlueShootAndBaseline() {
-    	//From KevinsWay XXX update with KevinsWay
-    	addSequential(new GetShooterUpToSpeed());
+    	addParallel(new GetShooterUpToSpeed());
     	addSequential(new AutoDrive(-2.5, .5));
     	addSequential(new AutoTurnAngle(7, true,false));
     	addSequential(new Shoot());
-    	addSequential(new WaitCommand(4));
+    	addSequential(new WaitCommand(3));
     	addSequential(new ShooterStop());
     	addSequential(new LoadShooter());
-    	//End code from KevinsWay
+    	//End code from MOE's way
     	addSequential(new AutoTurnAngle(-61, true, false));
     	addSequential(new AutoDrive(-120,0.9)); //-120
     	addSequential(new AutoTurnAngle(90, true, false));

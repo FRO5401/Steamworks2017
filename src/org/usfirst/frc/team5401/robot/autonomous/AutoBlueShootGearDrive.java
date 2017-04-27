@@ -18,19 +18,20 @@ public class AutoBlueShootGearDrive extends CommandGroup {
     	addSequential(new AutoDrive(-2.5, .5));
     	addSequential(new AutoTurnAngle(7, true,false));
     	addSequential(new Shoot());
-    	addSequential(new WaitCommand(2.5));
+    	addSequential(new WaitCommand(3));
     	addSequential(new ShooterStop());
     	addSequential(new LoadShooter());
     	addSequential(new AutoTurnAngle(-28, true, false));
-    	addSequential(new AutoDrive(-105, .9));
-    	addSequential(new AutoTurnAngle(14, true, false));
-    	addSequential(new AutoDrive(-26,0.9));
+    	addSequential(new AutoDrive(-81, .9));
+    	addSequential(new AutoTurnAngle(30, true, false));
+    	addSequential(new AutoDrive(-41,0.9));
+    	addSequential(new WaitCommand(.75)); //wait before dropping gear
     	addSequential(new AutoPopGearOnly(-1)); //out
 		addSequential(new WaitCommand(1));
-		addSequential(new AutoDrive(42, .9));
+		addSequential(new AutoDrive(30, .9));
 		addSequential(new AutoPopGearOnly(1)); //in
-    	addSequential(new AutoTurnAngle(-63, true, false));//turn 45 //XXX need to change angle
-    	addSequential(new AutoDrive(-278, .5));
+    	addSequential(new AutoTurnAngle(32, true, false));//turn 45 //XXX need to change angle
+    	addSequential(new AutoDrive(-225, .5));
     	
     	
     	// Add Commands here:
