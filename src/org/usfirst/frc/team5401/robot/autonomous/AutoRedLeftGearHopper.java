@@ -12,7 +12,7 @@ public class AutoRedLeftGearHopper extends CommandGroup {
     public AutoRedLeftGearHopper() {
         addSequential(new AutoLeftGear());
         addSequential(new AutoTurnAngle(-53, true, false));
-        addSequential(new AutoDrive(-82, .9));
+        addSequential(new AutoDrive(-136, .9));
         addSequential(new AutoTurnAngle(90, true, false));
         addParallel(new UnjamToggle(-1));
         addSequential(new AutoDrive(48, 0.9));

@@ -18,7 +18,7 @@ public class Shooter extends Subsystem {
 	
 	
 	private double VOLTAGE_MOTOR_SPEED = -7.8;
-	private double PID_MOTOR_SPEED = -20000; //-19875 //-23750 original
+	private double PID_MOTOR_SPEED = -19900; //-19875 //-23750 original
 	private double MOTOR_SPEED = PID_MOTOR_SPEED;
 	private double feed_forward;
 	
@@ -67,7 +67,7 @@ public class Shooter extends Subsystem {
 	   
 	   
 	   kP = .1;
-	   kI = .0000000005;
+	   kI = .000005;//4
 	   kD = 2;//was 4 <--- if 1 is not used on practice field, use 2
 	   //MOTOR_SPEED = SmartDashboard.getNumber("velocity", MOTOR_SPEED);
 	   
