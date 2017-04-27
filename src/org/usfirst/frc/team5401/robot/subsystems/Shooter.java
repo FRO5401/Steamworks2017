@@ -67,7 +67,7 @@ public class Shooter extends Subsystem {
 	   
 	   kP = .1;
 	   kI = .000000005;
-	   kD = 8;//was 4
+	   kD = 1;//was 4 <--- if 1 is not used on practice field, use 2
 	   //MOTOR_SPEED = SmartDashboard.getNumber("velocity", MOTOR_SPEED);
 	   
 	   Izone = 0;
