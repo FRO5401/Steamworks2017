@@ -22,8 +22,8 @@ public class AutoRedShootAndGearAndDrive extends CommandGroup {
     	addSequential(new ShooterStop());
     	addSequential(new LoadShooter());
     	addSequential(new AutoTurnAngle(28, true, false));
-    	addSequential(new AutoDrive(-81, .9));
-    	addSequential(new AutoTurnAngle(-30, true, false));
+    	addSequential(new AutoDrive(-83, .9));
+    	addSequential(new AutoTurnAngle(-15, true, false));
     	addSequential(new AutoDrive(-41,0.9));
     	addSequential(new WaitCommand(.75)); //wait before dropping gear
     	addSequential(new AutoPopGearOnly(-1)); //out
