@@ -29,9 +29,9 @@ public class MOEsWayBlue extends CommandGroup {
     	addSequential(new WaitCommand(.75)); //wait before dropping gear
     	addSequential(new AutoPopGearOnly(-1)); //out
 		addSequential(new WaitCommand(1));
-		addSequential(new AutoDrive(18, .9));
+		addSequential(new AutoDrive(6, .9)); //original: 18
 		addSequential(new AutoPopGearOnly(1)); //in
-    	addSequential(new AutoTurnAngle(32, true, false));//turn 45 //XXX need to change angle
+//    	addSequential(new AutoTurnAngle(32, true, false));//turn 45 //XXX need to change angle
     	
     	/**UNCOMMENT THESE FOR HOPPER **/
   //  	addParallel(new UnjamToggle(-1));
