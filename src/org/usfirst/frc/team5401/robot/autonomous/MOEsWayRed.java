@@ -29,8 +29,8 @@ public class MOEsWayRed extends CommandGroup {
     	addSequential(new AutoTurnAngle(-20, true, false));//turn 45 //XXX need to change angle
     	
     	/**UNCOMMENT THESE FOR HOPPER **/
-    	addParallel(new UnjamToggle(-1));
-    	addSequential(new AutoDrive(76, .5));//forward 80
+   // 	addParallel(new UnjamToggle(-1));
+   // 	addSequential(new AutoDrive(76, .5));//forward 80
     	
     	
         // Add Commands here:

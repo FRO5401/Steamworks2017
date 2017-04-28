@@ -15,8 +15,8 @@ public class AutoLeftGear extends CommandGroup {
     	
     	addSequential(new AutoDrive(-82, .9)); //was 90
     	addSequential(new AutoTurnAngle(47, true, false)); //should be 60
-    	addSequential(new AutoDrive(-29, .5)); //54.5 start //-13
-    	addSequential(new AutoPopGear());
+    	addSequential(new AutoDrive(-17, .5)); //original: -29
+//XXX    	addSequential(new AutoPopGear());
     	
         // Add Commands here:
         // e.g. addSequential(new Command1());
