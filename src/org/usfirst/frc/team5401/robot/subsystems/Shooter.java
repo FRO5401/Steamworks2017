@@ -56,6 +56,7 @@ public class Shooter extends Subsystem {
 	   	SmartDashboard.putNumber("Position", _talonMaster.getEncPosition());
 	   	_talonMaster.getEncVelocity();
 	   	SmartDashboard.putNumber("Velocity",  _talonMaster.getEncVelocity());
+	   	SmartDashboard.putNumber("Velocity Raw",  _talonMaster.getEncVelocity()); //not to be used for graph
 	   	_talonMaster.setEncPosition(0);
 	   	
 	   	
@@ -66,8 +67,8 @@ public class Shooter extends Subsystem {
 	   
 	   
 	   kP = .1;
-	   kI = .000000005;
-	   kD = 4;
+	   kI = .000005;//4
+	   kD = 2;//was 4 <--- if 1 is not used on practice field, use 2
 	   //MOTOR_SPEED = SmartDashboard.getNumber("velocity", MOTOR_SPEED);
 	   
 	   Izone = 0;
@@ -118,6 +119,7 @@ public class Shooter extends Subsystem {
       _talonMaster.set(MOTOR_SPEED);
 	    SmartDashboard.putNumber("Position", _talonMaster.getEncPosition());
 	    SmartDashboard.putNumber("Velocity",  _talonMaster.getEncVelocity());
+	    SmartDashboard.putNumber("Velocity Raw",  _talonMaster.getEncVelocity()); //not to be used for graph
 	   	
 	  compressorEnabled = true;
     }

@@ -1,23 +1,22 @@
 package org.usfirst.frc.team5401.robot.autonomous;
 
+import org.usfirst.frc.team5401.robot.commands.UnjamToggle;
+
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import org.usfirst.frc.team5401.robot.autonomous.AutoDrive;
-import org.usfirst.frc.team5401.robot.autonomous.AutoTurnAngle;
-import org.usfirst.frc.team5401.robot.commands.PopGear;
 
 /**
  *
  */
-public class AutoRightGear extends CommandGroup {
+public class AutoRedLeftGearHopper extends CommandGroup {
 
-   public AutoRightGear() {
-
-		addSequential(new AutoDrive(-82, .9)); //101.25
-    	addSequential(new AutoTurnAngle(-47, true, false)); //based off 60 on the left side
-    	addSequential(new AutoDrive(-17, .5)); //original: -29
-//XXX 		addSequential(new AutoPopGear());
- 		
-        // Add Commands here:
+    public AutoRedLeftGearHopper() {
+        addSequential(new AutoLeftGear());
+        addSequential(new AutoTurnAngle(-53, true, false));
+        addSequential(new AutoDrive(-136, .9));
+        addSequential(new AutoTurnAngle(90, true, false));
+        addParallel(new UnjamToggle(-1));
+        addSequential(new AutoDrive(48, 0.9));
+    	// Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
         // these will run in order.

@@ -17,16 +17,15 @@ public class AutoRedShootAndGearPosition extends CommandGroup {
     	
     	//The following is from Moe's way red
     	addParallel(new GetShooterUpToSpeed());
-    	addSequential(new WaitCommand(2));
     	addSequential(new AutoDrive(-2.5, .5));
     	addSequential(new AutoTurnAngle(-7, true,false));
     	addSequential(new Shoot());
-    	addSequential(new WaitCommand(4));
+    	addSequential(new WaitCommand(3));
     	addSequential(new ShooterStop());
     	addSequential(new LoadShooter());
-    	addSequential(new AutoTurnAngle(32, true, false));
-    	addSequential(new AutoDrive(-20, .9));//Formerly -47
-    	addSequential(new AutoTurnAngle(-28, true, false));
+    	addSequential(new AutoTurnAngle(28, true, false));
+    	addSequential(new AutoDrive(-83, .9));
+    	addSequential(new AutoTurnAngle(-15, true, false));
     	
     
     	
