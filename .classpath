@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="src"/>
+	<classpathentry excluding="com/team254/lib/util/CheesySolenoid.java|com/team254/lib/util/CheesySpeedController.java|com/team254/lib/util/SystemManager.java|com/team254/lib/util/Subsystem.java|com/team254/lib/util/NotifierLooper.java|com/team254/lib/util/MultiLooper.java|com/team254/lib/util/ConstantsBase.java" kind="src" path="src"/>
 	<classpathentry exported="true" kind="var" path="wpilib" sourcepath="wpilib.sources"/>
 	<classpathentry exported="true" kind="var" path="networktables" sourcepath="networktables.sources"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
