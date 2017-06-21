@@ -181,6 +181,15 @@ public class DriveBase extends Subsystem {
     public void resetGyro(){
     	gyro.reset();
     }
+    
+    public void displayAcceleration(){
+    	// Display Processed Acceleration Data (Linear Acceleration, Motion Detect)
+    
+    	SmartDashboard.putNumber(   "IMU_Accel_X",          navxGyro.getWorldLinearAccelX());
+    	SmartDashboard.putNumber(   "IMU_Accel_Y",          navxGyro.getWorldLinearAccelY());
+    	SmartDashboard.putBoolean(  "IMU_IsMoving",         navxGyro.isMoving());
+    	SmartDashboard.putBoolean(  "IMU_IsRotating",       navxGyro.isRotating());
+    }
 
 }
 //*/ // XXX Comment this line to use Double encoder
@@ -335,5 +344,14 @@ public class DriveBase extends Subsystem {
     //	navxGyro.reset(); //XXX DOESNT WORK
 //    }
 
+
+	    public void displayAcceleration(){
+    	//Display Processed Acceleration Data (Linear Acceleration, Motion Detect) 
+    
+    	SmartDashboard.putNumber(   "IMU_Accel_X",          navxGyro.getWorldLinearAccelX());
+    	SmartDashboard.putNumber(   "IMU_Accel_Y",          navxGyro.getWorldLinearAccelY());
+    	SmartDashboard.putBoolean(  "IMU_IsMoving",         navxGyro.isMoving());
+    	SmartDashboard.putBoolean(  "IMU_IsRotating",       navxGyro.isRotating());
+    }
 }
 */ //XXX Remove front two slashes to use double encoders on Drive
