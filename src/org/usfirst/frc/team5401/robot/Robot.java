@@ -58,7 +58,7 @@ public class Robot extends IterativeRobot {
 		chooser.addObject("Center Gear", new AutoCenterGear());
 //		chooser.addObject("CenterGearBlueShoot", new AutoCenterGearBlueShoot());
 //		chooser.addObject("CenterGearRedShoot", new AutoCenterGearRedShoot());
-		chooser.addObject("Baseline Only", new AutoDrive(-100, .5)); //Takes in distance to drive in inches, speed to drive at
+		chooser.addObject("Baseline Only", new AutoDrive2(-100, .9)); //Takes in distance to drive in inches, speed to drive at
 		chooser.addObject("LEFT Gear Only", new AutoLeftGear());
 		chooser.addObject("LEFT Gear-Downfield", new AutoLeftGearAndDrive());
 //		chooser.addObject("BLUE LEFT Gear and Shoot", new AutoBlueGearAndShoot());
