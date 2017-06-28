@@ -37,7 +37,7 @@ public class AutoDrive2 extends Command {
     	desiredDistance = DistanceInput;
     	maxAutoDriveSpeed = SpeedInput;
     	autoDriveSpeed = 0;
-    	autoDriveStallSpeed = 0;
+    	autoDriveStallSpeed = 0.1;
     	doneTraveling = true;
     	distanceTraveled = 0;
     	heading = Robot.drivebase.reportGyro();
@@ -71,14 +71,14 @@ public class AutoDrive2 extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	System.out.println("Donetraveling:" + doneTraveling);
-    	System.out.println("Donetraveling:" + doneTraveling);
+    	System.out.println("AutoDriveSpeed:" + autoDriveSpeed);
     	
     	if (Math.abs(desiredDistance) <= autoDistThresh){
     		//DesiredDistance too small!
     		doneTraveling = true;
     	} else {
-    		
-    		//New Stuff
+    		/*
+    		//New Stuff Motion Profiling V1. Does not work well. Pictures in Document
     		if(Math.abs(distanceTraveled) <= Math.abs(desiredDistance)/2)//For first half of travel
     		{												
     			autoDriveSpeed = maxAutoDriveSpeed * 2 * Math.abs(distanceTraveled/desiredDistance);// Thus at 1/4 distance, 1/2 speed, and 1/2 distance, max speed
@@ -92,7 +92,33 @@ public class AutoDrive2 extends Command {
 			{
 				autoDriveSpeed = autoDriveStallSpeed;// So that Speed doesn't drop under Stall Speed and stall motor
 			}
+    		*/
+    		if(Math.abs(distanceTraveled) <= 12)//For first foot of travel
+    		{												
+    			autoDriveSpeed = maxAutoDriveSpeed * Math.abs(distanceTraveled)/12 * 1/2;
+    			System.out.println("First 12");
+    		}
+    		else if(Math.abs(distanceTraveled) <= 24 && Math.abs(distanceTraveled) > 12)// 12 < abs(distanceTraveled) <= 24
+    		{
+    			//						vv This is to increase the speed the other maxAutoDrive Speed/2		vv This is here because the maxAutoDriveSpeed/2 has already been reached
+    			autoDriveSpeed = (maxAutoDriveSpeed * Math.abs(distanceTraveled)/12 * 1/2) + maxAutoDriveSpeed/2;
+    			System.out.println("Second 12");
+    		}
+    		else if(Math.abs(distanceTraveled) >= (Math.abs(desiredDistance) - 12))//for last foot of travel
+    		{
+    			autoDriveSpeed = maxAutoDriveSpeed * (1 - (Math.abs(distanceTraveled)-(desiredDistance - 12))/12);//Greater the distance, lower the speed
+    			System.out.println("Last 12");
+    		}
+    		else
+    		{
+    			autoDriveSpeed = maxAutoDriveSpeed;
+    			System.out.println("Stuff In between");
+    		}
     		
+			if(autoDriveSpeed < autoDriveStallSpeed)
+			{
+				autoDriveSpeed = autoDriveStallSpeed;// So that Speed doesn't drop under Stall Speed and stall motor
+			}
 			
 			
 			
