@@ -30,14 +30,17 @@ public class RunMeteringWheel extends Command {
     	}else if(stopButton == false){
     		finishedVariable = false;
     		Robot.meteringwheel.runMeteringMotor();
-    		Robot.meteringwheel.timerStop();
-    		Robot.meteringwheel.timerReset();
-    		Robot.meteringwheel.timerStart();
-    		
-    		while(Robot.meteringwheel.getTimeInSeconds() <.5)
+    		double beforeStopSinglePulseTime = Robot.meteringwheel.getTimeInSeconds();
+    		System.out.println(beforeStopSinglePulseTime);
+    		//WHILE LOOP DOES NOT WORK
+    		while(Robot.meteringwheel.getTimeInSeconds() < (beforeStopSinglePulseTime + 0.5))
     		{
     			//Change Nothing
+    			System.out.println("Waiting");
+    			System.out.println(Robot.meteringwheel.getTimeInSeconds());
     		}
+    		System.out.println("Wait Done");
+    		System.out.println(Robot.meteringwheel.getTimeInSeconds());
     		Robot.meteringwheel.stopMeteringMotor();
     	}
     }
