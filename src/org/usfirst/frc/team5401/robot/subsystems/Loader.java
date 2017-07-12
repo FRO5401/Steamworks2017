@@ -14,11 +14,11 @@ import org.usfirst.frc.team5401.robot.RobotMap;
  */
 public class Loader extends Subsystem {
 		
-	private VictorSP MeteringMotor;
+//	private VictorSP MeteringMotor;
 	private VictorSP ConveyorMotor;
 	
 	private double LOADER_SPEED;
-	private double METERING_SPEED;
+//	private double METERING_SPEED;
 	private boolean enabled;
 	
 	/** 
@@ -29,11 +29,11 @@ public class Loader extends Subsystem {
 	 */
 	public Loader(){
 		//Initialize Loader Motors
-		MeteringMotor = new VictorSP(RobotMap.METERING_ROLLER);
+//		MeteringMotor = new VictorSP(RobotMap.METERING_ROLLER);
 		ConveyorMotor = new VictorSP(RobotMap.HOPPER_CONVEYOR);
 		
 		LOADER_SPEED = -0.9; //TODO Put in RobotMap
-		METERING_SPEED = -0.95;
+//		METERING_SPEED = -0.95;
 		enabled = false;
 		SmartDashboard.putBoolean("Loader Conveyors", enabled);
 	}
@@ -50,7 +50,7 @@ public class Loader extends Subsystem {
      */
     public void runConveyorsAndMeteringMotor(){
     	enabled = true;
-    	MeteringMotor.set(METERING_SPEED);
+//    	MeteringMotor.set(METERING_SPEED);
     	ConveyorMotor.set(LOADER_SPEED);
     }
     
@@ -59,7 +59,7 @@ public class Loader extends Subsystem {
      */
     public void stopConveyorsAndMeteringMotor(){
     	enabled = false;
-    	MeteringMotor.set(0);
+//    	MeteringMotor.set(0);
     	ConveyorMotor.set(0);
    }
     

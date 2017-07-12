@@ -30,6 +30,7 @@ public class Robot extends IterativeRobot {
 	public static CompressorSubsystem compressorsubsystem;
 	public static Unjammer unjammer;
 	public static DummyCameras dummycameras;
+	public static MeteringWheel meteringwheel;
 	public static OI oi;
 
     Command autonomousCommand;
@@ -49,6 +50,7 @@ public class Robot extends IterativeRobot {
     	compressorsubsystem = new CompressorSubsystem();
     	unjammer = new Unjammer();
     	dummycameras = new DummyCameras();
+    	meteringwheel = new MeteringWheel();
     	
 		oi = new OI();/****ALWAYS Instantiate OI() last*****/
         

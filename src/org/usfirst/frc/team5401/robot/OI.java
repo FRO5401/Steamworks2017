@@ -69,6 +69,9 @@ public class OI {
 	//Buttons
 	public OI(){
 
+		//Metering Wheel
+		xboxY_Driver.whenPressed(new RunMeteringWheel());
+		
 		//Shoot (Loader) Button
 		xboxA_Driver.whenPressed(new LoadShooter());
 		
@@ -115,6 +118,7 @@ public class OI {
 	public double readXboxLeftX_Driver(){
 		return xboxController_Driver.getRawAxis(RobotMap.XBOX_AXIS_LEFT_X);
 	}
+	
 	
 	public double readLeftTrigger_Driver(){
 		return xboxController_Driver.getRawAxis(RobotMap.XBOX_AXIS_LEFT_TRIGGER);		
@@ -186,5 +190,9 @@ public class OI {
 	//Gear Shift to High
 	public boolean getXboxStart_Driver(){
 		return xboxController_Driver.getRawButton(8);
+	}
+	
+	public boolean getXboxRightJoystickButton(){
+		return xboxController_Driver.getRawButton(10);
 	}
 }
