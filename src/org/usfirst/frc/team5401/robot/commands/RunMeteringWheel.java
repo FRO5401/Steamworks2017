@@ -5,7 +5,8 @@ import org.usfirst.frc.team5401.robot.Robot;
 
 
 /**
- *
+ * Pulses the Metering Wheel
+ * Problems: the pulsing isn't great because the wheel doesn't completely stop before restarting, probably due to the fact that the motors are on COAST
  */
 public class RunMeteringWheel extends Command {
 
@@ -24,24 +25,30 @@ public class RunMeteringWheel extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	//Reads the stop button
     	boolean stopButton = Robot.oi.getXboxRightJoystickButton();
-    	if(stopButton == true){
+    	
+    	if(stopButton == true){//If stopButton is pressed, true, then stop pulsing
     		finishedVariable = true;
-    	}else if(stopButton == false){
+    	}
+    	
+    	else if(stopButton == false){//If not pressed, false, then start pulsing
     		finishedVariable = false;
-    		Robot.meteringwheel.runMeteringMotor();
+    		
+    		Robot.meteringwheel.runMeteringMotor();//Start Motor for pulsing
+    		
+    		//Get the time for the loop to keep the motor running
     		double beforeStopSinglePulseTime = Robot.meteringwheel.getTimeInSeconds();
-    		System.out.println(beforeStopSinglePulseTime);
-    		//WHILE LOOP DOES NOT WORK
     		while(Robot.meteringwheel.getTimeInSeconds() < (beforeStopSinglePulseTime + 0.5))
     		{
-    			//Change Nothing
-    			System.out.println("Waiting");
-    			System.out.println(Robot.meteringwheel.getTimeInSeconds());
     		}
-    		System.out.println("Wait Done");
-    		System.out.println(Robot.meteringwheel.getTimeInSeconds());
+    		
+    		//Stops the motor for the "pulse effect
     		Robot.meteringwheel.stopMeteringMotor();
+    		double beforeStopSinglePauseTime = Robot.meteringwheel.getTimeInSeconds();
+    		while(Robot.meteringwheel.getTimeInSeconds() < (beforeStopSinglePauseTime + 0.5))
+    		{
+    		}
     	}
     }
 
