@@ -1,16 +1,43 @@
 
 package org.usfirst.frc.team5401.robot;
 
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.vision.VisionThread;
 
 import org.usfirst.frc.team5401.robot.subsystems.*;
+import org.opencv.core.Rect;
+import org.opencv.imgproc.Imgproc;
 import org.usfirst.frc.team5401.robot.autonomous.*; //XXX Temporary - Should import only the ones being used
 import org.usfirst.frc.team5401.robot.commands.CeaseFire;
+
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.wpilibj.vision.VisionThread;
+import org.usfirst.frc.team5401.robot.YellowWaterBottleGripPipeline;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.HashMap;
+
+import edu.wpi.first.wpilibj.vision.VisionPipeline;
+
+import org.opencv.core.*;
+import org.opencv.core.Core.*;
+import org.opencv.features2d.FeatureDetector;
+import org.opencv.imgcodecs.Imgcodecs;
+import org.opencv.imgproc.*;
+import org.opencv.objdetect.*;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -32,6 +59,18 @@ public class Robot extends IterativeRobot {
 	public static DummyCameras dummycameras;
 	public static OI oi;
 
+	
+	private static final String WEBCAM_PATH = "/dev/video0";
+	private final int width = 320;
+	private final int height = 240;
+	
+	private VisionThread visionThread;
+	private double centerX = 0.0;
+	private double centerY = 0.0;
+	
+	private final Object visionLock = new Object();
+	
+	
     Command autonomousCommand;
     SendableChooser chooser;
 
@@ -54,7 +93,7 @@ public class Robot extends IterativeRobot {
         
 		Robot.compressorsubsystem.stopCompressor();
 		chooser = new SendableChooser();
-		chooser.addDefault("Do Nothing (DEFAULT)", new DoNothing());
+/*		chooser.addDefault("Do Nothing (DEFAULT)", new DoNothing());
 		chooser.addObject("Center Gear", new AutoCenterGear());
 //		chooser.addObject("CenterGearBlueShoot", new AutoCenterGearBlueShoot());
 //		chooser.addObject("CenterGearRedShoot", new AutoCenterGearRedShoot());
@@ -98,9 +137,26 @@ public class Robot extends IterativeRobot {
 		chooser.addObject("BLUE RIGHT Gear-Hopper", new AutoBlueRightGearHopper());
 		chooser.addObject("RED LEFT Gear-Hopper", new AutoRedLeftGearHopper());
 		SmartDashboard.putData("Auto mode", chooser);
-        
+*/        
         //Ensures that the "Target Angle" value is on the dashboard
         SmartDashboard.putNumber("Target Angle", 0);
+        
+    	UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
+    	camera.setResolution(width, height);
+    	camera.setBrightness(0);
+    	camera.setExposureManual(0);
+    	
+    	visionThread = new VisionThread(camera, new YellowWaterBottleGripPipeline(), pipeline -> {
+    		if(!pipeline.filterContoursOutput().isEmpty()){
+    			Rect boundingBox = Imgproc.boundingRect(pipeline.filterContoursOutput().get(0));
+    			
+    			synchronized(visionLock){
+    				centerX = boundingBox.x + (boundingBox.width/2);
+    				centerY = boundingBox.y + (boundingBox.height/2);
+    			}
+    		}
+    	});
+
     }
 	
 	/**
@@ -161,6 +217,14 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putNumber("Velocity",  Robot.shooter.getVelocity());
         SmartDashboard.putNumber("Velocity Raw", Robot.shooter.getVelocity()); //not to be used for graph
         SmartDashboard.putNumber("Gyro", Robot.drivebase.reportGyro());
+        
+        double centerX;
+		synchronized(visionLock){
+			centerX = this.centerX;
+		}
+		double turn = centerX - (320/2);//320 is the width and divde by 2 would give the center
+		System.out.println(turn);
+	
     }
 
     public void teleopInit() {
