@@ -59,7 +59,7 @@ public class Robot extends IterativeRobot {
 	public static DummyCameras dummycameras;
 	public static OI oi;
 
-	
+	/*
 	private static final String WEBCAM_PATH = "/dev/video0";
 	private final int width = 320;
 	private final int height = 240;
@@ -69,7 +69,7 @@ public class Robot extends IterativeRobot {
 	private double centerY = 0.0;
 	
 	private final Object visionLock = new Object();
-	
+	*/
 	
     Command autonomousCommand;
     SendableChooser chooser;
@@ -140,12 +140,12 @@ public class Robot extends IterativeRobot {
 */        
         //Ensures that the "Target Angle" value is on the dashboard
         SmartDashboard.putNumber("Target Angle", 0);
-        
+/*       
     	UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
     	camera.setResolution(width, height);
     	camera.setBrightness(0);
     	camera.setExposureManual(0);
-    	
+   	
     	visionThread = new VisionThread(camera, new YellowWaterBottleGripPipeline(), pipeline -> {
     		if(!pipeline.filterContoursOutput().isEmpty()){
     			Rect boundingBox = Imgproc.boundingRect(pipeline.filterContoursOutput().get(0));
@@ -156,7 +156,7 @@ public class Robot extends IterativeRobot {
     			}
     		}
     	});
-
+*/
     }
 	
 	/**
@@ -217,14 +217,14 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putNumber("Velocity",  Robot.shooter.getVelocity());
         SmartDashboard.putNumber("Velocity Raw", Robot.shooter.getVelocity()); //not to be used for graph
         SmartDashboard.putNumber("Gyro", Robot.drivebase.reportGyro());
-        
+  /*      
         double centerX;
 		synchronized(visionLock){
 			centerX = this.centerX;
 		}
 		double turn = centerX - (320/2);//320 is the width and divde by 2 would give the center
 		System.out.println(turn);
-	
+	*/
     }
 
     public void teleopInit() {

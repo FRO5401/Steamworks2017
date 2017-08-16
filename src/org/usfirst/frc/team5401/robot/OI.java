@@ -70,7 +70,8 @@ public class OI {
 	public OI(){
 
 		//Shoot (Loader) Button
-		xboxA_Driver.whenPressed(new LoadShooter());
+		//xboxA_Driver.whenPressed(new LoadShooter());
+		xboxA_Driver.whenPressed(new VisionTrackingTower());
 		
 		//Climber Button
 		xboxY_Operator.whenPressed(new Climb(1));
