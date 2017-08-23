@@ -15,6 +15,7 @@ import org.usfirst.frc.team5401.robot.subsystems.*;
 import org.opencv.core.Rect;
 import org.opencv.imgproc.Imgproc;
 import org.usfirst.frc.team5401.robot.autonomous.*; //XXX Temporary - Should import only the ones being used
+import org.usfirst.frc.team5401.robot.commands.*;
 import org.usfirst.frc.team5401.robot.commands.CeaseFire;
 
 import edu.wpi.cscore.UsbCamera;
@@ -93,7 +94,7 @@ public class Robot extends IterativeRobot {
         
 		Robot.compressorsubsystem.stopCompressor();
 		chooser = new SendableChooser();
-/*		chooser.addDefault("Do Nothing (DEFAULT)", new DoNothing());
+		chooser.addDefault("Do Nothing (DEFAULT)", new DoNothing());
 		chooser.addObject("Center Gear", new AutoCenterGear());
 //		chooser.addObject("CenterGearBlueShoot", new AutoCenterGearBlueShoot());
 //		chooser.addObject("CenterGearRedShoot", new AutoCenterGearRedShoot());
@@ -136,8 +137,9 @@ public class Robot extends IterativeRobot {
 //		chooser.addObject("BLUE Hopper Shoot", new AutoBlueHopperAndShoot());
 		chooser.addObject("BLUE RIGHT Gear-Hopper", new AutoBlueRightGearHopper());
 		chooser.addObject("RED LEFT Gear-Hopper", new AutoRedLeftGearHopper());
+		chooser.addObject("LookAndTurn", new LookAndTurn());
 		SmartDashboard.putData("Auto mode", chooser);
-*/        
+        
         //Ensures that the "Target Angle" value is on the dashboard
         SmartDashboard.putNumber("Target Angle", 0);
 /*       
