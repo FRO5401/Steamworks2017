@@ -81,9 +81,9 @@ public class XboxMove extends Command {
     	double 	throttle  = Robot.oi.readRightTrigger_Driver();
     	double 	reverse   = Robot.oi.readLeftTrigger_Driver();
     	boolean precision = Robot.oi.getPrecision_Driver();
-    	boolean brake	  = Robot.oi.getBrake_Driver();
+//    	boolean brake	  = Robot.oi.getBrake_Driver();
     	boolean turn	  = Robot.oi.getTurnButton_Driver();
-    	boolean invert	  = Robot.oi.getDriveInvertButton_Driver();
+//    	boolean invert	  = Robot.oi.getDriveInvertButton_Driver();
     	
     	boolean gearShiftLow  = Robot.oi.getXboxBack_Driver();
     	boolean gearShiftHigh = Robot.oi.getXboxStart_Driver();
@@ -96,7 +96,7 @@ public class XboxMove extends Command {
     	}
     	
     	//Inverts Drive
-    	if (invert){
+    	if (false){//<-- Originally invert boolean as condition
     		slew *= -1;
     		double temp = throttle;
     		throttle = reverse;
@@ -137,7 +137,7 @@ public class XboxMove extends Command {
     		sensitivity	=	RobotMap.DRIVE_SENSITIVITY_DEFAULT;
     	}
     	
-    	if (brake){
+    	if (false){//<--- Originally brake boolean as condition
     		left  = 0;
     		right = 0;
     	} else if(!turn){
@@ -152,7 +152,7 @@ public class XboxMove extends Command {
     			right = (throttle - reverse) * sensitivity;
     		}
     	} else {
-    		if (invert){
+    		if (false){//<-- originally invert boolean variable as condition
     			slew *= -1;
     		}
     		if (Math.abs(slew) > RobotMap.DRIVE_THRESHHOLD){
