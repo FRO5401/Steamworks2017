@@ -76,6 +76,7 @@ public class DriveBase extends Subsystem {
 		SmartDashboard.putNumber("Right Enc Raw", rightEncoder.get());
 		SmartDashboard.putNumber("Left Enc Adj" , leftEncoder.getDistance());
 		SmartDashboard.putNumber("Right Enc Adj", rightEncoder.getDistance());
+		SmartDashboard.putNumber("Mean Enc Adj", getEncoderDistance());
 	}
 	
     public void initDefaultCommand() {
@@ -93,6 +94,7 @@ public class DriveBase extends Subsystem {
 		SmartDashboard.putNumber("Right Enc Raw", rightEncoder.get());
 		SmartDashboard.putNumber("Left Enc Adj" , leftEncoder.getDistance());
 		SmartDashboard.putNumber("Right Enc Adj", rightEncoder.getDistance());
+		SmartDashboard.putNumber("Mean Enc Adj", getEncoderDistance());
     }
 
     public void stop(){
