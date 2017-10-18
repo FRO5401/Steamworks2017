@@ -20,7 +20,7 @@ import org.usfirst.frc.team5401.robot.commands.CeaseFire;
 
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.vision.VisionThread;
-import org.usfirst.frc.team5401.robot.YellowWaterBottleGripPipeline;
+
 
 import java.io.File;
 import java.io.FileWriter;

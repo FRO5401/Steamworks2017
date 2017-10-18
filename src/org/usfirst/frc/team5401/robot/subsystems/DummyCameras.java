@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.vision.VisionThread;
 import org.opencv.core.Rect;
 import org.opencv.imgproc.Imgproc;
 import org.usfirst.frc.team5401.robot.RobotMap;
-import org.usfirst.frc.team5401.robot.YellowWaterBottleGripPipeline;
+import org.usfirst.frc.team5401.robot.GripPipeline;
 
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
@@ -53,7 +53,7 @@ public class DummyCameras extends Subsystem {
 		camera.setExposureManual(0);
 		camera.setFPS(15);
 		
-		visionThread = new VisionThread(camera, new YellowWaterBottleGripPipeline(), pipeline -> {
+		visionThread = new VisionThread(camera, new GripPipeline(), pipeline -> {
 			if(!pipeline.filterContoursOutput().isEmpty()){
 				Rect boundingBox = Imgproc.boundingRect(pipeline.filterContoursOutput().get(0));
 				
