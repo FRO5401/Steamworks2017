@@ -22,7 +22,6 @@ import org.usfirst.frc.team5401.robot.commands.CeaseFire;
 public class Robot extends IterativeRobot {
 
 	public static DriveBase drivebase;
-	public static PIDDriveBase piddrivebase;
 	public static Climber climber;
 	public static GearMechanism gearmechanism;
 	public static Infeed infeed;
@@ -42,7 +41,6 @@ public class Robot extends IterativeRobot {
      */
     public void robotInit() {
     	drivebase = new DriveBase();
-    	piddrivebase = new PIDDriveBase();
     	climber = new Climber();
     	gearmechanism = new GearMechanism();
     	infeed = new Infeed();
@@ -101,6 +99,9 @@ public class Robot extends IterativeRobot {
 		chooser.addObject("RED LEFT Gear-Hopper", new AutoRedLeftGearHopper());
 		chooser.addObject("PID Drive Straight", new AutoPIDDrive());
 		SmartDashboard.putData("Auto mode", chooser);
+		
+		//PID Drive Straight
+		SmartDashboard.putNumber("DriveStraight Distance", 0);
         
         //Ensures that the "Target Angle" value is on the dashboard
         SmartDashboard.putNumber("Target Angle", 0);

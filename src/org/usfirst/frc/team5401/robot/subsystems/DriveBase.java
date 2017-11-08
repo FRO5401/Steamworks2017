@@ -1,5 +1,6 @@
 package org.usfirst.frc.team5401.robot.subsystems;
 
+import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -17,7 +18,7 @@ import org.usfirst.frc.team5401.robot.commands.XboxMove;
  *
  */
 ///* XXX Comment this line to use Double Encoder
-public class DriveBase extends Subsystem {
+public class DriveBase extends PIDSubsystem {
 	
 	double LOW_GEAR_LEFT_DPP;
 	double LOW_GEAR_RIGHT_DPP;
@@ -40,6 +41,10 @@ public class DriveBase extends Subsystem {
 	AHRS navxGyro;
 	
 	public DriveBase(){
+		super(1,0,0); //PID
+		setAbsoluteTolerance(.5);
+		getPIDController().setContinuous(false);
+		
 		                      //TODO check on comp bot
 		LOW_GEAR_LEFT_DPP = -.0189249;//0.0189249;//<---New Comp DPP //-.020268;//<------for practice 0.019125;
 		LOW_GEAR_RIGHT_DPP = .0189249;//0.0189249;//<---New Comp //.020268;//<--- for comp //0.019125; //<--- for practice
@@ -182,6 +187,20 @@ public class DriveBase extends Subsystem {
     
     public void resetGyro(){
     	gyro.reset();
+    }
+    
+    public double returnPIDInput () {
+    	// Return your input value for the PID loop
+        // e.g. a sensor, like a potentiometer:
+        // yourPot.getAverageVoltage() / kYourMaxVoltage;
+    	return getEncoderDistance();
+    }
+    
+    public void usePIDOutput (double output) {
+    	// Use output to drive your system, like a motor
+        // e.g. yourMotor.set(output);
+    	SmartDashboard.putNumber("PIDOutput", output);
+    	drive(output, output);
     }
 
 }

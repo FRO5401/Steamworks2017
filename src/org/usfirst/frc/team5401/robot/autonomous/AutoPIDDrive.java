@@ -14,16 +14,16 @@ public class AutoPIDDrive extends Command {
     public AutoPIDDrive() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.piddrivebase);
+    	requires(Robot.drivebase);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.piddrivebase.encoderReset();
+    	Robot.drivebase.encoderReset();
     	
     	double distance = SmartDashboard.getNumber("DriveStraight Distance", 0);
-    	Robot.piddrivebase.setSetpoint(distance);
-    	//Robot.piddrivebase.enable();
+    	Robot.drivebase.setSetpoint(distance);
+    	Robot.drivebase.enable();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -33,10 +33,12 @@ public class AutoPIDDrive extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        if (Math.abs(Robot.piddrivebase.getSetpoint() - Robot.piddrivebase.getPosition()) < .5)
+        if (Math.abs(Robot.drivebase.getSetpoint() - Robot.drivebase.getPosition()) < .5) {
+        	Robot.drivebase.disable();
         	return true;
-        else
+        } else {
         	return false;
+        }
     }
 
     // Called once after isFinished returns true
