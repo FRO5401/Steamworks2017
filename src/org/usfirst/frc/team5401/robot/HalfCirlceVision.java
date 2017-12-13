@@ -1,3 +1,5 @@
+package org.usfirst.frc.team5401.robot;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -55,8 +57,8 @@ public class HalfCirlceVision implements VisionPipeline {
 
 		// Step HSL_Threshold0:
 		Mat hslThresholdInput = blurOutput;
-		double[] hslThresholdHue = {52.72704633218416, 70.43211295051101};
-		double[] hslThresholdSaturation = {242.5141242937853, 255.0};
+		double[] hslThresholdHue = {52.72704633218416, 91.93381943515264};
+		double[] hslThresholdSaturation = {233.34146242328168, 255.0};
 		double[] hslThresholdLuminance = {24.01129943502825, 61.81818181818182};
 		hslThreshold(hslThresholdInput, hslThresholdHue, hslThresholdSaturation, hslThresholdLuminance, hslThresholdOutput);
 
@@ -67,10 +69,10 @@ public class HalfCirlceVision implements VisionPipeline {
 
 		// Step Filter_Contours0:
 		ArrayList<MatOfPoint> filterContoursContours = findContoursOutput;
-		double filterContoursMinArea = 1850.0;
+		double filterContoursMinArea = 1000.0;
 		double filterContoursMinPerimeter = 0.0;
 		double filterContoursMinWidth = 0.0;
-		double filterContoursMaxWidth = 100000.0;
+		double filterContoursMaxWidth = 2000.0;
 		double filterContoursMinHeight = 0.0;
 		double filterContoursMaxHeight = 1000.0;
 		double[] filterContoursSolidity = {0, 100.0};

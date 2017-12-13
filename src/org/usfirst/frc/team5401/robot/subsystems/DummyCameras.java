@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.vision.VisionThread;
 import org.opencv.core.Rect;
 import org.opencv.imgproc.Imgproc;
 import org.usfirst.frc.team5401.robot.RobotMap;
-import org.usfirst.frc.team5401.robot.GripPipeline;
+import org.usfirst.frc.team5401.robot.HalfCirlceVision;
 
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
@@ -15,6 +15,8 @@ import edu.wpi.first.wpilibj.CameraServer;
 /**
  *Thank you team401 Camera.kt 2017 Robot for switching cameras code, not yet implemented
  *Using one dummy display camera
+ * OpenCV, what GRIP is based on, uses a Screen Coordinate System. Basically there is only one quadrant,
+ * 		origin is at the top left, x-axis is positive to the right, y-axis is positive downwards
  */
 public class DummyCameras extends Subsystem {
 	//CameraServer cameraServer;
@@ -53,12 +55,14 @@ public class DummyCameras extends Subsystem {
 		camera.setExposureManual(0);
 		camera.setFPS(15);
 		
-		visionThread = new VisionThread(camera, new GripPipeline(), pipeline -> {
+		visionThread = new VisionThread(camera, new HalfCirlceVision(), pipeline -> {
 			if(!pipeline.filterContoursOutput().isEmpty()){
 				Rect boundingBox = Imgproc.boundingRect(pipeline.filterContoursOutput().get(0));
 				
 				synchronized(visionLock){
-					centerX = boundingBox.x + (boundingBox.width/2);
+					//image location is determined by the top left corner .x finds x coordinate, .y finds y coordinate
+					//If there is not a shape, the coordinate will be (0,0)
+					centerX = boundingBox.x + (boundingBox.width/2); 
 					centerY = boundingBox.y + (boundingBox.height/2);
 				}
 			}
@@ -100,9 +104,13 @@ public class DummyCameras extends Subsystem {
     public double visionLoopSynchronized(){
     	double centerX;
 		synchronized(visionLock){
-			centerX = this.centerX;
+			centerX = this.centerX;//Basically centerX in this method  = centerX declared above in the class
 		}
-		double turn = centerX - (320/2);
+		
+		//If centerX is 0 (when there is no shape), the robot will turn until a shape is found
+		
+		//XXX Below gives turn, in pixel amount, to turn towards the middle, need to put in pixel to distance conversion 
+		double turn = centerX - (160/2);//XXX may need to put it as (160/2) - centerX. 160 is image width
 		return turn;
     }
     
