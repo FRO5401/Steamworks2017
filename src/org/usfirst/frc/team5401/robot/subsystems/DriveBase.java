@@ -189,6 +189,10 @@ public class DriveBase extends PIDSubsystem {
     	gyro.reset();
     }
     
+    public void setPIDValues (double p, double i, double d) {
+    	getPIDController().setPID(p, i, d);
+    }
+    
     public double returnPIDInput () {
     	// Return your input value for the PID loop
         // e.g. a sensor, like a potentiometer:
