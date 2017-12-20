@@ -110,8 +110,15 @@ public class DummyCameras extends Subsystem {
 		//If centerX is 0 (when there is no shape), the robot will turn until a shape is found
 		
 		//XXX Below gives turn, in pixel amount, to turn towards the middle, need to put in pixel to distance conversion 
-		double turn = centerX - (160/2);//XXX may need to put it as (160/2) - centerX. 160 is image width
-		return turn;
+		double turnInPixelDistance = centerX - (160/2);//XXX may need to put it as (160/2) - centerX. 160 is image width
+		
+		//12 inches over 160 pixel. Measured. 
+		double turnInInchesDistance = turnInPixelDistance * (12/160);
+		//atan is arc tan. Divide by 12 because that is the distance from the surface with the retro tape 
+		double turnAngleInRad = Math.atan(turnInInchesDistance/12);
+		double turnAngleInDegrees = turnAngleInRad * (180/(2*Math.PI));//Coverts Radian angle to degrees
+		
+		return turnAngleInDegrees;
     }
     
 }
