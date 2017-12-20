@@ -44,8 +44,9 @@ public class VisionTrackingAndTurn extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	
     	desiredTurnAngleRelativeToInitAngle = Robot.dummycameras.visionLoopSynchronized();
-    	System.out.println(desiredTurnAngleRelativeToInitAngle);
+    	System.out.println("Vision Turn " + desiredTurnAngleRelativeToInitAngle);
     	
     	
     	initAngle = Robot.drivebase.reportGyro();
@@ -54,12 +55,9 @@ public class VisionTrackingAndTurn extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	//System.out.println("InitAngle: " + initAngle);
-    	//System.out.println("AutoTurning: " + desiredTurnAngle);
-    	//System.out.println("Current Angle: " + currentAngle);
     	if (Math.abs(desiredTurnAngleRelativeToInitAngle) <= angleThreshold){
     		//DesiredTurnAngle too small
-    		System.out.println("AutoTurnAngle should stop1");
+    		System.out.println("VisionTurn should stop1");
     		finished = true;
     	} else {
     		if (desiredTurnAngleRelativeToInitAngle > 0 && (currentAngleRelativeToInitAngle < Math.abs(desiredTurnAngleRelativeToInitAngle) - angleThreshold)){
@@ -76,7 +74,6 @@ public class VisionTrackingAndTurn extends Command {
     		currentAngleRelativeToInitAngle = Robot.drivebase.reportGyro() - initAngle;
     	}
     	angleReport = Robot.drivebase.reportGyro();
-    	SmartDashboard.putNumber("Gyro Angle", currentAngleRelativeToInitAngle);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -86,6 +83,7 @@ public class VisionTrackingAndTurn extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.drivebase.stop();
     }
 
     // Called when another command which requires one or more of the same

@@ -138,6 +138,7 @@ public class Robot extends IterativeRobot {
 		chooser.addObject("BLUE RIGHT Gear-Hopper", new AutoBlueRightGearHopper());
 		chooser.addObject("RED LEFT Gear-Hopper", new AutoRedLeftGearHopper());
 		chooser.addObject("LookAndTurn", new LookAndTurn());
+		chooser.addObject("Vision Turn", new VisionTrackingAndTurn());
 		SmartDashboard.putData("Auto mode", chooser);
         
         //Ensures that the "Target Angle" value is on the dashboard

@@ -113,10 +113,10 @@ public class DummyCameras extends Subsystem {
 		double turnInPixelDistance = centerX - (160/2);//XXX may need to put it as (160/2) - centerX. 160 is image width
 		
 		//12 inches over 160 pixel. Measured. 
-		double turnInInchesDistance = turnInPixelDistance * (12/160);
+		double turnInInchesDistance = turnInPixelDistance * (12.0/160.0);
 		//atan is arc tan. Divide by 12 because that is the distance from the surface with the retro tape 
-		double turnAngleInRad = Math.atan(turnInInchesDistance/12);
-		double turnAngleInDegrees = turnAngleInRad * (180/(2*Math.PI));//Coverts Radian angle to degrees
+		double turnAngleInRad = Math.atan(turnInInchesDistance/12.0);
+		double turnAngleInDegrees = turnAngleInRad * (180.0/(Math.PI));//Coverts Radian angle to degrees
 		
 		return turnAngleInDegrees;
     }
