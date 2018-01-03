@@ -22,12 +22,9 @@ public class AutoPIDDrive extends Command {
     	Robot.drivebase.encoderReset();
     	
     	//double distance = 100;
-    	double distance = SmartDashboard.getNumber("DriveStraight Distance", 40);
-    	double p = SmartDashboard.getNumber("DriveStraight P", 0);
-    	double i = SmartDashboard.getNumber("DriveStraight I", 0);
-    	double d = SmartDashboard.getNumber("DriveStraight D", 0);
+    	double distance = SmartDashboard.getNumber("DriveStraight Distance", 0);
+    	Robot.drivebase.applyPIDValues();
     	
-    	Robot.drivebase.setPIDValues(p, i, d);
     	Robot.drivebase.setSetpoint(distance);
     	Robot.drivebase.enable();
     }

@@ -40,10 +40,16 @@ public class DriveBase extends PIDSubsystem {
 	private ADXRS450_Gyro gyro;
 	AHRS navxGyro;
 	
+	double p, i, d;
+	
 	public DriveBase(){
 		super(1,0,0); //PID
 		setAbsoluteTolerance(.5);
 		getPIDController().setContinuous(false);
+		
+		SmartDashboard.putNumber("DriveStraight P", p);
+    	SmartDashboard.putNumber("DriveStraight I", i);
+    	SmartDashboard.putNumber("DriveStraight D", d);
 		
 		                      //TODO check on comp bot
 		LOW_GEAR_LEFT_DPP = -.0189249;//0.0189249;//<---New Comp DPP //-.020268;//<------for practice 0.019125;
@@ -189,7 +195,10 @@ public class DriveBase extends PIDSubsystem {
     	gyro.reset();
     }
     
-    public void setPIDValues (double p, double i, double d) {
+    public void applyPIDValues () {
+    	p = SmartDashboard.getNumber("DriveStraight P", 0);
+    	i = SmartDashboard.getNumber("DriveStraight I", 0);
+    	d = SmartDashboard.getNumber("DriveStraight D", 0);
     	getPIDController().setPID(p, i, d);
     }
     
