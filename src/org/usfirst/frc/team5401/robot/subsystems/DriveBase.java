@@ -51,7 +51,7 @@ public class DriveBase extends PIDSubsystem {
     	SmartDashboard.putNumber("DriveStraight I", i);
     	SmartDashboard.putNumber("DriveStraight D", d);
     	
-    	p = 1;
+    	p = 10;
     	i = 0;
     	d = 0;
 		
