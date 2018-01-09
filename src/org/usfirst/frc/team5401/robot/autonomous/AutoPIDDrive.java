@@ -21,7 +21,7 @@ public class AutoPIDDrive extends Command {
     protected void initialize() {
     	Robot.drivebase.encoderReset();
     	
-    	double distance = 40;
+    	double distance = 0;
     	//double distance = SmartDashboard.getNumber("DriveStraight Distance", 30);
     	Robot.drivebase.applyPIDValues();
     
