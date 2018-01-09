@@ -19,14 +19,18 @@ public class AutoPIDDrive extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.drivebase.encoderReset();
     	
-    	double distance = 0;
-    	//double distance = SmartDashboard.getNumber("DriveStraight Distance", 30);
-    	Robot.drivebase.applyPIDValues();
-    
-    	Robot.drivebase.setSetpoint(distance);
-    	Robot.drivebase.runEnable();
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
     }
 
     // Called repeatedly when this Command is scheduled to run
