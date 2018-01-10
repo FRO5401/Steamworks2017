@@ -40,20 +40,10 @@ public class DriveBase extends PIDSubsystem {
 	private ADXRS450_Gyro gyro;
 	AHRS navxGyro;
 	
-	double p, i, d;
-	
 	public DriveBase(){
 		super(1,0,0); //PID
 		setAbsoluteTolerance(.5);
 		getPIDController().setContinuous(false);
-		
-		SmartDashboard.putNumber("DriveStraight P", p);
-    	SmartDashboard.putNumber("DriveStraight I", i);
-    	SmartDashboard.putNumber("DriveStraight D", d);
-    	
-    	p = 10;
-    	i = 0;
-    	d = 0;
 		
 		                      //TODO check on comp bot
 		LOW_GEAR_LEFT_DPP = -.0189249;//0.0189249;//<---New Comp DPP //-.020268;//<------for practice 0.019125;
@@ -158,25 +148,13 @@ public class DriveBase extends PIDSubsystem {
     public double getEncoderDistance(){
     	double leftDistanceRaw = leftEncoder.get();
     	double rightDistanceRaw = rightEncoder.get();
-    	if (leftDistanceRaw < 0) {
-    		leftDistanceRaw = -leftDistanceRaw;
-    	}
-    	if (rightDistanceRaw < 0) {
-    		rightDistanceRaw = -rightDistanceRaw;
-    	}
     	SmartDashboard.putNumber("Left Enc Raw", leftDistanceRaw);
     	SmartDashboard.putNumber("Right Enc Raw", rightDistanceRaw);
     	double leftDistance = leftEncoder.getDistance();
     	double rightDistance = rightEncoder.getDistance();
-    	if (leftDistance < 0) {
-    		leftDistance = -leftDistance;
-    	}
-    	if (rightDistance < 0) {
-    		rightDistance = -rightDistance;
-    	}
     	SmartDashboard.putNumber("Left Enc Adj", leftDistance);
     	SmartDashboard.putNumber("Right Enc Adj", rightDistance);
-    	double encoderDistance = (leftDistance + rightDistance)/2.0;
+    	double encoderDistance = (leftDistance + rightDistance)/2;
     	return encoderDistance;
     }
     
@@ -211,13 +189,6 @@ public class DriveBase extends PIDSubsystem {
     	gyro.reset();
     }
     
-    public void applyPIDValues () {
-    	//p = SmartDashboard.getNumber("DriveStraight P", 0);
-    	//i = SmartDashboard.getNumber("DriveStraight I", 0);
-    	//d = SmartDashboard.getNumber("DriveStraight D", 0);
-    	getPIDController().setPID(p, i, d);
-    }
-    
     public double returnPIDInput () {
     	// Return your input value for the PID loop
         // e.g. a sensor, like a potentiometer:
@@ -232,10 +203,6 @@ public class DriveBase extends PIDSubsystem {
     	drive(output, output);
     }
     
-    public void runEnable () {
-    	enable();
-    }
-
 }
 
 //*/ // XXX Comment this line to use Double encoder
