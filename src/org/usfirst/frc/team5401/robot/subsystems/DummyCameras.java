@@ -108,6 +108,8 @@ public class DummyCameras extends Subsystem {
 		}
 		
 		//If centerX is 0 (when there is no shape), the robot will turn until a shape is found
+		System.out.println(centerX);
+		
 		
 		//XXX Below gives turn, in pixel amount, to turn towards the middle, need to put in pixel to distance conversion 
 		double turnInPixelDistance = centerX - (160/2);//XXX may need to put it as (160/2) - centerX. 160 is image width

@@ -19,11 +19,11 @@ import org.usfirst.frc.team5401.robot.commands.XboxMove;
 ///* XXX Comment this line to use Double Encoder
 public class DriveBase extends Subsystem {
 	
-	double LOW_GEAR_LEFT_DPP;
-	double LOW_GEAR_RIGHT_DPP;
-	double HIGH_GEAR_LEFT_DPP;
-	double HIGH_GEAR_RIGHT_DPP;
-	double GYRO_OFFSET;
+	private double LOW_GEAR_LEFT_DPP;
+	private double LOW_GEAR_RIGHT_DPP;
+	private double HIGH_GEAR_LEFT_DPP;
+	private double HIGH_GEAR_RIGHT_DPP;
+	private double GYRO_OFFSET;
 	
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
