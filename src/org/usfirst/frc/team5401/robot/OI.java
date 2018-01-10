@@ -77,8 +77,8 @@ public class OI {
 		xboxY_Operator.whenReleased(new Climb(0));
 		
 		//Flywheels Button
-		xboxB_Operator.whenPressed(new FlyWheelControl());
-		xboxB_Operator.whenReleased(new FlyWheelControl());
+		//xboxB_Operator.whenPressed(new FlyWheelControl());
+		//xboxB_Operator.whenReleased(new FlyWheelControl());
 		//AutoTarget Button
 //		xboxA_Operator.whenPressed(new AutoTargetAndShoot(0, false, true)); //should be sending 0
 		
@@ -97,10 +97,10 @@ public class OI {
 		xboxStart_Operator.whenPressed(new CompressorToggle());
 		
 		//Shooter %VBus Override
-		xboxBack_Operator.whenPressed(new ShooterToggle());
+		//xboxBack_Operator.whenPressed(new ShooterToggle());
 		
 		//Cease Fire
-		xboxR3_Operator.whenPressed(new CeaseFire());
+		//xboxR3_Operator.whenPressed(new CeaseFire());
 		
 		//Override for starting the XboxMove command
 		xboxX_Driver.whenPressed(new XboxMove());
