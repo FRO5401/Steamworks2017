@@ -163,6 +163,8 @@ public class DriveBase extends PIDSubsystem {
     public void encoderReset(){
     	leftEncoder.reset();
     	rightEncoder.reset();
+    	System.out.println("left" + leftEncoder.getDistance());
+    	System.out.println("right" + rightEncoder.getDistance());
     }
     
 //    public double reportGyro(){
@@ -207,6 +209,9 @@ public class DriveBase extends PIDSubsystem {
     	double p = SmartDashboard.getNumber("DriveStraight P", 0);
     	double i = SmartDashboard.getNumber("DriveStraight I", 0);
     	double d = SmartDashboard.getNumber("DriveStraight D", 0);
+    	System.out.println("p " + p);
+    	System.out.println("i " + i);
+    	System.out.println("d " + d);
     	getPIDController().setPID(p, i, d);
     	enable();
     }
