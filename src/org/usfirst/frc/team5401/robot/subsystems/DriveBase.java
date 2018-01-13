@@ -152,8 +152,8 @@ public class DriveBase extends PIDSubsystem {
     	double rightDistanceRaw = rightEncoder.get();
     	SmartDashboard.putNumber("Left Enc Raw", leftDistanceRaw);
     	SmartDashboard.putNumber("Right Enc Raw", rightDistanceRaw);
-    	double leftDistance = leftEncoder.getDistance();
-    	double rightDistance = rightEncoder.getDistance();
+    	double leftDistance = leftEncoder.getDistance() * LOW_GEAR_LEFT_DPP;
+    	double rightDistance = rightEncoder.getDistance() * LOW_GEAR_RIGHT_DPP;
     	SmartDashboard.putNumber("Left Enc Adj", leftDistance);
     	SmartDashboard.putNumber("Right Enc Adj", rightDistance);
     	double encoderDistance = (leftDistance + rightDistance)/2;
