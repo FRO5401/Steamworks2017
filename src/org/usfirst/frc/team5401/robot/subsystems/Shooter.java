@@ -20,7 +20,7 @@ public class Shooter extends Subsystem {
 	TalonSRX _talonSlave;	
 	
 	
-	private double VOLTAGE_MOTOR_SPEED = -7.8 / 10;
+	private double VOLTAGE_MOTOR_SPEED = .78;
 	private double PID_MOTOR_SPEED = -19900; //-19875 //-23750 original
 	private double MOTOR_SPEED = PID_MOTOR_SPEED;
 	private double feed_forward;
