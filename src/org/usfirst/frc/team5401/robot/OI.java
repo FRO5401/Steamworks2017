@@ -77,8 +77,8 @@ public class OI {
 		xboxY_Operator.whenReleased(new Climb(0));
 		
 		//Flywheels Button
-		xboxB_Operator.whenPressed(new FlyWheelControl());
-		xboxB_Operator.whenReleased(new FlyWheelControl());
+		xboxB_Driver.whenPressed(new FlyWheelControl());
+		xboxB_Driver.whenReleased(new FlyWheelControl());
 		//AutoTarget Button
 //		xboxA_Operator.whenPressed(new AutoTargetAndShoot(0, false, true)); //should be sending 0
 		
@@ -87,8 +87,8 @@ public class OI {
 		xboxX_Driver.whenReleased(new PopGear(1)); //in
 		
 		//Unjammer Button
-		xboxRightBumper_Operator.whenPressed(new UnjamToggle(1));
-		xboxRightBumper_Operator.whenReleased(new UnjamToggle(-1));
+		xboxY_Driver.whenPressed(new UnjamToggle(1));
+		xboxY_Driver.whenReleased(new UnjamToggle(-1));
 
 		//Unjammer In Only Button
 		xboxLeftBumper_Operator.whenPressed(new UnjamIn());
@@ -97,7 +97,7 @@ public class OI {
 		xboxStart_Operator.whenPressed(new CompressorToggle());
 		
 		//Shooter %VBus Override
-		xboxBack_Operator.whenPressed(new ShooterToggle());
+		xboxStart_Driver.whenPressed(new ShooterToggle());
 		
 		//Cease Fire
 		xboxR3_Operator.whenPressed(new CeaseFire());
