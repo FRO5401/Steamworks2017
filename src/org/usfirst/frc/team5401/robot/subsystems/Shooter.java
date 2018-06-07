@@ -189,7 +189,7 @@ public class Shooter extends Subsystem {
     		System.out.println("switch to Voltage");
     	} else {
     		MOTOR_SPEED = PID_MOTOR_SPEED;
-    		_talonMaster.set(ControlMode.Velocity, MOTOR_SPEED);
+    		_talonMaster.set(ControlMode.PercentOutput, MOTOR_SPEED);
     		pidEnabled = true;
     		System.out.println("switch to Speed");
     	}
