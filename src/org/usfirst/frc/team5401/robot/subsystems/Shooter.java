@@ -117,7 +117,7 @@ public class Shooter extends Subsystem {
     		_talonMaster.config_kD(0, kD, 10);
     		_talonMaster.config_kF(0, feed_forward, 10);
     		_talonMaster.config_IntegralZone(0, Izone, 10);
-    		_talonMaster.set(ControlMode.Velocity, MOTOR_SPEED);
+    		_talonMaster.set(ControlMode.Velocity, 0);
     		System.out.println("mode: Velocity");
     	} else {
     		_talonMaster.set(ControlMode.PercentOutput, MOTOR_SPEED);
@@ -188,7 +188,6 @@ public class Shooter extends Subsystem {
     		pidEnabled = false;
     		System.out.println("switch to Voltage");
     	} else {
-    		MOTOR_SPEED = PID_MOTOR_SPEED;
     		_talonMaster.set(ControlMode.Velocity, MOTOR_SPEED);
     		pidEnabled = true;
     		System.out.println("switch to Speed");
