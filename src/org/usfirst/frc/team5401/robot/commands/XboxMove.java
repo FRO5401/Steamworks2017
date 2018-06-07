@@ -89,12 +89,12 @@ public class XboxMove extends Command {
     	boolean gearShiftHigh = Robot.oi.getXboxStart_Driver();
     	
     	//Manual Gear Shift
-/*    	if (gearShiftHigh){
+    	if (gearShiftHigh){
     		Robot.drivebase.shiftGearLowToHigh();;
     	} else if (gearShiftLow){
     		Robot.drivebase.shiftGearHighToLow();
     	}
-*/    	
+    	
     	//Inverts Drive
     	if (false){//<-- Originally invert boolean as condition
     		slew *= -1;
