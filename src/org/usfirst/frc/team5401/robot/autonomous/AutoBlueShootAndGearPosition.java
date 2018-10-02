@@ -4,7 +4,6 @@ import org.usfirst.frc.team5401.robot.commands.GetShooterUpToSpeed;
 import org.usfirst.frc.team5401.robot.commands.LoadShooter;
 import org.usfirst.frc.team5401.robot.commands.Shoot;
 import org.usfirst.frc.team5401.robot.commands.ShooterStop;
-import org.usfirst.frc.team5401.robot.commands.UnjamToggle;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.WaitCommand;
@@ -16,19 +15,6 @@ public class AutoBlueShootAndGearPosition extends CommandGroup {
 
     public AutoBlueShootAndGearPosition() {
     	//The following is from Moe's way blue. This is not the same as its red counterpart
-    	/*
-    	addParallel(new GetShooterUpToSpeed());
-    	addSequential(new AutoDrive(-2.5, .5));
-    	addSequential(new AutoTurnAngle(7, true,false));
-    	addSequential(new Shoot());
-    	addSequential(new WaitCommand(3));
-    	addSequential(new ShooterStop());
-    	addSequential(new LoadShooter());
-    	addSequential(new AutoTurnAngle(-28, true, false));
-    	addSequential(new AutoDrive(-98, .9));             //-83
-    	addSequential(new AutoTurnAngle(25, true, false));
-    	addSequential(new AutoDrive(-23, .5));              //-36
-    	*/
     	
     	addParallel(new GetShooterUpToSpeed());
     	addSequential(new AutoDrive(-2.5, .5));
@@ -40,7 +26,6 @@ public class AutoBlueShootAndGearPosition extends CommandGroup {
     	addSequential(new AutoTurnAngle(-28, true, false));
     	addSequential(new AutoDrive(-83, .9));
     	addSequential(new AutoTurnAngle(15, true, false));
-    	
 
     	// Add Commands here:
         // e.g. addSequential(new Command1());
