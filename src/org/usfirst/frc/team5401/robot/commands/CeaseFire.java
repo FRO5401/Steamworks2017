@@ -39,7 +39,7 @@ public class CeaseFire extends Command {
     protected void execute() {
     	Robot.shooter.stop();
     	Robot.compressorsubsystem.startCompressor();
-    	Robot.loader.stopConveyorsAndMeteringMotor();
+    	Robot.loader.stopLoader();
     	Scheduler.getInstance().add(new XboxMove());
     }
 

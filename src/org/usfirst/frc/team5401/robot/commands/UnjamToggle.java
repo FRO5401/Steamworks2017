@@ -5,25 +5,27 @@ import org.usfirst.frc.team5401.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- * Toggles the state of the Unjammer.
+ *
  */
 public class UnjamToggle extends Command {
-
-	private int input;
 	
+	private int input;
+
     public UnjamToggle(int direction) {
         // Use requires() here to declare subsystem dependencies
-        requires(Robot.unjammer);
-        input = direction;
+    	requires(Robot.unjammer);
+    	input = direction;
+        // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	if (input == 1) {
-    		Robot.unjammer.unjammerIn();	
-    	} else if (input == -1) {
+    		Robot.unjammer.unjammerIn();
+    	} else if (input == -1 ){
     		Robot.unjammer.unjammerOut();
     	}
+    		
     }
 
     // Called repeatedly when this Command is scheduled to run

@@ -26,8 +26,8 @@ public class FeederControl extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	upDown  = Robot.oi.getXboxLeftStickY_Operator();
-    	inOrOut = Robot.oi.getXboxTriggers_Operator();
+    	upDown  = Robot.oi.getXboxLeftY_Operator();
+    	inOrOut = Robot.oi.getTriggers_Operator();
     	
     	Robot.infeed.armUpDown(upDown);
     	Robot.infeed.feederDirection(inOrOut);

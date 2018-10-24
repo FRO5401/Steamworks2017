@@ -30,13 +30,12 @@ public class CompressorToggle extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	//end() does nothing because this command toggles the state
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
     	Robot.compressorsubsystem.stopCompressor();
-    	System.out.println("CompressorToggle Interrupted");
+    	System.out.println("Compressor Interrupted");
     }
 }

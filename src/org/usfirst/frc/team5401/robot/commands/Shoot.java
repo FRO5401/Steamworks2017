@@ -18,7 +18,7 @@ public class Shoot extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.loader.runConveyorsAndMeteringMotor();
+    	Robot.loader.stopLoader();
 		//System.out.println("Stop Targeting");
     }
 
@@ -38,7 +38,7 @@ public class Shoot extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	Robot.loader.stopConveyorsAndMeteringMotor();
+    	Robot.loader.stopLoader();
     	System.out.println("Shoot Interrupted");
     }
 }

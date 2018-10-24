@@ -10,8 +10,8 @@ import edu.wpi.first.wpilibj.VictorSP;
 
 
 /**
- *
- */
+*
+*/
 public class Climber extends Subsystem {
 
     // Put methods for controlling this subsystem
@@ -23,23 +23,20 @@ public class Climber extends Subsystem {
 	
 	public Climber(){
 		climberMotor = new VictorSP(RobotMap.CLIMBER_MOTOR);
-
 		SPEED = .9;
 		SmartDashboard.putNumber("ClimbSpeed", SPEED);
+		
 	}
+
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
+        //setDefaultCommand(new MySpecialCommand());\
     }
-    
-
     public void climbUp(){
     	climberMotor.set(SPEED);
     }
-    
     public void climbStop(){
     	climberMotor.set(0);
-    }	
+    }
 }
-    
 

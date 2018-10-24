@@ -8,9 +8,9 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class Climb extends Command {
-
-	private int input;
 	
+	private int input;
+
     public Climb(int direction) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -20,11 +20,11 @@ public class Climb extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	if (input == 1) {
-    		Robot.climber.climbUp();	
-    	} else if (input == 0) {
-    		Robot.climber.climbStop();
-    	}
+    	if (input == 1){
+    		Robot.climber.climbUp();
+        }else if (input == 0) {
+        	Robot.climber.climbStop();
+        }
     }
 
     // Called repeatedly when this Command is scheduled to run
