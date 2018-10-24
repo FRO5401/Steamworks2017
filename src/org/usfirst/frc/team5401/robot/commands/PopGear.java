@@ -14,7 +14,7 @@ public class PopGear extends Command {
     public PopGear(int inputOI) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.gearMechanism);
+    	requires(Robot.gearmechanism);
     	input = inputOI;
     }
 
@@ -24,7 +24,7 @@ public class PopGear extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.gearMechanism.gearInOut(input);
+    	Robot.gearmechanism.gearInOut(input);
     }
 
     // Make this return true when this Command no longer needs to run execute()
