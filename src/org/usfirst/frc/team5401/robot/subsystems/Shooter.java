@@ -21,7 +21,7 @@ public class Shooter extends Subsystem {
 	
 	
 	private double VOLTAGE_MOTOR_SPEED = .78;
-	private double PID_MOTOR_SPEED = -19900; //-19875 //-23750 original
+	private double PID_MOTOR_SPEED = -20000; //-19875 //-23750 original
 	private double MOTOR_SPEED = PID_MOTOR_SPEED;
 	private double feed_forward;
 	
@@ -80,9 +80,9 @@ public class Shooter extends Subsystem {
 	   //kD = SmartDashboard.getNumber("kD", kD);
 	   
 	   
-	   kP = .1;
-	   kI = .000005;//4
-	   kD = 2;//was 4 <--- if 1 is not used on practice field, use 2
+	   kP = 0.95; //was .1 //Oscilation period is .2 seconds at kP = 1.1
+	   kI = 0.0000019;//was .000005 //4
+	   kD = 0.001; //was 2 //was 4 <--- if 1 is not used on practice field, use 2
 	   //MOTOR_SPEED = SmartDashboard.getNumber("velocity", MOTOR_SPEED);
 	   
 	   Izone = 0;
