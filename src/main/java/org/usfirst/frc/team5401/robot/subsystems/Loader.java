@@ -24,8 +24,8 @@ public class Loader extends Subsystem {
 	Conveyors = new VictorSP(RobotMap.HOPPER_BELTS);
 	meteringBar = new VictorSP(RobotMap.METERING_BAR);
 	
-	LOADER_SPEED = -0.8;
-	METERING_SPEED = -0.85;
+	LOADER_SPEED = -0.9;
+	METERING_SPEED = -0.95;
 	enabled = false;
 
 	}
